@@ -1,0 +1,28 @@
+<f:if condition="{mypid}">
+	<f:then>
+		<span class="submitWrapper left width40">
+			<f:link.action action="answer" controller="user" pageUid="{mypid}" arguments="{adventscat: adventscat, question: question, answer: thisanswerno}">
+				- {thisanswername} -
+			</f:link.action>
+		</span>
+		<span class="left width540">
+			<f:link.action action="answer" controller="user" pageUid="{mypid}" arguments="{adventscat: adventscat, question: question, answer: thisanswerno}">
+				<f:format.html parseFuncTSPath="">{thisanswertext}</f:format.html>
+			</f:link.action>	
+		</span>
+	</f:then>
+	<f:else>	
+		<span class="submitWrapper left width40">
+			 {thisanswername} 
+		</span>
+		<span class="left width540">
+			<f:format.html parseFuncTSPath="">{thisanswertext}</f:format.html>
+		</span>
+	</f:else>
+</f:if>	
+<div class="clearfix">&nbsp;</div>
+										
+	
+								
+								
+								

@@ -1,0 +1,51 @@
+#Tx_Nemadvent_question_image {
+	margin: 0 20px 20px 0 ;
+}
+#Tx_Nemadvent_pi1 .width540 {
+	margin: 0px 0 0 40px;
+	width:540px;
+}
+.nemadvent_quest {
+	width:640px;
+}
+.Tx_Nemadvent_pi1 .width40 {
+	width:40px;
+}
+
+.Tx_Nemadvent_pi1 .width80 {
+	width:80px;
+	display: inline-block;
+}
+
+.Tx_Nemadvent_pi1 .width70 {
+	width:70px;
+	display: inline-block;
+}
+.Tx_Nemadvent_pi1 .width170 {
+	width:170px;
+	display: inline-block;
+}
+.Tx_Nemadvent_pi1 .width400 {
+	width:400px;
+	display: inline-block;
+}
+
+.Tx_Nemadvent_pi1 .width340 {
+	width:340px;
+	display: inline-block;
+	margin:10px 0 10px;
+}
+.Tx_Nemadvent_pi1_prize{
+	font-weight: bold;
+}
+.Tx_Nemadvent_pi1 .message{
+	font-weight: bold;
+	color: #1E78BE;
+}
+#Tx_Nemadvent_showanswers {
+	cursor: pointer;
+}
+
+#Tx_Nemadvent_answers {
+	display: none;
+}

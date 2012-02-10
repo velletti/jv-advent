@@ -1,0 +1,62 @@
+
+							<div id="Tx_Nemadvent_pi1">	
+								<div id="Tx_Nemadvent_question_top">
+								
+		  								
+									<div  class="nemadvent_quest left">
+										<f:if condition="{question.image}">
+			  							<f:then>
+			  								<div id="Tx_Nemadvent_question_image" class="left"> 
+												<a class="loupe" rel="shadowbox;" title="{question.title}" href="{question.image.filePath}{question.image.fileName}">
+													<f:image width="220" src="{question.image.filePath}{question.image.fileName}" alt="img" />
+													<img class="absrightbottom" src="fileadmin/templates_nemeu/img/icon_loupe.png">
+												</a>
+											</div>
+			  		        			</f:then>
+			  							<f:else>
+		  								</f:else>
+		  								</f:if>	
+										<h3>{settings.todayformated}: {question.title}</h3>
+										<f:format.html>{question.descLong}</f:format.html>
+									</div>
+									
+									<div class="clearfix">&nbsp;</div>
+									
+									<div id="Tx_Nemadvent_showanswers" >
+										<span class="left width40">
+											<input type="checkbox" value="y" name="tx_nemadvent_pi1[accepted]" onClick="jQuery('#Tx_Nemadvent_answers').show();jQuery('#Tx_Nemadvent_showanswers').hide();">
+										</span>
+										<span class="left width540">
+											<f:format.html>{settings.advent.list.mustacceptagb}</f:format.html>
+										</span>
+									</div>	
+									<div class="clearfix">&nbsp;</div>
+									<div id="Tx_Nemadvent_answers">
+									
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+
+										<f:if condition="{isnemintern}">
+											<p><i>Visible for Nemetschek Internal: the correct is answer: {question.correct}</i></p>
+										</f:if>
+									</div>	
+									
+									<div class="clearfix">&nbsp;</div>
+									
+									<f:if condition="{question.descShort}">
+										<div class="nemadvent_tipp">
+											<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated}</h3>
+											<div>
+												<f:format.html>{question.descShort}</f:format.html>
+											</div>
+										</div>
+									</f:if>	
+								</div>
+							</div>
+								
+								
+								
+								

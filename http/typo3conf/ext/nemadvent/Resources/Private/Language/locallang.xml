@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for Nem Advent extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="no_access_headline">No Access</label>
+			<label index="no_access">Please log in with right access rights to see that page</label>
+						
+			<label index="hintoftheday">Hint of the Day</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Points</label>
+			<label index="yourresult">Your Result</label>
+			<label index="result_visible_at">Your Result will be shown after</label>
+			<label index="addanswer.WasSent">Your Answer was stored in our database and is shown in the list below. You can change your answer until 23:59 this day.</label>
+			
+			
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="no_access_headline">Kein Zugriff</label>
+			<label index="no_access">Bitte melden Sie sich mit Ihrem usernamen an, um diese Seite zu sehen.</label>
+						
+			<label index="hintoftheday">Tipp des Tages</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Punkte</label>
+			<label index="yourresult">Ihr Ergebnis</label>
+			<label index="result_visible_at">Ihr Ergebnis ist sichtbar am </label>
+			<label index="addanswer.WasSent">Ihre Antwort wurde gespeichert und wird in nachfolgender Tabelle aufgelistet. Bei Bedarf können Sie eine korrigierte Antwort bis 23:59 Uhr abgeben.</label>
+			
+			
+		</languageKey>
+		<languageKey index="at" type="array">
+			<label index="no_access_headline">Kein Zugriff</label>
+			<label index="no_access">Bitte melden Sie sich mit Ihrem usernamen an, um diese Seite zu sehen.</label>
+						
+			<label index="hintoftheday">Tipp des Tages</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Punkte</label>
+			<label index="yourresult">Ihr Ergebnis</label>
+			<label index="result_visible_at">Ihr Ergebnis ist sichtbar am </label>
+			<label index="addanswer.WasSent">Ihre Antwort wurde gespeichert und wird in nachfolgender Tabelle aufgelistet. Bei Bedarf können Sie eine korrigierte Antwort bis 23:59 Uhr abgeben.</label>
+			
+			
+		</languageKey>		
+		<languageKey index="ch" type="array">
+			<label index="no_access_headline">Kein Zugriff</label>
+			<label index="no_access">Bitte melden Sie sich mit Ihrem usernamen an, um diese Seite zu sehen.</label>
+						
+			<label index="hintoftheday">Tipp des Tages</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Punkte</label>
+			<label index="yourresult">Ihr Ergebnis</label>
+			<label index="result_visible_at">Ihr Ergebnis ist sichtbar am </label>
+			<label index="addanswer.WasSent">Ihre Antwort wurde gespeichert und wird in nachfolgender Tabelle aufgelistet. Bei Bedarf können Sie eine korrigierte Antwort bis 23:59 Uhr abgeben.</label>
+			
+			
+		</languageKey>	
+		<languageKey index="cz" type="array">	
+			<label index="no_access_headline">Nemáte přístupu</label>
+			<label index="no_access">Pro zobrazení obsahu stránky se prosím přihlaště.</label>
+						
+			<label index="hintoftheday">Tip dne</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Body</label>
+			<label index="yourresult">Váš výsledek</label>
+			<label index="result_visible_at">Váš výsledek bude zobrazen od</label>
+			<label index="addanswer.WasSent">Vaše odpověď byla uložena a zobrazí se v tabulce níže. V případě potřeby můžete svou odpověď změnit do 23:59 dnešního dne.</label>
+		</languageKey>	
+	
+		<languageKey index="fr" type="array">
+             <label index="no_access_headline">Aucun accès </label>
+             <label index="no_access">Connectez-vous s'il vousplaît pour accéder à cette page</label>
+             <label index="hintoftheday">Conseil du jour </label>
+             <label index="tx_nemadvent_domain_model_winner.points">Points</label>
+             <label index="yourresult">Votre résultat</label>
+             <label index="result_visible_at">Votre résultat sera disponible après</label>
+             <label index="addanswer.WasSent">Votre réponse est enregistrée dans notre base de données et peut être vue dans la liste ci-dessous. Vous pouvez modifier votre réponse jusqu'à 23h59 ce jour. </label>
+		</languageKey>
+		<languageKey index="it" type="array"> 
+			<label index="no_access_headline">Nessun accesso</label> 
+			<label index="no_access">Per vedere questa pagina, esegui il login.</label> 
+			
+			<label index="hintoftheday">Tipp del giorno</label> 
+			<label index="tx_nemadvent_domain_model_winner.points">Punti</label> 
+			<label index="yourresult">Il tuo risultato</label> 
+			<label index="result_visible_at">Il tuo risultato è visibile dopo</label> 
+			<label index="addanswer.WasSent">La tua risposta è stata salvata ed elencata nella tabella seguente. Se necessario, la tua risposta può essere corretta fino alle 23:59.</label> 
+		</languageKey> 	
+		
+	</data>
+</T3locallang>

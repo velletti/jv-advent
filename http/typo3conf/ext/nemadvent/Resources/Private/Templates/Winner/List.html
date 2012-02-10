@@ -1,0 +1,53 @@
+﻿{namespace helper=Tx_Nemadvent_ViewHelpers}
+<f:if condition="{winnerdata}">
+	<f:then>
+		<div class="Tx_Nemadvent_pi1">
+				<f:for each="{winnerdata}" as="winner">
+					<f:if condition="{winner.prize.title}">
+						<f:then>
+							<span class="left width340">
+								<span class="left width70">
+									<f:link.external uri="/user/{winner.user.username}">
+										<f:image title="{winner.user.username}" id="user{winner.user.uid}" alt="user" height="75c" width="50c" src="{winner.user.tx_mmforum_avatar}"/>
+									</f:link.external>
+								</span>
+								<span class="left width170">
+									<h3>{winner.user.username}</h3>
+									<div class="Tx_Nemadvent_pi1_prize">{winner.prize.title}</div>
+									{winner.prize.descShort}<br/>
+								</span>
+								
+								<f:if condition="{winner.prize.points} > 0">
+									<f:then>
+										<span class="left width80">
+											&nbsp;
+											{winner.prize.points} <f:translate key="Tx_Nemadvent_Domain_Model_Winner.points">Points</f:translate>
+										</span>
+									</f:then>
+									<f:else>
+										<f:if condition="{winner.user.dateformated}">
+											<span class="left width80">
+												&nbsp;
+												{winner.user.dateformated}<br/>
+											</span>	
+										</f:if>
+									</f:else>
+								</f:if>
+							</span>	
+						</f:then>
+						<f:else>
+							<span class="left width70">
+								<f:link.external uri="/user/{winner.user.username}">
+									<f:image title="{winner.user.username}" id="user{winner.user.uid}" alt="user" height="75c" width="50c" src="{winner.user.tx_mmforum_avatar}"/>
+								</f:link.external>
+							</span>
+						</f:else>
+					</f:if>
+				</f:for>		
+		</div>
+
+	</f:then>
+	<f:else>
+		<p><f:translate key="no_questions">some definitions are missing</f:translate></p>
+	</f:else>
+</f:if>

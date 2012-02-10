@@ -1,0 +1,39 @@
+
+<div class="Tx_Nemadvent_pi1">
+		<f:renderFlashMessages class="message" />
+		<f:for each="{answerlist}" as="answer">
+			<div class="Tx_Nemadvent_pi1_answer">
+			<span class="left width80">
+				{answer.date} 
+			</span>	
+			<span class="left width400">
+				<f:format.html parseFuncTSPath="">
+					{answer.myanswer}. {answer.myanswerTEXT} 
+				</f:format.html>
+					
+			</span>	
+			<span class="left width80">
+				<f:if condition="{settings.showtotal} > 0">
+					{answer.showpoint}
+				</f:if>
+				
+			
+			</span>		
+		</div>		
+		<div class="clearfix">&nbsp;</div>	
+	</f:for>
+	<div class="Tx_Nemadvent_pi1">
+		<f:if condition="{settings.showtotal} > 0">
+		<f:then>
+			<f:translate key="yourresult">Your result</f:translate>
+					: {settings.total} / {settings.count}
+		</f:then>
+		<f:else>
+			<f:translate key="result_visible_at">Result will be shown after </f:translate>
+					: {settings.enddate} 
+		</f:else>
+		</f:if>
+		
+	</div>		
+</div>		
+	

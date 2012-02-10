@@ -1,0 +1,61 @@
+{namespace helper=Tx_Nemadvent_ViewHelpers}
+<f:if condition="{question}">
+	<f:then>
+		<div class="Tx_Nemadvent_question">
+			<f:if condition="{isnem}">
+				<f:then>
+					<f:render partial="Adddate" arguments="{isnem: isnem}"/>
+				
+					<f:render partial="Question" arguments="{question: question, settings: settings, adventscat:adventscat,isnem: isnem,isnemintern: isnemintern, mypid: mypid}"/>
+				</f:then>	
+				<f:else>	
+					<f:if condition="{settings.beforestartdate}">
+						<f:then>
+							<div style="display:block;"> 
+								<f:translate key="willstart">Startdate: {settings.startdate}</f:translate>
+								<f:translate key="itisnow"> - Now it is : {settings.now} </f:translate>
+							</div>
+						</f:then>	
+						<f:else>
+							<f:if condition="{settings.afterenddate}">
+								<f:then>
+								<div style="display:block;"> 
+									<f:translate key="hasend">Too Late: enddate: {settings.enddate}</f:translate>
+									<f:translate key="itisnow"> - Now it is : {settings.now} </f:translate>
+								</div>	
+								</f:then>	
+								<f:else>	
+									<f:if condition="{mypid}">
+										<f:then>
+											<f:render partial="Question" arguments="{question: question, settings: settings, adventscat:adventscat, isnem: isnem,isnemintern: isnemintern,  mypid: mypid}"/>
+										</f:then>	
+									<f:else>
+											<h3>Something is wrong: </h3><br/>
+											question was fond, it is not to early, and not too late, your are not nem but you cant Vote.
+											startdate: {settings.enddate} <br/>
+											now: {settings.now} <br/>
+											
+									</f:else>
+									</f:if>		
+								</f:else>	
+							</f:if>
+						</f:else>
+					</f:if>
+				</f:else>
+			</f:if>
+		</div>
+
+	</f:then>
+	<f:else>
+		<f:render partial="Adddate" arguments="{isnem: isnem}"/>
+
+		<p><h3>
+			<f:translate key="no_questions">Definitions of Question is missing</f:translate>
+			</h3>
+			Startdate settings: {settings.startdate}<br/>
+			Question as Intval: {settings.today}<br/>
+			Question formated : {settings.todayformated}<br/>
+		</p>						
+								
+	</f:else>
+</f:if>

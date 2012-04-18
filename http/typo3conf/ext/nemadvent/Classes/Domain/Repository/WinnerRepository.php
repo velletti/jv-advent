@@ -43,7 +43,7 @@ class Tx_Nemadvent_Domain_Repository_WinnerRepository extends Tx_Extbase_Persist
 						' order by p.points DESC, p.date DESC, p.sorting ASC'
 						;
 	//	echo $querystring ;
-				$return = $query->statement( $querystring )->execute();
+				$return = $query->statement( $querystring )->execute()->toArray() ;
 		// $return = $query->matching($query->equals('pid', $pid))->execute();
 
 		return $return;

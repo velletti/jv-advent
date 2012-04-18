@@ -41,39 +41,31 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persisten
 	public function insertAnswer(Tx_Nemadvent_Domain_Model_AdventCat $adventCat, $pid ,$feUserUid,Tx_Nemadvent_Domain_Model_Advent $question,$points,$subpoints,$answer){
 		$return = FALSE ;
 		if ($feUserUid > 0 and  $answer > 0 and is_object($question) ) {
-			$delquery = $this->createQuery();
-			$delquerystatement ="DELETE from tx_nemadvent_domain_model_user WHERE "
-										."feuser_uid ='" .   intval($feUserUid) ."' AND "
-										."advent_uid ='" .   intval($adventCat->getUid())    ."' AND "
-										."question_uid ='" . intval($question->getUid())
-										."'" ; 
-			$delete = $delquery->statement($delquerystatement)->execute() ; 
-			// echo $delquerystatement ;							
-			// debug( $delete) ;
-			// die() ;	
+						
+			$res = $GLOBALS['TYPO3_DB']->exec_DELETEquery('tx_nemadvent_domain_model_user', 
+															"feuser_uid ='" .   intval($feUserUid) ."' AND "
+															."advent_uid ='" .   intval($adventCat->getUid())    ."' AND "
+															."question_uid ='" . intval($question->getUid()) ."'"
+															);
 				
-			$query = $this->createQuery();
-			$return = $query->statement('INSERT INTO tx_nemadvent_domain_model_user 
-							(pid,crdate, tstamp, feuser_uid, sys_language_uid, usergroup, customerno, question_uid,question_date,question_datef,answer_uid,points,subpoints,advent_uid)
-							
-							VALUES( ' . $pid .','. 
-									time().','. 
-									time().','.
-									intval($feUserUid).','.
-									$GLOBALS['TSFE']->sys_language_uid .',"'.
-									$GLOBALS['TSFE']->fe_user->user['usergroup'] .'","'.
-									$GLOBALS['TSFE']->fe_user->user['tx_barafereguser_nem_cnum'] .'",'.
-									
-									intval($question->getUid() ).','.
-									intval($question->getDate() ).','.
-									'"' . date( "d.m.Y" , $question->getDate() ).'",'.
-									
-									intval($answer).','.
-									intval($points).','.
-									intval($subpoints).','.
-									
-									intval($adventCat->getUid()).
-									')')->execute();
+			$updateData = array ( 	"pid" 				=> $pid , 
+									"crdate" 			=> time() , 
+									"tstamp" 			=> time() ,
+									"feuser_uid" 		=> intval($feUserUid) , 
+									"sys_language_uid" 	=> $GLOBALS['TSFE']->sys_language_uid  , 
+									"usergroup" 		=> $GLOBALS['TSFE']->fe_user->user['usergroup'] , 
+									"customerno" 		=> $GLOBALS['TSFE']->fe_user->user['tx_barafereguser_nem_cnum'] , 
+									"question_uid" 		=> intval($question->getUid() ) , 
+									"question_date" 	=> intval($question->getDate() ) , 
+									"question_datef" 	=> date( "d.m.Y" , $question->getDate() ) , 
+									"answer_uid" 		=> intval($answer) , 
+									"points" 			=> intval($points) , 
+									"subpoints" 		=> intval($subpoints) , 
+									"advent_uid" 		=> intval($adventCat->getUid()) , 
+								) ;	
+		
+			$GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_nemadvent_domain_model_user'
+								, $updateData);	
 			
 		}
 		return $return;
@@ -98,7 +90,7 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persisten
 		$querystring .= 			') ORDER BY question_date ASC ' .
 						  			'LIMIT ' . $offset . ',' . $limit  ;
 
-		$return = $query->statement( $querystring )->execute();
+		$return = $query->statement( $querystring )->execute()->toArray() ;
 		return $return;
 	}
 	 

@@ -37,18 +37,7 @@ class Tx_Nemadvent_Domain_Repository_AdventRepository extends Tx_Extbase_Persist
 	public function findOneByFilter( Tx_Nemadvent_Domain_Model_AdventCat $adventCat=NULL , $questiondate=0, $uid =0) {
 			
 		$query = $this->createQuery();
-		/*
-		$querystring = 'SELECT * from tx_nemadvent_domain_model_advent q ' .
-						'where q.categories="' .$adventCat->getUid() .'" '.
-						'   and q.deleted="0" and q.hidden="0" ' ;
-		if 	( $questiondate > 0 ) {
-			$querystring .= '   and q.date="' . $questiondate .'"  ' ;
-		}					
-		if 	( $uid > 0 ) {
-			$querystring .= '   and q.uid="' . $uid .'"  ' ;
-		}					
-		$return = $query->statement( $querystring )->execute();
-		 */
+		
 		$query->getQuerySettings()->setRespectEnableFields(true);
 		$query->getQuerySettings()->setRespectStoragePage(false);
 					

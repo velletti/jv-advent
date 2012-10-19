@@ -7,9 +7,9 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Pi1',
 	array (
 		'Advent'		=>	'list,single',
-		'User'			=>	'answer',
+		'User'			=>	'answer,',
 		'Adventcat'		=>	'list',
-		'Winner'		=>	'list',
+		'Winner'		=>	'list,listall',
 	),
 	array (
 		'Advent'		=>	'list,single,winners',

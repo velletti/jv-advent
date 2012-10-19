@@ -48,6 +48,8 @@ class Tx_Nemadvent_Domain_Repository_WinnerRepository extends Tx_Extbase_Persist
 
 		return $return;
 	}
+
+
 	
 }
 ?>

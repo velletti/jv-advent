@@ -30,6 +30,8 @@
 			<label index="Tx_Nemadvent_Domain_Model_Winner.date">Date</label>
 			<label index="Tx_Nemadvent_Domain_Model_Winner.winner">Winner</label>
 			<label index="Tx_Nemadvent_Domain_Model_Winner.winnerlist">Winnerlist</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.winnerlistall">Winnerlist All Days</label>
+			
 			<label index="Tx_Nemadvent_Domain_Model_Winner.sorting">Sorting</label>
 			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Points</label>
 			<label index="Tx_Nemadvent_Domain_Model_Winners_pid">Page with winners</label>

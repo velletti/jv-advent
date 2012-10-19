@@ -32,6 +32,10 @@
 										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Winner.winnerlist</numIndex>
 										<numIndex index="1">Winner->list</numIndex>
 									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Winner.winnerlistall</numIndex>
+										<numIndex index="1">Winner->listall</numIndex>
+									</numIndex>
 								</items>
 							</config>
 						</TCEforms>

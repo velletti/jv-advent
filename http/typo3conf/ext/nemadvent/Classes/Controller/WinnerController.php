@@ -121,6 +121,69 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 		$this->view->assign('settings', $this->settings);
 	}
 
+
+	/**
+	 * listall action for this controller.
+	 * @param integer $offset 
+	 */
+	public function listallAction($offset=0) {
+		$doit = $this->settingsHelper() ;
+		if ( $this->request->hasArgument('offset')) {
+			$offset = intval($this->request->getArgument('offset')) ;
+		}
+		$offset = intval( $offset) ;
+
+		/* 
+		 * SELECT a.feuser_uid,a.usergroup, u.username, u.image, count( a.points ) AS countttotal, sum( a.points ) AS pointtotal
+FROM  (`tx_nemadvent_domain_model_user` a LEFT JOIN fe_users u ON		a.feuser_uid = u.uid )
+WHERE a.advent_uid =2 AND `sys_language_uid` = 1
+AND a.deleted =0
+and `a.question_date` < 1323126000   
+GROUP BY a.feuser_uid
+ORDER BY pointtotal DESC,countttotal ASC
+LIMIT 0 , 30
+		 * 
+		 * 
+		 * */
+		 
+		$what = "a.feuser_uid,a.usergroup, u.username, u.tx_mmforum_avatar, u.tx_barafereguser_nem_gender, u.image, count( a.points ) AS countttotal, sum( a.points ) AS pointtotal";
+		$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON		a.feuser_uid = u.uid )' ;
+		$where = "a.advent_uid =2  AND a.deleted = 0 AND `sys_language_uid` = 1" ;  		
+		$groupBy = 'a.feuser_uid';
+		$orderBy = 'pointtotal DESC,countttotal ASC';
+
+		// $limit = $offset . ',20' ;
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
+		$winnerdata = array() ;	
+		for ( $i=0;$i<20;$i++) {
+			$winnerdata[$i] = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
+			if ( $winnerdata[$i]['image'] == "") {
+				if( $winnerdata[$i]['tx_barafereguser_nem_gender'] == "0" ) {
+					$winnerdata[$i]['tx_mmforum_avatar'] = "fileadmin/templates_connect/img/Avatar_Man.png" ;
+				} else {
+					$winnerdata[$i]['tx_mmforum_avatar'] = "fileadmin/templates_connect/img/Avatar_Woman.png" ;
+				}
+			} else {
+				if ( preg_match("/tx_barafeprofileuser/", $winnerdata[$i]['image'] )) {
+					$winnerdata[$i]['tx_mmforum_avatar'] = $winnerdata[$i]['image'] ;
+				} else {
+					$winnerdata[$i]['tx_mmforum_avatar'] = 'uploads/tx_barafeprofileuser/' . $winnerdata[$i]['image'] ;
+				}
+			}
+			if ( !file_exists($winnerdata[$i]['tx_mmforum_avatar']) ) {
+				if( $winnerdata[$i]['tx_barafereguser_nem_gender'] == "0" ) {
+					$winnerdata[$i]['tx_mmforum_avatar'] = "fileadmin/templates_connect/img/Avatar_Man.png" ;
+				} else {
+					$winnerdata[$i]['tx_mmforum_avatar'] = "fileadmin/templates_connect/img/Avatar_Woman.png" ;
+				}
+			}
+		}
+		
+		$this->view->assign('winnerdata', $winnerdata);
+//		var_dump($winnerdata) ;
+//		die;
+	}	
+
 		
 
 

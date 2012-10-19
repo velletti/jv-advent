@@ -42,9 +42,12 @@ class Tx_Nemadvent_Controller_BaseController extends Tx_Extbase_MVC_Controller_A
 	 *
 	 */
 	public function initCSS($files) {
-		foreach($files as $cssFile) {
-			$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_'.str_replace(array('/', '.'), '_', $cssFile)] = '<link rel="stylesheet" type="text/css" href="'.$cssFile.'" media="screen, projection" />'."\n";
+		if ( is_array($files)) {
+			foreach($files as $cssFile) {
+				$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_'.str_replace(array('/', '.'), '_', $cssFile)] = '<link rel="stylesheet" type="text/css" href="'.$cssFile.'" media="screen, projection" />'."\n";
+			}	
 		}
+		
 	}
 
 	/**
@@ -55,8 +58,10 @@ class Tx_Nemadvent_Controller_BaseController extends Tx_Extbase_MVC_Controller_A
 	 *
 	 */
 	public function initJS($files) {
-		foreach($files as $jsFile) {
-			$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_'.str_replace(array('/', '.'), '_', $jsFile)] = '<script type="text/javascript" src="'.$jsFile.'"></script>'."\n";
+		if ( is_array($files)) {
+			foreach($files as $jsFile) {
+				$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_'.str_replace(array('/', '.'), '_', $jsFile)] = '<script type="text/javascript" src="'.$jsFile.'"></script>'."\n";
+			}
 		}
 	}
 	public function settingsHelper( ) {

@@ -72,6 +72,13 @@ class Tx_Nemadvent_Domain_Model_Winner extends Tx_Extbase_DomainObject_AbstractE
 	 */
 	protected $feuserUid;
 
+	/**
+	 * pointtotal
+	 *
+	 * @var integer
+	 */
+	protected $pointtotal ;
+	
 
 	/**
 	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
@@ -158,6 +165,17 @@ class Tx_Nemadvent_Domain_Model_Winner extends Tx_Extbase_DomainObject_AbstractE
 	public function getSubpoints() {
 		return $this->subpoints;
 	}		
+	/**
+	 * Getter for pointtotal
+	 *
+	 * @return integer $pointtotal
+	 */
+	public function getPointtotal() {
+		return $this->pointtotal;
+	}		
+	
+	
+	
 }
 
 ?>

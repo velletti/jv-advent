@@ -1,0 +1,20 @@
+﻿{namespace helper=Tx_Nemadvent_ViewHelpers}
+<f:if condition="{winnerdata}">
+	<f:then>
+		<div class="Tx_Nemadvent_pi1">
+				<f:for each="{winnerdata}" as="winner">
+					<span class="left width70">
+						<f:link.external uri="/user/{winner.username}"  defaultScheme="">
+							<f:image title="{winner.username} IMG: {winner.tx_mmforum_avatar}" id="user{winner.feuser_uid}" alt="user {winner.username}" height="75c" width="50c" src="{winner.tx_mmforum_avatar}"/>
+						</f:link.external>
+						<br/>
+						Points: {winner.pointtotal}
+					</span>
+				</f:for>		
+		</div>
+
+	</f:then>
+	<f:else>
+		<p><f:translate key="no_questions">some definitions are missing</f:translate></p>
+	</f:else>
+</f:if>

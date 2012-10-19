@@ -119,5 +119,21 @@ CREATE TABLE tx_nemadvent_advent_adventcat_mm (
 	KEY parent (pid,uid_local,uid_foreign)
 );
 
+#
+# Table structure for table 'tx_nemadvent_cache'
+#
+CREATE TABLE tx_nemadvent_cache (
+	uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
 
+	identifier char(128) DEFAULT '0' NOT NULL,
+	lifetime int(11) DEFAULT '0' NOT NULL,
+	content blob NOT NULL ,
+
+	PRIMARY KEY (uid),
+	KEY parent (pid),
+	KEY identifier (identifier),
+	KEY lifetime (lifetime)
+
+);
 

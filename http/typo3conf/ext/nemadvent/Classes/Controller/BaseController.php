@@ -81,7 +81,7 @@ class Tx_Nemadvent_Controller_BaseController extends Tx_Extbase_MVC_Controller_A
 			
 		}
 
-
+		$this->CacheTime = 60*60*24 ;
 		$this->pid = intval( $GLOBALS['TSFE']->id ) ;
 		$this->adventCat =  $this->adventCatRepository->findByUid( $this->settings['advent']['list']['filter']['adventCat'] );
 		// debug($this->settings['advent']['list']['filter']['adventCat']) ;	
@@ -124,9 +124,68 @@ class Tx_Nemadvent_Controller_BaseController extends Tx_Extbase_MVC_Controller_A
 		$this->view->assign('adventscat', $this->adventCat);
 		
 		$this->view->assign('adventCounter', $count);
+		
 		return true;
 	}		
-		/*
+
+	/*
+	 * try to get a Content Peace from Cache by Identifier
+	 *
+	 * @param	string		$identifier 
+	 * @return	string		output to website from Cache or empty
+	 */
+	function get_content_from_Cache($identifier) {
+		
+		if ( $this->CacheTime == 0 ) {
+			return '' ;
+		}
+		// for development ... do not cache at all if activating the next line .. ... !
+		// $this->delete_from_Cache($identifier ) ;
+		$identifier =  $identifier . "-". $GLOBALS['TSFE']->sys_language_uid ;
+		$where = 'identifier = "' . $identifier . '" and lifetime > ' . time() . " AND pid = " . $GLOBALS['TSFE']->id;
+ 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('content','tx_nemadvent_cache', $where, '' , '');
+		$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
+		$this->CacheDebug .=  "<br>get: " . $where . (($row) ? ' -> found':' -> not cached') ;
+		return $row[content] ;
+	}
+	/*
+	 * put a Content Peace to Cache by Identifier
+	 *
+	 * @param	string		$identifier 
+	 * @param	string		$content
+	 * @return	''
+	 */	
+	function put_content_to_Cache($identifier , $content ) {
+		$this->CacheDebug .=  '<br>put: -> ' . $identifier . " -> CacheTime" . $this->CacheTime ;	
+		if ( $this->CacheTime > 0 ) {
+				
+			$this->delete_from_Cache($identifier ) ;
+			$identifier =  $identifier . "-". $GLOBALS['TSFE']->sys_language_uid ;
+			$data = array ( 'pid' => $GLOBALS['TSFE']->id  ,
+							'identifier' => $identifier ,
+							'lifetime' => time() + $this->CacheTime ,
+							'content' => $content ,
+						);
+			$res = $GLOBALS["TYPO3_DB"]->exec_INSERTquery("tx_nemadvent_cache", $data);	
+			
+			$this->CacheDebug .=  ' -> til: ' . ( time() + $this->CacheTime )  ;	
+		}	
+	}
+	/*
+	 * delete from Cache by Identifier
+	 *
+	 * @param	string		$identifier 
+	 * @return	''
+	 */	
+	function delete_from_Cache($identifier ) {
+		$identifier =  $identifier . "-". $GLOBALS['TSFE']->sys_language_uid ;
+		$this->CacheDebug .=  '<br>delete: -> ' . $identifier . " -> CacheTime" . $this->CacheTime ;	
+		$where = 'identifier LIKE "' . $identifier . '" AND pid = "' . $GLOBALS['TSFE']->id  . '"' ;
+		$res = $GLOBALS["TYPO3_DB"]->exec_DELETEquery("tx_nemadvent_cache", $where );	
+		
+	}
+
+	/*
 	 * translate function
 	 * @param string $label the locallang label to translate
 	 * @return string the localized String 

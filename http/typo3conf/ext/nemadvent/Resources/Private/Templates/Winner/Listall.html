@@ -3,9 +3,9 @@
 	<f:then>
 		<div class="Tx_Nemadvent_pi1">
 				<f:for each="{winnerdata}" as="winner">
-					<span class="left width70">
+					<span class="left winnerall">
 						<f:link.external uri="/user/{winner.username}"  defaultScheme="">
-							<f:image title="{winner.username} IMG: {winner.tx_mmforum_avatar}" id="user{winner.feuser_uid}" alt="user {winner.username}" height="75c" width="50c" src="{winner.tx_mmforum_avatar}"/>
+							<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="75c" width="50c" src="{winner.tx_mmforum_avatar}"/>
 						</f:link.external>
 						<br/>
 						Points: {winner.pointtotal}

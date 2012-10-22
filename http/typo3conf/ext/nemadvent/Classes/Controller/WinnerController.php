@@ -134,15 +134,21 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 		$offset = intval( $offset) ;
 
 		$identifier  =  'listallWinner-' . $this->adventCat->getUid() ; 
-		$tempcontent = $this->get_content_from_Cache( $identifier ) ;		
-		$winnerdata = unserialize($tempcontent);
+//		$tempcontent = $this->get_content_from_Cache( $identifier ) ;		
+//		$winnerdata = unserialize($tempcontent);
 
 		if ( ! is_array( $winnerdata ) ) {
-			$what = "a.feuser_uid,a.usergroup, u.username, u.tx_mmforum_avatar, u.tx_barafereguser_nem_gender, u.image, count( a.points ) AS countttotal, sum( a.points ) AS pointtotal";
-			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON		a.feuser_uid = u.uid )' ;
-			$where = "a.advent_uid = " . $this->adventCat . "  AND a.deleted = 0 AND `sys_language_uid` = 1" ;  		
+			$what = "a.feuser_uid,a.usergroup, " 
+			. "u.username, u.tx_mmforum_avatar, u.tx_barafereguser_nem_gender, u.image, " 
+			. "count( a.points ) AS countttotal, sum( a.points ) AS pointtotal";
+			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
+			$where = "a.advent_uid = " . $this->adventCat->getUid() 
+			. "  AND a.deleted = 0 AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid 
+		    . " AND a.question_date <" . mktime( 23 , 50 , 59 , date("m") , date("d")-1 , date("Y")) 
+			// . " AND FIND_IN_SET('3',usergroup) "  ; // TODO: Usergroup auswählen aus Flex Form Value die Angezeigt werden soll
+			 ;		
 			$groupBy = 'a.feuser_uid';
-			$orderBy = 'pointtotal DESC,countttotal ASC';
+			$orderBy = 'pointtotal DESC, countttotal ASC';
 	
 			// $limit = $offset . ',20' ;
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
@@ -174,8 +180,8 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 			$tempcontent = $this->put_content_to_Cache($identifier , $toBeSaved ) ;
 		}		
 		$this->view->assign('winnerdata', $winnerdata);
-//		var_dump($winnerdata) ;
-//		die;
+	//	var_dump($winnerdata) ;
+	//	die;
 	}	
 
 		

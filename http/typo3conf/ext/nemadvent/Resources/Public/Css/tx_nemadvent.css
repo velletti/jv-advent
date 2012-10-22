@@ -49,3 +49,9 @@
 #Tx_Nemadvent_answers {
 	display: none;
 }
+.Tx_Nemadvent_pi1 .winnerall {
+	width:70px;
+	display: inline-block;
+	height:120px;
+	overflow: hidden;
+}

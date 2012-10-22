@@ -86,7 +86,9 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persisten
 						 			'where (  advent_uid="' .$adventCat->getUid() .'" ' ;
 		if ( $feUserUid > 0) {
 			$querystring .= ' and feuser_uid="' .$feUserUid .'" ' ;
+			
 		}							
+		$querystring .= ' and sys_language_uid="' .$GLOBALS['TSFE']->sys_language_uid .'" ' ;
 		$querystring .= 			') ORDER BY question_date ASC ' .
 						  			'LIMIT ' . $offset . ',' . $limit  ;
 

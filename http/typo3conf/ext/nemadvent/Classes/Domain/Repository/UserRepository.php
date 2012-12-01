@@ -64,7 +64,7 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persisten
 									"advent_uid" 		=> intval($adventCat->getUid()) , 
 								) ;	
 		
-			$GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_nemadvent_domain_model_user'
+			$return = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_nemadvent_domain_model_user'
 								, $updateData);	
 			
 		}

@@ -123,7 +123,7 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 			$userlog =  $this->userRepository->insertAnswer($this->adventCat , 
 																$this->pid , $this->settings['feUserUid'] ,
 																$question[0] , $point, $subpoint, $answer );
-			if ( is_array($userlog)) {
+			if ( $userlog) {
 				$this->flashMessages->add($this->translate('addanswer.WasSent'));
 			} else {
 				$this->flashMessages->add('addanswer.WasNotSent: errorcode: U:' . $feUserUid . "-A:" .  $answer . "-Q:" . $question);

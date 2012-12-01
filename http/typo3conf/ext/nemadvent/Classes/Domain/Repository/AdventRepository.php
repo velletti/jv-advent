@@ -54,7 +54,7 @@ class Tx_Nemadvent_Domain_Repository_AdventRepository extends Tx_Extbase_Persist
 		$this->settings['list']['pid']['singleView'] ;
 					
 		$query = $query->matching($query->logicalAnd($queryParams));
-		$return =  $query->execute()->toArray() ;
+		$return =  $query->execute() ;
 		
 		return $return;
 	}

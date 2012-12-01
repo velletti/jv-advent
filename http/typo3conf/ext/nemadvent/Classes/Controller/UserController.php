@@ -94,11 +94,11 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 		}	
 		if ( $answer > 0 )  {
 			if ( $this->isnem ) {
-				$question =  $this->adventRepository->findOneByFilter($this->adventCat , 0 , $question );
+				$question =  $this->adventRepository->findOneByFilter($this->adventCat , 0 , $question )->toArray();
 			//	debug( $question[0]->GetDate() ) ;
 			//	die("is nem " . $this->request->getArgument('question'))  ;
 			} else {
-				$question =  $this->adventRepository->findOneByFilter($this->adventCat , $this->settings['today']  );
+				$question =  $this->adventRepository->findOneByFilter($this->adventCat , $this->settings['today']  )->toArray();
 			//	debug( $question[0]->GetDate() ) ;
 			//	die("is NOT nem " . $this->request->getArgument('question'))  ;
 			}		

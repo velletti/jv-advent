@@ -144,7 +144,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
 			$where = "a.advent_uid = " . $this->adventCat->getUid() 
 			. "  AND a.deleted = 0 AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid 
-		    . " AND a.question_date <" . mktime( 23 , 50 , 59 , date("m") , date("d")-1 , date("Y")) 
+		    . " AND a.question_date <" . mktime( 23 , 50 , 59 , date("m") , date("d")-4 , date("Y")) 
 			// . " AND FIND_IN_SET('3',usergroup) "  ; // TODO: Usergroup auswählen aus Flex Form Value die Angezeigt werden soll
 			 ;		
 			$groupBy = 'a.feuser_uid';

@@ -136,7 +136,10 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 				$this->flashMessages->add('addanswer.WasNotSent: errorcode: U:' . $feUserUid . "-A:" .  $answer . "-Q:" . $question);
 			}
 		} else {
-			$this->flashMessages->add('addanswer.WasNotSent: errorcode: U:' . $feUserUid . "-A:" .  $answer . "-Q:" . $question);
+			if ( $answer > 0 ) {
+				$this->flashMessages->add('addanswer.WasNotSent: errorcode: U:' . $feUserUid . "-A:" .  $answer . "-Q:" . $question);
+			}
+			
 		}
 
 		if ( $this->settings['feUserUid'] > 0 ) {

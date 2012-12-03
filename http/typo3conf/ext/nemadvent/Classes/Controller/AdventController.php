@@ -110,12 +110,12 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 					$this->settings['today']   = mktime( 0,0,0, date("m" , $this->adventCat->getStartdate()) ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
 				} else {
 					if ( $adddate > -4 AND $adddate < 0 ) {
-						$this->settings['today']   =  mktime( 0,0,0, date("m" ) ,d(date("d" ) + $adddate  ) ,date("Y" )  ) ;
+						$this->settings['today']   =  mktime( 0,0,0, date("m" ) ,(date("d" ) + $adddate  ) ,date("Y" )  ) ;
 					}
 				}
 			} else {
 				if ( $this->request->hasArgument('yesterday') ) {
-					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,d(date("d" ) -1) ,date("Y" )  ) ;
+					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) -1) ,date("Y" )  ) ;
 				} else {			
 					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) ) ,date("Y" )  ) ;
 				}

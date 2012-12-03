@@ -102,7 +102,7 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 					$adddate = intval($this->request->getArgument('adddate')) ;
 				}	
 				if ( $adddate > -4 AND $adddate < 0 ){
-					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,d(date("d" ) + $adddate) ,date("Y" )  ) ;
+					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) + $adddate) ,date("Y" )  ) ;
 				}					
 				
 				$question =  $this->adventRepository->findOneByFilter($this->adventCat , $this->settings['today']  )->toArray();

@@ -136,6 +136,8 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 		}
 		
 		$this->view->assign('settings', $this->settings);
+		$this->view->assign('adddate', $adddate);
+		
 		$this->view->assign('isnem', $this->isnem);
 		$this->view->assign('isnemintern', $this->isnemintern);
 

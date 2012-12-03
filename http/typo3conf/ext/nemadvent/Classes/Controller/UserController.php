@@ -98,6 +98,13 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 			//	debug( $question[0]->GetDate() ) ;
 			//	die("is nem " . $this->request->getArgument('question'))  ;
 			} else {
+				if ( $this->request->hasArgument('adddate')) {
+					$adddate = intval($this->request->getArgument('adddate')) ;
+				}	
+				if ( $adddate > -4 AND $adddate < 0 ){
+					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,d(date("d" ) + $adddate) ,date("Y" )  ) ;
+				}					
+				
 				$question =  $this->adventRepository->findOneByFilter($this->adventCat , $this->settings['today']  )->toArray();
 			//	debug( $question[0]->GetDate() ) ;
 			//	die("is NOT nem " . $this->request->getArgument('question'))  ;
@@ -128,6 +135,8 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 			} else {
 				$this->flashMessages->add('addanswer.WasNotSent: errorcode: U:' . $feUserUid . "-A:" .  $answer . "-Q:" . $question);
 			}
+		} else {
+			$this->flashMessages->add('addanswer.WasNotSent: errorcode: U:' . $feUserUid . "-A:" .  $answer . "-Q:" . $question);
 		}
 
 		if ( $this->settings['feUserUid'] > 0 ) {

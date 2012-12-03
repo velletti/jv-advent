@@ -96,20 +96,23 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 		
 		$doit = $this->settingsHelper( ) ;
 				$adddate = 0 ;
-		if ( $this->isnem ) {
+		
 			if ( $this->request->hasArgument('single') ) {
 				
 				$adddate_arr = $this->request->getArgument('single') ;
 				if (is_array($adddate_arr)) {
 					$adddate = $adddate_arr['adddate'];
 				}
-				if ( $adddate < 1) {
-					$adddate = 0 ;
-				}	
 				if ( $adddate >  ( $this->adventCat->getDays() -1 )) {
 					$adddate = $this->adventCat->getDays() - 1 ;
 				}	
-				$this->settings['today']   = mktime( 0,0,0, date("m" , $this->adventCat->getStartdate()) ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
+				if ( $this->isnem  ) {
+					$this->settings['today']   = mktime( 0,0,0, date("m" , $this->adventCat->getStartdate()) ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
+				} else {
+					if ( $adddate > -4 AND $adddate < 0 ) {
+						$this->settings['today']   = mktime( 0,0,0, date("m" , $this->adventCat->getStartdate()) ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
+					}
+				}
 			} else {
 				if ( $this->request->hasArgument('yesterday') ) {
 					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,d(date("d" ) -1) ,date("Y" )  ) ;
@@ -117,7 +120,7 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) ) ,date("Y" )  ) ;
 				}
 			}	
-		}
+		
 
 		// 11.10.2011 :
 		//  $this->settings['today']   =  1318284000 ;

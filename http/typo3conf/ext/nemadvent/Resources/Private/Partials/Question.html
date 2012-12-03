@@ -25,7 +25,7 @@
 									<div id="Tx_Nemadvent_showanswers" >
 										<span class="left width40">
 											<input type="checkbox" value="y" name="tx_nemadvent_pi1[accepted]" onClick="jQuery('#Tx_Nemadvent_answers').show();jQuery('#Tx_Nemadvent_showanswers').hide();">
-											<input type="hidden" value="{adddate}" name="adddate">
+											<input type="hidden" value="{adddate}" name="tx_nemadvent_pi1[answer]">
 										</span>
 										<span class="left width540">
 											<f:format.html>{settings.advent.list.mustacceptagb}</f:format.html>
@@ -34,11 +34,11 @@
 									<div class="clearfix">&nbsp;</div>
 									<div id="Tx_Nemadvent_answers">
 									
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:render partial="Answer" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
 
 										<f:if condition="{isnemintern}">
 											<p><i>Visible for Nemetschek Internal: the correct is answer: {question.correct}</i></p>

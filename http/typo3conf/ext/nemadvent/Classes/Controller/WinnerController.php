@@ -133,7 +133,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 		}
 		$offset = intval( $offset) ;
 
-		$identifier  =  'listallWinner-' . $this->adventCat->getUid() ; 
+		$identifier  =  'listallWinner-offset-' . $offset . "-L-" . $GLOBALS['TSFE']->sys_language_uid  . "-". $this->adventCat->getUid() . ""  ; 
 		$tempcontent = $this->get_content_from_Cache( $identifier ) ;		
 		$winnerdata = unserialize($tempcontent);
 		$mindate= mktime( 23 , 59 , 59 , date("m") , date("d")-4 , date("Y"))  ;
@@ -156,12 +156,12 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 			$groupBy = 'a.feuser_uid';
 			$orderBy = 'pointtotal DESC, countttotal ASC';
 	
-			// $limit = $offset . ',20' ;
+			 $limit = $offset . ',50' ;
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
 			
 		
 			$winnerdata = array() ;	
-			for ( $i=0;$i<20;$i++) {
+			for ( $i=0;$i<50;$i++) {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
 					$winnerdata[$i] = $winnerdata_res ;

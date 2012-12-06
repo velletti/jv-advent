@@ -117,7 +117,9 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 		
 		
 		$this->view->assign('count', $count);
-		
+		if ( $this->settings['afterenddate'] ) {
+			$this->settings['showtotal'] = 1 ;
+		}
 		$this->view->assign('settings', $this->settings);
 	}
 

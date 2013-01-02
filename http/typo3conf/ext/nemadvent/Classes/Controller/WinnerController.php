@@ -198,6 +198,10 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 	//		$this->view->assign('debug', "select  " . $what . " FROM " . $table .  " WHERE " . $where . " GROUP BY " . $groupBy . " ORDER BY " . $orderBy . " - "  . mysql_error() );
 			
 		}
+		if ( $this->settings['afterenddate'] ) {
+			$this->settings['showtotal'] = 1 ;
+		}
+		$this->view->assign('settings', $this->settings);
 		$this->view->assign('winnerdata', $winnerdata);
 		$this->view->assign('mindate', date("d.M H:i:s" , $mindate));
 		

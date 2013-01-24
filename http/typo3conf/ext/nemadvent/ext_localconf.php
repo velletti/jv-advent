@@ -15,7 +15,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Advent'		=>	'list,single,winners',
 		'User'			=>	'answer',
 		'Adventcat'		=>	'list',
-		'Winner'		=>	'',
+		'Winner'		=>	'listall',
 
 	)
 );

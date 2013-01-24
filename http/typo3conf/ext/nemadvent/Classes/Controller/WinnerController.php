@@ -136,6 +136,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 		$offset = intval( $offset) ;
 
 		$identifier  =  'listallWinner-offset-' . $offset . "-L-" . $GLOBALS['TSFE']->sys_language_uid  . "-". $this->adventCat->getUid() . ""  ; 
+		
 		$tempcontent = $this->get_content_from_Cache( $identifier ) ;		
 		$winnerdata = unserialize($tempcontent);
 		$mindate= mktime( 23 , 59 , 59 , date("m") , date("d")-4 , date("Y"))  ;
@@ -151,7 +152,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 //			$table = 'tx_nemadvent_domain_model_user a' ;
 			
 			$where = "a.advent_uid = " . $this->adventCat->getUid() 
-			. "  AND a.deleted = 0 AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid 
+			. "  AND a.deleted = 0 AND a.usergroup <> 7  AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid 
 		    . " AND a.question_date <" . $mindate 
 			// . " AND FIND_IN_SET('3',usergroup) "  ; // TODO: Usergroup auswählen aus Flex Form Value die Angezeigt werden soll
 			 ;		
@@ -160,7 +161,6 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 	
 			 $limit = $offset . ',50' ;
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
-			
 		
 			$winnerdata = array() ;	
 			for ( $i=0;$i<50;$i++) {

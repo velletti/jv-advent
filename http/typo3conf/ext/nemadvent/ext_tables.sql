@@ -15,6 +15,8 @@ CREATE TABLE tx_nemadvent_domain_model_advent (
 	title varchar(255) DEFAULT '' NOT NULL,
 	desc_short text NOT NULL,
 	desc_long mediumtext NOT NULL,
+	solution mediumtext NOT NULL,
+
 	image int(11) DEFAULT '0' NOT NULL,
 	video text NOT NULL,
 	viewed int(11) DEFAULT '0' NOT NULL,

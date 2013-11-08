@@ -6,13 +6,13 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array (
-		'Advent'		=>	'list,single',
+		'Advent'		=>	'list,single,listAnswers',
 		'User'			=>	'answer,',
 		'Adventcat'		=>	'list',
 		'Winner'		=>	'list,listall',
 	),
 	array (
-		'Advent'		=>	'list,single,winners',
+		'Advent'		=>	'list,single,listAnswers',
 		'User'			=>	'answer',
 		'Adventcat'		=>	'list',
 		'Winner'		=>	'listall',

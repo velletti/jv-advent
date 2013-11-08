@@ -1,0 +1,86 @@
+
+		<div class="Tx_Nemadvent_pi1">
+			<div class="Tx_Nemadvent_pi1_legende right width170">
+				<h3>Legende:</h3>
+				<span class="Tx_Nemadvent_pi1_correct spriteIcon" title="Ihre Antwort war richtig"> </span> Ihre Antwort war richtig <br/>
+				<span class="Tx_Nemadvent_pi1_correct2 spriteIcon"  title="Dies war die richtige Antwort"> </span> Dies war die richtige Antwort<br/>
+				<span class="Tx_Nemadvent_pi1_wrong spriteIcon"  title="Ihre Antwort war falsch"> </span> Ihre Antwort war falsch<br/>
+				<span class="Tx_Nemadvent_pi1_empty spriteIcon" title="Andere falsche Antwort" > </span> Andere falsche Antwortm<br/>
+				<br/>
+				<a id="showallAKRAnswers" class="buttonDefaultLink" onclick="showallAKRAnswers();">++</a> &nbsp;
+				<a id="hideallAKRAnswers" class="buttonDefaultLink hide" onclick="hideallAKRAnswers();">--</a>
+
+			</div>
+			<div  class=".nemadvent_quest nemadvent_questlist left">
+				<f:for each="{questions}" as="question">
+
+
+					<h3><f:format.date format="d.m">@{question.date}</f:format.date> - {question.title}</h3>
+					<div  class="Tx_Nemadvent_questlist_sub hide">
+						<f:format.html>{question.descLong}</f:format.html>
+
+						<div class="Tx_Nemadvent_answers">
+
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+
+
+							<f:if condition="{question.descShort}">
+								<div class="clearfix"> <br /></div>
+								<div class="nemadvent_tipp">
+									<h4><f:translate key="hintoftheday">Tipp des Tages</f:translate></h4>
+									<div>
+										<f:format.html>{question.descShort}</f:format.html>
+									</div>
+								</div>
+							</f:if>
+							<f:if condition="{question.solution}">
+								<div class="clearfix"> <br /></div>
+								<div class="nemadvent_tipp">
+									<h4><f:translate key="how_to_find_solution">Lösungsweg</f:translate></h4>
+									<div>
+										<f:format.html>{question.solution}</f:format.html>
+									</div>
+								</div>
+							</f:if>
+							<div class="clearfix"> <br /></div>
+						</div>
+					</div>
+				</f:for>
+			</div>
+		</div>
+		<script type="text/javascript">
+			jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+				jQuery(this).click(function(eventObject){
+					eventObject.preventDefault();
+					adventQuestion = jQuery(this).next() ;
+					if ( jQuery(adventQuestion).hasClass("hide") ) {
+						jQuery(adventQuestion).removeClass("hide") ;
+					} else {
+						jQuery(adventQuestion).addClass("hide");
+					}
+				});
+			});
+			function showallAKRAnswers() {
+				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+					adventQuestion = jQuery(this).next() ;
+					jQuery(adventQuestion).removeClass("hide") ;
+				});
+				jQuery("#showallAKRAnswers").addClass("hide") ;
+				jQuery("#hideallAKRAnswers").removeClass("hide") ;
+			}
+			function hideallAKRAnswers() {
+				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+					adventQuestion = jQuery(this).next() ;
+					jQuery(adventQuestion).addClass("hide") ;
+				});
+				jQuery("#hideallAKRAnswers").addClass("hide") ;
+				jQuery("#showallAKRAnswers").removeClass("hide") ;
+			}
+		</script>
+								
+								
+								

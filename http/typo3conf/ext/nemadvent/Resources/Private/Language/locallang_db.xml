@@ -13,10 +13,11 @@
 			<label index="tx_nemadvent.settings.options">Options</label>
 			<label index="tx_nemadvent.settings.links">Links</label>
 			<label index="tx_nemadvent.settings.filter">Filter</label>
+
 			
 			<label index="Tx_Nemadvent_Domain_Model_Advent">Adventskalender Question</label>
 			<label index="tx_nemadvent.settings.question">Show single question</label>
-			
+			<label index="tx_nemadvent.settings.listAnswers">List All Answers</label>
 			
 			<label index="Tx_Nemadvent_domain_model_link_to_main">Main Page</label>
 			<label index="Tx_Nemadvent_domain_model_link_to_question">Page with Question</label>

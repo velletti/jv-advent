@@ -147,6 +147,52 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 		$this->view->assign('isnemintern', $this->isnemintern);
 
 	}
+
+	/**
+	 * single action for this controller.
+	 *
+	 * @return string The rendered view
+	 */
+	public function listAnswersAction() {
+
+		$doit = $this->settingsHelper( ) ;
+		$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) ) ,date("Y" )  ) ;
+
+		// 11.10.2011 :
+		//  $this->settings['today']   =  1318284000 ;
+		$this->settings['todayformated']   =  date( "d.m.Y" , $this->settings['today'] ) ;
+		if ( $this->adventCat ) {
+			$questions =  $this->adventRepository->findOneByFilter( $this->adventCat )->toArray() ;
+
+			if ( $this->settings['feUserUid'] > 0) {
+				if ( is_array($questions)) {
+
+					for( $i=0;$i<count($questions);$i++) {
+						$answer =  $this->userRepository->findAnswer( $this->adventCat, $this->settings['feUserUid'], $questions[$i]->getDate())->toArray();
+						if(is_object($answer[0])) {
+							$questions[$i]->setUserAnswer($answer[0]->getAnswerUid() );
+						} else {
+							$questions[$i]->setUserAnswer( 0 );
+						}
+
+					}
+				}
+			}
+
+
+			// count advents
+			$count = count($questions);
+			$this->view->assign('questions', $questions);
+			$this->view->assign('adventCat', $this->adventCat );
+
+			//		debug($count) ;
+		}
+
+		$this->view->assign('settings', $this->settings);
+
+		$this->view->assign('isnemintern', $this->isnemintern);
+
+	}
 }
 
 ?>

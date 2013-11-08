@@ -112,6 +112,27 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 			)
 		),
 
+		'solution' => array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.solution',
+			'config' => array (
+				'type' => 'text',
+				'cols' => '48',
+				'rows' => '20',
+				'wizards' => Array(
+					'_PADDING' => 4,
+					'RTE' => Array(
+						'notNewRecords' => 1,
+						'RTEonly' => 1,
+						'type' => 'script',
+						'title' => 'LLL:EXT:cms/locallang_ttc.php:bodytext.W.RTE',
+						'icon' => 'wizard_rte2.gif',
+						'script' => 'wizard_rte.php',
+					),
+				)
+			)
+		),
+
 		'image' => txdam_getMediaTCA('image_field', 'tx_nemadvent_domain_model_advent_image'),
 		
 
@@ -212,7 +233,7 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 
 	),
 	'types' => array(
-		'0' => array('showitem' => 'hidden, categories, title, date,  desc_long;;4;richtext:rte_transform[flag=rte_enabled|mode=ts], image, desc_short;;4;richtext:rte_transform[flag=rte_enabled|mode=ts], 
+		'0' => array('showitem' => 'hidden, categories, title, date,  desc_long;;4;richtext:rte_transform[flag=rte_enabled|mode=ts], image,  desc_short;;4;richtext:rte_transform[flag=rte_enabled|mode=ts], solution;;4;richtext:rte_transform[flag=rte_enabled|mode=ts],
 		--div--;Answers,answer1,answer2,answer3,answer4,answer5,correct,storeonpid')
 	),
 	'palettes' => array(

@@ -91,8 +91,37 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persisten
 		$querystring .= ' and sys_language_uid="' .$GLOBALS['TSFE']->sys_language_uid .'" ' ;
 		$querystring .= 			') ORDER BY question_date ASC ' .
 						  			'LIMIT ' . $offset . ',' . $limit  ;
-
 		$return = $query->statement( $querystring )->execute()->toArray() ;
+		return $return;
+	}
+	/**
+	 * get ONE answer for user
+	 * @param Tx_Nemadvent_Domain_Model_AdventCat $adventCat
+	 * @param integer $feUserUid
+	 * @param integer $question
+	 *  @return array answer
+	 */
+	public function findAnswer(Tx_Nemadvent_Domain_Model_AdventCat $adventCat,$feUserUid, $question){
+		$query = $this->createQuery();
+
+		$query->getQuerySettings()->setRespectEnableFields(false);
+		$query->getQuerySettings()->setRespectStoragePage(false);
+
+		if ($adventCat!= NULL){
+			$queryParams[] = $query->equals('advent_uid', $adventCat->getUid());
+		}
+
+		if ( $feUserUid > 0) {
+			$queryParams[] = $query->equals('feuser_uid', $feUserUid);
+		}
+		if 	( $question > 0 ) {
+			$queryParams[] = $query->equals('question_date', $question);
+		}
+
+		$query = $query->matching($query->logicalAnd($queryParams));
+
+		$return =  $query->execute() ;
+
 		return $return;
 	}
 	 

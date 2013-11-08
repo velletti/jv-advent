@@ -7,12 +7,12 @@
 						<f:if condition="{settings.showtotal} > 0">
 							<f:then>
 								<f:link.external uri="/user/{winner.username}"  defaultScheme="">
-									<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="75c" width="50c" src="{winner.tx_mmforum_avatar}"/>
+									<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="120c" width="80c" src="{winner.tx_mmforum_avatar}"/>
 								</f:link.external>
 								<br/>
 							</f:then>
 							<f:else>	
-								<f:image title="Visible after the end of the game" alt="img" height="75c" width="50c" src="{winner.tx_mmforum_avatar}"/>
+								<f:image title="Visible after the end of the game" alt="img" height="120c" width="80c" src="{winner.tx_mmforum_avatar}"/>
 								<br/>
 							</f:else>
 						</f:if>

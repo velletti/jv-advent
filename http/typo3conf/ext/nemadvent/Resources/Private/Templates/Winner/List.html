@@ -6,9 +6,9 @@
 					<f:if condition="{winner.prize.title}">
 						<f:then>
 							<span class="left width340">
-								<span class="left width70">
+								<span class="left width99">
 									<f:link.external uri="/user/{winner.user.username}" defaultScheme="">
-										<f:image title="{winner.user.username}" id="user{winner.user.uid}" alt="user" height="75c" width="50c" src="{winner.user.tx_mmforum_avatar}"/>
+										<f:image title="{winner.user.username}" id="user{winner.user.uid}" alt="user" height="120c" width="80c" src="{winner.user.tx_mmforum_avatar}"/>
 									</f:link.external>
 								</span>
 								<span class="left width170">
@@ -19,7 +19,7 @@
 								
 								<f:if condition="{winner.prize.points} > 0">
 									<f:then>
-										<span class="left width80">
+										<span class="left width99">
 											&nbsp;
 											{winner.prize.points} <f:translate key="Tx_Nemadvent_Domain_Model_Winner.points">Points</f:translate>
 										</span>
@@ -38,7 +38,7 @@
 						<f:else>
 							<span class="left width70">
 								<f:link.external uri="/user/{winner.user.username}">
-									<f:image title="{winner.user.username}" id="user{winner.user.uid}" alt="user" height="75c" width="50c" src="{winner.user.tx_mmforum_avatar}"/>
+									<f:image title="{winner.user.username}" id="user{winner.user.uid}" alt="user" height="120c" width="80c" src="{winner.user.tx_mmforum_avatar}"/>
 								</f:link.external>
 							</span>
 						</f:else>

@@ -1,0 +1,34 @@
+<span class="left width40">
+	<f:if condition="{0:solution}=={0:thisanswername}">
+		<f:then>
+			<f:if condition="{0:solution}=={0:userAnswer}">
+				<f:then>
+					<span class="Tx_Nemadvent_pi1_correct spriteIcon" title="Ihre Antwort war richtig"> </span>
+				</f:then>
+				<f:else>
+					<span class="Tx_Nemadvent_pi1_correct2 spriteIcon"  title="Dies war die richtige Antwort"> </span>
+				</f:else>
+			</f:if>
+		</f:then>
+		<f:else>
+			<f:if condition="{0:thisanswername}=={0:userAnswer}">
+				<f:then>
+					<span class="Tx_Nemadvent_pi1_wrong spriteIcon"  title="Ihre Antwort war falsch"> </span>
+				</f:then>
+				<f:else>
+					<span class="Tx_Nemadvent_pi1_empty spriteIcon" title="falsche Antwort" > </span>
+				</f:else>
+			</f:if>
+		</f:else>
+	</f:if>
+</span>
+<span class="left width540">
+	<f:format.html parseFuncTSPath="">{thisanswertext}</f:format.html>
+</span>
+<br class="clear" />
+
+										
+	
+								
+								
+								

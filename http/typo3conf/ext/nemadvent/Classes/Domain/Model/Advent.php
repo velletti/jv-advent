@@ -97,6 +97,17 @@ class Tx_Nemadvent_Domain_Model_Advent extends Tx_Extbase_DomainObject_AbstractE
 	 * @var string
 	 */
 	protected $descLong;
+
+	/**
+	 * @var string
+	 */
+	protected $solution;
+
+	/**
+	 * @var integer
+	 */
+	protected $userAnswer;
+
 	/**
 	 * image
 	 * @var Tx_ExtbaseDam_Domain_Model_Dam
@@ -344,7 +355,63 @@ class Tx_Nemadvent_Domain_Model_Advent extends Tx_Extbase_DomainObject_AbstractE
 	 */
 	public function getSubpoints() {
 		return $this->subpoints;
-	}		
+	}
+
+	/**
+	 * @param string $solution
+	 */
+	public function setSolution($solution) {
+		$this->solution = $solution;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSolution() {
+		return $this->solution;
+	}
+
+	/**
+	 * @param int $answer_uid
+	 */
+	public function setAnswerUid($answer_uid) {
+		$this->answer_uid = $answer_uid;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAnswerUid() {
+		return $this->answer_uid;
+	}
+
+	/**
+	 * @param int $userAnswer
+	 */
+	public function setUserAnswer($userAnswer) {
+		$this->userAnswer = $userAnswer;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getUserAnswer() {
+		return $this->userAnswer;
+	}
+
+	/**
+	 * @param string $video
+	 */
+	public function setVideo($video) {
+		$this->video = $video;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getVideo() {
+		return $this->video;
+	}
 	
 }
 

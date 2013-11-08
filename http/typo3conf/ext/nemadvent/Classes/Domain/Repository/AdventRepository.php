@@ -40,7 +40,9 @@ class Tx_Nemadvent_Domain_Repository_AdventRepository extends Tx_Extbase_Persist
 		
 		$query->getQuerySettings()->setRespectEnableFields(true);
 		$query->getQuerySettings()->setRespectStoragePage(false);
-					
+		$query->setOrderings(array( 'date' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING )) ;
+
+
 		if ($adventCat!= NULL){
 			$queryParams[] = $query->contains('categories', $adventCat);
 		}		

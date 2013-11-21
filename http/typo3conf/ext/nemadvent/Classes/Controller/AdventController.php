@@ -165,16 +165,21 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 			$questions =  $this->adventRepository->findOneByFilter( $this->adventCat )->toArray() ;
 
 			if ( $this->settings['feUserUid'] > 0) {
+
 				if ( is_array($questions)) {
 
 					for( $i=0;$i<count($questions);$i++) {
 						$answer =  $this->userRepository->findAnswer( $this->adventCat, $this->settings['feUserUid'], $questions[$i]->getDate())->toArray();
+
 						if(is_object($answer[0])) {
+							// echo "<br>Line: " . __LINE__ . " : " . " File: " . __FILE__ . '<br>$questions[$i]->getDate() : ' . date("d.m.Y h:i" ,  $questions[$i]->getDate() ) . "<hr>";
+
 							$questions[$i]->setUserAnswer($answer[0]->getAnswerUid() );
+
 						} else {
 							$questions[$i]->setUserAnswer( 0 );
 						}
-
+						
 					}
 				}
 			}

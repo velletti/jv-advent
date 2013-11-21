@@ -15,7 +15,7 @@
 				<f:for each="{questions}" as="question">
 
 
-					<h3><f:format.date format="d.m">@{question.date}</f:format.date> - {question.title}</h3>
+					<h3>{question.title} - {question.userAnswer}</h3>
 					<div  class="Tx_Nemadvent_questlist_sub hide">
 						<f:format.html>{question.descLong}</f:format.html>
 

@@ -12,10 +12,10 @@
 
 			</div>
 			<div  class=".nemadvent_quest nemadvent_questlist left">
-				<f:for each="{questions}" as="question">
+				<f:for each="{questions}" as="question" iteration="count">
 
 
-					<h3>{question.title} - {question.userAnswer}</h3>
+					<h3>{count.cycle} - {question.title}</h3>
 					<div  class="Tx_Nemadvent_questlist_sub hide">
 						<f:format.html>{question.descLong}</f:format.html>
 

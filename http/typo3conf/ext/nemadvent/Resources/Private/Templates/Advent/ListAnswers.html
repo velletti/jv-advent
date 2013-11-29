@@ -2,8 +2,9 @@
 <f:if condition="{questions}">
 	<f:then>
 		<div class="Tx_Nemadvent_questionsList">
-			<f:if condition="{isnem}">
+			<f:if condition="{isnemintern}">
 				<f:then>
+					<h1>ONLY Visible for NemIntern Users!</h1>
 					<f:render partial="Questionlist" arguments="{questions: questions, settings: settings, adventscat: adventscat, isnem: isnem,isnemintern: isnemintern}"/>
 
 				</f:then>

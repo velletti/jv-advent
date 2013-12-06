@@ -170,6 +170,45 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 
 					for( $i=0;$i<count($questions);$i++) {
 						$answer =  $this->userRepository->findAnswer( $this->adventCat, $this->settings['feUserUid'], $questions[$i]->getDate())->toArray();
+						$answersAll =  $this->userRepository->findAnswer( $this->adventCat, 0 , $questions[$i]->getDate())->toArray();
+						$answersCount = array ( 0 , 0 , 0 , 0 ,0 ) ;
+
+						if ( is_array( $answersAll )) {
+							for( $ii=0;$ii<count($answersAll);$ii++) {
+								if ( is_object($answersAll[$ii])) {
+									switch ($answersAll[$ii]->getAnswerUid()) {
+										case 1:
+											$answersCount[0]++ ;
+											break;
+										case 2:
+											$answersCount[1]++ ;
+											break;
+										case 3:
+											$answersCount[2]++ ;
+											break;
+										case 4:
+											$answersCount[3]++ ;
+											break;
+										case 5:
+											$answersCount[4]++ ;
+											break;
+
+										default:
+											// j.v.: nix
+											break;
+
+									}
+								}
+							}
+						}
+						if ( count($answersAll)  > 0 ) {
+							$questions[$i]->setAnswer1count( $answersCount[0] * 100 / count($answersAll) ) ;
+							$questions[$i]->setAnswer2count( $answersCount[1] * 100 / count($answersAll) ) ;
+							$questions[$i]->setAnswer3count( $answersCount[2] * 100 / count($answersAll) ) ;
+							$questions[$i]->setAnswer4count( $answersCount[3] * 100 / count($answersAll) ) ;
+							$questions[$i]->setAnswer5count( $answersCount[4] * 100 / count($answersAll) ) ;
+							$questions[$i]->setTotalAnswers( count($answersAll)  ) ;
+						}
 
 						if(is_object($answer[0])) {
 							// echo "<br>Line: " . __LINE__ . " : " . " File: " . __FILE__ . '<br>$questions[$i]->getDate() : ' . date("d.m.Y h:i" ,  $questions[$i]->getDate() ) . "<hr>";

@@ -41,6 +41,7 @@ class Tx_Nemadvent_Domain_Model_Advent extends Tx_Extbase_DomainObject_AbstractE
 	 * @var string
 	 */
 	protected $answer1;
+
 		/**
 	 * @var string
 	 */
@@ -57,7 +58,39 @@ class Tx_Nemadvent_Domain_Model_Advent extends Tx_Extbase_DomainObject_AbstractE
 	 * @var string
 	 */
 	protected $answer5;
-		/**
+
+
+	/**
+	 * @var integer
+	 */
+	protected $answer1count;
+
+	/**
+	 * @var integer
+	 */
+	protected $answer2count;
+
+	/**
+	 * @var integer
+	 */
+	protected $answer3count;
+
+	/**
+	 * @var integer
+	 */
+	protected $answer4count;
+
+	/**
+	 * @var integer
+	 */
+	protected $answer5count;
+
+	/**
+	 * @var integer
+	 */
+	protected $totalAnswers;
+
+	/**
 	 * @var string
 	 */
 	protected $correct;
@@ -411,6 +444,90 @@ class Tx_Nemadvent_Domain_Model_Advent extends Tx_Extbase_DomainObject_AbstractE
 	 */
 	public function getVideo() {
 		return $this->video;
+	}
+
+	/**
+	 * @param int $answer1count
+	 */
+	public function setAnswer1count($answer1count) {
+		$this->answer1count = $answer1count;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAnswer1count() {
+		return $this->answer1count;
+	}
+
+	/**
+	 * @param int $answer2count
+	 */
+	public function setAnswer2count($answer2count) {
+		$this->answer2count = $answer2count;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAnswer2count() {
+		return $this->answer2count;
+	}
+
+	/**
+	 * @param int $answer3count
+	 */
+	public function setAnswer3count($answer3count) {
+		$this->answer3count = $answer3count;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAnswer3count() {
+		return $this->answer3count;
+	}
+
+	/**
+	 * @param int $answer4count
+	 */
+	public function setAnswer4count($answer4count) {
+		$this->answer4count = $answer4count;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAnswer4count() {
+		return $this->answer4count;
+	}
+
+	/**
+	 * @param int $answer5count
+	 */
+	public function setAnswer5count($answer5count) {
+		$this->answer5count = $answer5count;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAnswer5count() {
+		return $this->answer5count;
+	}
+
+	/**
+	 * @param int $totalAnswers
+	 */
+	public function setTotalAnswers($totalAnswers) {
+		$this->totalAnswers = $totalAnswers;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getTotalAnswers() {
+		return $this->totalAnswers;
 	}
 	
 }

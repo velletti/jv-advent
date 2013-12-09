@@ -7,8 +7,14 @@
 				<span class="Tx_Nemadvent_pi1_wrong spriteIcon"  title="Ihre Antwort war falsch"> </span> Ihre Antwort war falsch<br/>
 				<span class="Tx_Nemadvent_pi1_empty spriteIcon" title="Andere falsche Antwort" > </span> Andere falsche Antwort<br/>
 				<br/>
-				<a id="showallAKRAnswers" class="buttonDefaultLink" onclick="showallAKRAnswers();">++</a> &nbsp;
-				<a id="hideallAKRAnswers" class="buttonDefaultLink hide" onclick="hideallAKRAnswers();">--</a>
+				<a id="showallAKRAnswers" class="buttonDefaultLink tooltip" onclick="showallAKRAnswers();"  title="{f:translate(key:'solutions.expandTooltip' ,default:'Expand/Show all questionsdetails with answers and Solution')}">++</a>
+				<a id="hideallAKRAnswers" class="buttonDefaultLink hide tooltip" onclick="hideallAKRAnswers();" title="{f:translate(key:'solutions.percentNormalTooltip' ,default:'Show default list of all questions')}">--</a>
+				<br/>
+				<br/>
+
+				<a id="showAKRPercent" class="buttonDefaultLink tooltip" onclick="showOnlyAKRPercent();" title="{f:translate(key:'solutions.percentTooltip' ,default:'Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User')}"><f:translate key="solutions.percentTooltipButton">% Answers</f:translate></a><a id="undoShowAKRPercent" class="buttonDefaultLink hide tooltip" onclick="undoShowOnlyAKRPercent();" title="{f:translate(key:'solutions.percentNormalTooltip' ,default:'Zeige wieder die normale Liste der Fragen als Übersicht')}"><f:translate key="solutions.percentNormalButton">Normal</f:translate></a>
+
+
 
 			</div>
 			<div  class=".nemadvent_quest nemadvent_questlist left">
@@ -83,6 +89,43 @@
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).addClass("hide") ;
 				});
+				jQuery("#hideallAKRAnswers").addClass("hide") ;
+				jQuery("#showallAKRAnswers").removeClass("hide") ;
+			}
+			function showOnlyAKRPercent() {
+				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+					adventQuestion = jQuery(this).next() ;
+					jQuery(adventQuestion).removeClass("hide") ;
+				});
+				jQuery(".Tx_Nemadvent_pi1 .Tx_Nemadvent_questlist_sub P").each(function(){
+					jQuery(this).addClass("hide") ;
+				});
+				jQuery(".Tx_Nemadvent_pi1 .Tx_Nemadvent_questlist_sub .clearfix").each(function(){
+					jQuery(this).css("display" , "none") ;
+				});
+				jQuery(".Tx_Nemadvent_pi1 .nemadvent_tipp").each(function(){
+					jQuery(this).addClass("hide") ;
+				});
+				jQuery("#showAKRPercent").addClass("hide") ;
+				jQuery("#undoShowAKRPercent").removeClass("hide") ;
+			}
+			function undoShowOnlyAKRPercent() {
+				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+					adventQuestion = jQuery(this).next() ;
+					jQuery(adventQuestion).addClass("hide") ;
+				});
+				jQuery(".Tx_Nemadvent_pi1 .Tx_Nemadvent_questlist_sub P").each(function(){
+					jQuery(this).removeClass("hide") ;
+				});
+				jQuery(".Tx_Nemadvent_pi1 .Tx_Nemadvent_questlist_sub .clearfix").each(function(){
+					jQuery(this).css("display" , "block") ;
+				});
+				jQuery(".Tx_Nemadvent_pi1 .nemadvent_tipp").each(function(){
+					jQuery(this).removeClass("hide") ;
+				});
+
+				jQuery("#showAKRPercent").removeClass("hide") ;
+				jQuery("#undoShowAKRPercent").addClass("hide") ;
 				jQuery("#hideallAKRAnswers").addClass("hide") ;
 				jQuery("#showallAKRAnswers").removeClass("hide") ;
 			}

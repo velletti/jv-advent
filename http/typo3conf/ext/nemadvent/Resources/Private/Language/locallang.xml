@@ -14,8 +14,14 @@
 			<label index="yourresult">Your Result</label>
 			<label index="result_visible_at">Your Result will be shown after</label>
 			<label index="addanswer.WasSent">Your Answer was stored in our database and is shown in the list below. You can change your answer until 23:59 this day.</label>
-			
-			
+			<label index="solutions.percentTooltip">Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</label>
+			<label index="solutions.percentButton">% Verteilung</label>
+			<label index="solutions.percentNormalTooltip">Zeige wieder die normale Liste der Fragen als Übersicht</label>
+			<label index="solutions.percentNormalButton">Normal</label>
+			<label index="solutions.expandTooltip">Alle Fragen aufklappen inkl. der Antworten und Lösungshinweise</label>
+
+
+
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="no_access_headline">Kein Zugriff</label>
@@ -26,7 +32,11 @@
 			<label index="yourresult">Ihr Ergebnis</label>
 			<label index="result_visible_at">Ihr Ergebnis ist sichtbar am </label>
 			<label index="addanswer.WasSent">Ihre Antwort wurde gespeichert und wird in nachfolgender Tabelle aufgelistet. Bei Bedarf können Sie eine korrigierte Antwort bis 23:59 Uhr abgeben.</label>
-			
+			<label index="solutions.percentTooltip">Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</label>
+			<label index="solutions.percentButton">% Verteilung</label>
+			<label index="solutions.percentNormalTooltip">Zeige wieder die normale Liste der Fragen als Übersicht</label>
+			<label index="solutions.percentNormalButton">Normal</label>
+			<label index="solutions.expandTooltip">Alle Fragen aufklappen inkl. der Antworten und Lösungshinweise</label>
 			
 		</languageKey>
 		<languageKey index="at" type="array">
@@ -38,7 +48,11 @@
 			<label index="yourresult">Ihr Ergebnis</label>
 			<label index="result_visible_at">Ihr Ergebnis ist sichtbar am </label>
 			<label index="addanswer.WasSent">Ihre Antwort wurde gespeichert und wird in nachfolgender Tabelle aufgelistet. Bei Bedarf können Sie eine korrigierte Antwort bis 23:59 Uhr abgeben.</label>
-			
+			<label index="solutions.percentTooltip">Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</label>
+			<label index="solutions.percentButton">% Verteilung</label>
+			<label index="solutions.percentNormalTooltip">Zeige wieder die normale Liste der Fragen als Übersicht</label>
+			<label index="solutions.percentNormalButton">Normal</label>
+			<label index="solutions.expandTooltip">Alle Fragen aufklappen inkl. der Antworten und Lösungshinweise</label>
 			
 		</languageKey>		
 		<languageKey index="ch" type="array">
@@ -50,7 +64,11 @@
 			<label index="yourresult">Ihr Ergebnis</label>
 			<label index="result_visible_at">Ihr Ergebnis ist sichtbar am </label>
 			<label index="addanswer.WasSent">Ihre Antwort wurde gespeichert und wird in nachfolgender Tabelle aufgelistet. Bei Bedarf können Sie eine korrigierte Antwort bis 23:59 Uhr abgeben.</label>
-			
+			<label index="solutions.percentTooltip">Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</label>
+			<label index="solutions.percentButton">% Verteilung</label>
+			<label index="solutions.percentNormalTooltip">Zeige wieder die normale Liste der Fragen als Übersicht</label>
+			<label index="solutions.percentNormalButton">Normal</label>
+			<label index="solutions.expandTooltip">Alle Fragen aufklappen inkl. der Antworten und Lösungshinweise</label>
 			
 		</languageKey>	
 		<languageKey index="cz" type="array">	

@@ -129,13 +129,28 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 	 * @param integer $offset 
 	 */
 	public function listallAction($offset=0) {
+
+		// https://connect.allplan.com/de/home/advent-2013/rangliste.html?tx_nemadvent_pi1[offset]=0&tx_nemadvent_pi1[userGroup]=7
 		$doit = $this->settingsHelper() ;
 		if ( $this->request->hasArgument('offset')) {
 			$offset = intval($this->request->getArgument('offset')) ;
 		}
+		$userGroup = "-7" ;
+		$onlyUserGroup = '' ;
+		$notUserGroup = 'AND a.usergroup <> 7 ' ;
+
+		if ( $this->request->hasArgument('userGroup')) {
+			$userGroup = intval($this->request->getArgument('userGroup')) ;
+			if ( $userGroup <> "" ) {
+				$onlyUserGroup = " AND FIND_IN_SET('" . $userGroup . "', a.usergroup) "  ;
+				$notUserGroup = '' ;
+
+			}
+		}
+
 		$offset = intval( $offset) ;
 
-		$identifier  =  'listallWinner-offset-' . $offset . "-L-" . $GLOBALS['TSFE']->sys_language_uid  . "-". $this->adventCat->getUid() . ""  ; 
+		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup . "-L-" . $GLOBALS['TSFE']->sys_language_uid  . "-". $this->adventCat->getUid() . ""  ;
 		
 		$tempcontent = $this->get_content_from_Cache( $identifier ) ;		
 		$winnerdata = unserialize($tempcontent);
@@ -152,14 +167,20 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 //			$table = 'tx_nemadvent_domain_model_user a' ;
 			
 			$where = "a.advent_uid = " . $this->adventCat->getUid() 
-			. "  AND a.deleted = 0 AND a.usergroup <> 7  AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid 
-		    . " AND a.question_date <" . $mindate 
+			. "  AND a.deleted = 0 " . $notUserGroup . " AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid
+		    . " AND a.question_date <" . $mindate
+			. $onlyUserGroup
 			// . " AND FIND_IN_SET('3',usergroup) "  ; // TODO: Usergroup auswählen aus Flex Form Value die Angezeigt werden soll
-			 ;		
+			 ;
+
+
 			$groupBy = 'a.feuser_uid';
 			$orderBy = 'pointtotal DESC, countttotal ASC';
 	
 			 $limit = $offset . ',50' ;
+
+			// echo " SELECT $what FROM $table WHERE $where GROUP BY $groupBy ORDER BY $orderBy LIMIT $limit " ;
+
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
 		
 			$winnerdata = array() ;	

@@ -13,6 +13,7 @@
 			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Points</label>
 			<label index="yourresult">Your Result</label>
 			<label index="result_visible_at">Your Result will be shown after</label>
+			<label index="how_to_find_solution">How to find the Solution</label>
 			<label index="addanswer.WasSent">Your Answer was stored in our database and is shown in the list below. You can change your answer until 23:59 this day.</label>
 			<label index="solutions.percentTooltip">Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</label>
 			<label index="solutions.percentButton">% Verteilung</label>
@@ -31,6 +32,7 @@
 			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Punkte</label>
 			<label index="yourresult">Ihr Ergebnis</label>
 			<label index="result_visible_at">Ihr Ergebnis ist sichtbar am </label>
+			<label index="how_to_find_solution">Der Lösungsweg</label>
 			<label index="addanswer.WasSent">Ihre Antwort wurde gespeichert und wird in nachfolgender Tabelle aufgelistet. Bei Bedarf können Sie eine korrigierte Antwort bis 23:59 Uhr abgeben.</label>
 			<label index="solutions.percentTooltip">Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</label>
 			<label index="solutions.percentButton">% Verteilung</label>
@@ -47,6 +49,9 @@
 			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Punkte</label>
 			<label index="yourresult">Ihr Ergebnis</label>
 			<label index="result_visible_at">Ihr Ergebnis ist sichtbar am </label>
+			<label index="how_to_find_solution">Der Lösungsweg</label>
+
+
 			<label index="addanswer.WasSent">Ihre Antwort wurde gespeichert und wird in nachfolgender Tabelle aufgelistet. Bei Bedarf können Sie eine korrigierte Antwort bis 23:59 Uhr abgeben.</label>
 			<label index="solutions.percentTooltip">Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</label>
 			<label index="solutions.percentButton">% Verteilung</label>
@@ -63,6 +68,7 @@
 			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Punkte</label>
 			<label index="yourresult">Ihr Ergebnis</label>
 			<label index="result_visible_at">Ihr Ergebnis ist sichtbar am </label>
+			<label index="how_to_find_solution">Der Lösungsweg</label>
 			<label index="addanswer.WasSent">Ihre Antwort wurde gespeichert und wird in nachfolgender Tabelle aufgelistet. Bei Bedarf können Sie eine korrigierte Antwort bis 23:59 Uhr abgeben.</label>
 			<label index="solutions.percentTooltip">Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</label>
 			<label index="solutions.percentButton">% Verteilung</label>

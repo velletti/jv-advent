@@ -81,7 +81,7 @@ class Tx_Nemadvent_Controller_BaseController extends Tx_Extbase_MVC_Controller_A
 			
 		}
 
-		$this->CacheTime = 60*60*24 ;
+		$this->CacheTime = 60*60*4 ;
 		$this->pid = intval( $GLOBALS['TSFE']->id ) ;
 		$this->adventCat =  $this->adventCatRepository->findByUid( $this->settings['advent']['list']['filter']['adventCat'] );
 		// debug($this->settings['advent']['list']['filter']['adventCat']) ;	

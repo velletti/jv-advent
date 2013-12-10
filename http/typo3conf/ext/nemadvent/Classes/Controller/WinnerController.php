@@ -224,6 +224,8 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 		}
 		$this->view->assign('settings', $this->settings);
 		$this->view->assign('winnerdata', $winnerdata);
+        $this->view->assign('isnemintern',$this->isnemintern ) ;
+
 		$this->view->assign('mindate', date("d.M H:i:s" , $mindate));
 		
 	//	var_dump($winnerdata) ;

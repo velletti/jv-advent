@@ -30,10 +30,16 @@
 					</span>
 				</f:for>		
 		</div>
+		<f:if condition="{offset} < 1">
+			<div class="right">
+				<a class="buttonRedLink" target="_blank" title="61-120" href="?&amp;tx_nemadvent_pi1[offset]=60">61 - 120 &gt;&gt;</a>
+			</div>
+		</f:if>
+
 		<div><i class="small left "><f:translate key="_votes_counted_until">Only votes Counted until: </f:translate> {mindate}</i></div>
 	</f:then>
 	<f:else>
 		<p><f:translate key="no_questions">some definitions are missing or no winner found</f:translate></p>
 	</f:else>
 </f:if>
-{debug}
+

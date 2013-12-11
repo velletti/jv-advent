@@ -146,7 +146,7 @@ class Tx_Nemadvent_Controller_BaseController extends Tx_Extbase_MVC_Controller_A
  		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('content','tx_nemadvent_cache', $where, '' , '');
 		$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 		$this->CacheDebug .=  "<br>get: " . $where . (($row) ? ' -> found':' -> not cached') ;
-		return $row[content] ;
+		return $row['content'] ;
 	}
 	/*
 	 * put a Content Peace to Cache by Identifier

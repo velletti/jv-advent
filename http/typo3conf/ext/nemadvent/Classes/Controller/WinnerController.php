@@ -177,14 +177,14 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 			$groupBy = 'a.feuser_uid';
 			$orderBy = 'pointtotal DESC, countttotal ASC';
 	
-			 $limit = $offset . ',50' ;
+			 $limit = $offset . ',60' ;
 
 			// echo " SELECT $what FROM $table WHERE $where GROUP BY $groupBy ORDER BY $orderBy LIMIT $limit " ;
 
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
 		
 			$winnerdata = array() ;	
-			for ( $i=0;$i<50;$i++) {
+			for ( $i=0;$i<60;$i++) {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
 					$winnerdata[$i] = $winnerdata_res ;

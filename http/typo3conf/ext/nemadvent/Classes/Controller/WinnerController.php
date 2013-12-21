@@ -151,11 +151,15 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 		$offset = intval( $offset) ;
 
 		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup . "-L-" . $GLOBALS['TSFE']->sys_language_uid  . "-". $this->adventCat->getUid() . ""  ;
-		
+
 		$tempcontent = $this->get_content_from_Cache( $identifier ) ;		
 		$winnerdata = unserialize($tempcontent);
 		$mindate= mktime( 23 , 59 , 59 , date("m") , date("d")-4 , date("Y"))  ;
-		
+        if ( $this->isnemintern ) {
+            if ( $this->request->hasArgument('export')) {
+                unset($winnerdata) ;
+            }
+        }
 		if ( ! is_array( $winnerdata ) ) {
 			
 			
@@ -184,7 +188,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
 		
 			$winnerdata = array() ;
-
+            $export = "'username','email','points','answers','usergroup'\n" ;
 			for ( $i=0;$i<60;$i++) {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
@@ -203,12 +207,13 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 							$winnerdata[$i]['tx_mmforum_avatar'] = 'uploads/tx_barafeprofileuser/' . $winnerdata[$i]['image'] ;
 						}
 					}
+                    if( $winnerdata[$i]['tx_barafereguser_nem_gender'] == "0" ) {
+                        $winnerdata[$i]['avatar'] = "fileadmin/templates_connect/img/Avatar_Man.png" ;
+                    } else {
+                        $winnerdata[$i]['avatar'] = "fileadmin/templates_connect/img/Avatar_Woman.png" ;
+                    }
 					if ( !file_exists($winnerdata[$i]['tx_mmforum_avatar']) ) {
-						if( $winnerdata[$i]['tx_barafereguser_nem_gender'] == "0" ) {
-							$winnerdata[$i]['tx_mmforum_avatar'] = "fileadmin/templates_connect/img/Avatar_Man.png" ;
-						} else {
-							$winnerdata[$i]['tx_mmforum_avatar'] = "fileadmin/templates_connect/img/Avatar_Woman.png" ;
-						}
+						$winnerdata[$i]['tx_mmforum_avatar'] = $winnerdata[$i]['avatar'] ;
 					}
                     //$export = "'username','email','points','answers','usergroup'\n" ;
                     $export .= "'" . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['email'] . "',"
@@ -228,13 +233,8 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 		}
         if ( $this->isnemintern ) {
             if ( $this->request->hasArgument('export')) {
-                $export = "'username','email','points','answers','usergroup'\n" ;
-                for ( $i=0;$i<60;$i++) {
-                    //$export = "'username','email','points','answers','usergroup'\n" ;
-                    $export .= "'" . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['email'] . "',"
-                        . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['countttotal'] . ",'"
-                        . $winnerdata[$i]['usergroup'] . "' \n"  ;
-                }
+
+
                 header("Content-Length: ".strlen($export) );
                 header("Content-Disposition: attachment; filename=\"DL_AKR_Rangliste_"  . date("d.m.Y") . ".csv\"");
                 header("Content-Transfer-Encoding: binary");

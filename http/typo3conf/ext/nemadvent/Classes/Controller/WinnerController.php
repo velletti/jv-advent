@@ -160,7 +160,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 			
 			
 			$what = "a.feuser_uid,a.usergroup, " 
-			 . "u.username, u.tx_mmforum_avatar, u.tx_barafereguser_nem_gender, u.image, " 
+			 . "u.username, u.email, u.tx_mmforum_avatar, u.tx_barafereguser_nem_gender, u.image, "
 			. "count( a.points ) AS countttotal, sum( a.points ) AS pointtotal";
 			
 			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
@@ -183,7 +183,8 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
 		
-			$winnerdata = array() ;	
+			$winnerdata = array() ;
+            $export = "'username','email','points','answers','usergroup'\n" ;
 			for ( $i=0;$i<60;$i++) {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
@@ -209,8 +210,12 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 							$winnerdata[$i]['tx_mmforum_avatar'] = "fileadmin/templates_connect/img/Avatar_Woman.png" ;
 						}
 					}
+                    //$export = "'username','email','points','answers','usergroup'\n" ;
+                    $export .= "'" . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['email'] . "',"
+                                   . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['countttotal'] . ",'"
+                                   . $winnerdata[$i]['usergroup'] . "' \n"  ;
 				}
-				
+
 			}
 			$toBeSaved = serialize($winnerdata);
 			$tempcontent = $this->put_content_to_Cache($identifier , $toBeSaved ) ;
@@ -219,6 +224,22 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 	//		$this->view->assign('debug', "select  " . $what . " FROM " . $table .  " WHERE " . $where . " GROUP BY " . $groupBy . " ORDER BY " . $orderBy . " - "  . mysql_error() );
 			
 		}
+        if ( $this->isnemintern ) {
+            if ( $this->request->hasArgument('export')) {
+                header("Content-Length: ".strlen($export) );
+                header("Content-Disposition: attachment; filename=\"DL_statistic_" . $postVars['cp_id'] ."_" . date("d.m.Y") . ".csv\"");
+                header("Content-Transfer-Encoding: binary");
+
+                header("Content-Type: application/force-download");
+                header('Pragma: private');
+                header('Expires: 0'); // set expiration time
+                header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+
+                echo $export ;
+                die() ;
+
+            }
+        }
 		if ( $this->settings['afterenddate'] ) {
 			$this->settings['showtotal'] = 1 ;
 		}

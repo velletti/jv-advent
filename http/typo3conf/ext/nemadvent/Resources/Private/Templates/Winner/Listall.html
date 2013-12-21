@@ -39,6 +39,11 @@
 					<f:link.page class="buttonRedLink" additionalParams="{tx_nemadvent_pi1:{offset:0}}">&lt;&lt; 1 - 60</f:link.page>
 				</f:else>
 			</f:if>
+            <f:if condition="{isnemintern} > 0">
+                <f:then>
+                    <f:link.page class="buttonWhiteLink" additionalParams="{tx_nemadvent_pi1:{export:1}}">CSV Export</f:link.page>
+                </f:then>
+            </f:if>
 		</div>
 		<div><i class="small left "><f:translate key="_votes_counted_until">Only votes Counted until: </f:translate> {mindate}</i></div>
 	</f:then>

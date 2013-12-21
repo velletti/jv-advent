@@ -184,7 +184,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
 		
 			$winnerdata = array() ;
-            $export = "'username','email','points','answers','usergroup'\n" ;
+
 			for ( $i=0;$i<60;$i++) {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
@@ -214,9 +214,11 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
                     $export .= "'" . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['email'] . "',"
                                    . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['countttotal'] . ",'"
                                    . $winnerdata[$i]['usergroup'] . "' \n"  ;
+
 				}
 
 			}
+
 			$toBeSaved = serialize($winnerdata);
 			$tempcontent = $this->put_content_to_Cache($identifier , $toBeSaved ) ;
 		}		
@@ -226,6 +228,13 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 		}
         if ( $this->isnemintern ) {
             if ( $this->request->hasArgument('export')) {
+                $export = "'username','email','points','answers','usergroup'\n" ;
+                for ( $i=0;$i<60;$i++) {
+                    //$export = "'username','email','points','answers','usergroup'\n" ;
+                    $export .= "'" . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['email'] . "',"
+                        . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['countttotal'] . ",'"
+                        . $winnerdata[$i]['usergroup'] . "' \n"  ;
+                }
                 header("Content-Length: ".strlen($export) );
                 header("Content-Disposition: attachment; filename=\"DL_AKR_Rangliste_"  . date("d.m.Y") . ".csv\"");
                 header("Content-Transfer-Encoding: binary");

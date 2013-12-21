@@ -227,7 +227,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
         if ( $this->isnemintern ) {
             if ( $this->request->hasArgument('export')) {
                 header("Content-Length: ".strlen($export) );
-                header("Content-Disposition: attachment; filename=\"DL_statistic_" . $postVars['cp_id'] ."_" . date("d.m.Y") . ".csv\"");
+                header("Content-Disposition: attachment; filename=\"DL_AKR_Rangliste_"  . date("d.m.Y") . ".csv\"");
                 header("Content-Transfer-Encoding: binary");
 
                 header("Content-Type: application/force-download");

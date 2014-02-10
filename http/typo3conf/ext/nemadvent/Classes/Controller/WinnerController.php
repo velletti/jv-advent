@@ -237,7 +237,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 			$tempcontent = $this->put_content_to_Cache($identifier , $toBeSaved ) ;
 		}		
 		if ( $this->isnem ) {
-	//		$this->view->assign('debug', "select  " . $what . " FROM " . $table .  " WHERE " . $where . " GROUP BY " . $groupBy . " ORDER BY " . $orderBy . " - "  . mysql_error() );
+	//		$this->view->assign('debug', "select  " . $what . " FROM " . $table .  " WHERE " . $where . " GROUP BY " . $groupBy . " ORDER BY " . $orderBy . " - "  . $GLOBALS['TYPO3_DB']->sql_error() );
 			
 		}
         if ( $this->isnemintern ) {

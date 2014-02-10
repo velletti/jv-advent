@@ -27,6 +27,18 @@
 							</f:else>
 						</f:if>
 						Points: {winner.pointtotal} / {winner.countttotal}
+						<f:if condition="{isnemintern} > 0">
+							<f:if condition="{winner.isPowerUser}">
+								<f:then>
+								</f:then>
+								<f:else>
+									<br/><f:link.external title="Make him/her Poweruser" uri="/de/profil/firmennetzwerk.html?tx_nemconnections_pi1%5Bcontactno%5D={winner.tx_barafereguser_nem_navision_contactid}&tx_nemconnections_pi1%5Busergroup%5D=5&tx_nemconnections_pi1%5Baction%5D=addusertogroup&tx_nemconnections_pi1%5Bcontroller%5D=Connections" target="_blank" defaultScheme="">
+										{winner.tx_barafereguser_nem_navision_contactid}
+										</f:link.external>
+
+								</f:else>
+							</f:if>
+						</f:if>
 					</span>
 				</f:for>		
 		</div>

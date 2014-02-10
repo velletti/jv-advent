@@ -152,7 +152,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 
 		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup . "-L-" . $GLOBALS['TSFE']->sys_language_uid  . "-". $this->adventCat->getUid() . ""  ;
 
-		$tempcontent = $this->get_content_from_Cache( $identifier ) ;		
+		$tempcontent = $this->get_content_from_Cache( $identifier ) ;
 		$winnerdata = unserialize($tempcontent);
 		$mindate= mktime( 23 , 59 , 59 , date("m") , date("d")-4 , date("Y"))  ;
         if ( $this->isnemintern ) {
@@ -160,11 +160,12 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
                 unset($winnerdata) ;
             }
         }
+
 		if ( ! is_array( $winnerdata ) ) {
 			
 			
-			$what = "a.feuser_uid,a.usergroup, " 
-			 . "u.username, u.email, u.tx_mmforum_avatar, u.tx_barafereguser_nem_gender, u.image, "
+			$what = "a.feuser_uid,u.usergroup, "
+			 . "u.username, u.email, u.tx_mmforum_avatar, u.tx_barafereguser_nem_gender, u.image, u.tx_barafereguser_nem_navision_contactid,  "
 			. "count( a.points ) AS countttotal, sum( a.points ) AS pointtotal";
 			
 			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
@@ -174,7 +175,6 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 			. "  AND a.deleted = 0 " . $notUserGroup . " AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid
 		    . " AND a.question_date <" . $mindate
 			. $onlyUserGroup
-			// . " AND FIND_IN_SET('3',usergroup) "  ; // TODO: Usergroup auswählen aus Flex Form Value die Angezeigt werden soll
 			 ;
 
 
@@ -193,6 +193,15 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
 					$winnerdata[$i] = $winnerdata_res ;
+					$winnerdata[$i]['isPowerUser'] = FALSE ;
+
+						// is in Group 5 Poweruser ??
+						if ( in_array( "5" , explode( "," , $winnerdata[$i]['usergroup']))) {
+							$winnerdata[$i]['isPowerUser'] = TRUE ;
+						}
+
+
+
 				
 					if ( $winnerdata[$i]['image'] == "") {
 						if( $winnerdata[$i]['tx_barafereguser_nem_gender'] == "0" ) {

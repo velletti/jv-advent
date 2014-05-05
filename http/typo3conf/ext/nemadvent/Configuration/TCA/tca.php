@@ -8,7 +8,7 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 	),
 	'columns' => array(
 		'sys_language_uid' => Array (
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
 			'config' => Array (
 				'type' => 'select',
@@ -22,7 +22,7 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 		),
 		'l18n_parent' => Array (
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
 			'config' => Array (
 				'type' => 'select',
@@ -39,7 +39,7 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 			)
 		),
 		'hidden' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
 			'config'  => array(
 				'type' => 'check'
@@ -213,7 +213,7 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 			
 
 		'categories' => array (
-			'exclude' => 1,
+			'exclude' => 0,
 			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.categories',
 			'config' => array(
@@ -251,7 +251,7 @@ $TCA['tx_nemadvent_domain_model_adventcat'] = array(
 	),
 	'columns' => array(
 		'sys_language_uid' => Array (
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
 			'config' => Array (
 				'type' => 'select',
@@ -265,7 +265,7 @@ $TCA['tx_nemadvent_domain_model_adventcat'] = array(
 		),
 		'l18n_parent' => Array (
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
 			'config' => Array (
 				'type' => 'select',
@@ -282,7 +282,7 @@ $TCA['tx_nemadvent_domain_model_adventcat'] = array(
 			)
 		),
 		'hidden' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
 			'config'  => array(
 				'type' => 'check'
@@ -352,7 +352,7 @@ $TCA['tx_nemadvent_domain_model_winner'] = array(
 	),
 	'columns' => array(
 		'sys_language_uid' => Array (
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
 			'config' => Array (
 				'type' => 'select',
@@ -366,7 +366,7 @@ $TCA['tx_nemadvent_domain_model_winner'] = array(
 		),
 		'l18n_parent' => Array (
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude' => 1,
+			'exclude' => 0,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
 			'config' => Array (
 				'type' => 'select',
@@ -383,7 +383,7 @@ $TCA['tx_nemadvent_domain_model_winner'] = array(
 			)
 		),
 		'hidden' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
 			'config'  => array(
 				'type' => 'check'

@@ -23,7 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-class Tx_Nemadvent_Domain_Model_Advent extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * @var string
@@ -94,12 +94,33 @@ class Tx_Nemadvent_Domain_Model_Advent extends Tx_Extbase_DomainObject_AbstractE
 	 * @var string
 	 */
 	protected $correct;
-	
+
+	/**
+	 * @var string
+	 */
+	protected $correct1;
+
+	/**
+	 * @var string
+	 */
+	protected $correct2 ;
+
+
 	/**
 	 * @var integer
 	 */
 	protected $storeonpid;
-	
+
+	/**
+	 * @var integer
+	 */
+	protected $rangemin;
+
+	/**
+	 * @var integer
+	 */
+	protected $rangemax;
+
 	/**
 	 * @var DateTime
 	 */
@@ -365,6 +386,44 @@ class Tx_Nemadvent_Domain_Model_Advent extends Tx_Extbase_DomainObject_AbstractE
 	public function getCorrect() {
 		return $this->correct;
 	}
+
+	/**
+	 * @param string $correct
+	 */
+	public function setCorrect($correct) {
+		$this->correct = $correct;
+	}
+
+	/**
+	 * @param string $correct1
+	 */
+	public function setCorrect1($correct1) {
+		$this->correct1 = $correct1;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCorrect1() {
+		return $this->correct1;
+	}
+
+	/**
+	 * @param string $correct2
+	 */
+	public function setCorrect2($correct2) {
+		$this->correct2 = $correct2;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCorrect2() {
+		return $this->correct2;
+	}
+
+
+
 	/**
 	 * Getter for storeonpid
 	 *
@@ -528,6 +587,34 @@ class Tx_Nemadvent_Domain_Model_Advent extends Tx_Extbase_DomainObject_AbstractE
 	 */
 	public function getTotalAnswers() {
 		return $this->totalAnswers;
+	}
+
+	/**
+	 * @param int $rangemax
+	 */
+	public function setRangemax($rangemax) {
+		$this->rangemax = $rangemax;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getRangemax() {
+		return $this->rangemax;
+	}
+
+	/**
+	 * @param int $rangemin
+	 */
+	public function setRangemin($rangemin) {
+		$this->rangemin = $rangemin;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getRangemin() {
+		return $this->rangemin;
 	}
 	
 }

@@ -22,6 +22,10 @@ CREATE TABLE tx_nemadvent_domain_model_advent (
 	viewed int(11) DEFAULT '0' NOT NULL,
 	categories int(11) DEFAULT '0' NOT NULL,
 	correct varchar(20) DEFAULT '',
+	rangemin int(11) DEFAULT '0',
+	rangemax int(11) DEFAULT '0',
+
+
 	answer1 text,
 	answer2 text,
 	answer3 text,

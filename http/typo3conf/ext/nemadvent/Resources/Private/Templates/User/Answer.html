@@ -1,27 +1,40 @@
 
 <div class="Tx_Nemadvent_pi1">
 		<f:FlashMessages class="message" />
-		<f:for each="{answerlist}" as="answer">
-			<div class="Tx_Nemadvent_pi1_answer">
+
+	<f:if condition="{answerlist}">
+		<f:then>
+			<f:for each="{answerlist}" as="answer">
+				<div class="Tx_Nemadvent_pi1_answer">
 			<span class="left width80">
-				{answer.date} 
-			</span>	
+				{answer.date}
+			</span>
 			<span class="left width400">
 				<f:format.html parseFuncTSPath="">
-					{answer.myanswer}. {answer.myanswerTEXT} 
+					{answer.myanswer}. {answer.myanswerTEXT}
 				</f:format.html>
-					
-			</span>	
+				<f:link.page noCacheHash="1" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_nemadvent_pi1: {single: {adddate: '{answer.adddate}'}}}"> >> </f:link.page>
+
+
+			</span>
 			<span class="left width80">
 				<f:if condition="{settings.showtotal} > 0">
 					{answer.showpoint}
 				</f:if>
-				
-			
-			</span>		
-		</div>		
-		<div class="clearfix">&nbsp;</div>	
-	</f:for>
+
+
+			</span>
+				</div>
+				<div class="clearfix">&nbsp;</div>
+			</f:for>
+		</f:then>
+		<f:else>
+			<div>
+				<f:translate key="result_no_answers_found">result_no_answers_found </f:translate>.
+			</div>
+		</f:else>
+	</f:if>
+
 	<div class="Tx_Nemadvent_pi1">
 		<f:if condition="{settings.showtotal} > 0">
 		<f:then>
@@ -29,7 +42,7 @@
 					: {settings.total} / {settings.count}
 		</f:then>
 		<f:else>
-			<f:translate key="result_visible_at">Result will be shown after </f:translate>
+			<f:translate key="result_visible_at">Result will be shown after</f:translate>
 					: {settings.enddate} 
 		</f:else>
 		</f:if>

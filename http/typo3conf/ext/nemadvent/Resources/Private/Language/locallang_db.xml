@@ -17,7 +17,9 @@
 			
 			<label index="Tx_Nemadvent_Domain_Model_Advent">Adventskalender Question</label>
 			<label index="tx_nemadvent.settings.question">Show single question</label>
+			<label index="tx_nemadvent.settings.calendar">Show Calendar view with doors</label>
 			<label index="tx_nemadvent.settings.listAnswers">List All Answers</label>
+
 			
 			<label index="Tx_Nemadvent_domain_model_link_to_main">Main Page</label>
 			<label index="Tx_Nemadvent_domain_model_link_to_question">Page with Question</label>
@@ -48,7 +50,10 @@
 			<label index="Tx_Nemadvent_Domain_Model_Advent.answer3">Answer No 3</label>			
 			<label index="Tx_Nemadvent_Domain_Model_Advent.answer4">Answer No 4</label>
 			<label index="Tx_Nemadvent_Domain_Model_Advent.answer5">Answer No 5</label>			
-			<label index="Tx_Nemadvent_Domain_Model_Advent.correct">Correct answer(s) (if more than one, separate with ,)</label>						
+			<label index="Tx_Nemadvent_Domain_Model_Advent.correct">Correct answer(s) (if more than one, separate with ,)</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.rangemin">Range Min Value - integer (if used, must be > 0 !!!)</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.rangemax">Range Max Value - integer (if > 0 leave Answers 1-5 empty!) </label>
+
 			<label index="Tx_Nemadvent_Domain_Model_Advent.enddate">Enddate</label>
 			<label index="Tx_Nemadvent_Domain_Model_Advent.days">How much Days</label>
 			<label index="Tx_Nemadvent_Domain_Model_Advent.storeonpid">Where do you want to store the users Answers? Select a sysfolder!</label>
@@ -57,6 +62,7 @@
 			<label index="Tx_Nemadvent_Domain_Model_Advent.desc_short">Hint of the day</label>
 			<label index="Tx_Nemadvent_Domain_Model_Advent.desc_long">question</label>
 			<label index="Tx_Nemadvent_Domain_Model_Advent.video">Videofile (if available)</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.image">Image (if available)</label>
 			<label index="Tx_Nemadvent_Domain_Model_Advent.categories">Kategorien</label>
 			<label index="Tx_Nemadvent_Domain_Model_Advent.viewed">Angezeigt</label>
 			

@@ -6,8 +6,8 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array (
-		'Advent'		=>	'list,single,listAnswers',
-		'User'			=>	'answer,',
+		'Advent'		=>	'list,single,listAnswers,showCalendar',
+		'User'			=>	'answer',
 		'Adventcat'		=>	'list',
 		'Winner'		=>	'list,listall',
 	),

@@ -20,7 +20,6 @@
 			<div  class=".nemadvent_quest nemadvent_questlist left">
 				<f:for each="{questions}" as="question" iteration="count">
 
-
 					<h3>{count.cycle} - {question.title}
 						<f:if condition="{isnemintern}">
 							<f:if condition="{question.totalAnswers} > 0 ">
@@ -33,12 +32,11 @@
 
 						<div class="Tx_Nemadvent_answers">
 
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, percent: question.answer1count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, percent: question.answer2count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, percent: question.answer3count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, percent: question.answer4count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, solution: question.correct, userAnswer: question.userAnswer, percent: question.answer5count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer1count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer2count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer3count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer4count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer5count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
 
 							<f:if condition="{question.descShort}">
 								<div class="clearfix"> <br /></div>

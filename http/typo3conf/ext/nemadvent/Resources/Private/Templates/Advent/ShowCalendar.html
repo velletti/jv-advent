@@ -1,0 +1,170 @@
+{namespace helper=Tx_Nemadvent_ViewHelpers}
+	<f:if condition="{settings.afterenddate}">
+		<f:then>
+
+			<h3>Something is wrong: </h3><br/>
+			Plugin should not be visible AFTER  enddate!
+			enddate: {settings.enddate} <br/>
+			now: {settings.now} <br/>
+
+
+		</f:then>
+		<f:else>
+			<div class="hide">
+				<f:link.page id="tx_advent_answerpage" noCacheHash="1" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_nemadvent_pi1: {single: {adddate: ''}}}"> LINK </f:link.page>
+				<div class="tx_advent_no_accessMsg">
+					<f:security.ifAuthenticated>
+					<f:then>
+						<f:translate key="access_next"> Zur Frage </f:translate>
+					</f:then>
+
+						<f:else>
+
+							<f:translate key="access_false"> Bitte zuerst anmelden </f:translate>
+
+						</f:else>
+					</f:security.ifAuthenticated>
+				<!--	<h3><f:translate: key="no_access_header"> Kein Zugiff !</f:translate:></h3>
+					<p>
+						<f:translate: key="no_access"> Kein Zugiff auf die seite ...!</f:trnslate:>
+					</p> !-->
+
+				</div>
+			</div>
+
+			<div style="display:block;">
+
+				<div id="tx_Advent_questions_img">
+					<div id="tx_Advent_questions_text">
+
+					</div>
+
+					<f:for each="{questions}" as="question" iteration="count">
+
+						<f:if condition="{settings.beforestartdate}">
+							<f:then>
+
+								<f:if condition="{question.day} <24">
+									<f:then>
+										<div title="{question.dateF} {question.title}" class="tx_Advent_questions_day{count.cycle} tx_Advent_questions_inactive">
+
+											<div class="tx_Advent_questions_inactive_background">
+												<p style="margin-top: 18px;">{count.cycle}</p>
+											</div></div>
+
+									</f:then>
+									<f:else>
+										<div  title="{question.dateF} {question.title}" class="tx_Advent_questions_day{count.cycle} tx_Advent_other">
+
+											<div class="tx_Advent_questions_other_background">
+												<p style="margin-top: 18px;">{count.cycle}</p>
+											</div></div>
+
+
+										<!-- das sind die tage 25-28 !-->
+									</f:else>
+								</f:if>
+
+
+
+							</f:then>
+							<f:else>
+
+								<f:if condition="{question.today}">
+									<f:then>
+										<div title="<f:format.date format="d.m.Y">@{question.date}</f:format.date>" class="tx_Advent_questions_dayPerspective tx_Advent_questions_day{count.cycle}" onclick="openDoor_today(this, {count.cycle})">
+										<div class="tx_advent_no_accessMsg">
+											<f:security.ifAuthenticated>
+												<f:then>
+													<p class="tx_advent_doorMsg"><f:translate: key="access_next"> Zur Frage </f:translate:></p>
+												</f:then>
+
+												<f:else>
+													<p class="tx_advent_doorMsg noaccess"><f:translate key="access_false">Bitte zuerst anmelden!</f:translate></p>
+												</f:else>
+											</f:security.ifAuthenticated>
+										</div>
+										<div class="tx_Advent_questions_today tx_Advent_questions_day{count.cycle}" >
+
+
+											<p id="tx_Advent_Heute">{count.cycle}</p>
+										</div>
+				</div>
+
+				</f:then>
+				<f:else>
+					<f:if condition="{question.daybefore}">
+						<f:then>
+							<div title="{question.dateF} {question.title}" class="tx_Advent_questions_day tx_Advent_questions_day{count.cycle} tx_Advent_questions_dayPerspective"  onclick="openDoor(this, {count.cycle})">
+								<div class="tx_advent_no_accessMsg">
+									<f:security.ifAuthenticated>
+										<f:then>
+											<p class="tx_advent_doorMsg"><f:translate: key="access_next"> Zur Frage </f:translate:></p>
+										</f:then>
+
+										<f:else>
+											<p class="tx_advent_doorMsg"><f:translate key="access_false">Bitte zuerst anmelden!</f:translate></p>
+										</f:else>
+									</f:security.ifAuthenticated>
+								</div>
+								<div class="tx_Advent_questions_dayBefore tx_Advent_questions_day{count.cycle}" >
+									<p style="margin-top: 18px;">{count.cycle}</p>
+								</div>
+							</div>
+
+
+
+						</f:then>
+						<f:else>
+
+							<f:if condition="{question.day} <24">
+								<f:then>
+									<div  title="{question.dateF} {question.title}" class="tx_Advent_questions_day{count.cycle} tx_Advent_questions_inactive">
+
+										<div class="tx_Advent_questions_inactive_background">
+											<p style="margin-top: 18px;">{count.cycle}</p>
+										</div></div>
+
+								</f:then>
+								<f:else>
+									<div class="tx_Advent_questions_day{count.cycle} tx_Advent_other">
+
+										<div class="tx_Advent_questions_other_background">
+											<p style="margin-top: 18px;">{count.cycle}</p>
+										</div></div>
+
+
+									<!-- das sind die tage 25-28 !-->
+								</f:else>
+							</f:if>
+
+						</f:else>
+					</f:if>
+				</f:else>
+	</f:if>
+
+
+							</f:else>
+
+						</f:if>
+
+
+
+
+				</f:for>
+
+
+			</div>
+				</div>
+
+		</f:else>
+	</f:if>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		var syslng = {settings.sys_language_uid};
+		var sysid = {settings.list.pid.myanswersView};
+		tx_nemadvent_ajax(syslng , sysid) ;
+	});
+
+</script>

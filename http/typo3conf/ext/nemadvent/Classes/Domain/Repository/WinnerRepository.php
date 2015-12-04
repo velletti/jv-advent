@@ -23,7 +23,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class Tx_Nemadvent_Domain_Repository_WinnerRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_Nemadvent_Domain_Repository_WinnerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	
 	/**
 	 * find advent by given tag object

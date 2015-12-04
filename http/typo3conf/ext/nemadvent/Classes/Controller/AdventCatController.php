@@ -31,7 +31,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class Tx_Nemadvent_Controller_AdventCatController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_Nemadvent_Controller_AdventCatController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * @var Tx_Nemadvent_Domain_Model_AdventCatRepository
@@ -49,8 +49,8 @@ class Tx_Nemadvent_Controller_AdventCatController extends Tx_Extbase_MVC_Control
 	 * @return void
 	 */
 	public function initializeAction() {
-		$this->adventCatRepository = t3lib_div::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
-		$this->tagRepository = t3lib_div::makeInstance('Tx_Nemadvent_Domain_Repository_TagRepository');
+		$this->adventCatRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
+		$this->tagRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_TagRepository');
 	}
 
 	/**

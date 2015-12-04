@@ -23,7 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-class Tx_Nemadvent_Domain_Model_Winner extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_Nemadvent_Domain_Model_Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * @var string

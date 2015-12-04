@@ -65,16 +65,18 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 		parent::initializeAction();
 		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
 
-		$this->adventRepository = t3lib_div::makeInstance('Tx_Nemadvent_Domain_Repository_AdventRepository');
-		$this->adventCatRepository = t3lib_div::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
-		$this->userRepository = t3lib_div::makeInstance('Tx_Nemadvent_Domain_Repository_UserRepository');
+		$this->adventRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventRepository');
+		$this->adventCatRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
+		$this->userRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_UserRepository');
 		
-		$this->frontendUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
-		$this->frontendUserGroupRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserGroupRepository');
+		$this->frontendUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
+		$this->frontendUserGroupRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserGroupRepository');
 		
 		//overwrite setting Configuration
 
 	}
+
+
 
 
 	/**
@@ -84,16 +86,59 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 	 */
 	public function answerAction() {
 		$doit = $this->settingsHelper() ;
+		$this->currentArguments = $this->request->getArguments();
+		if ( $this->request->hasArgument('JSON')) {
+			if ( $this->settings['feUserUid'] > 0 ) {
+				$this->answers =  $this->userRepository->findMyanswers(
+					$this->adventCat ,
+					$this->settings['feUserUid'] );
+				if ( is_array($this->answers) ) {
+					$answerlist = "" ;
+					$lastAnswer = "xyz" ;
+					for ( $i=0;$i < count($this->answers) ; $i++ ) {
+						if ($lastAnswer <> intval( $this->answers[$i]->getQuestionDatef()) ) {
+							if ( $answerlist <> "") {
+								$answerlist .= "," ;
+							}
+							// $answerlist  .= date( "j" , $this->answers[$i]->getQuestionDate() + 7201) ;
+							// $lastAnswer = date( "j" , $this->answers[$i]->getQuestionDate()+7201) ;
+							$answerlist  .= intval( $this->answers[$i]->getQuestionDatef() ) ;
+							$lastAnswer = intval( $this->answers[$i]->getQuestionDatef()) ;
+						}
+
+					}
+					$answerlist =  $answerlist  ;
+				}
+				$this->showArrayAsJson($answerlist) ;
+				die;
+			}
+			die;
+		}
 		$answer = 0 ;
 		$question = 0 ;
+
+
+
+
 		if ( $this->request->hasArgument('question')) {
 			$question = intval($this->request->getArgument('question')) ;
 		}
+
 		if ( $this->request->hasArgument('answer')) {
+			
 			$answer = intval($this->request->getArgument('answer')) ;
-		}	
-		if ( $answer > 0 )  {
-			if ( $this->isnem ) {
+		}
+
+		if ( $this->request->hasArgument('rangeanswer')) {
+			$rangeanswer = intval($this->request->getArgument('rangeanswer')) ;
+			$answer = $rangeanswer ;
+		}
+
+		if ( $answer > 0  OR $rangeanswer > 0 OR $question > 0 )  {
+            // j.v. 7.10.2014 Nachträgliches Beantworten nicht nur für NEM !
+            $question =  $this->adventRepository->findOneByFilter($this->adventCat , 0 , $question )->toArray();
+/*
+            if ( $this->isnem ) {
 				$question =  $this->adventRepository->findOneByFilter($this->adventCat , 0 , $question )->toArray();
 			//	debug( $question[0]->GetDate() ) ;
 			//	die("is nem " . $this->request->getArgument('question'))  ;
@@ -108,11 +153,12 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 				$question =  $this->adventRepository->findOneByFilter($this->adventCat , $this->settings['today']  )->toArray();
 			//	debug( $question[0]->GetDate() ) ;
 			//	die("is NOT nem " . $this->request->getArgument('question'))  ;
-			}		
+			}
+*/
 		}
 	
 		
-		// debug( $question[0] ) ;
+
 		if ( is_array ($question)) {
 			// debug( $this->pid  ) ; 
 			if ( $question[0]->GetStoreonpid() > 0 ) {
@@ -120,24 +166,60 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 			}
 			$point = 0 ;
 			$subpoint = 0 ;
-			if ( intval($question[0]->getCorrect())  == $answer ){
-				$point = 1 ; 
-				if ( intval($question[0]->getDate()) > 0 ){
-					$subpoint = time() - intval($question[0]->getDate()) ;
+
+
+
+
+			if ( $rangeanswer > 0) {
+
+				// ToDO hierher die berechnung für die suppoints ... das sind die werte
+
+				if ( $rangeanswer > $question[0]->getCorrect()  ) {
+					$subpoint = (1 - ( $rangeanswer - $question[0]->getCorrect()) / ( $question[0]->getRangemax() - $question[0]->getCorrect() )) *99999 ;
+
+
+				} else {
+					$subpoint = (1 - (  $question[0]->getCorrect()- $rangeanswer ) / (  $question[0]->getCorrect() - $question[0]->getRangemin() )) *99999 ;
 				}
-			}	
-				
+				if ( $subpoint > 99999 ) {
+					$subpoint = 99999 ;
+				}
+				if ( $subpoint < 1 ) {
+					$subpoint = 1 ;
+				}
+				$subpoint = round( $subpoint , 0)  ;
+			} else {
+				$correctAnswer = $question[0]->getCorrect() ;
+				$correctArr = explode("," , $correctAnswer . ",") ;
+
+				for ( $i=0 ; $i< count($correctArr) ; $i++) {
+					if ( intval( $correctArr[$i]) == $answer ){
+						$point = 1 ;
+					}
+				}
+
+				$subpoint = round( rand(0,4), 0)  ;
+			}
+
 			$userlog =  $this->userRepository->insertAnswer($this->adventCat , 
 																$this->pid , $this->settings['feUserUid'] ,
 																$question[0] , $point, $subpoint, $answer );
-			if ( $userlog) {
-				$this->flashMessageContainer->add($this->translate('addanswer.WasSent'));
+
+
+			if ( $userlog['TO-OLD'] > 0) {
+				$this->flashMessageContainer->add( "Ihre Antwort wurde NICHT gespeichert da eine Änderung max innerhalb von 24h möglich ist! Gültig bleibt die bereits abgegebene Antwort vom " . date( "d.m.Y h:i" , $userlog["TO-OLD" ]) , '' , t3lib_FlashMessage::ERROR);
 			} else {
-				$this->flashMessageContainer->add('addanswer.WasNotSent: errorcode: U:' . $feUserUid . "-A:" .  $answer . "-Q:" . $question);
+				if ( $userlog) {
+
+					$this->flashMessageContainer->add($this->translate('addanswer.WasSent'));
+				} else {
+					$this->flashMessageContainer->add('addanswer.WasNotStored: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question[0]->getPid() , '' , t3lib_FlashMessage::ERROR);
+				}
 			}
+
 		} else {
 			if ( $answer > 0 ) {
-				$this->flashMessageContainer->add('addanswer.WasNotSent: errorcode: U:' . $feUserUid . "-A:" .  $answer . "-Q:" . $question);
+				$this->flashMessageContainer->add('addanswer.WasNotSent: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question[0]->getPid() , '' , t3lib_FlashMessage::ERROR);
 			}
 			
 		}
@@ -163,23 +245,22 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 					
 					$answerlist[$i]['date'] = date ( "d.m.Y" , $this->answers[$i]->getQuestionDate() ) ;			
 					$answerlist[$i]['myanswer'] = $this->answers[$i]->getAnswerUid()  ;
-					
+					$answerlist[$i]['adddate'] = date ( "j" , $this->answers[$i]->getQuestionDate() ) ;
+
 					$question =  $this->adventRepository->findOneByFilter( $this->adventCat , 
 														$this->answers[$i]->getQuestionDate()  );
 					
 					$answerlist[$i]['myanswerTEXT'] = "";
-			//		debug($question) ;									
 					if ( is_array($question)) {
-						$answerlist[$i]['myanswerTEXT'] .= $question[0]->getMyanswertext( $answerlist[$i]['myanswer'] ) ;	
+						$answerlist[$i]['myanswerTEXT'] .= $question[0]->getMyanswertext( $answerlist[$i]['myanswer'] ) ;
+						$correct= $question[0]->getCorrect( ) ;
 					}
-					$correct= $question[0]->getCorrect( ) ;
+
 					
 					if ( in_array($answerlist[$i]['myanswer'],explode("," ,  $correct ."," ))){
 						$answerlist[$i]['points'] = 1 ;
-					//	echo "<br>points?: " . $answerlist[$i]['points']  ;
 					} else {
 						$answerlist[$i]['points'] = 0 ;
-					//	echo "<br>points?: " . $answerlist[$i]['points']  ;
 					}
 					
 					if ( $this->settings['afterenddate'] ) {
@@ -188,13 +269,10 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 						$this->settings['total'] = intval( $this->settings['total'] + $answerlist[$i]['points']) ;
 						$this->settings['showtotal'] = 1 ;
 					}
-					// echo "<br>Question: " . $question . " Correct: " . $correct . "MyAnswer: " . $answerlist[$i]['myanswer'] . " Total:" . $this->settings['total'] ;
-					
+
 				}
 				
 			}	
-		//	debug($answerlist[0]) ;
-			
 			//overwrite Settings in view
 			$this->settings['count'] = count($this->answers) ;
 			$this->view->assign('settings', $this->settings);

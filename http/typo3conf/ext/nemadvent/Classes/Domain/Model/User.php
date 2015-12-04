@@ -23,18 +23,30 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-class Tx_Nemadvent_Domain_Model_User extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_Nemadvent_Domain_Model_User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
-	 * @var DateTime
+	 * @var integer
 	 */
 	protected $crdate;
+
+	/**
+	 * @var integer
+	 */
+	protected $tstamp;
+
+
 	/**
 	 * @var integer
 	 */
 	protected $questionDate;
-	
-		/**
+
+	/**
+	 * @var string
+	 */
+	protected $questionDatef;
+
+	/**
 	 * @var integer
 	 */
 	protected $questionUid;
@@ -119,7 +131,24 @@ class Tx_Nemadvent_Domain_Model_User extends Tx_Extbase_DomainObject_AbstractEnt
 	public function getQuestionDate(){
 		return $this->questionDate;
 	}
-	
+
+	/**
+	 * @param string $questionDateF
+	 */
+	public function setQuestionDateF($questionDatef) {
+		$this->questionDatef = $questionDatef;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getQuestionDatef() {
+		return $this->questionDatef;
+	}
+
+
+
+
 	/**
 	 * Getter for hidden
 	 *
@@ -160,7 +189,36 @@ class Tx_Nemadvent_Domain_Model_User extends Tx_Extbase_DomainObject_AbstractEnt
 	 */
 	public function getFeuserUid() {
 		return $this->feuserUid;
-	}	
+	}
+
+	/**
+	 * @param integer $crdate
+	 */
+	public function setCrdate($crdate) {
+		$this->crdate = $crdate;
+	}
+
+	/**
+	 * @return integer
+	 */
+	public function getCrdate() {
+		return $this->crdate;
+	}
+
+	/**
+	 * @param integer $tstamp
+	 */
+	public function setTstamp($tstamp) {
+		$this->tstamp = $tstamp;
+	}
+
+	/**
+	 * @return integer
+	 */
+	public function getTstamp() {
+		return $this->tstamp;
+	}
+
 }
 
 ?>

@@ -22,6 +22,8 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+
+
 /**
  * Controller for varius objects
  *
@@ -30,9 +32,32 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class Tx_Nemadvent_Controller_BaseController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_Nemadvent_Controller_BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-	
+	/**
+	 * @var Tx_Nemadvent_Domain_Repository_WinnerRepository
+	 * @inject
+	 */
+	protected $winnerRepository;
+
+	/**
+	 * @var Tx_Nemadvent_Domain_Repository_AdventCatRepository
+	 * @inject
+	 */
+	protected $adventCatRepository;
+
+	/*
+	 * @var Tx_Extbase_Domain_Repository_FrontendUserRepository
+	 * @inject
+	 */
+	protected $frontendUserRepository;
+
+	/*
+	 * @var Tx_Extbase_Domain_Repository_FrontendUserGroupRepository
+	 * @inject
+	 */
+	protected $frontendUserGroupRepository;
+
 
 	/**
 	 * add css-files to header
@@ -192,7 +217,28 @@ class Tx_Nemadvent_Controller_BaseController extends Tx_Extbase_MVC_Controller_A
 	 * @author Martin Heigermoser <martin.heigermoser@typovision.de>
 	 */
 	public function translate($label , $arguments=NULL) {
-		return Tx_Extbase_Utility_Localization::translate($label, 'Nemadvent' , $arguments );	
+		return \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($label, 'Nemadvent' , $arguments );
+	}
+
+	public function showArrayAsJson($output) {
+		$jsonOutput = json_encode($output);
+		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+		header('Cache-Control: no-cache, must-revalidate');
+		header('Pragma: no-cache');
+		header('Content-Length: ' . strlen($jsonOutput));
+		header('Content-Type: application/json; charset=utf-8');
+		header('Content-Transfer-Encoding: 8bit');
+
+		$callbackId = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP("callback");
+		if ( $callbackId == '' ) {
+			echo $jsonOutput;
+		} else {
+			echo $callbackId . "(" . $jsonOutput . ")";
+		}
+
+		die;
+		exit();
 	}
 }
 ?>

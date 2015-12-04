@@ -133,8 +133,14 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 			)
 		),
 
-		'image' => txdam_getMediaTCA('image_field', 'tx_nemadvent_domain_model_advent_image'),
-		
+		'image' => array(
+			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.image',
+			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+				'tx_nemadvent_domain_model_advent_image',
+				array('maxitems' => 4),
+				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+			)
+		),
 
 		'viewed' => array (
 			'exclude' => 0,
@@ -197,8 +203,28 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 				'size' => '10',
 				'default' => '',
 			)
-		),				
-			'storeonpid' => array (
+		),
+		'rangemin' => array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.rangemin',
+			'config' => array (
+				'type' => 'input',
+				'size' => '10',
+				'default' => '',
+				'eval' => 'int',
+			)
+		),
+		'rangemax' => array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.rangemax',
+			'config' => array (
+				'type' => 'input',
+				'size' => '10',
+				'default' => '',
+				'eval' => 'int',
+			)
+		),
+		'storeonpid' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.storeonpid',
 			'config' => array (
@@ -234,15 +260,12 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 	),
 	'types' => array(
 		'0' => array('showitem' => 'hidden, categories, title, date,  desc_long;;4;richtext:rte_transform[flag=rte_enabled|mode=ts], image,  desc_short;;4;richtext:rte_transform[flag=rte_enabled|mode=ts], solution;;4;richtext:rte_transform[flag=rte_enabled|mode=ts],
-		--div--;Answers,answer1,answer2,answer3,answer4,answer5,correct,storeonpid')
+		--div--;Answers,answer1,answer2,answer3,answer4,answer5,correct,rangemin,rangemax,storeonpid')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
 	)
 );
-$TCA['tx_nemadvent_domain_model_advent']['columns']['image']['config']['foreign_table'] = 'tx_dam';
-$TCA['tx_nemadvent_domain_model_advent']['columns']['image']['config']['maxitems'] = 4;
-$TCA['tx_nemadvent_domain_model_advent']['columns']['image']['config']['size'] = 4;
 
 $TCA['tx_nemadvent_domain_model_adventcat'] = array(
 	'ctrl' => $TCA['tx_nemadvent_domain_model_adventcat']['ctrl'],

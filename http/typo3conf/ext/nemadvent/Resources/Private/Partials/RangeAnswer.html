@@ -1,0 +1,64 @@
+<f:if condition="{mypid}">
+	<f:then>
+
+		<span class="left width540">
+
+			<div id="tx_nemadvent_Regler_Zahl"><p id="tx_nemdvent_output_div"><b>Ihre Antwort:</b> </p>
+
+				<form name="tx_nemadvent_f1"
+				onchange="tx_nemadvent_liveValue()" oninput="tx_nemadvent_liveValue()">
+
+					<input id="tx_nemadvent_rangeanswer" type="range" min={question.rangemin} max={question.rangemax}
+					value="{({question.rangemax}-{question.rangemin})/2}" step="1">
+
+					<br>
+
+					<output id="tx_nemadvent_output" name="tx_nemadvent_amount" for="tx_nemadvent_rangeanswer">
+						<f:translate key="use_range">Zum beantworten, Schieberegler benutzen und Button anklicken</f:translate>! </output>
+					<br>
+					<span class="submitWrapper left width40">
+											<a style="cursor: pointer;" onclick="tx_advent_range();return false;"> >> </a>
+									</span>
+				</form>
+
+			</div>
+
+		</span>
+	</f:then>
+	<f:else>	
+		<span class=" left width40">
+
+		</span>
+		<span class="left width540">
+			<f:translate key="correct_answer_was"> Die korrekte Antwort lautete</f:translate>: {question.correct}
+
+		</span>
+	</f:else>
+</f:if>	
+<div class="clearfix">&nbsp;</div>
+<f:link.action action="answer" class="hide" id="tx_nemadvent_rangeUrl" controller="user" pageUid="{mypid}" noCacheHash="1" arguments="{adventscat: adventscat, question: question.uid, answer:  adddate: adddate}">
+</f:link.action>
+										
+<script type="text/javascript">
+	function tx_advent_range() {
+		var url = "https://" + window.location.hostname + "/" + jQuery("#tx_nemadvent_rangeUrl").attr("href");
+		url = url +  "&tx_nemadvent_pi1[rangeanswer]=" + jQuery("#tx_nemadvent_rangeanswer").val();
+		window.location.href = (url);
+
+	}
+
+	function tx_nemadvent_liveValue() {
+		var tx_nemadvent_Input_Zahl = jQuery("#tx_nemadvent_rangeanswer").val();
+		jQuery("#tx_nemadvent_output").html(tx_nemadvent_Input_Zahl);
+		jQuery("#tx_nemadvent_output").css("fontSize", "30px");
+
+
+	};
+
+
+
+
+</script>
+								
+								
+								

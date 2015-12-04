@@ -5,7 +5,7 @@ plugin.tx_nemadvent {
 			#10 = typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css
 		}
 		jsFiles {
-			# 10 = typo3conf/ext/marit_elearning/Resources/Public/Js/jquery-1.4.2.min.js
+			 10 = typo3conf/ext/nemadvent/Resources/Public/Js/script.js
 		}
 
 		advent {
@@ -36,8 +36,7 @@ plugin.tx_nemadvent {
 				sorting = date
 			}
 		}
-		# if set to FALSE only todays question can be answered
-		allowOlderQuestions = False
+		maxDaysInFuture = 5
 	}
 	persistence {
 		storagePid = {$plugin.tx_nemadvent.persistence.storagePid}

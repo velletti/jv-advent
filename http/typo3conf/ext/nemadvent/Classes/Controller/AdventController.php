@@ -64,13 +64,14 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 	public function initializeAction() {
 		parent::initializeAction();
 		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
+		$this->initJS($this->settings['jsFiles']);
 
-		$this->adventRepository = t3lib_div::makeInstance('Tx_Nemadvent_Domain_Repository_AdventRepository');
-		$this->adventCatRepository = t3lib_div::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
-		$this->userRepository = t3lib_div::makeInstance('Tx_Nemadvent_Domain_Repository_UserRepository');
+		$this->adventRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventRepository');
+		$this->adventCatRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
+		$this->userRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_UserRepository');
 		
-		$this->frontendUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
-		$this->frontendUserGroupRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserGroupRepository');
+		$this->frontendUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
+		$this->frontendUserGroupRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserGroupRepository');
 		
 		//overwrite setting Configuration
 
@@ -95,37 +96,43 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 	public function singleAction() {
 		
 		$doit = $this->settingsHelper( ) ;
-				$adddate = 0 ;
-		
-			if ( $this->request->hasArgument('single') ) {
-				
-				$adddate_arr = $this->request->getArgument('single') ;
-				if (is_array($adddate_arr)) {
-					$adddate = $adddate_arr['adddate'];
+		$adddate = 0 ;
+
+		if ( $this->request->hasArgument('single') ) {
+			$adddate_arr = $this->request->getArgument('single') ;
+			if (is_array($adddate_arr)) {
+				$adddate = $adddate_arr['adddate'];
+			}
+			// Neu : nur noch positive werte und adddate 3 liefert den 3.12. statt wie früher 4.12
+			$adddate = $adddate -1 ;
+
+
+		} else {
+			$adddate = intval( date("d" )) -1  ;
+		}
+		// Was ist die maximale Anzahl an tagen ? normal 24. Also ab dem 25.
+		if ( $adddate >  ( $this->adventCat->getDays()  )) {
+			$adddate = $this->adventCat->getDays() -1  ;
+		}
+
+		// 7.10.2014 j.v. : rückwirkendes / Beantworten auch für Nicht Nemetschek MA
+		$month = date("m" , $this->adventCat->getStartdate()) ;
+		$this->settings['showtip']   =  FALSE ;
+		if ( $this->isnem  ) {
+			$this->settings['today']   = mktime( 0,0,0, $month ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
+			$this->settings['showtip']   =  TRUE  ;
+		} else {
+			$this->settings['today']   =  mktime( 0,0,0, $month , date("d" ) ,date("Y" )  ) ;
+			if ($month == date("m" ) ) {
+				$this->settings['today']   = mktime( 0,0,0, $month ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
+				if ( intval( date("d" , $this->settings['today'] ) ) >  intval( date("d")) + $this->settings['maxDaysInFuture'] ) {
+					$this->settings['today']   =  mktime( 0,0,0, $month , date("d" ) ,date("Y" )  ) ;
 				}
-				if ( $adddate >  ( $this->adventCat->getDays() -1 )) {
-					$adddate = $this->adventCat->getDays() - 1 ;
-				}	
-				if ( $this->isnem  ) {
-					if ( $adddate < 0 ) {
-						$this->settings['today']   =  mktime( 0,0,0, date("m" ) ,(date("d" ) + $adddate  ) ,date("Y" )  ) ;
-					} else {
-						$this->settings['today']   = mktime( 0,0,0, date("m" , $this->adventCat->getStartdate()) ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
-							
-					}
-				} else {
-					if ( $adddate > -4 AND $adddate < 0 ) {
-						$this->settings['today']   =  mktime( 0,0,0, date("m" ) ,(date("d" ) + $adddate  ) ,date("Y" )  ) ;
-					}
+				if ( date("d" , $this->settings['today'] ) ==  date("d") ) {
+					$this->settings['showtip']   =  TRUE  ;
 				}
-			} else {
-				if ( $this->request->hasArgument('yesterday') ) {
-					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) -1) ,date("Y" )  ) ;
-				} else {			
-					$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) ) ,date("Y" )  ) ;
-				}
-			}	
-		
+			}
+		}
 
 		// 11.10.2011 :
 		//  $this->settings['today']   =  1318284000 ;
@@ -172,6 +179,14 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 						$answer =  $this->userRepository->findAnswer( $this->adventCat, $this->settings['feUserUid'], $questions[$i]->getDate())->toArray();
 						$answersAll =  $this->userRepository->findAnswer( $this->adventCat, 0 , $questions[$i]->getDate())->toArray();
 						$answersCount = array ( 0 , 0 , 0 , 0 ,0 ) ;
+
+						$correctArr = explode( "," , trim($questions[$i]->getCorrect()) . "," ) ;
+						$questions[$i]->setCorrect1( trim($correctArr[0])) ;
+						if ( intval( $correctArr[1]) > 0 ) {
+							$questions[$i]->setCorrect2( trim($correctArr[1])) ;
+						} else {
+							$questions[$i]->setCorrect2( "-" ) ;
+						}
 
 						if ( is_array( $answersAll )) {
 							for( $ii=0;$ii<count($answersAll);$ii++) {
@@ -234,6 +249,76 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 
 		$this->view->assign('settings', $this->settings);
 
+		$this->view->assign('isnemintern', $this->isnemintern);
+
+	}
+
+	/**
+	 * Shows A calendar with doors. Actual Day gets special Class. Opened Doors of recent days are made with ajax ...
+	 *
+	 * @return string The rendered view
+	 */
+	public function showCalendarAction() {
+
+		$doit = $this->settingsHelper( ) ;
+		$adddate = 0 ;
+
+		// just for testing if Opened Door / Today Door works
+		if ( $this->request->hasArgument('single') ) {
+			$adddate_arr = $this->request->getArgument('single') ;
+			if (is_array($adddate_arr)) {
+				$adddate = $adddate_arr['adddate'];
+			}
+			if ( $adddate >  ( $this->adventCat->getDays() -1 )) {
+				$adddate = $this->adventCat->getDays() - 1 ;
+			}
+
+			if ( $adddate < 0 ) {
+				$this->settings['today']   =  mktime( 0,0,0, date("m" ) ,(date("d" ) + $adddate  ) ,date("Y" )  ) ;
+			} else {
+				$this->settings['today']   = mktime( 0,0,0, date("m" , $this->adventCat->getStartdate()) ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
+			}
+		}
+		$questions = array() ;
+		for($i=0;$i<28;$i++) {
+			$questions[] = array( "day" => $i , "date" => mktime( 0,0,0,  date("m" , $this->adventCat->getStartdate()) , $i+1 ,date("Y" )  ) , 'today' => FALSE , 'daybefore' => FALSE) ;
+			$question =  $this->adventRepository->findOneByFilter( $this->adventCat ,$questions[$i]['date'] )->toArray()  ;
+			if ( count($question >0 )) {
+				if(is_object($question[0])) {
+
+					$questions[$i]['title'] = $question[0]->getTitle() ;
+					$questions[$i]['dateF'] = date("d.m.Y" , $questions[$i]['date']) ;
+					$questions[$i]['title'] = " : " . $questions[$i]['title']  ;
+				}
+			}
+			if ( $this->settings['today'] == $questions[$i]['date'] ) {
+				$questions[$i]['today'] = TRUE ;
+				$questions[$i]['title'] = '' ;
+			}
+			if ( $this->settings['today'] > $questions[$i]['date'] ) {
+				$questions[$i]['daybefore'] = TRUE ;
+
+			} else {
+				$questions[$i]['dateF'] = '' ;
+				$questions[$i]['title'] = '' ;
+			}
+
+
+
+		}
+
+		$this->view->assign('questions', $questions );
+		// 11.10.2011 :
+		//  $this->settings['today']   =  1318284000 ;
+		$this->settings['todayformated']   =  date( "d.m.Y" , $this->settings['today'] ) ;
+		$this->settings['today']   =  intval( date( "d" , $this->settings['today'] )) ;
+
+		$this->view->assign('adventCat', $this->adventCat );
+
+		$this->view->assign('settings', $this->settings);
+		$this->view->assign('adddate', $adddate);
+
+		$this->view->assign('isnem', $this->isnem);
 		$this->view->assign('isnemintern', $this->isnemintern);
 
 	}

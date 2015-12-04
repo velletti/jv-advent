@@ -33,31 +33,135 @@
 									</div>	
 									<div class="clearfix">&nbsp;</div>
 									<div id="Tx_Nemadvent_answers">
-									
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-										<f:render partial="Answer" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+										<f:if condition="{question.rangemax} > 0">
+											<f:then>
+												<f:render partial="RangeAnswer" arguments="{question: question, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+
+											</f:then>
+											<f:else>
+												<div class="tx_advent_WuerfelWeg">
+													<div id="tx_advent_Wuerfel" onclick="advent_move(tx_advent_Wuerfel)">
+														<p id="tx_advent_WuerfelZahl">?</p>
+
+													</div>
+													<div id="tx_advent_WuerfelMauer">
+														<p id="tx_advent_AuswahlText"> <b> </b> </p>
+													</div>
+												</div>
+
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+
+
+											</f:else>
+
+										</f:if>
 
 										<f:if condition="{isnemintern}">
-											<p><i>Visible for Allplan Internal: the correct is answer: {question.correct}</i></p>
+											<p><i>Visible for Nemetschek Internal: the correct is answer: {question.correct}</i></p>
 										</f:if>
 									</div>	
 									
 									<div class="clearfix">&nbsp;</div>
 									
 									<f:if condition="{question.descShort}">
-										<div class="nemadvent_tipp">
-											<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated}</h3>
-											<div>
-												<f:format.html>{question.descShort}</f:format.html>
-											</div>
-										</div>
+										<f:if condition="{settings.showtip}">
+
+											<f:then>
+												<div class="nemadvent_tipp">
+													<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated} </h3>
+													<div>
+														<f:format.html>{question.descShort}</f:format.html>
+													</div>
+												</div>
+											</f:then>
+											<f:else>
+												<f:if condition="{isnemintern}">
+													<div class="nemadvent_tipp">
+														<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated} (visible Nem Intern)</h3>
+														<div>
+															<f:format.html>{question.descShort}</f:format.html>
+														</div>
+													</div>
+												</f:if>
+											</f:else>
+
+										</f:if>
 									</f:if>	
 								</div>
 							</div>
-								
-								
+
+							<script>
+								var advent_gX = 0;
+								jQuery("#tx_advent_WuerfelZahl").html( "?" );
+								var advent_firstClick = 1;
+								function advent_move(tx_advent_Wuerfel) {
+
+									if (advent_firstClick == 1) {
+										var id = setInterval(function(){advent_frame()}, 0.1);
+										var deg = 0;
+										var left = 780;
+										function advent_frame() {
+											jQuery("#tx_advent_WuerfelMauer").css("display", "block");
+											left = left - 3;
+											deg = deg - 4;
+											jQuery("#tx_advent_Wuerfel").css("opacity", 1 + '');
+											tx_advent_Wuerfel.style.left = left + 'px';
+											tx_advent_Wuerfel.style.transform = "rotate(" + deg + "deg)";
+											var x = (1 + Math.random() * 4).toFixed(0);
+											jQuery("#tx_advent_WuerfelZahl").html(x);
+											if (left <= -39) {
+												clearInterval(id);
+												jQuery("#tx_advent_WuerfelMauer")
+													.animate({left: -20 + 'px'}, 50)
+													.animate({left: 0 + 'px'}, 200);
+												advent_zurueck();
+											}
+										}
+										function advent_zurueck(){
+
+											var ld = setInterval(function(){advent_frame1()}, 0.1);
+											var n = 2;
+											function advent_frame1(){
+												left = left + n;
+												deg = deg + (n + 1.3);
+												n = Math.max(n - 0.005, 0.45);
+
+												tx_advent_Wuerfel.style.left = left + 'px';
+												tx_advent_Wuerfel.style.transform = "rotate(" + deg + "deg)";
+												var x = (1 + Math.random() * 4).toFixed(0);
+												jQuery("#tx_advent_WuerfelZahl").html(x);
+												if (parseInt(tx_advent_Wuerfel.style.left) >= 325) {
+													clearInterval(ld);
+
+													setTimeout(function advent_Ende(){
+														tx_advent_Wuerfel.style.transform = "rotate(" + (0)-25 + "deg)";
+														tx_advent_Wuerfel.style.top = 0 + 'px';
+														tx_advent_Wuerfel.style.left = 336 + 'px';
+													}, 500);
+													setTimeout(function advent_Ende1(){
+														tx_advent_Wuerfel.style.transform = "rotate(" + (-12.5) + "deg)";
+														tx_advent_Wuerfel.style.left = 337 + 'px';
+													}, 500);
+													setTimeout(function advent_Ende3(){
+														tx_advent_Wuerfel.style.transform = "rotate(" + 0 + "deg)";
+														tx_advent_Wuerfel.style.top = 2 + 'px';
+														tx_advent_Wuerfel.style.left = 338 + 'px';
+														advent_gX = x;
+														advent_firstClick ++;
+													}, 500);
+												}
+											}
+										}
+									}
+									else {
+										window.location.href = "https://" + window.location.hostname + "/" +  jQuery("#tx_nemadvent_answer_" + advent_gX).attr("href");
+									}
+								}
+
+							</script>
 								
 								

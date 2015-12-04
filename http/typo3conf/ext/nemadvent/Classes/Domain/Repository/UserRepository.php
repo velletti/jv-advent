@@ -23,7 +23,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_Nemadvent_Domain_Repository_UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	
 	 
  	/**
@@ -40,16 +40,36 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persisten
 	
 	public function insertAnswer(Tx_Nemadvent_Domain_Model_AdventCat $adventCat, $pid ,$feUserUid,Tx_Nemadvent_Domain_Model_Advent $question,$points,$subpoints,$answer){
 		$return = FALSE ;
-		if ($feUserUid > 0 and  $answer > 0 and is_object($question) ) {
-						
+
+		if ($feUserUid > 0 and  ( $answer > 0 OR $subpoints > 0 ) and is_object($question) ) {
+
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*' , 'tx_nemadvent_domain_model_user',
+				"feuser_uid ='" .   intval($feUserUid) ."' AND "
+				."advent_uid ='" .   intval($adventCat->getUid())    ."' AND "
+				."question_uid ='" . intval($question->getUid()) ."'"
+				, '' , '' , 1
+			);
+			$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res ) ;
+
+			if( $row['crdate'] > time() - ( 60*60*24) || $row['crdate'] < 1 )  {
+				if ( $row['crdate'] < 1 ) {
+					$row['crdate'] = time() ;
+				}
+			} else {
+				return array( "TO-OLD" => $row['crdate'] ) ;
+			}
+
+
 			$res = $GLOBALS['TYPO3_DB']->exec_DELETEquery('tx_nemadvent_domain_model_user', 
 															"feuser_uid ='" .   intval($feUserUid) ."' AND "
 															."advent_uid ='" .   intval($adventCat->getUid())    ."' AND "
 															."question_uid ='" . intval($question->getUid()) ."'"
 															);
+			
+			
 				
 			$updateData = array ( 	"pid" 				=> $pid , 
-									"crdate" 			=> time() , 
+									"crdate" 			=> $row['crdate'] ,
 									"tstamp" 			=> time() ,
 									"feuser_uid" 		=> intval($feUserUid) , 
 									"sys_language_uid" 	=> $GLOBALS['TSFE']->sys_language_uid  , 
@@ -62,11 +82,10 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persisten
 									"points" 			=> intval($points) , 
 									"subpoints" 		=> intval($subpoints) , 
 									"advent_uid" 		=> intval($adventCat->getUid()) , 
-								) ;	
-		
+								) ;
+
 			$return = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_nemadvent_domain_model_user'
 								, $updateData);	
-			
 		}
 		return $return;
 	}
@@ -89,7 +108,7 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persisten
 			
 		}							
 		$querystring .= ' and sys_language_uid="' .$GLOBALS['TSFE']->sys_language_uid .'" ' ;
-		$querystring .= 			') ORDER BY question_date ASC ' .
+		$querystring .= 			') ORDER BY question_datef ASC ' .
 						  			'LIMIT ' . $offset . ',' . $limit  ;
 		$return = $query->statement( $querystring )->execute()->toArray() ;
 		return $return;
@@ -124,6 +143,6 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends Tx_Extbase_Persisten
 
 		return $return;
 	}
-	 
+
 }
 ?>

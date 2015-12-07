@@ -1,5 +1,4 @@
 <?php
-
 /* * *************************************************************
  *  Copyright notice
  *
@@ -32,29 +31,6 @@
  */
 class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_BaseController {
 
-	/**
-	 * @var Tx_Nemadvent_Domain_Model_AdventRepository
-	 */
-	protected $adventRepository;
-	
-		/**
-	 * @var Tx_Nemadvent_Domain_Model_UserRepository
-	 */
-	protected $userRepository;
-	
-	/**
-	 * @var Tx_Nemadvent_Domain_Model_AdventCatRepository
-	 */
-	protected $adventCatRepository;
-	/*
-	 * @var Tx_Extbase_Domain_Repository_FrontendUserRepository
-	 */
-	protected $frontendUserRepository;
-
-	/*
-	 * @var Tx_Extbase_Domain_Repository_FrontendUserGroupRepository
-	 */
-	protected $frontendUserGroupRepository;
 
 	/**
 	 * Initializes the current action
@@ -63,15 +39,14 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 	 */
 	public function initializeAction() {
 		parent::initializeAction();
-		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
-		$this->initJS($this->settings['jsFiles']);
 
-		$this->adventRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventRepository');
-		$this->adventCatRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
-		$this->userRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_UserRepository');
-		
-		$this->frontendUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
-		$this->frontendUserGroupRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserGroupRepository');
+
+	//	$this->adventRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventRepository');
+		//	$this->adventCatRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
+		//	$this->userRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_UserRepository');
+
+		//	$this->frontendUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
+		//	$this->frontendUserGroupRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserGroupRepository');
 		
 		//overwrite setting Configuration
 

@@ -53,25 +53,43 @@
 
 				</f:for>		
 		</div>
+		<div class="left"><i class="small "><f:translate key="_votes_counted_until">Only votes Counted until: </f:translate> {mindate}</i></div>
 		<f:if condition="{isnemintern} > 0">
-			<div class="right">
+			<f:then>
+				<div class="right">
+                    <f:if condition="{offset} == 0">
+                        <f:then></f:then>
+						<f:else>
+							<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:60}}">61 - 120 &gt;&gt;</f:link.page>
+						</f:else>
+					</f:if>
+					<f:if condition="{offset} == 60">
+						<f:then></f:then>
+						<f:else>
+							<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:60}}">61 - 120 &gt;&gt;</f:link.page>
+						</f:else>
+					</f:if>
+					<f:if condition="{offset} == 120">
+						<f:then></f:then>
+						<f:else>
+							<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:120}}">121 - 180&gt;&gt;</f:link.page>
+						</f:else>
+					</f:if>
+					<f:if condition="{offset} == 180">
+						<f:then></f:then>
+						<f:else>
+							<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:180}}">181 - 240&gt;&gt;</f:link.page>
+						</f:else>
+					</f:if>
 
-                <f:then>
-                    <f:if condition="{offset} < 1">
-                        <f:then>
-                            <f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:60}}">61 - 120 &gt;&gt;</f:link.page>
-                        </f:then>
-                        <f:else>
-                            <f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:0}}">&lt;&lt; 1 - 60</f:link.page>
-                        </f:else>
-                    </f:if>
 
-                    <f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{export:1,count:60}}">CSV Export</f:link.page>
-                </f:then>
-			</div>
+                    <f:link.page class="btn btn-danger" additionalParams="{tx_nemadvent_pi1:{export:1,count:60}}">CSV Export</f:link.page>
+				</div>
+			</f:then>
+
 		</f:if>
 
-		<div><i class="small left "><f:translate key="_votes_counted_until">Only votes Counted until: </f:translate> {mindate}</i></div>
+
 	</f:then>
 	<f:else>
 		<p><f:translate key="no_questions">Some definitions are missing in Plugin or actually no winner found</f:translate></p>

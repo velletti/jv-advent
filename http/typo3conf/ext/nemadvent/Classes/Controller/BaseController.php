@@ -41,16 +41,36 @@ class Tx_Nemadvent_Controller_BaseController extends \TYPO3\CMS\Extbase\Mvc\Cont
 	protected $winnerRepository;
 
 	/**
+	 * @var Tx_Nemadvent_Domain_Repository_AdventRepository
+	 * @inject
+	 */
+	protected $adventRepository;
+
+	/**
 	 * @var Tx_Nemadvent_Domain_Repository_AdventCatRepository
 	 * @inject
 	 */
 	protected $adventCatRepository;
 
 	/*
+	 * @var Tx_Nemadvent_Domain_Repository_UserRepository
+	 * @inject
+	 */
+	protected $userRepository;
+
+	/*
+	 * @var Tx_Nemadvent_Domain_Model_User
+	 * @inject
+	 */
+	protected $user;
+
+	/*
 	 * @var Tx_Extbase_Domain_Repository_FrontendUserRepository
 	 * @inject
 	 */
+
 	protected $frontendUserRepository;
+
 
 	/*
 	 * @var Tx_Extbase_Domain_Repository_FrontendUserGroupRepository
@@ -59,6 +79,25 @@ class Tx_Nemadvent_Controller_BaseController extends \TYPO3\CMS\Extbase\Mvc\Cont
 	protected $frontendUserGroupRepository;
 
 
+
+	/**
+	 * Initializes the current action
+	 *
+	 * @return void
+	 */
+	public function initializeAction() {
+		$this->adventRepository	 	= $this->objectManager->get('Tx_Nemadvent_Domain_Repository_AdventRepository') ;
+		$this->adventCatRepository	= $this->objectManager->get('Tx_Nemadvent_Domain_Repository_AdventCatRepository') ;
+		$this->userRepository	 	= $this->objectManager->get('Tx_Nemadvent_Domain_Repository_UserRepository') ;
+		$this->winnerRepository	 	= $this->objectManager->get('Tx_Nemadvent_Domain_Repository_winnerRepository') ;
+
+
+		$this->frontendUserRepository 	= $this->objectManager->get('Tx_Extbase_Domain_Repository_FrontendUserRepository');
+		$this->frontendUserGroupRepository = $this->objectManager->get('Tx_Extbase_Domain_Repository_FrontendUserGroupRepository');
+
+		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
+		$this->initJS($this->settings['jsFiles']);
+	}
 	/**
 	 * add css-files to header
 	 *

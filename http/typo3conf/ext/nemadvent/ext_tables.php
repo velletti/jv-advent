@@ -3,21 +3,21 @@
 if(!defined('TYPO3_MODE')) Die ('Access denied.');
 
 // include static typoscript
-t3lib_extMgm::addStaticFile ($_EXTKEY, 'Configuration/TypoScript', 'Nem Advent');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile ($_EXTKEY, 'Configuration/TypoScript', 'Nem Advent');
 
 // plugin registrieren
-Tx_Extbase_Utility_Extension::registerPlugin ($_EXTKEY, 'Pi1', 'Display Advent');
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin ($_EXTKEY, 'Pi1', 'Display Advent');
 
-$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
+$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName) . '_pi1';
 
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_list.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_list.xml');
 
 // tca
 // Tx_Nemadvent_Domain_Model_Advent
-t3lib_extMgm::allowTableOnStandardPages('tx_nemadvent_domain_model_advent');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nemadvent_domain_model_advent');
 $TCA['tx_nemadvent_domain_model_advent'] = array (
 	'ctrl' => array (
 		'title'             => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent',
@@ -34,13 +34,13 @@ $TCA['tx_nemadvent_domain_model_advent'] = array (
 		'enablecolumns' 	=> array(
 			'disabled' => 'hidden'
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_nemadvent_domain_model_advent.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile' 			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_nemadvent_domain_model_advent.gif'
 	)
 );
 
 // Tx_Nemadvent_Domain_Model_Adventcat
-t3lib_extMgm::allowTableOnStandardPages('tx_nemadvent_domain_model_adventcat');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nemadvent_domain_model_adventcat');
 $TCA['tx_nemadvent_domain_model_adventcat'] = array (
 	'ctrl' => array (
 		'title'             => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Adventcat',
@@ -54,11 +54,11 @@ $TCA['tx_nemadvent_domain_model_adventcat'] = array (
 		'enablecolumns' 	=> array(
 			'disabled' => 'hidden'
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_nemadvent_domain_model_adventcat.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile' 			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_nemadvent_domain_model_adventcat.gif'
 	)
 );
-t3lib_extMgm::allowTableOnStandardPages('tx_nemadvent_domain_model_winner');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nemadvent_domain_model_winner');
 $TCA['tx_nemadvent_domain_model_winner'] = array (
 	'ctrl' => array (
 		'title'             => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Winner.winner',
@@ -73,13 +73,13 @@ $TCA['tx_nemadvent_domain_model_winner'] = array (
 		'enablecolumns' 	=> array(
 			'disabled' => 'hidden' 
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_nemadvent_domain_model_winner.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile' 			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_nemadvent_domain_model_winner.gif'
 	)
 );
 
 // Tx_Nemadvent_Domain_Model_User
-t3lib_extMgm::allowTableOnStandardPages('tx_nemadvent_domain_model_user');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nemadvent_domain_model_user');
 $TCA['tx_nemadvent_domain_model_user'] = array (
 	'ctrl' => array (
 		'title'		=> 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User',
@@ -88,8 +88,8 @@ $TCA['tx_nemadvent_domain_model_user'] = array (
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'default_sortby' => 'ORDER BY crdate',
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_nemadvent_domain_model_user'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile' 			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_nemadvent_domain_model_user'
 	)
 );
 

@@ -164,7 +164,7 @@ class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\A
 
 	/**
 	 * image
-	 * @var Tx_ExtbaseDam_Domain_Model_Dam
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
 	 * @lazy
 	 */
 	protected $image;
@@ -263,11 +263,11 @@ class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\A
 	/**
 	 * Getter for image
 	 *
-	 * @return Tx_ExtbaseDam_Domain_Model_Dam Location image
+	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
 	 */
 	public function getImage() {
-	  $uid = ($this->_localizedUid?$this->_localizedUid:$this->uid);
-		return Tx_ExtbaseDam_Utility_Dam::getOne('tx_nemadvent_domain_model_advent', $uid, 'tx_nemadvent_domain_model_advent_image');
+	  //$uid = ($this->_localizedUid?$this->_localizedUid:$this->uid);
+		return $this->image ;
 	}
 	/**
 	 * Getter for uid

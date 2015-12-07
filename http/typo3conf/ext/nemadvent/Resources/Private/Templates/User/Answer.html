@@ -1,29 +1,30 @@
 
-<div class="Tx_Nemadvent_pi1">
+<div class="Tx_Nemadvent_pi1 well">
 		<f:FlashMessages class="message" />
 
 	<f:if condition="{answerlist}">
 		<f:then>
 			<f:for each="{answerlist}" as="answer">
-				<div class="Tx_Nemadvent_pi1_answer">
-			<span class="left width80">
-				{answer.date}
-			</span>
-			<span class="left width400">
-				<f:format.html parseFuncTSPath="">
-					{answer.myanswer}. {answer.myanswerTEXT}
-				</f:format.html>
-				<f:link.page noCacheHash="1" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_nemadvent_pi1: {single: {adddate: '{answer.adddate}'}}}"> >> </f:link.page>
+				<div class="Tx_Nemadvent_pi1_answer row">
+					<div class="col-md-1 col-xs-2">
+						{answer.date}
+					</div>
+					<div class="col-md-1 col-xs-1 text-center">
+						{answer.myanswer}
+					</div>
+					<div class="col-md-7 hidden-xs">
+						{answer.myanswerTEXT}
+					</div>
+					<div class="col-md-1 col-xs-2">
+						<f:link.page noCacheHash="1" class="btn btn-default" title="{f:translate(key:'ChangeAnswer' , default:'ChangeAnswer')}" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_nemadvent_pi1: {single: {adddate: '{answer.adddate}'}}}"> >> </f:link.page>
 
+					</div>
+					<div class="col-md-2 col-xs-2">
+						<f:if condition="{settings.showtotal} > 0">
+							{answer.showpoint}
+						</f:if>
+					</div>
 
-			</span>
-			<span class="left width80">
-				<f:if condition="{settings.showtotal} > 0">
-					{answer.showpoint}
-				</f:if>
-
-
-			</span>
 				</div>
 				<div class="clearfix">&nbsp;</div>
 			</f:for>
@@ -34,8 +35,9 @@
 			</div>
 		</f:else>
 	</f:if>
-
-	<div class="Tx_Nemadvent_pi1">
+</div>
+<div class="Tx_Nemadvent_pi1 well well-primary">
+	<b>
 		<f:if condition="{settings.showtotal} > 0">
 		<f:then>
 			<f:translate key="yourresult">Your result</f:translate>
@@ -43,10 +45,10 @@
 		</f:then>
 		<f:else>
 			<f:translate key="result_visible_at">Result will be shown after</f:translate>
-					: {settings.enddate} 
+					: {settings.enddate}
 		</f:else>
 		</f:if>
-		
-	</div>		
-</div>		
+	</b>
+</div>
+
 	

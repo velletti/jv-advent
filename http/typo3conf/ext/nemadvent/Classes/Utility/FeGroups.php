@@ -27,7 +27,7 @@ class Tx_Nemadvent_Utility_FeGroups {
 
 	//put your code here
 
-	static function generateGroupList(Tx_Extbase_Persistence_ObjectStorage  $groups) {
+	static function generateGroupList(\TYPO3\CMS\Extbase\Persistence\ObjectStorage  $groups) {
 		$groupList = array();
 		foreach ($groups as $group) {
 			array_push($groupList, $group->getUid());
@@ -45,7 +45,7 @@ class Tx_Nemadvent_Utility_FeGroups {
 		return $groupList;
 	}
 
-	static function hasAccess(Tx_Extbase_Persistence_ObjectStorage $groups=null) {
+	static function hasAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groups=null) {
 		$groupList = array();
 
 		if ($groups != null && count($groups)) {
@@ -62,7 +62,7 @@ class Tx_Nemadvent_Utility_FeGroups {
 		return true;
 	}
 	
-	static function needSPAccess(Tx_Extbase_Persistence_ObjectStorage $groups=null) {
+	static function needSPAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groups=null) {
 		$groupList = array();
 	//	echo "ich bin hier : ... " ;
 
@@ -79,7 +79,7 @@ class Tx_Nemadvent_Utility_FeGroups {
 		return false;
 	}
 	
-	static function needNemAccess(Tx_Extbase_Persistence_ObjectStorage $groups=null) {
+	static function needNemAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groups=null) {
 		
 		$groupList = array();
 	//	echo "ich bin hier : ... " ;

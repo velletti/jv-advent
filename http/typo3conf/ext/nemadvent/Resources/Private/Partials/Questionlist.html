@@ -1,33 +1,63 @@
 
 		<div class="Tx_Nemadvent_pi1">
-			<div class="Tx_Nemadvent_pi1_legende right width170">
+			<div class="Tx_Nemadvent_pi1_legende right well col-xs-12 col-md-3">
+				<div class="col-xs-8 col-md-12">
 				<h3>Legende:</h3>
-				<span class="Tx_Nemadvent_pi1_correct spriteIcon" title="Ihre Antwort war richtig"> </span> Ihre Antwort war richtig <br/>
-				<span class="Tx_Nemadvent_pi1_correct2 spriteIcon"  title="Dies war die richtige Antwort"> </span> Dies war die richtige Antwort<br/>
-				<span class="Tx_Nemadvent_pi1_wrong spriteIcon"  title="Ihre Antwort war falsch"> </span> Ihre Antwort war falsch<br/>
-				<span class="Tx_Nemadvent_pi1_empty spriteIcon" title="Andere falsche Antwort" > </span> Andere falsche Antwort<br/>
-				<br/>
-				<a id="showallAKRAnswers" class="buttonDefaultLink tooltip" onclick="showallAKRAnswers();"  title="{f:translate(key:'solutions.expandTooltip' ,default:'Expand/Show all questionsdetails with answers and Solution')}">++</a>
-				<a id="hideallAKRAnswers" class="buttonDefaultLink hide tooltip" onclick="hideallAKRAnswers();" title="{f:translate(key:'solutions.percentNormalTooltip' ,default:'Show default list of all questions')}">--</a>
-				<br/>
-				<br/>
+				<div class="row">
+					<div class="col-xs-3">
+						<span class="glyphicon rte-glyphicon-ok-success" title="Ihre Antwort war richtig"> </span>
+					</div>
+					<div class="col-xs-9">
+						Ihre Antwort war richtig
+					</div>
+				</div>
 
-				<a id="showAKRPercent" class="buttonDefaultLink tooltip" onclick="showOnlyAKRPercent();" title="{f:translate(key:'solutions.percentTooltip' ,default:'Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User')}"><f:translate key="solutions.percentButton">% Answers</f:translate></a><a id="undoShowAKRPercent" class="buttonDefaultLink hide tooltip" onclick="undoShowOnlyAKRPercent();" title="{f:translate(key:'solutions.percentNormalTooltip' ,default:'Zeige wieder die normale Liste der Fragen als Übersicht')}"><f:translate key="solutions.percentNormalButton">Normal</f:translate></a>
+				<div class="row">
+					<div class="col-xs-3">
+						<span class="glyphicon rte-glyphicon-ok-danger"  title="Dies war die richtige Antwort"> </span>
+					</div>
+					<div class="col-xs-9">
+						Dies war die richtige Antwort
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3">
+						<span class="glyphicon glyphicon-remove"  title="Ihre Antwort war falsch"> </span>
+					</div>
+					<div class="col-xs-9">
+						Ihre Antwort war falsch
+					</div>
+				</div>
+				</div>
+				<div class="col-xs-4 col-md-12">
+					<br />
+					<a id="showallAKRAnswers" class="btn btn-primary" onclick="showallAKRAnswers();"  title="{f:translate(key:'solutions.expandTooltip' ,default:'Expand/Show all questionsdetails with answers and Solution')}">
+						<i class="glyphicon glyphicon-resize-full"></i></a>
+					<a id="hideallAKRAnswers" class="btn btn-primary hide" onclick="hideallAKRAnswers();" title="{f:translate(key:'solutions.percentNormalTooltip' ,default:'Show default list of all questions')}">
+						<i class="glyphicon glyphicon-resize-small"></i></a>
 
+
+					<a id="showAKRPercent" class="btn btn-primary" onclick="showOnlyAKRPercent();" title="{f:translate(key:'solutions.percentTooltip' ,default:'Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User')}">
+						<f:translate key="solutions.percentButton">% Answers</f:translate>
+					</a>
+					<a id="undoShowAKRPercent" class="btn btn-primary hide" onclick="undoShowOnlyAKRPercent();" title="{f:translate(key:'solutions.percentNormalTooltip' ,default:'Zeige wieder die normale Liste der Fragen als Übersicht')}">
+						<f:translate key="solutions.percentNormalButton">Normal</f:translate>
+					</a>
+				</div>
 
 
 			</div>
-			<div  class=".nemadvent_quest nemadvent_questlist left">
+			<div  class=".nemadvent_quest nemadvent_questlist left col-xs-12 col-md-8">
 				<f:for each="{questions}" as="question" iteration="count">
 
-					<h3>{count.cycle} - {question.title}
+					<h4>{count.cycle} - {question.title}
 						<f:if condition="{isnemintern}">
 							<f:if condition="{question.totalAnswers} > 0 ">
-							- {question.totalAnswers} Users/Teilnehmer
+							<span class="small"> - {question.totalAnswers} User</span>
 							</f:if>
 						</f:if>
-					</h3>
-					<div  class="Tx_Nemadvent_questlist_sub hide">
+					</h4>
+					<div  class="Tx_Nemadvent_questlist_sub well hide">
 						<f:format.html>{question.descLong}</f:format.html>
 
 						<div class="Tx_Nemadvent_answers">

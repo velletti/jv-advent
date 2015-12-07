@@ -38,7 +38,7 @@ class Tx_Nemadvent_Domain_Repository_AdventRepository extends \TYPO3\CMS\Extbase
 			
 		$query = $this->createQuery();
 		
-		$query->getQuerySettings()->setRespectEnableFields(true);
+		$query->getQuerySettings()->setIgnoreEnableFields(false);
 		$query->getQuerySettings()->setRespectStoragePage(false);
 		$query->setOrderings(array( 'date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING )) ;
 

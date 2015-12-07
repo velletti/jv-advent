@@ -26,12 +26,12 @@
 class Tx_Nemadvent_Domain_Model_User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
-	 * @var integer
+	 * @var int
 	 */
 	protected $crdate;
 
 	/**
-	 * @var integer
+	 * @var int
 	 */
 	protected $tstamp;
 
@@ -56,7 +56,7 @@ class Tx_Nemadvent_Domain_Model_User extends \TYPO3\CMS\Extbase\DomainObject\Abs
 	 */
 	protected $answerUid;
 	
-			/**
+	/**
 	 * @var integer
 	 */
 	protected $adventUid;
@@ -152,7 +152,7 @@ class Tx_Nemadvent_Domain_Model_User extends \TYPO3\CMS\Extbase\DomainObject\Abs
 	/**
 	 * Getter for hidden
 	 *
-	 * @return integer hidden
+	 * @return int hidden
 	 */
 	
 	public function getHidden(){
@@ -162,7 +162,7 @@ class Tx_Nemadvent_Domain_Model_User extends \TYPO3\CMS\Extbase\DomainObject\Abs
 	/**
 	 * Getter for points
 	 *
-	 * @return integer feuserUid
+	 * @return int feuserUid
 	 */
 	public function getPoints() {
 		return $this->points;
@@ -171,7 +171,7 @@ class Tx_Nemadvent_Domain_Model_User extends \TYPO3\CMS\Extbase\DomainObject\Abs
 	/**
 	 * Getter for subpoints
 	 *
-	 * @return integer feuserUid
+	 * @return int feuserUid
 	 */
 	public function getSubpoints() {
 		return $this->subpoints;
@@ -185,39 +185,43 @@ class Tx_Nemadvent_Domain_Model_User extends \TYPO3\CMS\Extbase\DomainObject\Abs
 	/**
 	 * Getter for feuser
 	 *
-	 * @return integer feuserUid
+	 * @return int feuserUid
 	 */
 	public function getFeuserUid() {
 		return $this->feuserUid;
 	}
 
 	/**
-	 * @param integer $crdate
-	 */
-	public function setCrdate($crdate) {
-		$this->crdate = $crdate;
-	}
-
-	/**
-	 * @return integer
+	 * @return int
 	 */
 	public function getCrdate() {
 		return $this->crdate;
 	}
 
 	/**
-	 * @param integer $tstamp
+	 * @param int $crdate
+	 */
+	public function setCrdate($crdate) {
+		$this->crdate = $crdate;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getTstamp() {
+		return $this->tstamp;
+	}
+
+	/**
+	 * @param int $tstamp
 	 */
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
 	}
 
-	/**
-	 * @return integer
-	 */
-	public function getTstamp() {
-		return $this->tstamp;
-	}
+
+
+
 
 }
 

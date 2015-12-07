@@ -55,5 +55,17 @@ plugin.tx_nemadvent {
 config.tx_extbase.persistence.classes{
 	Tx_Extbase_Domain_Model_FrontendUser.mapping.recordType =
 	Tx_Extbase_Domain_Model_FrontendUserGroup.mapping.recordType =
+
+	Tx_Nemadvent_Domain_Model_User {
+
+			mapping {
+				columns.crdate.mapOnProperty = crdate
+				columns.tstamp.mapOnProperty = tstamp
+				tableName = tx_nemadvent_domain_model_user
+				recordType =
+			}
+	}
+
+
 }
 

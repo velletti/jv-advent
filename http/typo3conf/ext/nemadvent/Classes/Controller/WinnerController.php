@@ -51,7 +51,7 @@ class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_B
 	}
 
 	/**
-	 * lists advents by category
+	 * lists advents by category   ... 2014 actually UNNEEDED (only if winners made manually in backend ! )
 	 *
 	 * @return string The rendered view
 	 */

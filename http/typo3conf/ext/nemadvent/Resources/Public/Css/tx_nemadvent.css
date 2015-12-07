@@ -58,24 +58,22 @@
 }
 .Tx_Nemadvent_pi1_wrong {
 	background-position: -554px -110px;
+	background-position: -55px -16px;
 }
 .Tx_Nemadvent_pi1_empty {
 	background-position: -639px -110px;
+	background-position: -170px -16px;
 }
 .Tx_Nemadvent_pi1_correct {
 	background-position: -537px -110px;
+	background-position: -58px -16px;
 }
 .Tx_Nemadvent_pi1_correct2 {
 	background-position: -656px -110px;
+	background-position: -190px -16px;
 }
 
-.Tx_Nemadvent_questlist_sub {
-	background: #FFF;
-	margin: 8px 0px 16px 16px;
-	padding: 16px;
-	border: 1px solid #C4C4C4;
-	width: 700px;
-}
+
 .nemadvent_questlist H3 {
 	padding: 4px;
 	cursor: pointer;

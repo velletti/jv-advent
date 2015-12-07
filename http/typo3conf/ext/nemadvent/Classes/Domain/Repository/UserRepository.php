@@ -100,17 +100,23 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends \TYPO3\CMS\Extbase\P
 	 */
 	public function findMyanswers(Tx_Nemadvent_Domain_Model_AdventCat $adventCat,$feUserUid= 0, $limit=24,$offset= 0){
 		$query = $this->createQuery();
-		
-		$querystring = 'SELECT * FROM tx_nemadvent_domain_model_user ' .
-						 			'where (  advent_uid="' .$adventCat->getUid() .'" ' ;
-		if ( $feUserUid > 0) {
-			$querystring .= ' and feuser_uid="' .$feUserUid .'" ' ;
-			
-		}							
-		$querystring .= ' and sys_language_uid="' .$GLOBALS['TSFE']->sys_language_uid .'" ' ;
-		$querystring .= 			') ORDER BY question_datef ASC ' .
-						  			'LIMIT ' . $offset . ',' . $limit  ;
-		$return = $query->statement( $querystring )->execute()->toArray() ;
+
+		$query->getQuerySettings()->setIgnoreEnableFields(true);
+		$query->getQuerySettings()->setRespectStoragePage(false);
+
+		if ($adventCat!= NULL){
+			$queryParams[] = $query->equals('advent_uid', $adventCat->getUid());
+		}
+
+		$queryParams[] = $query->equals('feuser_uid', $feUserUid);
+		$queryParams[] = $query->equals('sys_language_uid', $GLOBALS['TSFE']->sys_language_uid );
+
+		$query->setOrderings(array( 'question_datef' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING )) ;
+
+
+		$query = $query->matching($query->logicalAnd($queryParams));
+		$return = $query->execute()->toArray() ;
+		// SELECT * FROM tx_nemadvent_domain_model_user where ( advent_uid="72" and feuser_uid="353" and sys_language_uid="1" ) ORDER BY question_datef ASC
 		return $return;
 	}
 	/**
@@ -123,7 +129,7 @@ class Tx_Nemadvent_Domain_Repository_UserRepository extends \TYPO3\CMS\Extbase\P
 	public function findAnswer(Tx_Nemadvent_Domain_Model_AdventCat $adventCat,$feUserUid, $question){
 		$query = $this->createQuery();
 
-		$query->getQuerySettings()->setRespectEnableFields(false);
+		$query->getQuerySettings()->setIgnoreEnableFields(true);
 		$query->getQuerySettings()->setRespectStoragePage(false);
 
 		if ($adventCat!= NULL){

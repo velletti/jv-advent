@@ -559,7 +559,27 @@ $TCA['tx_nemadvent_domain_model_user'] = array (
 				'maxitem' => 11,
 				'eval' => 'date',
 			)
-		),		
+		),
+		'crdate' => array (
+			'exclude' => 1,
+			'label' => 'crdate',
+			'config' => array (
+				'type' => 'input',
+				'size' => 11,
+				'maxitem' => 11,
+				'eval' => 'date',
+			)
+		),
+		'tstamp' => array (
+			'exclude' => 1,
+			'label' => 'Timestamp',
+			'config' => array (
+				'type' => 'input',
+				'size' => 11,
+				'maxitem' => 11,
+				'eval' => 'date',
+			)
+		),
 		'question_datef' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.question_datef',

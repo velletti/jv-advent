@@ -35,11 +35,13 @@ class Tx_Nemadvent_Controller_AdventCatController extends \TYPO3\CMS\Extbase\Mvc
 
 	/**
 	 * @var Tx_Nemadvent_Domain_Model_AdventCatRepository
+	 * @inject
 	 */
 	protected $adventCatRepository;
 
 	/**
 	 * @var Tx_Nemadvent_Domain_Repository_TagRepository
+	 * @inject
 	 */
 	protected $tagRepository;
 
@@ -49,8 +51,8 @@ class Tx_Nemadvent_Controller_AdventCatController extends \TYPO3\CMS\Extbase\Mvc
 	 * @return void
 	 */
 	public function initializeAction() {
-		$this->adventCatRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
-		$this->tagRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_TagRepository');
+	//	$this->adventCatRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
+	//	$this->tagRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_TagRepository');
 	}
 
 	/**

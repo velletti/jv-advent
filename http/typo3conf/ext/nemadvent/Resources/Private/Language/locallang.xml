@@ -25,6 +25,7 @@
 			<label index="correct_answer_was">The correct answer was</label>
 			<label index="use_range">For answering, use range and push button</label>
 			<label index="result_no_answers_found">You have not answered any questions yet</label>
+			<label index="ChangeAnswer">Change your Answer</label>
 
 
 
@@ -50,7 +51,7 @@
 			<label index="correct_answer_was">Die korrekte Antwort lautete</label>
 			<label index="use_range">Zum beantworten, Schieberegler benutzen und Button anklicken</label>
 			<label index="result_no_answers_found">Sie haben noch keine Frage beantwortet</label>
-
+			<label index="ChangeAnswer">Ihre Antwort ändern</label>
 			
 		</languageKey>
 		<languageKey index="at" type="array">

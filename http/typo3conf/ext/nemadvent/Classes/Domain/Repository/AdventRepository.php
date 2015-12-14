@@ -38,7 +38,7 @@ class Tx_Nemadvent_Domain_Repository_AdventRepository extends \TYPO3\CMS\Extbase
 			
 		$query = $this->createQuery();
 		
-		$query->getQuerySettings()->setIgnoreEnableFields(false);
+		$query->getQuerySettings()->setIgnoreEnableFields(true);
 		$query->getQuerySettings()->setRespectStoragePage(false);
 		$query->setOrderings(array( 'date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING )) ;
 
@@ -48,16 +48,26 @@ class Tx_Nemadvent_Domain_Repository_AdventRepository extends \TYPO3\CMS\Extbase
 		}		
 					
 		if 	( $questiondate > 0 ) {
-			$queryParams[] = $query->equals('date', $questiondate);
-		}					
+
+			$queryParams[] = $query->greaterThan('date', ($questiondate - (60 *60 * 4)));
+			$queryParams[] = $query->lessThan('date', ($questiondate + (60 * 60 * 4 )));
+		}
 		if 	( $uid > 0 ) {
 			$queryParams[] = $query->equals('uid', $uid);
 		}		
-		$this->settings['list']['pid']['singleView'] ;
-					
+
 		$query = $query->matching($query->logicalAnd($queryParams));
 		$return =  $query->execute() ;
-		
+		// $debug = TRUE ;
+		if ( $debug  ) {
+			$GLOBALS['TYPO3_DB']->debugOutput = 2;
+			$GLOBALS['TYPO3_DB']->explainOutput = true;
+			$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = true;
+
+			$return->toArray();
+			die;
+		}
+
 		return $return;
 	}
 

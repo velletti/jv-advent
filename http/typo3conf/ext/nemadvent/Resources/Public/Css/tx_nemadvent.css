@@ -126,300 +126,102 @@ div#tx_advent_WuerfelMauer {
 
 
 
-
-
 /* NEU */
 
-.tx_Advent_questions_dayPerspective
-{
-
-
-	position: relative;
-	display: inline;
-	float: left;
-	height: 138px;
-	width: 140px;
-	margin: 0px;
-	margin-left: 0px;
-	border-radius: 1px;
-	overflow: visible;
-
-}
 
 .tx_advent_doorMsg {
-	margin-top: 60px;
+	margin-top: 20px;
 	text-align: center;
+	color: #fff;
 }
 
-.tx_Advent_questions_dayBefore
-{
-
-	background-image: url(../img/adventskalenderbild_vorher.jpg);
-	background-repeat: no-repeat;
-
-	width: 138px;
-	height: 140px;
-	border-radius: 0px;
-	box-shadow: 0 0 0 10px rgba(255, 255, 255, .0) inset;
-	transition: 1s transform linear;
-	transform-origin: left;
-	cursor: pointer;
-	margin-left: 0px;
-	font-size:50px;
-	text-align: center;
-	vertical-align: middle;
-	color: white;
-	border:#000000;
-	border-width: 1px;
-	position: absolute;
-}
-
-
-.tx_Advent_questions_dayBefore_Opened            {
-	transform: rotateY(-90deg);
-	transform-origin: 1px;
-	transition: 0.5s linear;
-}
-
-.tx_advent_no_accessMsg {
-
-	width: 1px;
-	height: 140px;
-	transition: 1s transform linear;
-	transform-origin: left;
-	position: absolute;
-	overflow: hidden;
-	float:right;
-	font-size: 0px;
-
-}
-
-.tx_advent_no_accessMsg_opened {
-
-	width: 140px;
-	height: 1px;
-	transform-origin: 1px;
-	transition: 0.5s linear;
-	position: absolute;
-	font-size: 20px;
-	vertical-align: middle;
-	overflow: visible;
-	cursor: pointer;
-
-
-}
 .tx_Advent_questions_today
 {
-
-	background-image: url(../img/adventskalenderbild_vorher.jpg);
-	background-repeat: no-repeat;
-
-	width: 138px;
-	height: 138px;
-	border-radius: 0px;
-	box-shadow: 0 0 0 10px rgba(255, 255, 255, .0) inset;
-	transition: 1s transform linear;
-	transform-origin: left;
-	cursor: pointer;
-	margin-left: 0px;
 	font-size:90px;
-	text-align: center;
-	vertical-align: middle;
-	color: white;
-	border:#000000;
-	border-width: 1px;
-	border-style:solid;}
-
-.tx_Advent_questions_today_Opened            {
-	transform: rotateY(-90deg);
-	transform-origin: 1px;
-	transition: 0.5s linear;
-}
-
-
-
-@keyframes go {
-	100%{
-		opacity:1;
-		transform: rotateY(0deg);
-	}
-}
-
-p#tx_Advent_Heute {
-	font-size: 80px;
 	color: white;
 	margin-top: 30px;
 	text-align: center;
-
+	cursor: pointer;
 }
 
 /* /NEU */
-
-
-.tx_Advent_questions_day, .tx_Advent_questions_inactive,  .tx_Advent_other {
-
-	height: 138px;
-	width: 138px;
-	float: left;
-	border: black;
+.tx_Advent_questions_day {
+	border: #ccc ;
 	border-width: 1px;
-	border-style:solid;
+	border-style: solid;
 	font-size: 50px;
 	text-align:center;
 	position:relative;
-	background-image: url(../img/adventskalenderbild_vorher.jpg);
+	/*	background-image: url(../img/adventskalenderbild_vorher.jpg); */
 	overflow:visible;
-	transition: 1s transform linear;
-
+	height: 140px;
 
 }
+.tx_Advent_questions_active {
+	cursor: pointer;
+}
+.tx_Advent_questions_active:hover {
+	background: none;
+	opacity: 1 ;
+}
 
+.tx_Advent_questions_day P {
+	color: #444 ;
+	text-shadow: #CCC 2px 2px;
+
+}
 div#tx_Advent_questions_img {
 	background-image: url(../img/Sterne_Hintergrundbild980px_560px_72dpi.jpg);
 	background-color: black;
-	height: 560px;
-	width: 980px;
-
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height:560px;
+}
+.tx_Advent_questions_closed {
+	background-color: white;
+	opacity: 0.7;
 }
 
+.tx_Advent_questions_dayOpened {
 
-
-.tx_Advent_questions_today2 {
-
-	position:relative;
-	width: 138px;
-	height:115px;
-	margin-top: 24px;
-	background-image: url(../img/adventskalenderbild_vorher.jpg);
-	background-position: 0px -209.5px;
-	/* box-shadow: #666 2px 6px 4px 3px; */
-	border-bottom:#000000;
-	border-style:solid;
-	border-width: 1px;
-	border-top-style:none;
-	margin-left: -1px;
-
-
-}
-
-
-
-.tx_Advent_questions_other_background {
-	background-color: gray;
-	height: 138px;
-	width: 138px;
-	opacity: 0.8;
-	position: absolute;
-}
-
-
-.tx_Advent_questions_day1 { background-position: 0px 0px;}
-.tx_Advent_questions_day2 { background-position: -140px 0px;}
-.tx_Advent_questions_dayOpen { background-color: #DDDDDD;
-	height: 120.2px; width: 10px;
-	box-shadow: #666 3px 23px 2px 0px;
-	overflow:hidden;
-	z-index:1;
-	transform: skewY(-78deg);
-	position:absolute;
-	top: -10px;
-	border: black;
-	border-style:solid;
-	border-width: 1px;
-	margin-left: -1px;
-	margin-top: -13px;
-}
-.tx_Advent_questions_dayOpen_2 {background-color: #DDDDDD;
-	height: 115px; width: 10px;
-	box-shadow: #666 2px 13px 4px 2px;
-	top: -70px;
-	z-index:1;
-	border: black;
-	border-style:solid;
-	border-width: 1px;
-	margin-left: -1px;
-	margin-top: 108px;
-	border-top-style: hidden;
-	transform: skewY(71deg);
-
-	position:absolute;}
-.tx_Advent_questions_day3 { background-position: -280px 0px;}
-.tx_Advent_questions_day4 { background-position: -420px 0px;}
-.tx_Advent_questions_day5 { background-position: -560px 0px;}
-.tx_Advent_questions_day6 { background-position: -700px 0px;}
-.tx_Advent_questions_day7 { background-position: -840px 0px;}
-.tx_Advent_questions_day8 { background-position: 0px -140px;}
-.tx_Advent_questions_day9 { background-position: -140px -140px;}
-.tx_Advent_questions_day10 { background-position: -280px -140px;}
-.tx_Advent_questions_day11 { background-position: -420px -140px;}
-.tx_Advent_questions_day12 { background-position: -560px -140px;}
-.tx_Advent_questions_day13 { background-position: -700px -140px;}
-.tx_Advent_questions_day14 { background-position: -840px -140px;}
-.tx_Advent_questions_day15 { background-position:  0px -280px;}
-.tx_Advent_questions_day16 { background-position: -140px -280px;}
-.tx_Advent_questions_day17 { background-position: -280px -280px;}
-.tx_Advent_questions_day18 { background-position: -420px -280px;}
-.tx_Advent_questions_day19 { background-position: -560px -280px;}
-.tx_Advent_questions_day20 { background-position: -700px -280px;}
-.tx_Advent_questions_day21 { background-position: -840px -280px;}
-.tx_Advent_questions_day22 { background-position:  0px -420px;}
-.tx_Advent_questions_day23 { background-position: -140px -420px;}
-.tx_Advent_questions_day24 { background-position: -280px -420px;}
-.tx_Advent_questions_day25 { background-position: -420px -420px;}
-.tx_Advent_questions_day26 { background-position: -560px -420px;}
-.tx_Advent_questions_day27 { background-position: -700px -420px;}
-.tx_Advent_questions_day28 { background-position: -840px -420px;}
-
-
-.tx_Advent_questions_dayOpened {height: 140px; width: 140px;
-	position: relative;
-	float: left;
-	cursor: pointer;
+	transition: opacity .5s ease-out-in ;
 	background: none;
-}
-
-
-
-
-.tx_Advent_questions_inactive {
-
-	background-image: url(../img/adventskalenderbild_vorher.jpg);
 
 
 }
+
+
 .tx_Advent_questions_inactive_background {
 	background-color: white;
 	opacity: 0.7;
-	height: 138px;
-	width: 138px;
-	position:absolute;
-
-
 }
 
-.tx_Advent_other {
-	background-image: url(../img/adventskalenderbild_vorher.jpg);
 
-}
-#tx_Advent_questions_text {
-	position:absolute;
-}
 
 input[id='tx_nemadvent_rangeanswer'] {
-
 	width: 100%;
 	display: block;
 }
 
 #tx_nemadvent_output {
-
 	font-size: 13px;
 
 }
 
 div#tx_nemadvent_Regler_Zahl {
-
 	text-align: center;
 
+}
+
+
+
+@media screen and (max-width: 900px) {
+	.tx_Advent_questions_day {
+		height: 100px;
+	}
+	div#tx_Advent_questions_img {
+		height: 400px;
+	}
 }
 

@@ -1,4 +1,17 @@
 
+<f:if condition="{settings.wishlistPid} > 0">
+	<div class="Tx_Nemadvent_pi1 well">
+		Bitte denken Sie daran, Ihren Wunschzettel abzugeben. Die Zusendung eines Gewinns erfolgt nur bei ausgefülltem Wunschzettel.
+		<span class="submitWrapper right">
+			<f:link.page class="" noCacheHash="1" rel="shadowbox" pageUid="{settings.wishlistPid}" additionalParams="{type: 999}">
+				Zum Wunschzettel >>
+			</f:link.page>
+		</span>
+	</div>
+	<br>
+	<br>
+</f:if>
+
 <div class="Tx_Nemadvent_pi1 well">
 		<f:FlashMessages class="message" />
 

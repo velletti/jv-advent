@@ -19,27 +19,26 @@
 										<h3>{settings.todayformated}: {question.title}</h3>
 										<f:format.html>{question.descLong}</f:format.html>
 									</div>
-									
+
 									<div class="clearfix">&nbsp;</div>
-									
-									<div id="Tx_Nemadvent_showanswers" >
-										<span class="left width40">
+									<div id="Tx_Nemadvent_showanswers" class="row" >
+										<span class="col-xs-push-1 col-xs-2 col-md-1">
 											<input type="checkbox" value="y" name="tx_nemadvent_pi1[accepted]" onClick="jQuery('#Tx_Nemadvent_answers').show();jQuery('#Tx_Nemadvent_showanswers').hide();">
 											<input type="hidden" value="{adddate}" name="tx_nemadvent_pi1[answer]">
 										</span>
-										<span class="left width540">
+										<span class="col-xs-push-1 col-xs-9 col-md-10">
 											<f:format.html>{settings.advent.list.mustacceptagb}</f:format.html>
 										</span>
 									</div>	
 									<div class="clearfix">&nbsp;</div>
-									<div id="Tx_Nemadvent_answers">
+									<div id="Tx_Nemadvent_answers" class="row" >
 										<f:if condition="{question.rangemax} > 0">
 											<f:then>
 												<f:render partial="RangeAnswer" arguments="{question: question, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
 
 											</f:then>
 											<f:else>
-												<div class="tx_advent_WuerfelWeg">
+												<div class="hide tx_advent_WuerfelWeg">
 													<div id="tx_advent_Wuerfel" onclick="advent_move(tx_advent_Wuerfel)">
 														<p id="tx_advent_WuerfelZahl">?</p>
 
@@ -61,9 +60,11 @@
 										</f:if>
 
 										<f:if condition="{isnemintern}">
-											<p><i>Visible for Nemetschek Internal: the correct is answer: {question.correct}</i></p>
+											<f:if condition="{settings.beforestartdate}">
+												<p><i>Visible for Nemetschek Internal: the correct is answer: {question.correct}</i></p>
+											</f:if>
 										</f:if>
-									</div>	
+									</div>
 									
 									<div class="clearfix">&nbsp;</div>
 									

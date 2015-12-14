@@ -91,7 +91,8 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 		}
 
 		// 7.10.2014 j.v. : rückwirkendes / Beantworten auch für Nicht Nemetschek MA
-		$month = date("m" , $this->adventCat->getStartdate()) ;
+		$month = date("m" ,  $this->adventCat->getStartdate() ) ;
+
 		$this->settings['showtip']   =  FALSE ;
 		if ( $this->isnem  ) {
 			$this->settings['today']   = mktime( 0,0,0, $month ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
@@ -115,6 +116,7 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 		if ( $this->adventCat ) {
 			$question =  $this->adventRepository->findOneByFilter( $this->adventCat , $this->settings['today'] );
 		// count advents
+
 			$count = count($question);
 			$this->view->assign('question', $question[0]);
 			$this->view->assign('adventCat', $this->adventCat );
@@ -255,7 +257,7 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 			}
 		}
 		$questions = array() ;
-		for($i=0;$i<28;$i++) {
+		for($i=0;$i<24;$i++) {
 			$questions[] = array( "day" => $i , "date" => mktime( 0,0,0,  date("m" , $this->adventCat->getStartdate()) , $i+1 ,date("Y" )  ) , 'today' => FALSE , 'daybefore' => FALSE) ;
 			$question =  $this->adventRepository->findOneByFilter( $this->adventCat ,$questions[$i]['date'] )->toArray()  ;
 			if ( count($question >0 )) {

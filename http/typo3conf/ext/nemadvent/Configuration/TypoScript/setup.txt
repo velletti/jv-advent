@@ -7,6 +7,11 @@ plugin.tx_nemadvent {
 		jsFiles {
 			 10 = typo3conf/ext/nemadvent/Resources/Public/Js/script.js
 		}
+		// WishList Form
+		wishlistPid = 3917
+
+		// where are the answered Stored
+		wishlistPidResults = 3929
 
 		advent {
 			list {

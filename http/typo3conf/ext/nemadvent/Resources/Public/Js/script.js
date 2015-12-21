@@ -8,7 +8,7 @@ function openDoor(field, DoorNr) {
 }
 
 function tx_quizSeite(field, DoorNr) {
-	var url= "https://" + window.location.hostname + "/" + jQuery('#tx_advent_answerpage').attr('href') ;
+	var url= window.location.protocol  + "//" + window.location.hostname + "/" + jQuery('#tx_advent_answerpage').attr('href') ;
 	window.location.href = (url + DoorNr);
 }
 

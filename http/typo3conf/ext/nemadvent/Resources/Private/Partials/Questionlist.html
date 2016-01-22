@@ -93,7 +93,7 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+			jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H4").each(function(){
 				jQuery(this).click(function(eventObject){
 					eventObject.preventDefault();
 					adventQuestion = jQuery(this).next() ;
@@ -105,7 +105,7 @@
 				});
 			});
 			function showallAKRAnswers() {
-				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H4").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).removeClass("hide") ;
 				});
@@ -113,7 +113,7 @@
 				jQuery("#hideallAKRAnswers").removeClass("hide") ;
 			}
 			function hideallAKRAnswers() {
-				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H4").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).addClass("hide") ;
 				});
@@ -121,7 +121,7 @@
 				jQuery("#showallAKRAnswers").removeClass("hide") ;
 			}
 			function showOnlyAKRPercent() {
-				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H4").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).removeClass("hide") ;
 				});

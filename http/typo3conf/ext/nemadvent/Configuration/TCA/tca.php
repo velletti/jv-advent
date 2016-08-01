@@ -12,6 +12,7 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
 			'config' => Array (
 				'type' => 'select',
+				'renderType' => 'selectSingle' ,
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => Array(
@@ -26,6 +27,7 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
 			'config' => Array (
 				'type' => 'select',
+				'renderType' => 'selectSingle' ,
 				'items' => Array (
 					Array('', 0),
 				),
@@ -278,6 +280,7 @@ $TCA['tx_nemadvent_domain_model_adventcat'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
 			'config' => Array (
 				'type' => 'select',
+				'renderType' => 'selectSingle' ,
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => Array(
@@ -292,6 +295,7 @@ $TCA['tx_nemadvent_domain_model_adventcat'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
 			'config' => Array (
 				'type' => 'select',
+				'renderType' => 'selectSingle' ,
 				'items' => Array (
 					Array('', 0),
 				),
@@ -379,6 +383,7 @@ $TCA['tx_nemadvent_domain_model_winner'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
 			'config' => Array (
 				'type' => 'select',
+				'renderType' => 'selectSingle' ,
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => Array(
@@ -393,6 +398,7 @@ $TCA['tx_nemadvent_domain_model_winner'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
 			'config' => Array (
 				'type' => 'select',
+				'renderType' => 'selectSingle' ,
 				'items' => Array (
 					Array('', 0),
 				),

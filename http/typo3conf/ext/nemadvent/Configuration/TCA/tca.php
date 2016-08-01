@@ -75,63 +75,36 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 		'desc_short' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.desc_short',
+			'defaultExtras' => 'richtext[]',
 			'config' => array (
 				'type' => 'text',
 				'cols' => '48',
 				'rows' => '8',
-				'wizards' => Array(
-					'_PADDING' => 4,
-					'RTE' => Array(
-						'notNewRecords' => 1,
-						'RTEonly' => 1,
-						'type' => 'script',
-						'title' => 'LLL:EXT:cms/locallang_ttc.php:bodytext.W.RTE',
-						'icon' => 'wizard_rte2.gif',
-						'script' => 'wizard_rte.php',
-					),
-				)
+
 			)
 		),
 
 		'desc_long' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.desc_long',
+			'defaultExtras' => 'richtext[]',
 			'config' => array (
 				'type' => 'text',
 				'cols' => '48',
 				'rows' => '20',
-				'wizards' => Array(
-					'_PADDING' => 4,
-					'RTE' => Array(
-						'notNewRecords' => 1,
-						'RTEonly' => 1,
-						'type' => 'script',
-						'title' => 'LLL:EXT:cms/locallang_ttc.php:bodytext.W.RTE',
-						'icon' => 'wizard_rte2.gif',
-						'script' => 'wizard_rte.php',
-					),
-				)
+
 			)
 		),
 
 		'solution' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.solution',
+			'defaultExtras' => 'richtext[]',
 			'config' => array (
 				'type' => 'text',
 				'cols' => '48',
 				'rows' => '20',
-				'wizards' => Array(
-					'_PADDING' => 4,
-					'RTE' => Array(
-						'notNewRecords' => 1,
-						'RTEonly' => 1,
-						'type' => 'script',
-						'title' => 'LLL:EXT:cms/locallang_ttc.php:bodytext.W.RTE',
-						'icon' => 'wizard_rte2.gif',
-						'script' => 'wizard_rte.php',
-					),
-				)
+
 			)
 		),
 

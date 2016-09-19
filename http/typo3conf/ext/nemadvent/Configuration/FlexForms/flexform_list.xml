@@ -132,7 +132,7 @@
 							</config>
 							<default>to the the possible answers you must accept the  AGB. full agb link ...</default>
 							<defaultExtras>
-								richtext[*]:rte_transform[mode=default]
+								richtext[*]:rte_transform[mode=ts_css]
 							</defaultExtras>
 						</TCEforms>
 					</settings.advent.list.mustacceptagb>                    

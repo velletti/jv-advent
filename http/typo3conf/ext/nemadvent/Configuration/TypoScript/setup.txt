@@ -58,10 +58,10 @@ plugin.tx_nemadvent {
 	
 }
 config.tx_extbase.persistence.classes{
-	Tx_Extbase_Domain_Model_FrontendUser.mapping.recordType =
-	Tx_Extbase_Domain_Model_FrontendUserGroup.mapping.recordType =
+	\TYPO3\CMS\Extbase\Domain\Model\FrontendUser.mapping.recordType =
+	\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup.mapping.recordType =
 
-	Tx_Nemadvent_Domain_Model_User {
+	\Allplan\Nemadvent\Domain\Model\User {
 
 			mapping {
 				columns.crdate.mapOnProperty = crdate

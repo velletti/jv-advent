@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Utility  ;
 /* * *************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-class Tx_Nemadvent_Utility_FeGroups {
+class FeGroupsUtility {
 
 	//put your code here
 

@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Domain\Model ;
 /***************************************************************
 *  Copyright notice
 *
@@ -23,7 +23,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class Tx_Nemadvent_Domain_Model_AdventCat extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class AdventCat extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * @var string
@@ -53,13 +53,13 @@ class Tx_Nemadvent_Domain_Model_AdventCat extends \TYPO3\CMS\Extbase\DomainObjec
 	/**
 	 * The advents of this category
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Nemadvent_Domain_Model_Advent>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Allplan\Nemadvent\Domain\Model\Advent>
 	 * @lazy
 	 */
 	protected $advents;
 
 	/**
-	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+	 * Constructor. Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
 	 */
 	public function __construct() {
 	}
@@ -67,7 +67,7 @@ class Tx_Nemadvent_Domain_Model_AdventCat extends \TYPO3\CMS\Extbase\DomainObjec
 	/**
 	 * Returns all advents in this category
 	 *
-	 * @return Tx_Nemadvent_Domain_Model_Advent
+	 * @return \Allplan\Nemadvent\Domain\Model\Advent
 	 */
 	public function getadvents() {
 		return $this->advents;

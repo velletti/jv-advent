@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Domain\Model ;
 /* * *************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * @var string
@@ -122,13 +122,17 @@ class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\A
 	protected $rangemax;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $crdate;
 	/**
 	 * @var integer
 	 */
 	protected $date;
+	/**
+	 * @var integer
+	 */
+	protected $viewed;
 	/**
 	 * @var integer
 	 */
@@ -175,7 +179,7 @@ class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\A
 	/**
 	 * The categories of this advent
 	 *
-	 * @var Tx_Nemadvent_Domain_Model_AdventCat
+	 * @var \Allplan\Nemadvent\Domain\Model\AdventCat
 	 */
 	protected $categories;
 
@@ -183,12 +187,12 @@ class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\A
 	/**
 	 * FeGroup
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Extbase_Domain_Model_FrontendUserGroup>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_Extbase_Domain_Model_FrontendUserGroup>
 	 */
 	protected $feGroup;
 
 	/**
-	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+	 * Constructor. Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
 	 */
 	public function __construct() {
 	}
@@ -196,7 +200,7 @@ class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\A
 	/**
 	 * Getter for categories
 	 *
-	 * @return Tx_Nemadvent_Domain_Model_AdventCat categories
+	 * @return \Allplan\Nemadvent\Domain\Model\AdventCat categories
 	 */
 	public function getCategories() {
 		return $this->categories;
@@ -282,7 +286,7 @@ class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\A
 	/**
 	 * Getter for feGroup
 	 *
-	 * @return Tx_Extbase_Domain_Model_FrontendUserGroup
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup>
 	 */
 	public function getFeGroup() {
 		return $this->feGroup;
@@ -291,18 +295,18 @@ class Tx_Nemadvent_Domain_Model_Advent extends \TYPO3\CMS\Extbase\DomainObject\A
 	/**
 	 * Setter for feGroup 
 	 *
-	 * @param Tx_Extbase_Domain_Model_FrontendUserGroup $feGroup
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup> $feGroup
 	 */
 	public function setFeGroup($feGroup) {
 		$this->feGroup = $feGroup;
 	}
 
 	public function getHasAccess() {
-		return Tx_Nemadvent_Utility_FeGroups::hasAccess($this->getFeGroup());
+		return \Allplan\Nemadvent\Utility\FeGroupsUtility::hasAccess($this->getFeGroup());
 	}
 
 	public function getneedSPAccess() {
-		return Tx_Nemadvent_Utility_FeGroups::needSPAccess($this->getFeGroup());
+		return \Allplan\Nemadvent\Utility\FeGroupsUtility::needSPAccess($this->getFeGroup());
 	}
 		/**
 	 * Getter for answer

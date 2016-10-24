@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Domain\Model ;
 /* * *************************************************************
  *  Copyright notice
  *
@@ -23,7 +23,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
-class Tx_Nemadvent_Domain_Model_Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * @var string
@@ -81,7 +81,7 @@ class Tx_Nemadvent_Domain_Model_Winner extends \TYPO3\CMS\Extbase\DomainObject\A
 	
 
 	/**
-	 * Constructor. Initializes all Tx_Extbase_Persistence_ObjectStorage instances.
+	 * Constructor. Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
 	 */
 	public function __construct() {
 

@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Controller ;
 /***************************************************************
 *  Copyright notice
 *
@@ -31,19 +31,14 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class Tx_Nemadvent_Controller_AdventCatController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class AdventCatController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
-	 * @var Tx_Nemadvent_Domain_Model_AdventCatRepository
+	 * @var \Allplan\Nemadvent\Domain\Repository\AdventCatRepository
 	 * @inject
 	 */
 	protected $adventCatRepository;
 
-	/**
-	 * @var Tx_Nemadvent_Domain_Repository_TagRepository
-	 * @inject
-	 */
-	protected $tagRepository;
 
 	/**
 	 * Initializes the current action
@@ -51,8 +46,6 @@ class Tx_Nemadvent_Controller_AdventCatController extends \TYPO3\CMS\Extbase\Mvc
 	 * @return void
 	 */
 	public function initializeAction() {
-	//	$this->adventCatRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
-	//	$this->tagRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_TagRepository');
 	}
 
 	/**

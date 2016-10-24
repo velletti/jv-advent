@@ -1,4 +1,5 @@
 <?php
+namespace Allplan\Nemadvent\Controller ;
 
 /***************************************************************
 *  Copyright notice
@@ -32,40 +33,46 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class Tx_Nemadvent_Controller_BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
-	 * @var Tx_Nemadvent_Domain_Repository_WinnerRepository
+	 * @var \Allplan\Nemadvent\Domain\Repository\WinnerRepository
 	 * @inject
 	 */
 	protected $winnerRepository;
 
 	/**
-	 * @var Tx_Nemadvent_Domain_Repository_AdventRepository
+	 * @var \Allplan\Nemadvent\Domain\Repository\AdventRepository
 	 * @inject
 	 */
 	protected $adventRepository;
 
 	/**
-	 * @var Tx_Nemadvent_Domain_Repository_AdventCatRepository
+	 * @var \Allplan\Nemadvent\Domain\Repository\AdventCatRepository
 	 * @inject
 	 */
 	protected $adventCatRepository;
 
+	/**
+	 * @var \Allplan\Nemadvent\Domain\Model\AdventCat
+	 * @inject
+	 */
+	protected $adventCat;
+
 	/*
-	 * @var Tx_Nemadvent_Domain_Repository_UserRepository
+	 * @var \Allplan\Nemadvent\Domain\Repository\UserRepository
 	 * @inject
 	 */
 	protected $userRepository;
 
 	/*
-	 * @var Tx_Nemadvent_Domain_Model_User
+	 * @var \Allplan\Nemadvent\Domain\Model\User
 	 * @inject
 	 */
 	protected $user;
 
 	/*
-	 * @var Tx_Extbase_Domain_Repository_FrontendUserRepository
+	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUser
 	 * @inject
 	 */
 
@@ -73,7 +80,7 @@ class Tx_Nemadvent_Controller_BaseController extends \TYPO3\CMS\Extbase\Mvc\Cont
 
 
 	/*
-	 * @var Tx_Extbase_Domain_Repository_FrontendUserGroupRepository
+	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroup
 	 * @inject
 	 */
 	protected $frontendUserGroupRepository;
@@ -86,14 +93,21 @@ class Tx_Nemadvent_Controller_BaseController extends \TYPO3\CMS\Extbase\Mvc\Cont
 	 * @return void
 	 */
 	public function initializeAction() {
-		$this->adventRepository	 	= $this->objectManager->get('Tx_Nemadvent_Domain_Repository_AdventRepository') ;
-		$this->adventCatRepository	= $this->objectManager->get('Tx_Nemadvent_Domain_Repository_AdventCatRepository') ;
-		$this->userRepository	 	= $this->objectManager->get('Tx_Nemadvent_Domain_Repository_UserRepository') ;
-		$this->winnerRepository	 	= $this->objectManager->get('Tx_Nemadvent_Domain_Repository_winnerRepository') ;
+		/** @var \Allplan\Nemadvent\Domain\Repository\AdventRepository $this->adventRepository*/
+		$this->adventRepository	 	= $this->objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\AdventRepository') ;
+
+		/** @var \Allplan\Nemadvent\Domain\Repository\AdventCatRepository $this->adventCatRepository*/
+		$this->adventCatRepository	= $this->objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\AdventCatRepository') ;
+
+		/** @var \Allplan\Nemadvent\Domain\Repository\UserRepository $this->userRepository*/
+		$this->userRepository	 	= $this->objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\UserRepository') ;
+
+		/** @var \Allplan\Nemadvent\Domain\Repository\WinnerRepository $this->winnerRepository*/
+		$this->winnerRepository	 	= $this->objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\WinnerRepository') ;
 
 
-		$this->frontendUserRepository 	= $this->objectManager->get('Tx_Extbase_Domain_Repository_FrontendUserRepository');
-		$this->frontendUserGroupRepository = $this->objectManager->get('Tx_Extbase_Domain_Repository_FrontendUserGroupRepository');
+		$this->frontendUserRepository 	= $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository');
+		$this->frontendUserGroupRepository = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserGroupRepository');
 
 		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
 		$this->initJS($this->settings['jsFiles']);
@@ -147,17 +161,28 @@ class Tx_Nemadvent_Controller_BaseController extends \TYPO3\CMS\Extbase\Mvc\Cont
 
 		$this->CacheTime = 60*60*4 ;
 		$this->pid = intval( $GLOBALS['TSFE']->id ) ;
-		$this->adventCat =  $this->adventCatRepository->findByUid( $this->settings['advent']['list']['filter']['adventCat'] );
-		// debug($this->settings['advent']['list']['filter']['adventCat']) ;	
-		// debug($this->adventCat) ;
+
+		// $GLOBALS['TYPO3_DB']->debugOutput = 2;
+		// $GLOBALS['TYPO3_DB']->explainOutput = true;
+		// $GLOBALS['TYPO3_DB']->store_lastBuiltQuery = true;
+
+		$adventCat =  $this->adventCatRepository->getByUid( $this->settings['advent']['list']['filter']['adventCat'] )->toArray() ;
+
 		
+		if ( is_object($adventCat)) {
+			$this->adventCat = $adventCat->getFirst();
+		}
+		if ( is_array($adventCat)) {
+			$this->adventCat = $adventCat[0];
+		}
 		$this->settings['now']   = date( "d.m.Y H:i" ,time() ) ;
 		
 		$this->settings['afterenddate'] = FALSE ;
 		$this->settings['beforestartdate'] = FALSE ;
 		$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) ) ,date("Y" )  ) ;
-		
+
 		if ( is_object($this->adventCat)) {
+
 			$this->settings['startdate'] = date( "d.m.Y 09:00" , $this->adventCat->getStartdate() ) ;
 			$this->settings['enddate']   = date( "d.m.Y 23:59" ,$this->adventCat->getEnddate() ) ;
 

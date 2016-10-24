@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Controller ;
 /* * *************************************************************
  *  Copyright notice
  *
@@ -30,7 +30,7 @@
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_BaseController {
+class UserController extends BaseController {
 
 	/**
 	 * Initializes the current action
@@ -52,7 +52,6 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 	/**
 	 * answer action for this controller.
 	 *
-	 * @param Tx_Nemadvent_Domain_Model_Advent advent
 	 */
 	public function answerAction() {
 		$doit = $this->settingsHelper() ;
@@ -198,17 +197,16 @@ class Tx_Nemadvent_Controller_UserController extends Tx_Nemadvent_Controller_Bas
 														$this->answers[$i]->getQuestionDate()  );
 
 
-					
 					$answerlist[$i]['myanswerTEXT'] = "";
 
-					if ( is_array($question) or is_object($question) ) {
+					if ( count($question) > 0 && ( is_array($question) || is_object($question) ) ) {
+						$question = $question->getFirst() ;
 						if( $answerlist[$i]['myanswer'] > 0 and $answerlist[$i]['myanswer'] < 6) {
-							$answerlist[$i]['myanswerTEXT'] .= $question[0]->getMyanswertext( $answerlist[$i]['myanswer'] ) ;
-						} else {
+							$answerlist[$i]['myanswerTEXT'] .= $question->getMyanswertext( $answerlist[$i]['myanswer'] ) ;
 
 						}
 
-						$correct= $question[0]->getCorrect( ) ;
+						$correct= $question->getCorrect( ) ;
 					}
 
 					if ( in_array($answerlist[$i]['myanswer'],explode("," ,  $correct ."," ))){

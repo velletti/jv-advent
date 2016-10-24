@@ -3,7 +3,7 @@
 if(!defined('TYPO3_MODE')) Die ('Access denied.');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	$_EXTKEY,
+	'Allplan.' . $_EXTKEY,
 	'Pi1',
 	array (
 		'Advent'		=>	'list,single,listAnswers,showCalendar',

@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Domain\Repository ;
 /***************************************************************
 *  Copyright notice
 *
@@ -23,15 +23,13 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class Tx_Nemadvent_Domain_Repository_WinnerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class WinnerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	
 	/**
-	 * find advent by given tag object
+	 * find all Winners on a specific page
 	 *
-	 * @param Tx_Nemadvent_Domain_Model_AdventCat $adventCat
-	 * @param integer $questiondate
-	 * @param integer $uid
-	 * @return array advents
+	 * @param integer $pid
+	 * @return array $winners
 	 *
 	 */
 	public function getWinnerlist( $pid =0) {

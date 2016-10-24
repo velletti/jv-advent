@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Domain\Repository ;
 /***************************************************************
 *  Copyright notice
 *
@@ -23,18 +23,22 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class Tx_Nemadvent_Domain_Repository_AdventCatRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class AdventCatRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		/**
 	 * Finds an object matching the given identifiers.
 	 *
-	 * @param array $uids The identifiers of the object to find
+	 * @param integer $uid The identifiers of the object to find
 	 * @return mixed The matching objects if found, otherwise NULL
 	 */
 	public function getByUid($uid) {
-			$query = $this->createQuery();
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectStoragePage(false);
+		$query->getQuerySettings()->setRespectSysLanguage(false);
 			//$uidquery = $uidquery->matching($uidquery->logicalAnd($uidqueryParams));
-			$return = $query->matching($query->equals('uid', $uids))->execute();
-			return $return ;
+		$constrains[] = $query->equals('uid', $uid) ;
+		$return = $query->matching($query->logicalAnd($constrains))->execute();
+
+		return $return ;
 			
 	}
 }

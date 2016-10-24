@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Domain\Repository ;
 /***************************************************************
 *  Copyright notice
 *
@@ -23,18 +23,18 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-class Tx_Nemadvent_Domain_Repository_AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	
 	/**
 	 * find advent by given tag object
 	 *
-	 * @param Tx_Nemadvent_Domain_Model_AdventCat $adventCat
+	 * @param \Allplan\Nemadvent\Domain\Model\AdventCat $adventCat
 	 * @param integer $questiondate
 	 * @param integer $uid
 	 * @return array advents
 	 *
 	 */
-	public function findOneByFilter( Tx_Nemadvent_Domain_Model_AdventCat $adventCat=NULL , $questiondate=0, $uid =0) {
+	public function findOneByFilter( \Allplan\Nemadvent\Domain\Model\AdventCat $adventCat=NULL , $questiondate=0, $uid =0) {
 			
 		$query = $this->createQuery();
 		

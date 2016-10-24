@@ -1,4 +1,6 @@
 <?php
+namespace Allplan\Nemadvent\Controller ;
+
 /* * *************************************************************
  *  Copyright notice
  *
@@ -29,7 +31,7 @@
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_BaseController {
+class AdventController extends BaseController {
 
 
 	/**
@@ -38,17 +40,8 @@ class Tx_Nemadvent_Controller_AdventController extends Tx_Nemadvent_Controller_B
 	 * @return void
 	 */
 	public function initializeAction() {
+
 		parent::initializeAction();
-
-
-	//	$this->adventRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventRepository');
-		//	$this->adventCatRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_AdventCatRepository');
-		//	$this->userRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Nemadvent_Domain_Repository_UserRepository');
-
-		//	$this->frontendUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
-		//	$this->frontendUserGroupRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserGroupRepository');
-		
-		//overwrite setting Configuration
 
 	}
 

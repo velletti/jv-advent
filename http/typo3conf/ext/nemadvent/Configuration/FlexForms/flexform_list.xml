@@ -117,6 +117,23 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
+								<wizards>
+									<_PADDING>2</_PADDING>
+									<_VERTICAL>2</_VERTICAL>
+									<link>
+										<type>popup</type>
+										<title>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel</title>
+										<icon>EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif</icon>
+										<module>
+											<name>wizard_link</name>
+										</module>
+										<JSopenParams>height=600,width=800,status=0,menubar=0,scrollbars=1</JSopenParams>
+									</link>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
+								<show_thumbs>1</show_thumbs>
 							</config>
 						</TCEforms>
 					</settings.advent.list.filter.adventCat>                    
@@ -156,6 +173,24 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<_PADDING>2</_PADDING>
+									<_VERTICAL>2</_VERTICAL>
+									<link>
+										<type>popup</type>
+										<title>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel</title>
+										<icon>EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif</icon>
+										<module>
+											<name>wizard_link</name>
+										</module>
+										<JSopenParams>height=600,width=800,status=0,menubar=0,scrollbars=1</JSopenParams>
+									</link>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+
+								</wizards>
 							</config>
 						</TCEforms>
 					</settings.list.pid.listView>	
@@ -169,6 +204,23 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<_PADDING>2</_PADDING>
+									<_VERTICAL>2</_VERTICAL>
+									<link>
+										<type>popup</type>
+										<title>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel</title>
+										<icon>EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif</icon>
+										<module>
+											<name>wizard_link</name>
+										</module>
+										<JSopenParams>height=600,width=800,status=0,menubar=0,scrollbars=1</JSopenParams>
+									</link>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
 							</config>
 						</TCEforms>
 					</settings.list.pid.singleView>
@@ -182,6 +234,23 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<_PADDING>2</_PADDING>
+									<_VERTICAL>2</_VERTICAL>
+									<link>
+										<type>popup</type>
+										<title>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel</title>
+										<icon>EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif</icon>
+										<module>
+											<name>wizard_link</name>
+										</module>
+										<JSopenParams>height=600,width=800,status=0,menubar=0,scrollbars=1</JSopenParams>
+									</link>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
 							</config>
 						</TCEforms>
 					</settings.list.pid.myanswersView>
@@ -196,6 +265,22 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<_PADDING>2</_PADDING>
+									<link>
+										<type>popup</type>
+										<title>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel</title>
+										<icon>EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif</icon>
+										<module>
+											<name>wizard_link</name>
+										</module>
+										<JSopenParams>height=600,width=800,status=0,menubar=0,scrollbars=1</JSopenParams>
+									</link>
+									<suggest>
+										<type>suggest</type>
+									</suggest>
+								</wizards>
 							</config>
 						</TCEforms>
 					</settings.list.pid.winners>	

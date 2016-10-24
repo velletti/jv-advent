@@ -1,5 +1,5 @@
 <?php
-
+namespace Allplan\Nemadvent\Controller ;
 /* * *************************************************************
  *  Copyright notice
  *
@@ -30,7 +30,7 @@
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Nemadvent_Controller_WinnerController extends Tx_Nemadvent_Controller_BaseController {
+class WinnerController extends BaseController {
 
 
 	/**

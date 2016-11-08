@@ -1,7 +1,7 @@
 
 <f:if condition="{settings.wishlistPid} > 0">
 	<div class="Tx_Nemadvent_pi1 well">
-		Bitte denken Sie daran, Ihren Wunschzettel abzugeben. Die Zusendung eines Gewinns erfolgt nur bei ausgefülltem Wunschzettel.
+		Bitte denken Sie daran, Ihren Wunschzettel abzugeben. Die Zusendung eines Gewinns erfolgt nur bei ausgefï¿½lltem Wunschzettel.
 		<span class="submitWrapper right">
 			<f:link.page class="" noCacheHash="1" rel="shadowbox" pageUid="{settings.wishlistPid}" additionalParams="{type: 999}">
 				Zum Wunschzettel >>
@@ -13,7 +13,7 @@
 </f:if>
 
 <div class="Tx_Nemadvent_pi1 well">
-		<f:FlashMessages class="message" />
+		<f:FlashMessages renderMode="div"  class="message" />
 
 	<f:if condition="{answerlist}">
 		<f:then>
@@ -29,8 +29,14 @@
 						{answer.myanswerTEXT}
 					</div>
 					<div class="col-md-1 col-xs-2">
-						<f:link.page noCacheHash="1" class="btn btn-default" title="{f:translate(key:'ChangeAnswer' , default:'ChangeAnswer')}" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_nemadvent_pi1: {single: {adddate: '{answer.adddate}'}}}"> >> </f:link.page>
+						<f:if condition="{settings.afterenddate}">
+							<f:then>
 
+							</f:then>
+							<f:else>
+								<f:link.page noCacheHash="1" class="btn btn-default" title="{f:translate(key:'ChangeAnswer' , default:'ChangeAnswer')}" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_nemadvent_pi1: {single: {adddate: '{answer.adddate}'}}}"> >> </f:link.page>
+							</f:else>
+						</f:if>
 					</div>
 					<div class="col-md-2 col-xs-2">
 						<f:if condition="{settings.showtotal} > 0">

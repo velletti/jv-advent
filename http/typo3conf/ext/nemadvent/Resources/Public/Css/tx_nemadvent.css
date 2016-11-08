@@ -156,6 +156,7 @@ div#tx_advent_WuerfelMauer {
 	/*	background-image: url(../img/adventskalenderbild_vorher.jpg); */
 	overflow:visible;
 	height: 140px;
+	padding: 0 ;
 
 }
 .tx_Advent_questions_active {
@@ -196,6 +197,7 @@ div#tx_Advent_questions_img {
 .tx_Advent_questions_inactive_background {
 	background-color: white;
 	opacity: 0.7;
+	height: inherit;
 }
 
 

@@ -112,10 +112,28 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 			'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.image',
 			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
 				'tx_nemadvent_domain_model_advent_image',
-				array('maxitems' => 4),
+				array(
+					'minitems' => 1,
+					'maxitems' => 1,
+					'foreign_types' => array(
+						// 2: FILETYPE_IMAGE
+						'2' => array(
+							'showitem' => '
+											--palette--;LLL:EXT:marit_elearning/Resources/Private/Language/locallang_db.xml:tx_maritelearning_domain_model_lesson.image;basicoverlayPalette,
+											--palette--;;filePalette, sys_language_uid'
+						),
+						\TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => array(
+							'showitem' => '
+											--palette--;LLL:EXT:marit_elearning/Resources/Private/Language/locallang_db.xml:tx_maritelearning_domain_model_lesson.image;basicoverlayPalette,
+											--palette--;;filePalette, sys_language_uid'
+						),
+					),
+				),
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
 			)
 		),
+
+
 
 		'viewed' => array (
 			'exclude' => 0,
@@ -209,6 +227,24 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 				'internal_type' => 'db',
 				'allowed' => 'pages',
 				'default' => '0',
+				'wizards'  => array(
+					'_PADDING' => 2,
+					'link'     => array(
+						'type'         => 'popup',
+						'title'        => 'Link',
+						'icon'         => 'link_popup.gif',
+						'module' => array(
+							'name' => 'wizard_element_browser',
+							'urlParameters' => array(
+								'mode' => 'wizard'
+							)
+						),
+						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
+					),
+					'suggest' => array(
+						'type' => 'suggest',
+					),
+				)
 			)
 		),	
 			

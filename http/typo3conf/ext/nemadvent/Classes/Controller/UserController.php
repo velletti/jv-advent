@@ -38,6 +38,7 @@ class UserController extends BaseController {
 	 * @return void
 	 */
 	public function initializeAction() {
+
 		parent::initializeAction();
 		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
 
@@ -55,7 +56,6 @@ class UserController extends BaseController {
 	 */
 	public function answerAction() {
 		$doit = $this->settingsHelper() ;
-
 		// First part: just return Json Array for Calender View
 		$this->currentArguments = $this->request->getArguments();
 
@@ -94,7 +94,6 @@ class UserController extends BaseController {
 		if ( $this->request->hasArgument('question')) {
 			$question = intval($this->request->getArgument('question')) ;
 		}
-
 		if ( $this->request->hasArgument('answer')) {
 			
 			$answer = intval($this->request->getArgument('answer')) ;
@@ -107,24 +106,24 @@ class UserController extends BaseController {
 
 		if ( $answer > 0  OR $rangeanswer > 0 OR $question > 0 )  {
             // j.v. 7.10.2014 Nachträgliches Beantworten nicht nur für NEM !
-            $question =  $this->adventRepository->findOneByFilter($this->adventCat , 0 , $question )->toArray();
+            $question =  $this->adventRepository->findOneByFilter($this->adventCat , 0 , $question )->getFirst();
 		}
+
 		// Second Part : yes he has ansered a question ?
-		if ( is_array ($question)) {
-			// debug( $this->pid  ) ; 
-			if ( $question[0]->GetStoreonpid() > 0 ) {
-				$this->pid = intval( $question[0]->GetStoreonpid()) ;
+		if ( is_object ($question)) {
+			// debug( $this->pid  ) ;
+			if ( $question->GetStoreonpid() > 0 ) {
+				$this->pid = intval( $question->GetStoreonpid()) ;
 			}
 			$point = 0 ;
 			$subpoint = 0 ;
-
 			if ( $rangeanswer > 0) {
 				// ToDO hierher die berechnung für die suppoints ... das sind die werte
 
-				if ( $rangeanswer > $question[0]->getCorrect()  ) {
-					$subpoint = (1 - ( $rangeanswer - $question[0]->getCorrect()) / ( $question[0]->getRangemax() - $question[0]->getCorrect() )) *99999 ;
+				if ( $rangeanswer > $question->getCorrect()  ) {
+					$subpoint = (1 - ( $rangeanswer - $question->getCorrect()) / ( $question->getRangemax() - $question->getCorrect() )) *99999 ;
 				} else {
-					$subpoint = (1 - (  $question[0]->getCorrect()- $rangeanswer ) / (  $question[0]->getCorrect() - $question[0]->getRangemin() )) *99999 ;
+					$subpoint = (1 - (  $question->getCorrect()- $rangeanswer ) / (  $question->getCorrect() - $question->getRangemin() )) *99999 ;
 				}
 				if ( $subpoint > 99999 ) {
 					$subpoint = 99999 ;
@@ -134,7 +133,7 @@ class UserController extends BaseController {
 				}
 				$subpoint = round( $subpoint , 0)  ;
 			} else {
-				$correctAnswer = $question[0]->getCorrect() ;
+				$correctAnswer = $question->getCorrect() ;
 				$correctArr = explode("," , $correctAnswer . ",") ;
 
 				for ( $i=0 ; $i< count($correctArr) ; $i++) {
@@ -148,23 +147,22 @@ class UserController extends BaseController {
 
 			$userlog =  $this->userRepository->insertAnswer($this->adventCat , 
 																$this->pid , $this->settings['feUserUid'] ,
-																$question[0] , $point, $subpoint, $answer );
-
+																$question , $point, $subpoint, $answer );
 
 			if ( $userlog['TO-OLD'] > 0) {
-				$this->flashMessageContainer->add( "Ihre Antwort wurde NICHT gespeichert da eine Änderung max innerhalb von 24h möglich ist! Gültig bleibt die bereits abgegebene Antwort vom " . date( "d.m.Y h:i" , $userlog["TO-OLD" ]) , '' , t3lib_FlashMessage::ERROR);
+				$this->addFlashMessage( "Ihre Antwort wurde NICHT gespeichert da eine Änderung max innerhalb von 24h möglich ist! Gültig bleibt die bereits abgegebene Antwort vom " . date( "d.m.Y h:i" , $userlog["TO-OLD" ]) , '' , \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 			} else {
 				if ( $userlog) {
 
-					$this->flashMessageContainer->add($this->translate('addanswer.WasSent'));
+					$this->addFlashMessage($this->translate('addanswer.WasSent'));
 				} else {
-					$this->flashMessageContainer->add('addanswer.WasNotStored: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question[0]->getPid() , '' , t3lib_FlashMessage::ERROR);
+					$this->addFlashMessage('addanswer.WasNotStored: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question->getPid() , '' , \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 				}
 			}
 
 		} else {
 			if ( $answer > 0 ) {
-				$this->flashMessageContainer->add('addanswer.WasNotSent: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question[0]->getPid() , '' , t3lib_FlashMessage::ERROR);
+				$this->addFlashMessage('addanswer.WasNotSent: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question->getPid() , '' , \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 			}
 			
 		}

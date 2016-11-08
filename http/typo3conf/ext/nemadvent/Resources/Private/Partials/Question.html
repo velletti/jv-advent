@@ -2,22 +2,20 @@
 							<div id="Tx_Nemadvent_pi1">	
 								<div id="Tx_Nemadvent_question_top">
 								
-		  								
-									<div  class="nemadvent_quest left">
-										<f:if condition="{question.image}">
-			  							<f:then>
-			  								<div id="Tx_Nemadvent_question_image" class="right">
-												<a class="loupe" rel="shadowbox;" title="{question.title}" href="{question.image.filePath}{question.image.fileName}">
-													<f:image width="220" src="{question.image.filePath}{question.image.fileName}" alt="img" />
-													<img class="absrightbottom" src="fileadmin/templates_nemeu/img/icon_loupe.png">
-												</a>
-											</div>
-			  		        			</f:then>
-			  							<f:else>
-		  								</f:else>
-		  								</f:if>	
-										<h3>{settings.todayformated}: {question.title}</h3>
-										<f:format.html>{question.descLong}</f:format.html>
+		  							<div class="row well">
+										<div class="col-xs-12 col-sm-9">
+											<h3>{settings.todayformated}: {question.title}</h3>
+											<f:format.html>{question.descLong}</f:format.html>
+										</div>
+										<div class="col-xs-12 col-sm-3">
+											<f:if condition="{question.image}">
+												<f:then>
+													<a class="loupe" rel="shadowbox;" title="{question.title}" href="/fileadmin/{question.image.originalResource.originalFile.identifier}" >
+														<f:image width="220" src="{question.image.uid}" alt="{question.image.altText}" treatIdAsReference="1"/>
+													</a>
+												</f:then>
+											</f:if>
+										</div>
 									</div>
 
 									<div class="clearfix">&nbsp;</div>
@@ -38,7 +36,7 @@
 
 											</f:then>
 											<f:else>
-												<div class="hide tx_advent_WuerfelWeg">
+												<div class="tx_advent_WuerfelWeg">
 													<div id="tx_advent_Wuerfel" onclick="advent_move(tx_advent_Wuerfel)">
 														<p id="tx_advent_WuerfelZahl">?</p>
 

@@ -38,7 +38,7 @@
 
 											<f:security.ifAuthenticated>
 												<f:then>
-													<div class="col-xs-2 tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_active tx_Advent_questions_day{count.cycle}" onclick="openDoor(this, {count.cycle})">
+													<div class="col-xs-2 tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_active tx_Advent_questions_today tx_Advent_questions_day{count.cycle}" onclick="openDoor(this, {count.cycle})">
 														<p><f:format.date format="d">{question.date}</f:format.date></p>
 													</div>
 												</f:then>

@@ -3,6 +3,7 @@ function openDoor(field, DoorNr) {
 
 	jQuery(field).addClass("tx_Advent_questions_dayOpened") ;
 	jQuery(field).removeClass("tx_Advent_questions_closed") ;
+	jQuery(field).children().fadeOut('fast') ;
 	jQuery(field).css("cursor" ,"wait") ;
 	tx_quizSeite(field, DoorNr);
 }

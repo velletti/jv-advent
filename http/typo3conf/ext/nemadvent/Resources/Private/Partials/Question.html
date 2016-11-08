@@ -2,19 +2,21 @@
 							<div id="Tx_Nemadvent_pi1">	
 								<div id="Tx_Nemadvent_question_top">
 								
-		  							<div class="row well">
-										<div class="col-xs-12 col-sm-9">
-											<h3>{settings.todayformated}: {question.title}</h3>
-											<f:format.html>{question.descLong}</f:format.html>
-										</div>
-										<div class="col-xs-12 col-sm-3">
-											<f:if condition="{question.image}">
-												<f:then>
-													<a class="loupe" rel="shadowbox;" title="{question.title}" href="/fileadmin/{question.image.originalResource.originalFile.identifier}" >
-														<f:image width="220" src="{question.image.uid}" alt="{question.image.altText}" treatIdAsReference="1"/>
-													</a>
-												</f:then>
-											</f:if>
+		  							<div class="well  well-default">
+										<div class="row">
+											<div class="col-xs-12 col-sm-9">
+												<h3>{settings.todayformated}: {question.title}</h3>
+												<f:format.html>{question.descLong}</f:format.html>
+											</div>
+											<div class="col-xs-12 col-sm-3">
+												<f:if condition="{question.image}">
+													<f:then>
+														<a class="loupe" rel="shadowbox;" title="{question.title}" href="/fileadmin/{question.image.originalResource.originalFile.identifier}" >
+															<f:image width="220" src="{question.image.uid}" alt="{question.image.altText}" treatIdAsReference="1"/>
+														</a>
+													</f:then>
+												</f:if>
+											</div>
 										</div>
 									</div>
 
@@ -70,7 +72,7 @@
 										<f:if condition="{settings.showtip}">
 
 											<f:then>
-												<div class="nemadvent_tipp">
+												<div class="well  well-default">
 													<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated} </h3>
 													<div>
 														<f:format.html>{question.descShort}</f:format.html>
@@ -79,7 +81,7 @@
 											</f:then>
 											<f:else>
 												<f:if condition="{isnemintern}">
-													<div class="nemadvent_tipp">
+													<div class="well well-default">
 														<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated} (visible Nem Intern)</h3>
 														<div>
 															<f:format.html>{question.descShort}</f:format.html>

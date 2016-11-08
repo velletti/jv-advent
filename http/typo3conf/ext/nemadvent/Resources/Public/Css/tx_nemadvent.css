@@ -136,14 +136,7 @@ div#tx_advent_WuerfelMauer {
 	color: #fff;
 }
 
-.tx_Advent_questions_today
-{
-	font-size:90px;
-	color: white;
-	margin-top: 30px;
-	text-align: center;
-	cursor: pointer;
-}
+
 
 /* /NEU */
 .tx_Advent_questions_day {
@@ -154,7 +147,7 @@ div#tx_advent_WuerfelMauer {
 	text-align:center;
 	position:relative;
 	/*	background-image: url(../img/adventskalenderbild_vorher.jpg); */
-	overflow:visible;
+	overflow: hidden;
 	height: 140px;
 	padding: 0 ;
 
@@ -170,8 +163,18 @@ div#tx_advent_WuerfelMauer {
 .tx_Advent_questions_day P {
 	color: #444 ;
 	text-shadow: #CCC 2px 2px;
+	margin: 30px auto 0;
 
 }
+
+.tx_Advent_questions_today P
+{
+	font-size:80px;
+	color: #AA221a;
+	margin-top: 15px;
+}
+
+
 div#tx_Advent_questions_img {
 	background-image: url(../img/Sterne_Hintergrundbild980px_560px_72dpi.jpg);
 	background-color: black;
@@ -197,7 +200,7 @@ div#tx_Advent_questions_img {
 .tx_Advent_questions_inactive_background {
 	background-color: white;
 	opacity: 0.7;
-	height: inherit;
+	height: 140px;
 }
 
 

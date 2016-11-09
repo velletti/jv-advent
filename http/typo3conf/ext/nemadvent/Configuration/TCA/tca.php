@@ -243,6 +243,11 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 					),
 					'suggest' => array(
 						'type' => 'suggest',
+						'default' => array(
+							'searchCondition' => 'doktype=254',
+							'pidList' => '13',
+							'pidDepth' => 10
+						),
 					),
 				)
 			)

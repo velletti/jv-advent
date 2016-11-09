@@ -30,7 +30,6 @@
 											<f:format.html>{settings.advent.list.mustacceptagb}</f:format.html>
 										</span>
 									</div>	
-									<div class="clearfix">&nbsp;</div>
 									<div id="Tx_Nemadvent_answers" class="row" >
 										<f:if condition="{question.rangemax} > 0">
 											<f:then>
@@ -38,7 +37,7 @@
 
 											</f:then>
 											<f:else>
-												<div class="tx_advent_WuerfelWeg">
+												<div class="tx_advent_WuerfelWeg hide">
 													<div id="tx_advent_Wuerfel" onclick="advent_move(tx_advent_Wuerfel)">
 														<p id="tx_advent_WuerfelZahl">?</p>
 
@@ -59,11 +58,7 @@
 
 										</f:if>
 
-										<f:if condition="{isnemintern}">
-											<f:if condition="{settings.beforestartdate}">
-												<p><i>Visible for Nemetschek Internal: the correct is answer: {question.correct}</i></p>
-											</f:if>
-										</f:if>
+
 									</div>
 									
 									<div class="clearfix">&nbsp;</div>
@@ -86,6 +81,10 @@
 														<div>
 															<f:format.html>{question.descShort}</f:format.html>
 														</div>
+														<f:if condition="{settings.beforestartdate}">
+															<hr />
+															<p><i>Visible for Nemetschek Internal: the correct is answer: {question.correct}</i></p>
+														</f:if>
 													</div>
 												</f:if>
 											</f:else>

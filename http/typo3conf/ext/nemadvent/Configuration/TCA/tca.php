@@ -113,7 +113,7 @@ $TCA['tx_nemadvent_domain_model_advent'] = array(
 			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
 				'tx_nemadvent_domain_model_advent_image',
 				array(
-					'minitems' => 1,
+					'minitems' => 0,
 					'maxitems' => 1,
 					'foreign_types' => array(
 						// 2: FILETYPE_IMAGE

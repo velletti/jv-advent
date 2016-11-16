@@ -225,11 +225,13 @@ class UserController extends BaseController {
 			}
 
 			// j.v. TEMP Hack: gibt es einen wunschzettel auf PID 3929 ?
-			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(uid) als wishlist' , 'tx_powermail_mails',
-				"pid = $this->settings['wishlistPidResults'] AND fe_user = " . $GLOBALS['TSFE']->fe_user->user['uid']
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(uid) as wishlist' , 'tx_powermail_domain_model_mails',
+				"pid = $this->settings['wishlistPidResults'] AND feuser = " . $GLOBALS['TSFE']->fe_user->user['uid']
 				, '' , '' , 1
 			) ;
+
 			$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res ) ;
+
 			if( $row['wishlist'] > 0 OR count( $this->answers) < 5 ) {
 				$this->settings['wishlistPid'] = 0 ;
 			}

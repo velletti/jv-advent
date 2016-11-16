@@ -1,7 +1,7 @@
 
 <f:if condition="{settings.wishlistPid} > 0">
 	<div class="Tx_Nemadvent_pi1 well">
-		Bitte denken Sie daran, Ihren Wunschzettel abzugeben. Die Zusendung eines Gewinns erfolgt nur bei ausgef�lltem Wunschzettel.
+		Bitte denken Sie daran, Ihren Wunschzettel abzugeben. Die Zusendung eines Gewinns erfolgt nur bei ausgefülltem Wunschzettel.
 		<span class="submitWrapper right">
 			<f:link.page class="" noCacheHash="1" rel="shadowbox" pageUid="{settings.wishlistPid}" additionalParams="{type: 999}">
 				Zum Wunschzettel >>
@@ -19,16 +19,16 @@
 		<f:then>
 			<f:for each="{answerlist}" as="answer">
 				<div class="Tx_Nemadvent_pi1_answer row">
-					<div class="col-md-1 col-xs-2">
+					<div class="col-sm-2 col-xs-5">
 						{answer.date}
 					</div>
-					<div class="col-md-1 col-xs-1 text-center">
+					<div class="col-sm-1 col-xs-2 text-center">
 						{answer.myanswer}
 					</div>
-					<div class="col-md-7 hidden-xs">
+					<div class="col-sm-6 hidden-xs">
 						{answer.myanswerTEXT}
 					</div>
-					<div class="col-md-1 col-xs-2">
+					<div class="col-sm-1 col-xs-3">
 						<f:if condition="{settings.afterenddate}">
 							<f:then>
 
@@ -38,7 +38,7 @@
 							</f:else>
 						</f:if>
 					</div>
-					<div class="col-md-2 col-xs-2">
+					<div class="col-sm-2 col-xs-2">
 						<f:if condition="{settings.showtotal} > 0">
 							{answer.showpoint}
 						</f:if>

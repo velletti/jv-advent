@@ -227,16 +227,24 @@ div#tx_nemadvent_Regler_Zahl {
 		height: 100px;
 	}
 	div#tx_Advent_questions_img {
-		height: auto;
+		height: 400px;
 	}
 	.tx_Advent_questions_day P {
 		margin: 15px auto 0;
 		font-size: 35px;
 	}
 	.tx_Advent_questions_today P {
-		margin: 10px auto 0;
+		margin: 5px auto 0;
 		font-size: 50px;
 
 	}
 }
-
+@media screen and (max-width: 760px) {
+	.tx_Advent_questions_day {
+		height: 75px;
+	}
+	div#tx_Advent_questions_img {
+		height: 600px;
+		background-image: url(../img/Sterne_Hintergrundbild560_px_980px_72dpi.jpg);
+	}
+}

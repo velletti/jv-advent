@@ -8,10 +8,10 @@ plugin.tx_nemadvent {
 			 10 = typo3conf/ext/nemadvent/Resources/Public/Js/script.js
 		}
 		// WishList Form
-		wishlistPid = 3917
+		wishlistPid = 4223
 
 		// where are the answered Stored
-		wishlistPidResults = 3929
+		wishlistPidResults = 4192
 
 		advent {
 			list {

@@ -12,13 +12,13 @@
 					value="{({question.rangemax}-{question.rangemin})/2}" step="1">
 
 					<br>
-
+					<div class="col-xs-8">
 					<output id="tx_nemadvent_output" name="tx_nemadvent_amount" for="tx_nemadvent_rangeanswer">
 						<f:translate key="use_range">Zum beantworten, Schieberegler benutzen und Button anklicken</f:translate>! </output>
-					<br>
-					<span class="submitWrapper left width40">
-											<a style="cursor: pointer;" onclick="tx_advent_range();return false;"> >> </a>
-									</span>
+					</div>
+					<div class="col-xs-4 text-right">
+					<a class="btn btn-primary" style="cursor: pointer;" onclick="tx_advent_range();return false;"> >> </a>
+					</div>
 				</form>
 
 			</div>
@@ -36,7 +36,7 @@
 	</f:else>
 </f:if>	
 <div class="clearfix">&nbsp;</div>
-<f:link.action action="answer" class="hide" id="tx_nemadvent_rangeUrl" controller="user" pageUid="{mypid}" noCacheHash="1" arguments="{adventscat: adventscat, question: question.uid, answer:  adddate: adddate}">
+<f:link.action action="answer" class="hide" id="tx_nemadvent_rangeUrl" controller="User" pageUid="{mypid}" noCacheHash="1" arguments="{adventscat: adventscat, question: question.uid, answer:  adddate: adddate}">
 </f:link.action>
 										
 <script type="text/javascript">

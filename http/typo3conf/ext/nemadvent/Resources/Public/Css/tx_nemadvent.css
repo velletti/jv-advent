@@ -227,7 +227,16 @@ div#tx_nemadvent_Regler_Zahl {
 		height: 100px;
 	}
 	div#tx_Advent_questions_img {
-		height: 400px;
+		height: auto;
+	}
+	.tx_Advent_questions_day P {
+		margin: 15px auto 0;
+		font-size: 35px;
+	}
+	.tx_Advent_questions_today P {
+		margin: 10px auto 0;
+		font-size: 50px;
+
 	}
 }
 

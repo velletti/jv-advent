@@ -48,7 +48,10 @@
 }
 
 #Tx_Nemadvent_answers {
-	display: none;
+	 display: none;
+ }
+#Tx_Nemadvent_answers  .row {
+	margin-bottom: 15px;
 }
 .Tx_Nemadvent_pi1 .winnerall {
 	width:99px;

@@ -188,6 +188,7 @@ class UserController extends BaseController {
 					$answerlist[$i]['answerUID'] = $this->answers[$i]->getQuestionUid() ;	
 					
 					$answerlist[$i]['date'] = date ( "d.m.Y" , $this->answers[$i]->getQuestionDate() ) ;			
+					$answerlist[$i]['crdate'] = $this->answers[$i]->getCrdate()  ;
 					$answerlist[$i]['myanswer'] = $this->answers[$i]->getAnswerUid()  ;
 					$answerlist[$i]['adddate'] = date ( "j" , $this->answers[$i]->getQuestionDate() ) ;
 
@@ -235,6 +236,7 @@ class UserController extends BaseController {
 			if( $row['wishlist'] > 0 OR count( $this->answers) < 5 ) {
 				$this->settings['wishlistPid'] = 0 ;
 			}
+			$this->settings['nowMinus24h'] = mktime( (date("h") -24) , date("i") , 0 , date("m"), date("d") , date("Y")) ;
 
 			//overwrite Settings in view
 			$this->settings['count'] = count($this->answers) ;

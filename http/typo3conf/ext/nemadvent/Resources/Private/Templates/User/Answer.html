@@ -37,7 +37,16 @@
 
 							</f:then>
 							<f:else>
-								<f:link.page noCacheHash="1" class="btn btn-default" title="{f:translate(key:'ChangeAnswer' , default:'ChangeAnswer')}" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_nemadvent_pi1: {single: {adddate: '{answer.adddate}'}}}"> >> </f:link.page>
+								<f:if condition="{answer.crdate} > {settings.nowMinus24h}">
+									<f:then>
+										<f:link.page noCacheHash="1" class="btn btn-default" title="{f:translate(key:'ChangeAnswer' , default:'ChangeAnswer')}" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_nemadvent_pi1: {single: {adddate: '{answer.adddate}'}}}"> >> </f:link.page>
+									</f:then>
+									<f:else>
+										<span class="btn glyphicon glyphicon-info-sign" title="Ihre Antwort vom {answer.crdate -> f:format.date( format:'d.m. H:i')} kann nicht mehr ge&auml;ndert werden ">
+
+										</span>
+									</f:else>
+								</f:if>
 							</f:else>
 						</f:if>
 					</div>

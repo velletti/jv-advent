@@ -32,6 +32,11 @@ namespace Allplan\Nemadvent\Controller ;
  */
 class WinnerController extends BaseController {
 
+	/**
+	 * @var \Allplan\Nemadvent\Domain\Model\AdventCat
+	 * @inject
+	 */
+	protected $adventCat;
 
 	/**
 	 * Initializes the current action
@@ -165,6 +170,7 @@ class WinnerController extends BaseController {
             $mindate= mktime( 4 , 59 , 59 , date("m") , date("d")-1 , date("Y"))  ;
         }
 
+	//	unset($winnerdata) ;
 
 
         if ( $this->isnemintern ) {
@@ -176,7 +182,7 @@ class WinnerController extends BaseController {
 			
 			
 			$what = "a.feuser_uid,u.usergroup, "
-			 . "u.username, u.email, u.crdate ,u.tx_mmforum_avatar, u.tx_barafereguser_nem_gender, u.image, u.tx_barafereguser_nem_navision_contactid, u.country, u.tx_barafereguser_nem_country , "
+			 . "u.username, u.email, u.crdate , u.tx_barafereguser_nem_gender, u.image, u.tx_barafereguser_nem_navision_contactid, u.country, u.tx_barafereguser_nem_country , "
 			. "count( a.points ) AS countttotal, sum( a.points ) AS pointtotal, sum( a.subpoints ) AS subpointtotal";
 			
 			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;

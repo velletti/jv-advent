@@ -170,7 +170,7 @@ class WinnerController extends BaseController {
             $mindate= mktime( 4 , 59 , 59 , date("m") , date("d")-1 , date("Y"))  ;
         }
 
-	//	unset($winnerdata) ;
+		// unset($winnerdata) ;
 
 
         if ( $this->isnemintern ) {
@@ -190,7 +190,7 @@ class WinnerController extends BaseController {
 			
 			$where = "a.advent_uid = " . $this->adventCat->getUid() 
 			. "  AND a.deleted = 0 " . $notUserGroup . " AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid
-		    . " AND a.tstamp < " . $mindate
+		    . " AND a.tstamp < " . $mindate . " AND a.question_date < " . $mindate
 			. $onlyUserGroup
 			 ;
 
@@ -205,7 +205,7 @@ class WinnerController extends BaseController {
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
 		
 			$winnerdata = array() ;
-			$forumCount = 0 ;
+			$ForumCount = 0 ;
 			$newUser = 0 ;
             $export = "'username','email','points','subpoints','answers','usergroup','country','nemCountry,regDate,forumCount'\n" ;
 			for ( $i=0;$i< $count ;$i++) {

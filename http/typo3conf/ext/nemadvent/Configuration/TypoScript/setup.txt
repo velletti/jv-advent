@@ -41,7 +41,7 @@ plugin.tx_nemadvent {
 				sorting = date
 			}
 		}
-		maxDaysInFuture = 5
+		maxDaysInFuture = 15
 	}
 	persistence {
 		storagePid = {$plugin.tx_nemadvent.persistence.storagePid}

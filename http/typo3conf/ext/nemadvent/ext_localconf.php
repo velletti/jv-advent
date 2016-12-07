@@ -12,7 +12,7 @@ if(!defined('TYPO3_MODE')) Die ('Access denied.');
 		'Winner'		=>	'list,listall',
 	),
 	array (
-		'Advent'		=>	'list,single,listAnswers',
+		'Advent'		=>	'list,single,listAnswers,showCalendar',
 		'User'			=>	'answer',
 		'Adventcat'		=>	'list',
 		'Winner'		=>	'listall',

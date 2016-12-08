@@ -42,21 +42,29 @@
 													<p title="gewertete Antworten : {winner.countttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
 												</f:then>
 												<f:else>
-
-
 													<f:if condition="{settings.day} > 16">
 														<f:then>
 															<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="6c" width="4" class="desaturate" src="{winner.tx_mmforum_avatar}"/>
 														</f:then>
 														<f:else>
 
-															<f:if condition="{settings.day} > 22">
+															<f:if condition="{settings.day} > 18">
 																<f:then>
-																	<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="18c" width="14" class="desaturate"  src="{winner.tx_mmforum_avatar}"/>
+																	<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="9c" width="7" class="desaturate"  src="{winner.tx_mmforum_avatar}"/>
 																</f:then>
 																<f:else>
 
-																	<f:image title="Visible after the end of the game" alt="img"  height="18c" width="14" class="desaturate"  src="{winner.avatar}"/>
+																	<f:if condition="{settings.day} > 22">
+																		<f:then>
+																			<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="18c" width="14" class="desaturate"  src="{winner.tx_mmforum_avatar}"/>
+																		</f:then>
+																		<f:else>
+
+																			<f:image title="Visible after the end of the game" alt="img"  height="18c" width="14" class="desaturate"  src="{winner.avatar}"/>
+																		</f:else>
+																	</f:if>
+
+
 																</f:else>
 															</f:if>
 														</f:else>
@@ -110,7 +118,6 @@
 												<f:if condition="{settings.day} > 20">
 													<div class="text-right"><span style="float:left;">Hilfreiche Posts:</span>{winner.tx_mmforum_helpful_count}</div>
 												</f:if>
-
 
 
 												<f:if condition="{settings.day} > 14">

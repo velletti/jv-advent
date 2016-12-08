@@ -5,6 +5,16 @@
 
 			<f:then>
 				<div class="Tx_Nemadvent_pi1">
+					<style type="text/css">
+						img.desaturate {
+							-webkit-filter: grayscale(1);
+							-webkit-filter: grayscale(100%);
+							filter: gray;
+							filter: grayscale(100%);
+							width: 140px;
+							height:180px;
+						}
+					</style>
 					<div class="text-right">
 						<button class="btn"  data-toggle="collapse" data-target=".allInfo">
 							<i class="glyphicon glyphicon-info-sign" ></i>
@@ -36,17 +46,17 @@
 
 													<f:if condition="{settings.day} > 16">
 														<f:then>
-															<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="9c" width="7" style="width:140px; height:180px;" src="{winner.tx_mmforum_avatar}"/>
+															<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="9c" width="7" class="desaturate" src="{winner.tx_mmforum_avatar}"/>
 														</f:then>
 														<f:else>
 
 															<f:if condition="{settings.day} > 22">
 																<f:then>
-																	<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="18c" width="14" style="width:140px; height:180px;" src="{winner.tx_mmforum_avatar}"/>
+																	<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="18c" width="14" class="desaturate"  src="{winner.tx_mmforum_avatar}"/>
 																</f:then>
 																<f:else>
 
-																	<f:image title="Visible after the end of the game" alt="img"  height="18c" width="14" style="width:140px; height:180px;" src="{winner.avatar}"/>
+																	<f:image title="Visible after the end of the game" alt="img"  height="18c" width="14" class="desaturate"  src="{winner.avatar}"/>
 																</f:else>
 															</f:if>
 														</f:else>

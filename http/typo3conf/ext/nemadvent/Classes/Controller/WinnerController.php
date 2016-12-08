@@ -328,8 +328,8 @@ class WinnerController extends BaseController {
 					$CountSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resAKRs);
 
 					$winnerdata[$i]['AKRcount'] = $GLOBALS['TYPO3_DB']->sql_num_rows($resAKRs) - 1 ;
-					if( $winnerdata[$i]['AKRcount'] > 4 ) {
-						$winnerdata[$i]['AKRcount'] = "> 4" ;
+					if( $winnerdata[$i]['AKRcount'] > 5 ) {
+						$winnerdata[$i]['AKRcount'] = "> 5" ;
 					}
 					/*
                     if ( !$this->isnem ) {

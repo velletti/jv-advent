@@ -169,11 +169,18 @@ class WinnerController extends BaseController {
         } else {
             $mindate= mktime( 4 , 59 , 59 , date("m") , date("d")-1 , date("Y"))  ;
         }
+// during deployment ...
+		// unset($winnerdata);
 
-		// unset($winnerdata) ;
+		// load Typoscript from other extension
+		$nemSettings= \Allplan\AllplanTools\Utility\TyposcriptUtility::loadTypoScriptFromScratch(12 , "tx_nemconnections") ;
+
+		$this->settings['privateicons'] = $nemSettings["settings"]["setup"]['privateicons'] ;
+
+		$this->settings['Year'] = date( "Y" , $this->adventCat->getStartdate() )  ;
 
 
-        if ( $this->isnemintern ) {
+		if ( $this->isnemintern ) {
             if ( $this->request->hasArgument('export')) {
                 unset($winnerdata) ;
             }
@@ -181,8 +188,8 @@ class WinnerController extends BaseController {
 		if ( ! is_array( $winnerdata ) ) {
 			
 			
-			$what = "a.feuser_uid,u.usergroup, "
-			 . "u.username, u.email, u.crdate , u.tx_barafereguser_nem_gender, u.image, u.tx_barafereguser_nem_navision_contactid, u.country, u.tx_barafereguser_nem_country , "
+			$what = "a.feuser_uid,u.usergroup as usergroup, "
+			 . "u.username, u.email, u.crdate as crdate, u.tx_barafereguser_nem_gender, u.image, u.tx_mmforum_helpful_count  , u.tx_barafereguser_nem_navision_contactid, u.country as country, u.tx_barafereguser_nem_country , "
 			. "count( a.points ) AS countttotal, sum( a.points ) AS pointtotal, sum( a.subpoints ) AS subpointtotal";
 			
 			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
@@ -208,16 +215,19 @@ class WinnerController extends BaseController {
 			$ForumCount = 0 ;
 			$newUser = 0 ;
             $export = "'username','email','points','subpoints','answers','usergroup','country','nemCountry,regDate,forumCount'\n" ;
+
 			for ( $i=0;$i< $count ;$i++) {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
 					$winnerdata[$i] = $winnerdata_res ;
 					$winnerdata[$i]['subpointtotal'] = substr( "000" . round( $winnerdata[$i]['subpointtotal'] / 100, 0 ) , -3 , 3 )  ;
 					$winnerdata[$i]['isPowerUser'] = FALSE ;
+					$winnerdata[$i]['btnClass'] = "alert-info" ;
 
 						// is in Group 5 Poweruser ??
 						if ( in_array( "5" , explode( "," , $winnerdata[$i]['usergroup']))) {
 							$winnerdata[$i]['isPowerUser'] = TRUE ;
+							$winnerdata[$i]['btnClass'] = "alert-success" ;
 						}
 
 
@@ -246,16 +256,54 @@ class WinnerController extends BaseController {
 					}
 
 					$winnerdata[$i]['forumcount'] = 0 ;
-					if ( date("Y" , $winnerdata[$i]['crdate']) == 2014 ) {
+
+					if ( date("Y" , $winnerdata[$i]['crdate']) ==  $this->settings['Year']   ) {
 						$newUser++ ;
+						$winnerdata[$i]['btnClass'] = "alert-warning" ;
 					}
+					$winnerdata[$i]['cryear'] = date("Y" , $winnerdata[$i]['crdate']) ;
 					$winnerdata[$i]['crdate'] = date("m.d.Y" , $winnerdata[$i]['crdate']) ;
 
-					if( $this->request->hasArgument('export') ) {
-						$where = 'poster_id = "' . intval($winnerdata[$i]['feuser_uid']). '"'
-							. " AND post_time > " . ( time() - (60*60*24*365) ) ;
+					if( $winnerdata[$i]['country'] == "NULL" ) {
+						$winnerdata[$i]['country'] = FALSE ;
+						$winnerdata[$i]['flag'] = FALSE ;
+					}  else {
+						switch ($winnerdata[$i]['country']) {
+							case 'DE':
+								$winnerdata[$i]['flag'] = "<span class=\"icon-country icon-country-1\"></span>" ;
+								// j.v.:
+								break;
+							case 'AT':
+								$winnerdata[$i]['flag'] = "<span class=\"icon-country icon-country-7\"></span>" ;
+								// j.v.:
+								break;
+							case 'CH':
+								$winnerdata[$i]['flag'] = "<span class=\"icon-country icon-country-6\"></span>" ;
+								// j.v.:
+								break;
+							case 'CZ':
+								$winnerdata[$i]['flag'] = "<span class=\"icon-country icon-country-3\"></span>" ;
+								// j.v.:
+								break;
+							case 'IT':
+								$winnerdata[$i]['flag'] = "<span class=\"icon-country icon-country-2\"></span>" ;
+								// j.v.:
+								break;
+							case 'FR':
+								$winnerdata[$i]['flag'] = "<span class=\"icon-country icon-country-4\"></span>" ;
+								// j.v.:
+								break;
+
+						}
+					}
+
+					// Addtional Data for Export and New Ranking
+					// if( $this->request->hasArgument('export') ) {
+						$where = 'author = "' . intval($winnerdata[$i]['feuser_uid']). '"'
+							. " AND crdate > " . ( time() - (60*60*24*365) ) . " AND crdate < " . mktime( 0,0,0, 12,1,date("Y"));
+
 						$resPosts = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(uid) as count',
-							'tx_mmforum_post_count',
+							'tx_mmforum_domain_model_forum_post',
 							$where  );
 
 						if ($GLOBALS['TYPO3_DB']->sql_num_rows($resPosts) > 0) {
@@ -264,9 +312,25 @@ class WinnerController extends BaseController {
 							$winnerdata[$i]['forumcount'] = $ForumCountSingle['count'];
 							$ForumCount = $ForumCount + intval( $ForumCountSingle['count'] ) ;
 						}
+					// }
+
+					// wie Oft hat der user am AKR teilgenommen??
+					// SELECT  count( `advent_uid` ) as Count,  `feuser_uid` FROM `connect`.`tx_nemadvent_domain_model_user`
+					// where `feuser_uid` = 353
+					// GROUP BY  `advent_uid`
+					$select = "count( `advent_uid` ) as Count,  `feuser_uid` , advent_uid" ;
+					$where = 'feuser_uid = "' . intval($winnerdata[$i]['feuser_uid']). '"' ;
+					$resAKRs = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
+						'tx_nemadvent_domain_model_user',
+						$where  , 'advent_uid' );
+
+
+					$CountSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resAKRs);
+
+					$winnerdata[$i]['AKRcount'] = $GLOBALS['TYPO3_DB']->sql_num_rows($resAKRs) - 1 ;
+					if( $winnerdata[$i]['AKRcount'] > 4 ) {
+						$winnerdata[$i]['AKRcount'] = "> 4" ;
 					}
-
-
 					/*
                     if ( !$this->isnem ) {
                         if (  !$this->settings['afterenddate']  ) {
@@ -318,6 +382,12 @@ class WinnerController extends BaseController {
 		if ( $this->settings['afterenddate'] ) {
 			$this->settings['showtotal'] = 1 ;
 		}
+		$this->settings['day'] = min( date( "d") , 24 ) ;
+		if ( $this->isnemintern ) {
+			$this->settings['day'] = 24 ;
+		}
+		// $this->settings['day'] = 21 ;
+
 		$this->view->assign('settings', $this->settings);
 		$this->view->assign('winnerdata', $winnerdata);
         $this->view->assign('isnemintern',$this->isnemintern ) ;

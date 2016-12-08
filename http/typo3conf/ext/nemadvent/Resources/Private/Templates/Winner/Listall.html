@@ -1,99 +1,167 @@
-﻿<f:if condition="{winnerdata}">
+﻿{namespace nem=Allplan\NemConnections\ViewHelpers}
+<f:if condition="{settings.day} > 5">
 	<f:then>
-		<div class="Tx_Nemadvent_pi1">
-				<f:for each="{winnerdata}" as="winner">
-					<f:cycle values="{0:'col-md-2 col-xs-5', 1:'col-md-2 col-xs-5 col-xs-offset-2 col-md-offset-0'}" as="colClass">
-							<div class="{colClass}">
+		<f:if condition="{winnerdata}">
 
-							<f:if condition="{settings.showtotal} > 0">
-								<f:then>
-									<f:link.external uri="/user/{winner.username}"  defaultScheme="">
-										<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="180c" width="140" src="{winner.tx_mmforum_avatar}"/>
+			<f:then>
+				<div class="Tx_Nemadvent_pi1">
+					<div class="text-right">
+						<button class="btn"  data-toggle="collapse" data-target=".allInfo">
+							<i class="glyphicon glyphicon-info-sign" ></i>
+						</button>
+					</div>
+						<f:for each="{winnerdata}" as="winner">
+							<f:cycle values="{0:'col-md-2 col-xs-5', 1:'col-md-2 col-xs-5 col-xs-offset-2 col-md-offset-0'}" as="colClass">
+									<div class="{colClass} box-shadow">
 
-									</f:link.external>
-
-									<p title="Abgegebene Antworten : {winner.countttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
-								</f:then>
-								<f:else>
-									<f:if condition="{isnemintern} > 0">
+									<f:if condition="{settings.showtotal} > 0">
 										<f:then>
 											<f:link.external uri="/user/{winner.username}"  defaultScheme="">
 												<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="180c" width="140" src="{winner.tx_mmforum_avatar}"/>
+
 											</f:link.external>
+
 											<p title="Abgegebene Antworten : {winner.countttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
 										</f:then>
 										<f:else>
-											<f:image title="Visible after the end of the game" alt="img" height="180c" width="140" src="{winner.avatar}"/>
-											<p title="Abgegebene Antworten : {winner.countttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+											<f:if condition="{isnemintern} > 0">
+												<f:then>
+													<f:link.external uri="/user/{winner.username}"  defaultScheme="">
+														<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="180c" width="140" src="{winner.tx_mmforum_avatar}"/>
+													</f:link.external>
+													<p title="gewertete Antworten : {winner.countttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+												</f:then>
+												<f:else>
+
+
+													<f:if condition="{settings.day} > 16">
+														<f:then>
+															<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="9c" width="7" style="width:140px; height:180px;" src="{winner.tx_mmforum_avatar}"/>
+														</f:then>
+														<f:else>
+
+															<f:if condition="{settings.day} > 22">
+																<f:then>
+																	<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="18c" width="14" style="width:140px; height:180px;" src="{winner.tx_mmforum_avatar}"/>
+																</f:then>
+																<f:else>
+
+																	<f:image title="Visible after the end of the game" alt="img"  height="18c" width="14" style="width:140px; height:180px;" src="{winner.avatar}"/>
+																</f:else>
+															</f:if>
+														</f:else>
+													</f:if>
+
+													<p title="Abgegebene Antworten : {winner.countttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+												</f:else>
+											</f:if>
 										</f:else>
 									</f:if>
+
+
+
+									<f:if condition="{isnemintern} > 0">
+										<f:if condition="{winner.isPowerUser}">
+											<f:then>
+												<p> <br/></p>
+											</f:then>
+											<f:else>
+
+												<p><f:link.external title="Make him/her Poweruser" uri="/de/profil/firmennetzwerk.html?tx_nemconnections_pi1%5Bcontactno%5D={winner.tx_barafereguser_nem_navision_contactid}&tx_nemconnections_pi1%5Busergroup%5D=5&tx_nemconnections_pi1%5Baction%5D=addusertogroup&tx_nemconnections_pi1%5Bcontroller%5D=Connections" target="_blank" defaultScheme="">
+													{winner.tx_barafereguser_nem_navision_contactid}
+													</f:link.external><br /></p>
+
+											</f:else>
+										</f:if>
+									</f:if>
+
+										<div style="position: absolute; bottom:5px; right: 35px;">
+											<button class="btn btn-sm {winner.btnClass}"  data-toggle="collapse" data-target="#info-{winner.feuser_uid}">
+												<i class="glyphicon glyphicon-info-sign" ></i>
+											</button>
+											<div class="allInfo collapse well well-sm well-default col-xs-12" id="info-{winner.feuser_uid}">
+												<f:if condition="{settings.day} > 4">
+													<div class="text-right"><span style="float:left;">Gewertete Fragen: </span>{winner.countttotal}</div>
+												</f:if>
+												<f:if condition="{settings.day} > 6">
+													<div class="text-right"><span style="float:left;">Land: </span> &nbsp;{winner.country}</div>
+												</f:if>
+												<f:if condition="{settings.day} > 8">
+													<div class="text-right"><span style="float:left;">Registriert: </span>{winner.cryear}</div>
+												</f:if>
+												<f:if condition="{settings.day} > 10">
+													<div class="text-right"><span style="float:left;">AKR Teilnahmen:</span>{winner.AKRcount}</div>
+												</f:if>
+												<f:if condition="{settings.day} > 12">
+													<div class="text-right"><span style="float:left;">Postings {settings.Year}:</span>{winner.forumcount}</div>
+												</f:if>
+
+
+												<f:if condition="{settings.day} > 20">
+													<div class="text-right"><span style="float:left;">Hilfreiche Posts:</span>{winner.tx_mmforum_helpful_count}</div>
+												</f:if>
+
+
+
+												<f:if condition="{settings.day} > 14">
+														<nem:renderIconByString usergroups="{winner.usergroup}" settings="{settings}"></nem:renderIconByString>
+												</f:if>
+
+												<br>
+											</div>
+										</div>
+								</div>
+							</f:cycle>
+
+						</f:for>
+				</div>
+				<div class="left"><i class="small "><f:translate key="_votes_counted_until">Only votes Counted until: </f:translate> {mindate}</i> </div>
+				<f:if condition="{isnemintern} > 0">
+					<f:then>
+						<div class="right">
+							<f:if condition="{offset} == 0">
+								<f:then></f:then>
+								<f:else>
+									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:60}}">61 - 120 &gt;&gt;</f:link.page>
+								</f:else>
+							</f:if>
+							<f:if condition="{offset} == 60">
+								<f:then></f:then>
+								<f:else>
+									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:60}}">61 - 120 &gt;&gt;</f:link.page>
+								</f:else>
+							</f:if>
+							<f:if condition="{offset} == 120">
+								<f:then></f:then>
+								<f:else>
+									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:120}}">121 - 180&gt;&gt;</f:link.page>
+								</f:else>
+							</f:if>
+							<f:if condition="{offset} == 180">
+								<f:then></f:then>
+								<f:else>
+									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:180}}">181 - 240&gt;&gt;</f:link.page>
 								</f:else>
 							</f:if>
 
 
-
-							<f:if condition="{isnemintern} > 0">
-								<f:if condition="{winner.isPowerUser}">
-									<f:then>
-										<p> <br/></p>
-									</f:then>
-									<f:else>
-
-										<p><f:link.external title="Make him/her Poweruser" uri="/de/profil/firmennetzwerk.html?tx_nemconnections_pi1%5Bcontactno%5D={winner.tx_barafereguser_nem_navision_contactid}&tx_nemconnections_pi1%5Busergroup%5D=5&tx_nemconnections_pi1%5Baction%5D=addusertogroup&tx_nemconnections_pi1%5Bcontroller%5D=Connections" target="_blank" defaultScheme="">
-											{winner.tx_barafereguser_nem_navision_contactid}
-											</f:link.external><br /></p>
-
-									</f:else>
-								</f:if>
-							</f:if>
-
+							<f:link.page class="btn btn-danger" additionalParams="{tx_nemadvent_pi1:{export:1,count:60}}">CSV Export</f:link.page>
 						</div>
-					</f:cycle>
+					</f:then>
 
-				</f:for>		
-		</div>
-		<div class="left"><i class="small "><f:translate key="_votes_counted_until">Only votes Counted until: </f:translate> {mindate}</i></div>
-		<f:if condition="{isnemintern} > 0">
-			<f:then>
-				<div class="right">
-                    <f:if condition="{offset} == 0">
-                        <f:then></f:then>
-						<f:else>
-							<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:60}}">61 - 120 &gt;&gt;</f:link.page>
-						</f:else>
-					</f:if>
-					<f:if condition="{offset} == 60">
-						<f:then></f:then>
-						<f:else>
-							<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:60}}">61 - 120 &gt;&gt;</f:link.page>
-						</f:else>
-					</f:if>
-					<f:if condition="{offset} == 120">
-						<f:then></f:then>
-						<f:else>
-							<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:120}}">121 - 180&gt;&gt;</f:link.page>
-						</f:else>
-					</f:if>
-					<f:if condition="{offset} == 180">
-						<f:then></f:then>
-						<f:else>
-							<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:180}}">181 - 240&gt;&gt;</f:link.page>
-						</f:else>
-					</f:if>
+				</f:if>
 
 
-                    <f:link.page class="btn btn-danger" additionalParams="{tx_nemadvent_pi1:{export:1,count:60}}">CSV Export</f:link.page>
-				</div>
 			</f:then>
+			<f:else>
+				<p><f:translate key="no_questions">Some definitions are missing in Plugin or actually no winner found</f:translate></p>
 
+
+			</f:else>
 		</f:if>
-
-
-	</f:then>
-	<f:else>
-		<p><f:translate key="no_questions">Some definitions are missing in Plugin or actually no winner found</f:translate></p>
-
-
-	</f:else>
+		</f:then>
+		<f:else>
+				<div class="alert alert-info">Die erste Rangliste ist erst ab dem 6.Dezember sichtbar!</div>
+		</f:else>
 </f:if>
 

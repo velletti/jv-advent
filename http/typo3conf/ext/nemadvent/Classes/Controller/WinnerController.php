@@ -222,7 +222,7 @@ class WinnerController extends BaseController {
 					$winnerdata[$i] = $winnerdata_res ;
 					$winnerdata[$i]['subpointtotal'] = substr( "000" . round( $winnerdata[$i]['subpointtotal'] / 100, 0 ) , -3 , 3 )  ;
 					$winnerdata[$i]['isPowerUser'] = FALSE ;
-					$winnerdata[$i]['btnClass'] = "alert-info" ;
+					$winnerdata[$i]['btnClass'] = "" ;
 
 						// is in Group 5 Poweruser ??
 						if ( in_array( "5" , explode( "," , $winnerdata[$i]['usergroup']))) {
@@ -330,6 +330,10 @@ class WinnerController extends BaseController {
 					$winnerdata[$i]['AKRcount'] = $GLOBALS['TYPO3_DB']->sql_num_rows($resAKRs) - 1 ;
 					if( $winnerdata[$i]['AKRcount'] > 4 ) {
 						$winnerdata[$i]['AKRcount'] = "≥ 5" ;
+					}
+					if( $winnerdata[$i]['AKRcount'] == 0 && $winnerdata[$i]['btnClass'] == '' ) {
+						// Neue AKR teilnehmer in Blau wenn nciht vorher anders gesetzt (neuregistriert, Poweruser )
+						$winnerdata[$i]['btnClass'] = "alert-info";
 					}
 					/*
                     if ( !$this->isnem ) {

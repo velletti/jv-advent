@@ -20,9 +20,11 @@
 							<i class="glyphicon glyphicon-info-sign" ></i>
 						</button>
 					</div>
-						<f:for each="{winnerdata}" as="winner">
+						<f:for each="{winnerdata}" as="winner" iteration="iteration">
 							<f:cycle values="{0:'col-md-2 col-xs-5', 1:'col-md-2 col-xs-5 col-xs-offset-2 col-md-offset-0'}" as="colClass">
 									<div class="{colClass} box-shadow">
+
+
 
 									<f:if condition="{settings.showtotal} > 0">
 										<f:then>
@@ -48,13 +50,13 @@
 														</f:then>
 														<f:else>
 
-															<f:if condition="{settings.day} > 18">
+															<f:if condition="{settings.day} > 20">
 																<f:then>
 																	<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="9c" width="7" class="desaturate"  src="{winner.tx_mmforum_avatar}"/>
 																</f:then>
 																<f:else>
 
-																	<f:if condition="{settings.day} > 16">
+																	<f:if condition="{settings.day} > 18">
 																		<f:then>
 																			<f:image title="Unscharfe Vorschau auf die Gewinner Bilder " alt="img" height="6c" width="4" class="desaturate" src="{winner.tx_mmforum_avatar}"/>
 																		</f:then>
@@ -70,13 +72,43 @@
 														</f:else>
 													</f:if>
 
-													<p title="Abgegebene Antworten : {winner.countttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+													<p title="Abgegebene Antworten : {winner.countttotal}" class="col-xs-12">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
 												</f:else>
 											</f:if>
 										</f:else>
 									</f:if>
+										<div style="position: absolute; bottom:5px; right: 35px;">
 
+											<div class="allInfo collapse well well-sm well-default col-xs-12" id="info-{winner.feuser_uid}">
+												<div class="text-right"><span style="float:left;">Position: </span>{iteration.cycle}</div>
+												<f:if condition="{settings.day} > 6">
+													<div class="text-right"><span style="float:left;">Anz. Fragen: </span>{winner.countttotal}</div>
+												</f:if>
+												<f:if condition="{settings.day} > 8">
+													<div class="text-right"><span style="float:left;">Land: </span> &nbsp;{winner.country}</div>
+												</f:if>
+												<f:if condition="{settings.day} > 10">
+													<div class="text-right"><span style="float:left;">Registriert: </span>{winner.cryear}</div>
+												</f:if>
+												<f:if condition="{settings.day} > 12">
+													<div class="text-right"><span style="float:left;">AKR Teilnahmen:</span>{winner.AKRcount}</div>
+												</f:if>
+												<f:if condition="{settings.day} > 14">
+													<div class="text-right"><span style="float:left;">Postings {settings.Year}:</span>{winner.forumcount}</div>
+												</f:if>
 
+												<f:if condition="{settings.day} > 22">
+													<div class="text-right"><span style="float:left;">Hilfreiche Posts:</span>{winner.tx_mmforum_helpful_count}</div>
+												</f:if>
+
+												<f:if condition="{settings.day} > 16">
+													<nem:renderIconByString usergroups="{winner.usergroup}" settings="{settings}"></nem:renderIconByString>
+												</f:if>
+											</div>
+											<button class="btn btn-sm {winner.btnClass}"  data-toggle="collapse" data-target="#info-{winner.feuser_uid}">
+												<i class="glyphicon glyphicon-info-sign" ></i>
+											</button>
+										</div>
 
 									<f:if condition="{isnemintern} > 0">
 										<f:if condition="{winner.isPowerUser}">
@@ -93,40 +125,7 @@
 										</f:if>
 									</f:if>
 
-										<div style="position: absolute; bottom:5px; right: 35px;">
-											<button class="btn btn-sm {winner.btnClass}"  data-toggle="collapse" data-target="#info-{winner.feuser_uid}">
-												<i class="glyphicon glyphicon-info-sign" ></i>
-											</button>
-											<div class="allInfo collapse well well-sm well-default col-xs-12" id="info-{winner.feuser_uid}">
-												<f:if condition="{settings.day} > 4">
-													<div class="text-right"><span style="float:left;">Gewertete Fragen: </span>{winner.countttotal}</div>
-												</f:if>
-												<f:if condition="{settings.day} > 6">
-													<div class="text-right"><span style="float:left;">Land: </span> &nbsp;{winner.country}</div>
-												</f:if>
-												<f:if condition="{settings.day} > 8">
-													<div class="text-right"><span style="float:left;">Registriert: </span>{winner.cryear}</div>
-												</f:if>
-												<f:if condition="{settings.day} > 10">
-													<div class="text-right"><span style="float:left;">AKR Teilnahmen:</span>{winner.AKRcount}</div>
-												</f:if>
-												<f:if condition="{settings.day} > 12">
-													<div class="text-right"><span style="float:left;">Postings {settings.Year}:</span>{winner.forumcount}</div>
-												</f:if>
 
-
-												<f:if condition="{settings.day} > 20">
-													<div class="text-right"><span style="float:left;">Hilfreiche Posts:</span>{winner.tx_mmforum_helpful_count}</div>
-												</f:if>
-
-
-												<f:if condition="{settings.day} > 14">
-														<nem:renderIconByString usergroups="{winner.usergroup}" settings="{settings}"></nem:renderIconByString>
-												</f:if>
-
-												<br>
-											</div>
-										</div>
 								</div>
 							</f:cycle>
 

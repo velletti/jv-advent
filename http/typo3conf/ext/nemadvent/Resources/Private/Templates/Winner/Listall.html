@@ -6,16 +6,26 @@
 			<f:then>
 				<div class="Tx_Nemadvent_pi1">
 					<f:if condition="{settings.day} < 20">
-					<style type="text/css">
-						img.desaturate {
-							-webkit-filter: grayscale(1);
-							-webkit-filter: grayscale(100%);
-							filter: gray;
-							filter: grayscale(100%);
-							width: 140px;
-							height:180px;
-						}
-					</style>
+						<f:then>
+							<style type="text/css">
+								img.desaturate {
+									-webkit-filter: grayscale(1);
+									-webkit-filter: grayscale(100%);
+									filter: gray;
+									filter: grayscale(100%);
+									width: 140px;
+									height:180px;
+								}
+							</style>
+						</f:then>
+						<else>
+							<style type="text/css">
+								img.desaturate {
+									width: 140px;
+									height:180px;
+								}
+							</style>
+						</else>
 					</f:if>
 					<div>
 						<div class="left">

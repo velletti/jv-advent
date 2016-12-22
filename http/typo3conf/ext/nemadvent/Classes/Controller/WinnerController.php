@@ -131,7 +131,7 @@ class WinnerController extends BaseController {
 
 		// https://connect.allplan.com/de/home/advent-2013/rangliste.html?tx_nemadvent_pi1[offset]=0&tx_nemadvent_pi1[userGroup]=7
 		$doit = $this->settingsHelper() ;
-		$count = 100 ;
+		$count = 96 ;
 
 		$userGroup = "-7" ;
 		$onlyUserGroup = '' ;

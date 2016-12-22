@@ -182,6 +182,7 @@ class WinnerController extends BaseController {
 		$this->settings['privateicons'] = $nemSettings["settings"]["setup"]['privateicons'] ;
 
 		$this->settings['Year'] = date( "Y" , $this->adventCat->getStartdate() )  ;
+		$this->settings['NewsletterDate'] = $this->adventCat->getStartdate() - ( 60 * 60 * 24 * 3 )  ;
 
 
 		if ( $this->isnemintern ) {
@@ -189,6 +190,15 @@ class WinnerController extends BaseController {
                 unset($winnerdata) ;
             }
         }
+
+		$what = "a.feuser_uid ";
+		$table = 'tx_nemadvent_domain_model_user a ' ;
+		$where = "a.advent_uid = " . $this->adventCat->getUid() . "  AND a.deleted = 0 ";
+		$groupBy = 'a.feuser_uid';
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy);
+		$this->settings['totalUser'] = $GLOBALS['TYPO3_DB']->sql_num_rows($res ) ;
+
+
 		if ( ! is_array( $winnerdata ) ) {
 			
 			
@@ -220,6 +230,7 @@ class WinnerController extends BaseController {
 			$helpfullCount = 0 ;
 			$akrCount = array() ;
 			$newUser = 0 ;
+			$newUserDez = 0 ;
             $export = "'username','email','points','subpoints','answers','usergroup','country','nemCountry,regDate,forumCount'\n" ;
 
 			for ( $i=0;$i< $count ;$i++) {
@@ -267,6 +278,11 @@ class WinnerController extends BaseController {
 						$newUser++ ;
 						$winnerdata[$i]['btnClass'] = "alert-warning" ;
 					}
+					if (  $winnerdata[$i]['crdate'] > $this->settings['NewsletterDate'] ) {
+						$newUserDez++ ;
+						$winnerdata[$i]['btnClass'] = "alert-error" ;
+					}
+
 					$winnerdata[$i]['cryear'] = date("Y" , $winnerdata[$i]['crdate']) ;
 					$winnerdata[$i]['crdate'] = date("m.d.Y" , $winnerdata[$i]['crdate']) ;
 
@@ -394,6 +410,11 @@ class WinnerController extends BaseController {
 				}
 
 			}
+			$winnerdata[1]['settings']['ForumCount'] = $ForumCount ;
+			$winnerdata[1]['settings']['helpfullCount'] = $helpfullCount ;
+			$winnerdata[1]['settings']['newUser'] = $newUser ;
+			$winnerdata[1]['settings']['newUserDez'] = $newUserDez ;
+			$winnerdata[1]['settings']['akrCount'] = $akrCount ;
 
 			$toBeSaved = serialize($winnerdata);
 			$tempcontent = $this->put_content_to_Cache($identifier , $toBeSaved ) ;
@@ -408,6 +429,7 @@ class WinnerController extends BaseController {
 				$export = $export  . "\n\nForumposts Total Count: " . $ForumCount ;
 				$export = $export  . "\n\nHelpfull Forumposts Total Count: " . $helpfullCount ;
 				$export = $export  . "\n\nNew usersCount: " . $newUser ;
+				$export = $export  . "\n\nNew usersCount Dez: " . $newUserDez ;
 				$export = $export  . "\n\nAKR Teilnahmen: " . var_export( $akrCount , true ) ;
 
 				$export = pack("CCC", 0xef, 0xbb, 0xbf) .  $export   ;
@@ -438,11 +460,20 @@ class WinnerController extends BaseController {
 			$this->settings['day'] = 24 ;
 		}
 		// $this->settings['day'] = 21 ;
+		if( is_array( $winnerdata[1]['settings'] )) {
+			$this->settings['helpfullCount'] 	= $winnerdata[1]['settings']['helpfullCount'] ;
+			$this->settings['forumCount'] 		= $winnerdata[1]['settings']['forumCount'] ;
+			$this->settings['akrCount'] 		= $winnerdata[1]['settings']['akrCount'] ;
+			$this->settings['newUser'] 			= $winnerdata[1]['settings']['newUser'] ;
+			$this->settings['newUserDez'] 		= $winnerdata[1]['settings']['newUserDez'];
+		} else {
+			$this->settings['helpfullCount'] = $helpfullCount ;
+			$this->settings['forumCount'] 	= $ForumCount ;
+			$this->settings['akrCount'] 	= $akrCount ;
+			$this->settings['newUser'] 		= $newUser ;
+			$this->settings['newUserDez'] 	= $newUserDez ;
+		}
 
-		$this->settings['helpfullCount'] = $helpfullCount ;
-		$this->settings['forumCount'] = $ForumCount ;
-		$this->settings['akrCount'] = $akrCount ;
-		$this->settings['newUser'] = $newUser ;
 
 		$this->view->assign('settings', $this->settings);
 		$this->view->assign('winnerdata', $winnerdata);

@@ -79,7 +79,7 @@
 									</f:if>
 										<div style="position: absolute; bottom:5px; right: 35px;">
 
-											<div class="allInfo collapse well well-sm well-default col-xs-12" id="info-{winner.feuser_uid}">
+											<div class="small allInfo collapse well well-sm well-default col-xs-12" id="info-{winner.feuser_uid}">
 												<div class="text-right"><span style="float:left;">Position: </span>{iteration.cycle}</div>
 												<f:if condition="{settings.day} > 6">
 													<div class="text-right"><span style="float:left;">Anz. Fragen: </span>{winner.countttotal}</div>
@@ -93,9 +93,32 @@
 												<f:if condition="{settings.day} > 12">
 													<div class="text-right"><span style="float:left;">AKR Teilnahmen:</span>{winner.AKRcount}</div>
 												</f:if>
+
+												<f:if condition="{settings.day} > 16">
+													<div class="text-right"><span style="float:left;"><f:format.date format="Y">now</f:format.date>:</span>
+														<f:if condition="{isnemintern} > 0">
+															<f:then>
+																{winner.AKRfirst}<br>- {winner.AKRlast}
+															</f:then>
+															<f:else>
+																<f:if condition="{settings.showtotal} > 0">
+																	<f:then>
+																		{winner.AKRfirst} <br>- {winner.AKRlast}
+																	</f:then>
+																	<f:else>
+																		{winner.AKRfirstUser}-{winner.AKRlastUser}<f:format.date format="m.">now</f:format.date>
+																	</f:else>
+																</f:if>
+															</f:else>
+														</f:if>
+													</div>
+												</f:if>
+
 												<f:if condition="{settings.day} > 14">
 													<div class="text-right"><span style="float:left;">Postings {settings.Year}:</span>{winner.forumcount}</div>
 												</f:if>
+
+
 
 												<f:if condition="{settings.day} > 22">
 													<div class="text-right"><span style="float:left;">Hilfreiche Posts:</span>{winner.tx_mmforum_helpful_count}</div>
@@ -131,41 +154,79 @@
 
 						</f:for>
 				</div>
-				<div class="left"><i class="small "><f:translate key="_votes_counted_until">Only votes Counted until: </f:translate> {mindate}</i> </div>
+				<div class="left">
+					<button type="button"  class="btn btn-info btn-sm" data-target="#aventStatistik" data-toggle="modal"><i class="glyphicon glyphicon-info-sign"> </i></button> <i class="small "><f:translate key="_votes_counted_until">Only votes Counted until: </f:translate> {mindate}</i> </div>
+
 				<f:if condition="{isnemintern} > 0">
 					<f:then>
-						<div class="right">
+												<div class="right">
+
+
 							<f:if condition="{offset} == 0">
 								<f:then></f:then>
 								<f:else>
-									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:60}}">61 - 120 &gt;&gt;</f:link.page>
+									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:100}}">1 - 100 &gt;&gt;</f:link.page>
 								</f:else>
 							</f:if>
-							<f:if condition="{offset} == 60">
+							<f:if condition="{offset} == 100">
 								<f:then></f:then>
 								<f:else>
-									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:60}}">61 - 120 &gt;&gt;</f:link.page>
+									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:100}}">101 - 200 &gt;&gt;</f:link.page>
 								</f:else>
 							</f:if>
-							<f:if condition="{offset} == 120">
+							<f:if condition="{offset} == 200">
 								<f:then></f:then>
 								<f:else>
-									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:120}}">121 - 180&gt;&gt;</f:link.page>
+									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:200}}">201 - 300 &gt;&gt;</f:link.page>
 								</f:else>
 							</f:if>
-							<f:if condition="{offset} == 180">
+							<f:if condition="{offset} == 300">
 								<f:then></f:then>
 								<f:else>
-									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:180}}">181 - 240&gt;&gt;</f:link.page>
+									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:300}}">301 - 400&gt;&gt;</f:link.page>
+								</f:else>
+							</f:if>
+							<f:if condition="{offset} == 400">
+								<f:then></f:then>
+								<f:else>
+									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:400}}">401 - 500&gt;&gt;</f:link.page>
 								</f:else>
 							</f:if>
 
 
-							<f:link.page class="btn btn-danger" additionalParams="{tx_nemadvent_pi1:{export:1,count:60}}">CSV Export</f:link.page>
+							<f:link.page class="btn btn-danger" additionalParams="{tx_nemadvent_pi1:{export:1,count:1000}}">CSV Export</f:link.page>
 						</div>
 					</f:then>
 
 				</f:if>
+				<div id="aventStatistik" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Statistik</h4>
+							</div>
+							<div class="modal-body">
+								<p>
+									Diese angezeigten User haben in den letzten 12 Monaten gemeinsam {settings.forumCount} Forumsbeiträge geschrieben, davon wurden
+									{settings.helpfullCount} als hilfreich bewertet.<br>
+									<br>
+									<b>Teilnahmen an früheren Adventskalenderrätseln:</b><br>
+									<f:if condition="{settings.akrCount}">
+										<br>
+										<f:for each="{settings.akrCount}" as="akr" iteration="akrIteration">
+											{akrIteration.index} Teilnahmen: {akr} <br>
+										</f:for>
+									</f:if>
+									<br>{settings.newUser} User davon haben sich erst dieses Jahr in Connect registriert.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
 
 
 			</f:then>

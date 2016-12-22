@@ -59,6 +59,16 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	protected $adventCat;
 
+	/**
+	 * @var boolean $isnem
+	 */
+	public $isnem ;
+
+	/**
+	 * @var boolean $isnem
+	 */
+	public $isnemintern ;
+
 	/*
 	 * @var \Allplan\Nemadvent\Domain\Repository\UserRepository
 	 * @inject

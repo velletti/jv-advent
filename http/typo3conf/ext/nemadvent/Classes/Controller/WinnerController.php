@@ -131,24 +131,28 @@ class WinnerController extends BaseController {
 
 		// https://connect.allplan.com/de/home/advent-2013/rangliste.html?tx_nemadvent_pi1[offset]=0&tx_nemadvent_pi1[userGroup]=7
 		$doit = $this->settingsHelper() ;
-		$count = 60 ;
+		$count = 100 ;
 
+		$userGroup = "-7" ;
+		$onlyUserGroup = '' ;
+		$notUserGroup = 'AND a.usergroup <> 7 ' ;
+
+		$isNem = '' ;
 		if ( $this->isnem ) {
+			$isNem = "-nem-" ;
 	    	if ( $this->request->hasArgument('offset')) {
 	    		$offset = intval($this->request->getArgument('offset')) ;
 	    	}
 			if ( $this->request->hasArgument('export')) {
-				$count = 60 ;
+				$count = 1000 ;
 				if ( $this->request->hasArgument('count')) {
 					$count = $this->request->getArgument('count') ;
 				}
 
 			}
+			$notUserGroup = '' ;
 		}
 
-		$userGroup = "-7" ;
-		$onlyUserGroup = '' ;
-		$notUserGroup = 'AND a.usergroup <> 7 ' ;
 
 		if ( $this->request->hasArgument('userGroup')) {
 			$userGroup = intval($this->request->getArgument('userGroup')) ;
@@ -160,7 +164,7 @@ class WinnerController extends BaseController {
 		}
 
 		$offset = intval( $offset) ;
-		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup . "-L-" . $GLOBALS['TSFE']->sys_language_uid  . "-". $this->adventCat->getUid() . "-c" . $count ;
+		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup  . $isNem . "-L-" . $GLOBALS['TSFE']->sys_language_uid  . "-". $this->adventCat->getUid() . "-c" . $count ;
 
 		$tempcontent = $this->get_content_from_Cache( $identifier ) ;
 		$winnerdata = unserialize($tempcontent);
@@ -213,6 +217,8 @@ class WinnerController extends BaseController {
 		
 			$winnerdata = array() ;
 			$ForumCount = 0 ;
+			$helpfullCount = 0 ;
+			$akrCount = array() ;
 			$newUser = 0 ;
             $export = "'username','email','points','subpoints','answers','usergroup','country','nemCountry,regDate,forumCount'\n" ;
 
@@ -220,15 +226,15 @@ class WinnerController extends BaseController {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
 					$winnerdata[$i] = $winnerdata_res ;
-					$winnerdata[$i]['subpointtotal'] = substr( "000" . round( $winnerdata[$i]['subpointtotal'] / 100, 0 ) , -3 , 3 )  ;
+					$winnerdata[$i]['subpointtotal'] = substr( "0000" . round( $winnerdata[$i]['subpointtotal'] / 1000, 0 ) , -4 , 4 )  ;
 					$winnerdata[$i]['isPowerUser'] = FALSE ;
 					$winnerdata[$i]['btnClass'] = "" ;
 
-						// is in Group 5 Poweruser ??
-						if ( in_array( "5" , explode( "," , $winnerdata[$i]['usergroup']))) {
-							$winnerdata[$i]['isPowerUser'] = TRUE ;
-							$winnerdata[$i]['btnClass'] = "alert-success" ;
-						}
+					// is in Group 5 Poweruser ??
+					if ( in_array( "5" , explode( "," , $winnerdata[$i]['usergroup']))) {
+						$winnerdata[$i]['isPowerUser'] = TRUE ;
+						$winnerdata[$i]['btnClass'] = "alert-success" ;
+					}
 
 
 
@@ -300,7 +306,7 @@ class WinnerController extends BaseController {
 					// Addtional Data for Export and New Ranking
 					// if( $this->request->hasArgument('export') ) {
 						$where = 'author = "' . intval($winnerdata[$i]['feuser_uid']). '"'
-							. " AND crdate > " . ( time() - (60*60*24*365) ) . " AND crdate < " . mktime( 0,0,0, 12,1,date("Y"));
+							. " AND crdate > " . ( time() - (60*60*24*365) ) . " AND crdate < " . mktime( 0,0,0, date("m"),date("d")-1,date("Y"));
 
 						$resPosts = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(uid) as count',
 							'tx_mmforum_domain_model_forum_post',
@@ -312,6 +318,7 @@ class WinnerController extends BaseController {
 							$winnerdata[$i]['forumcount'] = $ForumCountSingle['count'];
 							$ForumCount = $ForumCount + intval( $ForumCountSingle['count'] ) ;
 						}
+						$helpfullCount = $helpfullCount + intval( $winnerdata[$i]['tx_mmforum_helpful_count'] ) ;
 					// }
 
 					// wie Oft hat der user am AKR teilgenommen??
@@ -335,22 +342,55 @@ class WinnerController extends BaseController {
 						// Neue AKR teilnehmer in Blau wenn nciht vorher anders gesetzt (neuregistriert, Poweruser )
 						$winnerdata[$i]['btnClass'] = "alert-info";
 					}
-					/*
-                    if ( !$this->isnem ) {
-                        if (  !$this->settings['afterenddate']  ) {
-                            $winnerdata[$i]['tx_mmforum_avatar'] = $winnerdata[$i]['avatar'] ;
-                        }
-                    }
-					*/
+					$tempKey = $winnerdata[$i]['AKRcount'] ;
+					$akrCount[ $tempKey] = $akrCount[ $tempKey] + 1 ;
+
+
+
+					// wann hat der user an DIESEM AKR Zuerst / zuletzt teilgenommen??
+					$select = "crdate , uid" ;
+					$where = 'feuser_uid = "' . intval($winnerdata[$i]['feuser_uid']). '" AND advent_uid = ' . $this->adventCat->getUid()  ;
+			//				$GLOBALS['TYPO3_DB']->debugOutput = 2;
+			//				$GLOBALS['TYPO3_DB']->explainOutput = true;
+			//				$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = true;
+
+					$resAKR = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
+						'tx_nemadvent_domain_model_user',
+						$where  , "" , "crdate ASC" , "0,1" );
+					// echo "<br>Select " . $select . " FROM tx_nemadvent_domain_model_user WHERE " . $where . " ORDER BY crdate ASC LIMIT 0,1  ; # Error " . $GLOBALS['TYPO3_DB']->sql_error() ;
+					$getSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resAKR);
+						$winnerdata[$i]['AKRfirst'] = date("d.m H:i" , $getSingle['crdate']) ; // . " - " . $getSingle['uid'];
+						$winnerdata[$i]['AKRfirstUser'] = date("d." , $getSingle['crdate']) ;
+
+
+					$resAKR = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
+						'tx_nemadvent_domain_model_user',
+						$where  , "" , "crdate DESC" , "0,1");
+
+					$getSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resAKR);
+					$winnerdata[$i]['AKRlast'] = date("d.m H:i" , $getSingle['crdate']) ; // . " - " . $getSingle['uid'] ;
+					$winnerdata[$i]['AKRlastUser'] = date("d." , $getSingle['crdate']) ;
+
+						/*
+						if ( !$this->isnem ) {
+							if (  !$this->settings['afterenddate']  ) {
+								$winnerdata[$i]['tx_mmforum_avatar'] = $winnerdata[$i]['avatar'] ;
+							}
+						}
+						*/
                     //$export = "'username','email','points','answers','usergroup'\n" ;
-                    $export .= "'" . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['email'] . "',"
-                                   . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['subpointtotal']."," .$winnerdata[$i]['countttotal'] . ",'"
-								   . $winnerdata[$i]['tx_barafereguser_nem_country']."','" . $winnerdata[$i]['country']."','"
+                    $export .= "'"  . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['email'] . "',"
+                                    . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['subpointtotal']."," .$winnerdata[$i]['countttotal']
+									. ",'" . $winnerdata[$i]['tx_barafereguser_nem_country']."','" . $winnerdata[$i]['country']."','"
+                                    . $winnerdata[$i]['usergroup'] . "', "
+                                    . " '" . date("d.M.Y" , $winnerdata[$i]['crdate'] ) . "', "
+									. $winnerdata[$i]['forumcount']
+						            .   ", " .  $winnerdata[$i]['tx_mmforum_helpful_count']
+						            .   ", " .  $winnerdata[$i]['AKRcount']
+						            .   ", '" .  $winnerdata[$i]['AKRfirst'] . "'"
+						            .   ", '" .  $winnerdata[$i]['AKRlast'] . "'"
 
-
-                                   . $winnerdata[$i]['usergroup'] . "', "
-                                   . "' " . $winnerdata[$i]['crdate'] . "', "
-									. $winnerdata[$i]['forumcount'] . "\n"  ;
+									. "\n"  ;
 				}
 
 			}
@@ -366,18 +406,25 @@ class WinnerController extends BaseController {
             if ( $this->request->hasArgument('export')) {
 
 				$export = $export  . "\n\nForumposts Total Count: " . $ForumCount ;
+				$export = $export  . "\n\nHelpfull Forumposts Total Count: " . $helpfullCount ;
 				$export = $export  . "\n\nNew usersCount: " . $newUser ;
+				$export = $export  . "\n\nAKR Teilnahmen: " . var_export( $akrCount , true ) ;
+
+				$export = pack("CCC", 0xef, 0xbb, 0xbf) .  $export   ;
+
 
                 header("Content-Length: ".strlen($export) );
                 header("Content-Disposition: attachment; filename=\"DL_AKR_Rangliste_"  . date("d.m.Y") . ".csv\"");
                 header("Content-Transfer-Encoding: binary");
 
-                header("Content-Type: application/force-download");
+				header("content-type: application/csv-comma-delimited-table; Charset=utf-8");
+
                 header('Pragma: private');
                 header('Expires: 0'); // set expiration time
                 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 
-                echo $export ;
+
+				echo $export ;
 
                 die() ;
 
@@ -391,6 +438,11 @@ class WinnerController extends BaseController {
 			$this->settings['day'] = 24 ;
 		}
 		// $this->settings['day'] = 21 ;
+
+		$this->settings['helpfullCount'] = $helpfullCount ;
+		$this->settings['forumCount'] = $ForumCount ;
+		$this->settings['akrCount'] = $akrCount ;
+		$this->settings['newUser'] = $newUser ;
 
 		$this->view->assign('settings', $this->settings);
 		$this->view->assign('winnerdata', $winnerdata);

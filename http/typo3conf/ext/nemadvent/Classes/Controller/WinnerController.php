@@ -150,6 +150,9 @@ class WinnerController extends BaseController {
 				}
 
 			}
+			if ( $this->request->hasArgument('count')) {
+				$count = $this->request->getArgument('count') ;
+			}
 			$notUserGroup = '' ;
 		}
 

@@ -5,6 +5,7 @@
 
 			<f:then>
 				<div class="Tx_Nemadvent_pi1">
+					<f:if condition="{settings.day} < 20">
 					<style type="text/css">
 						img.desaturate {
 							-webkit-filter: grayscale(1);
@@ -15,6 +16,7 @@
 							height:180px;
 						}
 					</style>
+					</f:if>
 					<div>
 						<div class="left">
 							<button type="button"  class="btn btn-info btn-sm" data-target="#aventStatistik" data-toggle="modal"><i class="glyphicon glyphicon-info-sign"> </i></button> <i class="small "><span class="hidden-xs"><f:translate key="_votes_counted_until">Es wurden nur Antworten gewertet bis zum: </f:translate></span> {mindate}</i>
@@ -214,7 +216,7 @@
 							</div>
 							<div class="modal-body">
 								<p>
-									Diese angezeigten User haben in den letzten 12 Monaten gemeinsam <b>{settings.forumCount} Forumsbeiträge </b>geschrieben, davon wurden
+									Diese angezeigten User haben in den letzten 12 Monaten gemeinsam <b>{settings.ForumCount} Forumsbeiträge </b>geschrieben, davon wurden
 									<b>{settings.helpfullCount} als hilfreich</b> bewertet.<br>
 									<br>
 									<b>Teilnahmen an früheren Adventskalenderrätseln:</b>

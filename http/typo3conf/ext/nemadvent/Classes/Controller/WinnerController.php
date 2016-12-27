@@ -189,7 +189,7 @@ class WinnerController extends BaseController {
 
 
 		if ( $this->isnemintern ) {
-            if ( $this->request->hasArgument('export')) {
+            if ( $this->request->hasArgument('export') || $this->request->hasArgument('count')) {
                 unset($winnerdata) ;
             }
         }
@@ -240,7 +240,7 @@ class WinnerController extends BaseController {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
 					$winnerdata[$i] = $winnerdata_res ;
-					$winnerdata[$i]['subpointtotal'] = substr( "0000" . round( $winnerdata[$i]['subpointtotal'] / 1000, 0 ) , -4 , 4 )  ;
+					$winnerdata[$i]['subpointtotal'] = substr( "000" . round( $winnerdata[$i]['subpointtotal'] / 100, 0 ) , -3 , 3 )  ;
 					$winnerdata[$i]['isPowerUser'] = FALSE ;
 					$winnerdata[$i]['btnClass'] = "" ;
 

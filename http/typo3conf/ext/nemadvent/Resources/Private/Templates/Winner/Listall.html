@@ -225,8 +225,9 @@
 							</div>
 							<div class="modal-body">
 								<p>
-									Diese angezeigten User haben in den letzten 12 Monaten gemeinsam <b>{settings.ForumCount} Forumsbeiträge </b>geschrieben, davon wurden
+									Diese angezeigten User haben in den letzten 12 Monaten gemeinsam <b>{settings.forumCount} Forumsbeiträge </b>geschrieben, davon wurden
 									<b>{settings.helpfullCount} als hilfreich</b> bewertet.<br>
+									<br>
 									<br>
 									<b>Teilnahmen an früheren Adventskalenderrätseln:</b>
 									<f:if condition="{settings.akrCount}">
@@ -238,7 +239,9 @@
 									<br>
 									<b>Neu-Registrierungen in Connect:</b><br>
 									<br>{settings.newUser} User davon haben sich erst in {settings.Year} in Connect registriert<f:if condition="{settings.newUserDez}">, sowie {settings.newUserDez} erst mit Start des Adventskalenderrätsels</f:if>.
-									(Dazu im Vergleich Teilnehmer insgesamt: {settings.totalUser}).
+									<br>
+                                    Dazu im Vergleich Teilnehmer insgesamt: {settings.totalUser} User
+                                    <f:if condition="{settings.userWith24Answers}">, davon haben {settings.userWith24Answers} alle 24 Antworten abgegeben</f:if>.
 								</p>
 							</div>
 						</div>

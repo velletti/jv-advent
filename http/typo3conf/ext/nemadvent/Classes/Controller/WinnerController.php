@@ -230,6 +230,7 @@ class WinnerController extends BaseController {
 		
 			$winnerdata = array() ;
 			$ForumCount = 0 ;
+			$userWith24Answers = 0 ;
 			$helpfullCount = 0 ;
 			$akrCount = array() ;
 			$newUser = 0 ;
@@ -241,6 +242,10 @@ class WinnerController extends BaseController {
 				if ( $winnerdata_res ) {
 					$winnerdata[$i] = $winnerdata_res ;
 					$winnerdata[$i]['subpointtotal'] = substr( "000" . round( $winnerdata[$i]['subpointtotal'] / 100, 0 ) , -3 , 3 )  ;
+					if( $winnerdata[$i]['counttotal'] == 24 ) {
+                        $userWith24Answers++ ;
+                    }
+
 					$winnerdata[$i]['isPowerUser'] = FALSE ;
 					$winnerdata[$i]['btnClass'] = "" ;
 
@@ -414,6 +419,7 @@ class WinnerController extends BaseController {
 
 			}
 			$winnerdata[1]['settings']['ForumCount'] = $ForumCount ;
+			$winnerdata[1]['settings']['userWith24Answers'] = $userWith24Answers ;
 			$winnerdata[1]['settings']['helpfullCount'] = $helpfullCount ;
 			$winnerdata[1]['settings']['newUser'] = $newUser ;
 			$winnerdata[1]['settings']['newUserDez'] = $newUserDez ;
@@ -431,6 +437,7 @@ class WinnerController extends BaseController {
 
 				$export = $export  . "\n\nForumposts Total Count: " . $ForumCount ;
 				$export = $export  . "\n\nHelpfull Forumposts Total Count: " . $helpfullCount ;
+				$export = $export  . "\n\nUser with 24 Answers: " . $userWith24Answers ;
 				$export = $export  . "\n\nNew usersCount: " . $newUser ;
 				$export = $export  . "\n\nNew usersCount Dez: " . $newUserDez ;
 				$export = $export  . "\n\nAKR Teilnahmen: " . var_export( $akrCount , true ) ;
@@ -465,12 +472,14 @@ class WinnerController extends BaseController {
 		// $this->settings['day'] = 21 ;
 		if( is_array( $winnerdata[1]['settings'] )) {
 			$this->settings['helpfullCount'] 	= $winnerdata[1]['settings']['helpfullCount'] ;
+			$this->settings['userWith24Answers'] 	= $winnerdata[1]['settings']['userWith24Answers'] ;
 			$this->settings['forumCount'] 		= $winnerdata[1]['settings']['forumCount'] ;
 			$this->settings['akrCount'] 		= $winnerdata[1]['settings']['akrCount'] ;
 			$this->settings['newUser'] 			= $winnerdata[1]['settings']['newUser'] ;
 			$this->settings['newUserDez'] 		= $winnerdata[1]['settings']['newUserDez'];
 		} else {
 			$this->settings['helpfullCount'] = $helpfullCount ;
+			$this->settings['userWith24Answers'] = $userWith24Answers ;
 			$this->settings['forumCount'] 	= $ForumCount ;
 			$this->settings['akrCount'] 	= $akrCount ;
 			$this->settings['newUser'] 		= $newUser ;

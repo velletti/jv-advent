@@ -207,7 +207,7 @@ class WinnerController extends BaseController {
 			
 			$what = "a.feuser_uid,u.usergroup as usergroup, "
 			 . "u.username, u.email, u.crdate as crdate, u.tx_barafereguser_nem_gender, u.image, u.tx_mmforum_helpful_count  , u.tx_barafereguser_nem_navision_contactid, u.country as country, u.tx_barafereguser_nem_country , "
-			. "count( a.points ) AS countttotal, sum( a.points ) AS pointtotal, sum( a.subpoints ) AS subpointtotal";
+			. "count( a.points ) AS counttotal, sum( a.points ) AS pointtotal, sum( a.subpoints ) AS subpointtotal";
 			
 			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
 //			$table = 'tx_nemadvent_domain_model_user a' ;
@@ -220,7 +220,7 @@ class WinnerController extends BaseController {
 
 
 			$groupBy = 'a.feuser_uid';
-			$orderBy = 'pointtotal DESC, subpointtotal DESC, countttotal ASC';
+			$orderBy = 'pointtotal DESC, subpointtotal DESC, counttotal ASC';
 
 			 $limit = $offset . ',' . $count ;
 
@@ -411,7 +411,7 @@ class WinnerController extends BaseController {
 						*/
                     //$export = "'username','email','points','answers','usergroup'\n" ;
                     $export .= "'"  . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['email'] . "',"
-                                    . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['subpointtotal']."," .$winnerdata[$i]['countttotal']
+                                    . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['subpointtotal']."," .$winnerdata[$i]['counttotal']
 									. ",'" . $winnerdata[$i]['tx_barafereguser_nem_country']."','" . $winnerdata[$i]['country']."','"
                                     . $winnerdata[$i]['usergroup'] . "', "
                                     . " '" . date("d.M.Y" , $winnerdata[$i]['crdate'] ) . "', "

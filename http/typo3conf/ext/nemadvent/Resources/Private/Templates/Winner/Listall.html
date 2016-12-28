@@ -51,7 +51,7 @@
 
 											</f:link.external>
 
-											<p title="Abgegebene Antworten : {winner.countttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+											<p title="Abgegebene Antworten : {winner.counttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
 										</f:then>
 										<f:else>
 											<f:if condition="{isnemintern} > 0">
@@ -59,7 +59,7 @@
 													<f:link.external uri="/user/{winner.username}"  defaultScheme="">
 														<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="180c" width="140" src="{winner.tx_mmforum_avatar}"/>
 													</f:link.external>
-													<p title="gewertete Antworten : {winner.countttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+													<p title="gewertete Antworten : {winner.counttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
 												</f:then>
 												<f:else>
 													<f:if condition="{settings.day} > 24">
@@ -90,7 +90,7 @@
 														</f:else>
 													</f:if>
 
-													<p title="Abgegebene Antworten : {winner.countttotal}" class="col-xs-12">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+													<p title="Abgegebene Antworten : {winner.counttotal}" class="col-xs-12">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
 												</f:else>
 											</f:if>
 										</f:else>
@@ -100,7 +100,7 @@
 											<div class="small allInfo collapse well well-sm well-default col-xs-12" id="info-{winner.feuser_uid}">
 												<div class="text-right"><span style="float:left;">Position: </span>{iteration.cycle}</div>
 												<f:if condition="{settings.day} > 6">
-													<div class="text-right"><span style="float:left;">Anz. Fragen: </span>{winner.countttotal}</div>
+													<div class="text-right"><span style="float:left;">Anz. Fragen: </span>{winner.counttotal}</div>
 												</f:if>
 												<f:if condition="{settings.day} > 8">
 													<div class="text-right"><span style="float:left;">Land: </span> &nbsp;{winner.country}</div>

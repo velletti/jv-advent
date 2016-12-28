@@ -241,7 +241,14 @@ class WinnerController extends BaseController {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 				if ( $winnerdata_res ) {
 					$winnerdata[$i] = $winnerdata_res ;
-					$winnerdata[$i]['subpointtotal'] = substr( "000" . round( $winnerdata[$i]['subpointtotal'] / 100, 0 ) , -3 , 3 )  ;
+					if(  $winnerdata[$i]['subpointtotal']  > 99999 ) {
+                        $winnerdata[$i]['pointtotal'] = $winnerdata[$i]['pointtotal'] + 1 ;
+                        $winnerdata[$i]['subpointtotal'] = 0 ;
+                    } else {
+                        $winnerdata[$i]['subpointtotal'] = substr( "000" . round( $winnerdata[$i]['subpointtotal'] / 100, 0 ) , -3 , 3 )  ;
+                    }
+
+
 					if( $winnerdata[$i]['counttotal'] == 24 ) {
                         $userWith24Answers++ ;
                     }
@@ -418,7 +425,7 @@ class WinnerController extends BaseController {
 				}
 
 			}
-			$winnerdata[1]['settings']['ForumCount'] = $ForumCount ;
+			$winnerdata[1]['settings']['forumCount'] = $ForumCount ;
 			$winnerdata[1]['settings']['userWith24Answers'] = $userWith24Answers ;
 			$winnerdata[1]['settings']['helpfullCount'] = $helpfullCount ;
 			$winnerdata[1]['settings']['newUser'] = $newUser ;

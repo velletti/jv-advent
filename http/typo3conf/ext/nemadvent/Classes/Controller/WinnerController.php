@@ -243,7 +243,7 @@ class WinnerController extends BaseController {
 					$winnerdata[$i] = $winnerdata_res ;
 					if(  $winnerdata[$i]['subpointtotal']  > 99999 ) {
                         $winnerdata[$i]['pointtotal'] = $winnerdata[$i]['pointtotal'] + 1 ;
-                        $winnerdata[$i]['subpointtotal'] = 0 ;
+                        $winnerdata[$i]['subpointtotal'] = "000" ;
                     } else {
                         $winnerdata[$i]['subpointtotal'] = substr( "000" . round( $winnerdata[$i]['subpointtotal'] / 100, 0 ) , -3 , 3 )  ;
                     }

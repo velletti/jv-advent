@@ -431,6 +431,7 @@ class WinnerController extends BaseController {
 			$winnerdata[1]['settings']['newUser'] = $newUser ;
 			$winnerdata[1]['settings']['newUserDez'] = $newUserDez ;
 			$winnerdata[1]['settings']['akrCount'] = $akrCount ;
+			$winnerdata[1]['settings']['count'] = $count ;
 
 			$toBeSaved = serialize($winnerdata);
 			$tempcontent = $this->put_content_to_Cache($identifier , $toBeSaved ) ;
@@ -482,6 +483,7 @@ class WinnerController extends BaseController {
 			$this->settings['userWith24Answers'] 	= $winnerdata[1]['settings']['userWith24Answers'] ;
 			$this->settings['forumCount'] 		= $winnerdata[1]['settings']['forumCount'] ;
 			$this->settings['akrCount'] 		= $winnerdata[1]['settings']['akrCount'] ;
+			$this->settings['count'] 		= $winnerdata[1]['settings']['count'] ;
 			$this->settings['newUser'] 			= $winnerdata[1]['settings']['newUser'] ;
 			$this->settings['newUserDez'] 		= $winnerdata[1]['settings']['newUserDez'];
 		} else {
@@ -489,6 +491,7 @@ class WinnerController extends BaseController {
 			$this->settings['userWith24Answers'] = $userWith24Answers ;
 			$this->settings['forumCount'] 	= $ForumCount ;
 			$this->settings['akrCount'] 	= $akrCount ;
+			$this->settings['count'] 	= $count ;
 			$this->settings['newUser'] 		= $newUser ;
 			$this->settings['newUserDez'] 	= $newUserDez ;
 		}

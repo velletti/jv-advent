@@ -235,7 +235,7 @@ class WinnerController extends BaseController {
 			$akrCount = array() ;
 			$newUser = 0 ;
 			$newUserDez = 0 ;
-            $export = "'username','email','points','subpoints','answers','usergroup','country','nemCountry,regDate,forumCount'\n" ;
+            $export = "'username','email','points','subpoints','answers','country','nemCountry','usergroup','regDate','forumCount','helpful','AKR Count','first Answer', 'last Answer'\n" ;
 
 			for ( $i=0;$i< $count ;$i++) {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;

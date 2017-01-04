@@ -470,10 +470,13 @@ class WinnerController extends BaseController {
 
             }
         }
+
+		$this->settings['day'] = min( date( "d") , 24 ) ;
+
 		if ( $this->settings['afterenddate'] ) {
+			$this->settings['day'] =  24  ;
 			$this->settings['showtotal'] = 1 ;
 		}
-		$this->settings['day'] = min( date( "d") , 24 ) ;
 		if ( $this->isnemintern ) {
 			$this->settings['day'] = 24 ;
 		}

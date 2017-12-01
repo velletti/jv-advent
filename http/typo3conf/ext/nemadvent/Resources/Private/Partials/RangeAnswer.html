@@ -5,11 +5,10 @@
 
 			<div id="tx_nemadvent_Regler_Zahl"><p id="tx_nemdvent_output_div"><b>Ihre Antwort:</b> </p>
 
-				<form name="tx_nemadvent_f1"
-				onchange="tx_nemadvent_liveValue()" oninput="tx_nemadvent_liveValue()">
 
-					<input id="tx_nemadvent_rangeanswer" type="range" min={question.rangemin} max={question.rangemax}
-					value="{({question.rangemax}-{question.rangemin})/2}" step="1">
+
+					<input id="tx_nemadvent_rangeanswer" type="range" min="{question.rangemin}" max="{question.rangemax}"
+					value="{question.rangemin}" onchange="tx_nemadvent_liveValue()" oninput="tx_nemadvent_liveValue()">
 
 					<br>
 					<div class="col-xs-8">
@@ -19,7 +18,6 @@
 					<div class="col-xs-4 text-right">
 					<a class="btn btn-primary" style="cursor: pointer;" onclick="tx_advent_range();return false;"> >> </a>
 					</div>
-				</form>
 
 			</div>
 

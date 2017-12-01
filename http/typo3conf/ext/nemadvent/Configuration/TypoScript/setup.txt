@@ -41,7 +41,8 @@ plugin.tx_nemadvent {
 				sorting = date
 			}
 		}
-		maxDaysInFuture = 17
+		// See Extension template !!! will be overwritten at the end of the Advent game
+		maxDaysInFuture = 0
 	}
 	persistence {
 		storagePid = {$plugin.tx_nemadvent.persistence.storagePid}

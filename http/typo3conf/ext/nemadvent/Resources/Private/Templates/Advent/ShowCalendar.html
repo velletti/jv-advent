@@ -1,4 +1,4 @@
-	<f:if condition="{settings.afterenddate}">
+    <f:if condition="{settings.afterenddate}">
 		<f:then>
 
 			<h3>Something is wrong: </h3><br/>
@@ -28,7 +28,7 @@
 
 						<f:if condition="{settings.beforestartdate}">
 							<f:then>
-								<div class="col-sm-2 col-xs-4 tx_Advent_questions_day tx_Advent_questions_day{count.cycle}">
+								<div class="col-sm-2 col-xs-4 tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_day{count.cycle}">
 									<p class="tx_Advent_questions_inactive_background"><f:format.date format="d">{question.date}</f:format.date></p>
 								</div>
 							</f:then>

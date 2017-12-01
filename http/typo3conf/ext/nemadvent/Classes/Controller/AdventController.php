@@ -233,15 +233,19 @@ class AdventController extends BaseController {
 
 		$doit = $this->settingsHelper( ) ;
 		$adddate = 0 ;
+        $debug[] = "settings today:" . $this->settings['today'] . " (" . date("d.M.Y" , $this->settings['today'] ) . ")";
 
 		// just for testing if Opened Door / Today Door works
 		if ( $this->request->hasArgument('single') ) {
 			$adddate_arr = $this->request->getArgument('single') ;
+
 			if (is_array($adddate_arr)) {
 				$adddate = $adddate_arr['adddate'];
+                $debug[] = "Add date = " . $adddate ;
 			}
 			if ( $adddate >  ( $this->adventCat->getDays() -1 )) {
 				$adddate = $this->adventCat->getDays() - 1 ;
+                $debug[] = "Ad ddate was > Max =  Now:" . $adddate ;
 			}
 
 			if ( $adddate < 0 ) {
@@ -249,8 +253,13 @@ class AdventController extends BaseController {
 			} else {
 				$this->settings['today']   = mktime( 0,0,0, date("m" , $this->adventCat->getStartdate()) ,$adddate + date("d" ,$this->adventCat->getStartdate() ) ,date("Y" ,$this->adventCat->getStartdate())  ) ;
 			}
-		}
+            $debug[] = "settings today after Add Date:" . $this->settings['today'] . " (" . date("d.M.Y" , $this->settings['today'] ) . ")";
+        }
 		$questions = array() ;
+		// for testing
+        // $this->settings['beforestartdate'] = 1 ;
+        $this->settings['maxDaysInFuture'] = 0 ;
+
 		for($i=0;$i<24;$i++) {
 			$questions[] = array( "day" => $i , "date" => mktime( 0,0,0,  date("m" , $this->adventCat->getStartdate()) , $i+1 ,date("Y" )  ) , 'today' => FALSE , 'daybefore' => FALSE) ;
 			$question =  $this->adventRepository->findOneByFilter( $this->adventCat ,$questions[$i]['date'] )->toArray()  ;
@@ -267,7 +276,8 @@ class AdventController extends BaseController {
 				$questions[$i]['title'] = '' ;
 			}
 			// allow to answer also days in Front
-			if ( intval( date("d" , $this->settings['today'] ) ) >  intval( date("d")) - $this->settings['maxDaysInFuture'] ) {
+            $debug[] = "Is: " . intval( date("d" , $this->settings['today'] ) ) . " > " . ( intval( date("d" , $questions[$i]['date'])) - $this->settings['maxDaysInFuture'] ) ;
+			if ( intval( date("d" , $this->settings['today'] ) ) >  ( intval( date("d" , $questions[$i]['date'])  ) - $this->settings['maxDaysInFuture'] )) {
 			//	if ( $this->settings['today'] > $questions[$i]['date']  ) {
 
 				$questions[$i]['daybefore'] = TRUE ;
@@ -278,7 +288,6 @@ class AdventController extends BaseController {
 			}
 
 
-
 		}
 
 		$this->view->assign('questions', $questions );
@@ -287,7 +296,9 @@ class AdventController extends BaseController {
 		$this->settings['todayformated']   =  date( "d.m.Y" , $this->settings['today'] ) ;
 		$this->settings['today']   =  intval( date( "d" , $this->settings['today'] )) ;
 
-		$this->view->assign('adventCat', $this->adventCat );
+
+        $this->view->assign('adventCat', $this->adventCat );
+        $this->view->assign('debug', $debug );
 
 		$this->view->assign('settings', $this->settings);
 		$this->view->assign('adddate', $adddate);

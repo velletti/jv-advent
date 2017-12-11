@@ -408,7 +408,7 @@ class WinnerController extends BaseController {
                     $where = 'feuser = "' . intval($winnerdata[$i]['feuser_uid']). '" AND pid = ' . $this->settings['wishlistPidResults']  ;
                     $resWishlist = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
                         'tx_powermail_domain_model_mails',
-                        $where  , "" , "crdate" , "0,1");
+                        $where  , "" , "" , "0,1");
 
 
                     $winnerdata[$i]['wishlist'] = false ;

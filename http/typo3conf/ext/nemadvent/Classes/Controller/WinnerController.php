@@ -409,10 +409,11 @@ class WinnerController extends BaseController {
                     $resWishlist = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
                         'tx_powermail_domain_model_mails',
                         $where  , "" , "" , "0,1");
-
+                   // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
 
                     $winnerdata[$i]['wishlist'] = false ;
                     $WishList = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resWishlist ) ;
+                    // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
                     if (  $WishList  ) {
                         $winnerdata[$i]['wishlist'] = true ;
                         $this->settings['wishlist'] ++ ;
@@ -451,7 +452,7 @@ class WinnerController extends BaseController {
 			$winnerdata[1]['settings']['count'] = $count ;
 			$toBeSaved = serialize($winnerdata);
 			$tempcontent = $this->put_content_to_Cache($identifier , $toBeSaved ) ;
-		}		
+		}
 		if ( $this->isnem ) {
 	//		$this->view->assign('debug', "select  " . $what . " FROM " . $table .  " WHERE " . $where . " GROUP BY " . $groupBy . " ORDER BY " . $orderBy . " - "  . $GLOBALS['TYPO3_DB']->sql_error() );
 			

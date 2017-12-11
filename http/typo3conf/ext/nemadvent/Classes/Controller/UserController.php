@@ -231,7 +231,7 @@ class UserController extends BaseController {
 				, '' , '' , 1
 			) ;
 
-			$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res ) ;
+            $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res ) ;
 			// echo "<br>Line: " . __LINE__ . " : " . " File: " . __FILE__ . '<br>$row : ' . var_export($row, TRUE) . "<hr>";
 			// echo $GLOBALS['TYPO3_DB']->sql_error() ;
 

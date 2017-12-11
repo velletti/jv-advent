@@ -59,7 +59,10 @@
 													<f:link.external uri="/user/{winner.username}"  defaultScheme="">
 														<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="180c" width="140" src="{winner.tx_mmforum_avatar}"/>
 													</f:link.external>
-													<p title="gewertete Antworten : {winner.counttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+													<p title="gewertete Antworten : {winner.counttotal}">Points: {winner.pointtotal},{winner.subpointtotal}
+
+														<br>
+													</p>
 												</f:then>
 												<f:else>
 													<f:if condition="{settings.day} > 24">
@@ -90,7 +93,10 @@
 														</f:else>
 													</f:if>
 
-													<p title="Abgegebene Antworten : {winner.counttotal}" class="col-xs-12">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+													<p title="Abgegebene Antworten : {winner.counttotal}" class="col-xs-12">Points: {winner.pointtotal},{winner.subpointtotal}
+
+														<br>
+													</p>
 												</f:else>
 											</f:if>
 										</f:else>
@@ -140,15 +146,56 @@
 
 												<f:if condition="{settings.day} > 22">
 													<div class="text-right"><span style="float:left;">Hilfreiche Posts:</span>{winner.tx_mmforum_helpful_count}</div>
+													<div class="text-right"><span style="float:left;">Wunschzettel:</span>{f:if(condition: winner.wishlist , then: 'abgegeben', else: 'fehlt')}</div>
 												</f:if>
 
 												<f:if condition="{settings.day} > 16">
 													<nem:renderIconByString usergroups="{winner.usergroup}" settings="{settings}"></nem:renderIconByString>
 												</f:if>
 											</div>
+
 											<button class="btn btn-sm {winner.btnClass}"  data-toggle="collapse" data-target="#info-{winner.feuser_uid}">
 												<i class="glyphicon glyphicon-info-sign" ></i>
 											</button>
+
+											<f:if condition="{isnemintern} > 0">
+												<f:then>
+													<span class="btn btn-sm right">
+														<f:if condition="{winner.wishlist}">
+															<f:then>
+																<i class="glyphicon glyphicon-gift" title="Wunschliste abgegeben"></i>
+															</f:then>
+															<f:else>
+																<i class="glyphicon glyphicon-exclamation-sign" title="Keine Wunschliste abgegeben!"></i>
+															</f:else>
+														</f:if>
+													</span>
+												</f:then>
+												<f:else>
+													<f:if condition="{settings.day} > 20">
+														<f:then>
+
+																<span class="btn btn-sm right">
+																	<f:if condition="{winner.counttotal} > 23">
+																		<f:then>
+																			<f:if condition="{winner.wishlist}">
+																				<f:then>
+																					<i class="glyphicon glyphicon-gift" title="Wunschliste abgegeben"></i>
+																				</f:then>
+																				<f:else>
+																					<i class="glyphicon glyphicon-exclamation-sign" title="Keine Wunschliste abgegeben!"></i>
+																				</f:else>
+																			</f:if>
+																		</f:then>
+																	</f:if>
+																</span>
+
+														</f:then>
+													</f:if>
+												</f:else>
+											</f:if>
+
+
 										</div>
 
 									<f:if condition="{isnemintern} > 0">
@@ -237,6 +284,7 @@
 										</f:for>
 									</f:if>
 									<br>
+									Abgegebene Wunschzettel: {settings.wishlist}<br>
 									<b>Neu-Registrierungen in Connect:</b><br>
 									<br>{settings.newUser} User davon haben sich erst in {settings.Year} in Connect registriert<f:if condition="{settings.newUserDez}">, sowie {settings.newUserDez} erst mit Start des Adventskalenderrätsels</f:if>.
 									<br>

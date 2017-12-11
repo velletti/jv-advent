@@ -205,7 +205,7 @@ class WinnerController extends BaseController {
 		if ( ! is_array( $winnerdata ) ) {
 			
 			
-			$what = "a.feuser_uid,u.usergroup as usergroup, "
+			$what = "a.feuser_uid,u.usergroup as usergroup, u.tx_barafereguser_nem_firstname as firstname, "
 			 . "u.username, u.email, u.crdate as crdate, u.tx_barafereguser_nem_gender, u.image, u.tx_mmforum_helpful_count  , u.tx_barafereguser_nem_navision_contactid, u.country as country, u.tx_barafereguser_nem_country , "
 			. "count( a.points ) AS counttotal, sum( a.points ) AS pointtotal, sum( a.subpoints ) AS subpointtotal";
 			
@@ -235,7 +235,8 @@ class WinnerController extends BaseController {
 			$akrCount = array() ;
 			$newUser = 0 ;
 			$newUserDez = 0 ;
-            $export = "'username','email','points','subpoints','answers','country','nemCountry','usergroup','regDate','forumCount','helpful','AKR Count','first Answer', 'last Answer'\n" ;
+            $export = "'username','firstname','email','points','subpoints','answers','country','nemCountry','usergroup','regDate','forumCount','helpful','AKR Count','first Answer', 'last Answer'\n" ;
+            $this->settings['wishlist'] = 0 ;
 
 			for ( $i=0;$i< $count ;$i++) {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
@@ -403,6 +404,21 @@ class WinnerController extends BaseController {
 					$winnerdata[$i]['AKRlast'] = date("d.m H:i" , $getSingle['crdate']) ; // . " - " . $getSingle['uid'] ;
 					$winnerdata[$i]['AKRlastUser'] = date("d." , $getSingle['crdate']) ;
 
+                    $select = "uid" ;
+                    $where = 'feuser = "' . intval($winnerdata[$i]['feuser_uid']). '" AND pid = ' . $this->settings['wishlistPidResults']  ;
+                    $resWishlist = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
+                        'tx_powermail_domain_model_mails',
+                        $where  , "" , "crdate" , "0,1");
+
+
+                    $winnerdata[$i]['wishlist'] = false ;
+                    $WishList = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resWishlist ) ;
+                    if (  $WishList  ) {
+                        $winnerdata[$i]['wishlist'] = true ;
+                        $this->settings['wishlist'] ++ ;
+                    }
+
+
 						/*
 						if ( !$this->isnem ) {
 							if (  !$this->settings['afterenddate']  ) {
@@ -411,11 +427,11 @@ class WinnerController extends BaseController {
 						}
 						*/
                     //$export = "'username','email','points','answers','usergroup'\n" ;
-                    $export .= "'"  . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['email'] . "',"
+                    $export .= "'"  . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['firstname'] . "','" . $winnerdata[$i]['email'] . "',"
                                     . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['subpointtotal']."," .$winnerdata[$i]['counttotal']
 									. ",'" . $winnerdata[$i]['tx_barafereguser_nem_country']."','" . $winnerdata[$i]['country']."','"
                                     . $winnerdata[$i]['usergroup'] . "', "
-                                    . " '" . date("d.M.Y" , $winnerdata[$i]['crdate'] ) . "', "
+                                    . " '" . $winnerdata[$i]['crdate']  . "', "
 									. $winnerdata[$i]['forumcount']
 						            .   ", " .  $winnerdata[$i]['tx_mmforum_helpful_count']
 						            .   ", " .  $winnerdata[$i]['AKRcount']
@@ -433,7 +449,6 @@ class WinnerController extends BaseController {
 			$winnerdata[1]['settings']['newUserDez'] = $newUserDez ;
 			$winnerdata[1]['settings']['akrCount'] = $akrCount ;
 			$winnerdata[1]['settings']['count'] = $count ;
-
 			$toBeSaved = serialize($winnerdata);
 			$tempcontent = $this->put_content_to_Cache($identifier , $toBeSaved ) ;
 		}		

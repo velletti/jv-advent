@@ -258,7 +258,7 @@ class AdventController extends BaseController {
 		$questions = array() ;
 		// for testing
         // $this->settings['beforestartdate'] = 1 ;
-        $this->settings['maxDaysInFuture'] = 0 ;
+        // $this->settings['maxDaysInFuture'] = 0 ;
 
 		for($i=0;$i<24;$i++) {
 			$questions[] = array( "day" => $i , "date" => mktime( 0,0,0,  date("m" , $this->adventCat->getStartdate()) , $i+1 ,date("Y" )  ) , 'today' => FALSE , 'daybefore' => FALSE) ;

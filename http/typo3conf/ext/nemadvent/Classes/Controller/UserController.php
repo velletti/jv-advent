@@ -234,8 +234,8 @@ class UserController extends BaseController {
 
             // echo "<br>Line: " . __LINE__ . " : " . " File: " . __FILE__ . '<br>$row : ' . var_export($row, TRUE) . "<hr>";
 			// echo $GLOBALS['TYPO3_DB']->sql_error() ;
-
-			if( count( $row ) > 0 OR count( $this->answers) < 5 ) {
+            // echo $this->settings['wishlistPid'] ;
+			if( is_array( $row ) || count( $this->answers) < 5 || $this->settings['afterenddate'] ) {
 				$this->settings['wishlistPid'] = 0 ;
 			}
 			$this->settings['nowMinus24h'] = mktime( (date("h") -24) , date("i") , 0 , date("m"), date("d") , date("Y")) ;

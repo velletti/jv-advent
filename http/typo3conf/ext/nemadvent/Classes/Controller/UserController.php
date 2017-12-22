@@ -226,16 +226,16 @@ class UserController extends BaseController {
 			}
 
 			// j.v. TEMP Hack: gibt es einen wunschzettel auf PID 3929 ?
-			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(uid) as wishlist' , 'tx_powermail_domain_model_mails',
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*' , 'tx_powermail_domain_model_mails',
 				"pid = " . $this->settings['wishlistPidResults'] . " AND feuser = " . $GLOBALS['TSFE']->fe_user->user['uid']
-				, '' , '' , 1
-			) ;
-
+				, '' , 'tstamp DESC' , 1 ) ;
             $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res ) ;
-			// echo "<br>Line: " . __LINE__ . " : " . " File: " . __FILE__ . '<br>$row : ' . var_export($row, TRUE) . "<hr>";
+            $this->view->assign('wishes', $row );
+
+            // echo "<br>Line: " . __LINE__ . " : " . " File: " . __FILE__ . '<br>$row : ' . var_export($row, TRUE) . "<hr>";
 			// echo $GLOBALS['TYPO3_DB']->sql_error() ;
 
-			if( $row['wishlist'] > 0 OR count( $this->answers) < 5 ) {
+			if( count( $row ) > 0 OR count( $this->answers) < 5 ) {
 				$this->settings['wishlistPid'] = 0 ;
 			}
 			$this->settings['nowMinus24h'] = mktime( (date("h") -24) , date("i") , 0 , date("m"), date("d") , date("Y")) ;

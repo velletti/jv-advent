@@ -1,18 +1,45 @@
 
 <f:if condition="{settings.wishlistPid} > 0">
-	<div class="alert alert-warning">
-		<div class="col-sm-8">
-			<b>Bitte denken Sie daran, Ihren Wunschzettel abzugeben!</b> <br>Die Zusendung eines Gewinns erfolgt nur bei ausgefülltem Wunschzettel.
+	<f:then>
+
+		<div class="alert alert-warning">
+			<div class="col-sm-8">
+				<b>Bitte denken Sie daran, Ihren Wunschzettel abzugeben!</b> <br>Die Zusendung eines Gewinns erfolgt nur bei ausgefülltem Wunschzettel.
+			</div>
+			<div class="col-sm-4">
+				<br>
+				<f:link.page class="btn btn-primary" noCacheHash="1" rel="shadowbox" pageUid="{settings.wishlistPid}" additionalParams="{type: 999}">
+					Zum Wunschzettel >>
+				</f:link.page>
+			</div>
+			<div class="clearfix"> </div>
 		</div>
-		<div class="col-sm-4">
-			<br>
-			<f:link.page class="btn btn-primary" noCacheHash="1" rel="shadowbox" pageUid="{settings.wishlistPid}" additionalParams="{type: 999}">
-				Zum Wunschzettel >>
-			</f:link.page>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
+	</f:then>
+	<f:else>
+		<f:if condition="{wishes}">
+			<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 data-toggle="collapse" data-target="#wishesBody" style="cursor:pointer;"><i class="glyphicon glyphicon-chevron-down" > </i> {wishes.subject} anschauen!</h4>
+					</div>
+					<div id="wishesBody" class="panel-collapse collapse">
+						<div class="panel-body"><f:format.html parseFuncTSPath="">{wishes.body}</f:format.html></div>
+					</div>
+				</div>
+			</div>
+		</f:if>
+	</f:else>
 	<br>
+</f:if>
+<f:if condition="{settings.count} < {adventCounter}">
+	<f:if condition="{adventCounter} > 12 ">
+		<div class="alert alert-warning">
+			<h3>Nicht vergessen!</h3>
+			Ihnen fehlt noch mindestens ein Tag bei den Antworten! <f:if condition="{settings.count} > 12 "> Wäre ja schade, so Sie doch bereits die Hälfte geschafft haben.</f:if>
+			<br>Anzahl Antworten:  <b>{settings.count} von {adventCounter} </b>
+		</div>
+		<br>
+	</f:if>
 </f:if>
 
 <div class="Tx_Nemadvent_pi1 well">

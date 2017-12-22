@@ -131,24 +131,31 @@ class WinnerController extends BaseController {
 
 		// https://connect.allplan.com/de/home/advent-2013/rangliste.html?tx_nemadvent_pi1[offset]=0&tx_nemadvent_pi1[userGroup]=7
 		$doit = $this->settingsHelper() ;
-		$count = 96 ;
+		$count = 72 ;
 
 		$userGroup = "-7" ;
 		$onlyUserGroup = '' ;
 		$notUserGroup = 'AND a.usergroup <> 7 ' ;
-
+        $offset = 0 ;
+        if ( $this->request->hasArgument('offset')) {
+            if(  intval($this->request->getArgument('offset'))  == 72 ||  intval($this->request->getArgument('offset'))  == 144  ) {
+                $offset = intval($this->request->getArgument('offset'))  ;
+            }
+        }
 		$isNem = '' ;
+        $withWishes = false ;
 		if ( $this->isnem ) {
 			$isNem = "-nem-" ;
 	    	if ( $this->request->hasArgument('offset')) {
 	    		$offset = intval($this->request->getArgument('offset')) ;
 	    	}
+            $withWishes = true ;
 			if ( $this->request->hasArgument('export')) {
 				$count = 1000 ;
 				if ( $this->request->hasArgument('count')) {
 					$count = $this->request->getArgument('count') ;
 				}
-
+                $withWishes = false  ;
 			}
 			if ( $this->request->hasArgument('count')) {
 				$count = $this->request->getArgument('count') ;
@@ -405,19 +412,24 @@ class WinnerController extends BaseController {
 					$winnerdata[$i]['AKRlast'] = date("d.m H:i" , $getSingle['crdate']) ; // . " - " . $getSingle['uid'] ;
 					$winnerdata[$i]['AKRlastUser'] = date("d." , $getSingle['crdate']) ;
 
-                    $select = "uid" ;
-                    $where = 'feuser = "' . intval($winnerdata[$i]['feuser_uid']). '" AND pid = ' . $this->settings['wishlistPidResults']  ;
-                    $resWishlist = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
-                        'tx_powermail_domain_model_mails',
-                        $where  , "" , "" , "0,1");
-                   // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
+                    if( $withWishes ) {
+                        $select = "uid,body" ;
+                        $where = 'feuser = "' . intval($winnerdata[$i]['feuser_uid']). '" AND pid = ' . $this->settings['wishlistPidResults']  ;
+                        $resWishlist = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
+                            'tx_powermail_domain_model_mails',
+                            $where  , "" , "" , "0,1");
+                       // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
 
-                    $winnerdata[$i]['wishlist'] = false ;
-                    $WishList = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resWishlist ) ;
-                    // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
-                    if (  $WishList  ) {
-                        $winnerdata[$i]['wishlist'] = true ;
-                        $this->settings['wishlist'] ++ ;
+                        $winnerdata[$i]['wishlist'] = false ;
+                        $WishList = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resWishlist ) ;
+                        // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
+                        if (  $WishList  ) {
+                            $winnerdata[$i]['wishlist'] = true ;
+                            if ( $this->isnemintern ) {
+                                $winnerdata[$i]['wishlistContent'] = $WishList['body'];
+                            }
+                            $this->settings['wishlist'] ++ ;
+                        }
                     }
 
 
@@ -441,6 +453,8 @@ class WinnerController extends BaseController {
 						            .   ", '" .  $winnerdata[$i]['AKRlast'] . "'"
 
 									. "\n"  ;
+
+                    // end of User
 				}
 
 			}

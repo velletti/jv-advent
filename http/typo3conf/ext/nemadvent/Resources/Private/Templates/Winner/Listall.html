@@ -102,6 +102,15 @@
 										</f:else>
 									</f:if>
 										<div style="position: absolute; bottom:5px; right: 35px;">
+											<f:if condition="{winner.wishlistContent}">
+												<f:if condition="{isnemintern} > 0">
+													<div style="width:400px;  z-index: 9999" class="small allInfo collapse well well-sm well-default col-xs-12" id="wish-info-{winner.feuser_uid}">
+														<f:format.html  parseFuncTSPath="">
+															{winner.wishlistContent}
+														</f:format.html>
+													</div>
+												</f:if>
+											</f:if>
 
 											<div class="small allInfo collapse well well-sm well-default col-xs-12" id="info-{winner.feuser_uid}">
 												<div class="text-right"><span style="float:left;">Position: </span>{iteration.cycle}</div>
@@ -163,7 +172,15 @@
 													<span class="btn btn-sm right">
 														<f:if condition="{winner.wishlist}">
 															<f:then>
-																<i class="glyphicon glyphicon-gift" title="Wunschliste abgegeben"></i>
+																<f:if condition="{winner.wishlistContent}">
+																	<f:then>
+																		<i class="glyphicon glyphicon-gift" data-toggle="collapse" data-target="#wish-info-{winner.feuser_uid}" title="Wunschliste abgegeben"></i>
+																	</f:then>
+																	<f:else>
+																		<i class="glyphicon glyphicon-gift" title="Wunschliste abgegeben"></i>
+																	</f:else>
+																</f:if>
+
 															</f:then>
 															<f:else>
 																<i class="glyphicon glyphicon-exclamation-sign" title="Keine Wunschliste abgegeben!"></i>
@@ -176,7 +193,7 @@
 														<f:then>
 
 																<span class="btn btn-sm right">
-																	<f:if condition="{winner.counttotal} > 23">
+																	<f:if condition="{winner.counttotal} > 20">
 																		<f:then>
 																			<f:if condition="{winner.wishlist}">
 																				<f:then>
@@ -219,48 +236,20 @@
 
 						</f:for>
 				</div>
+				<div class="clearFix"><br> </div>
+				<div class="right">
+					<f:render partial="NextWinners" arguments="{offset: offset, newOffset: 0, newOffset1:1, newOffset2:72}" />
+					<f:render partial="NextWinners" arguments="{offset: offset, newOffset: 72, newOffset1:73, newOffset2:144}" />
+					<f:if condition="{isnemintern} > 0">
+						<f:then>
 
-				<f:if condition="{isnemintern} > 0">
-					<f:then>
-						<div class="right">
+							<f:render partial="NextWinners" arguments="{offset: offset, newOffset: 144, newOffset1:145, newOffset2:216}" />
+							<f:render partial="NextWinners" arguments="{offset: offset, newOffset: 216, newOffset1:217, newOffset2: 288}" />
 							<f:link.page class="btn btn-danger" additionalParams="{tx_nemadvent_pi1:{count:1000}}">Alle &gt;&gt;</f:link.page>
-							<f:if condition="{offset} == 0">
-								<f:then></f:then>
-								<f:else>
-									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:0}}">1 - 96 &gt;&gt;</f:link.page>
-								</f:else>
-							</f:if>
-							<f:if condition="{offset} == 96">
-								<f:then></f:then>
-								<f:else>
-									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:96}}">97 - 192 &gt;&gt;</f:link.page>
-								</f:else>
-							</f:if>
-							<f:if condition="{offset} == 192">
-								<f:then></f:then>
-								<f:else>
-									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:192}}">193 - 288 &gt;&gt;</f:link.page>
-								</f:else>
-							</f:if>
-							<f:if condition="{offset} == 288">
-								<f:then></f:then>
-								<f:else>
-									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:288}}">289 - 384&gt;&gt;</f:link.page>
-								</f:else>
-							</f:if>
-							<f:if condition="{offset} == 384">
-								<f:then></f:then>
-								<f:else>
-									<f:link.page class="btn btn-primary" additionalParams="{tx_nemadvent_pi1:{offset:384}}">385 - 480&gt;&gt;</f:link.page>
-								</f:else>
-							</f:if>
-
-
 							<f:link.page class="btn btn-danger" additionalParams="{tx_nemadvent_pi1:{export:1,count:1000}}">CSV Export</f:link.page>
-						</div>
-					</f:then>
-
-				</f:if>
+						</f:then>
+					</f:if>
+				</div>
 				<div id="aventStatistik" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 

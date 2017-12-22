@@ -143,13 +143,13 @@ class WinnerController extends BaseController {
             }
         }
 		$isNem = '' ;
-        $withWishes = false ;
+        $withWishes = true ;
 		if ( $this->isnem ) {
 			$isNem = "-nem-" ;
 	    	if ( $this->request->hasArgument('offset')) {
 	    		$offset = intval($this->request->getArgument('offset')) ;
 	    	}
-            $withWishes = true ;
+
 			if ( $this->request->hasArgument('export')) {
 				$count = 1000 ;
 				if ( $this->request->hasArgument('count')) {
@@ -417,7 +417,7 @@ class WinnerController extends BaseController {
                         $where = 'feuser = "' . intval($winnerdata[$i]['feuser_uid']). '" AND pid = ' . $this->settings['wishlistPidResults']  ;
                         $resWishlist = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
                             'tx_powermail_domain_model_mails',
-                            $where  , "" , "" , "0,1");
+                            $where  , "" , "tstamp DESC " , "0,1");
                        // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
 
                         $winnerdata[$i]['wishlist'] = false ;

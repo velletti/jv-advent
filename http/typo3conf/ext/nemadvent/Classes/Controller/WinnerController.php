@@ -214,7 +214,7 @@ class WinnerController extends BaseController {
 			
 			$what = "a.feuser_uid,u.usergroup as usergroup, u.tx_barafereguser_nem_firstname as firstname, "
 			 . "u.username, u.email, u.crdate as crdate, u.tx_barafereguser_nem_gender, u.image, u.tx_mmforum_helpful_count  , u.tx_barafereguser_nem_navision_contactid, u.country as country, u.tx_barafereguser_nem_country , "
-			. "count( a.points ) AS counttotal, sum( a.points ) AS pointtotal, sum( a.subpoints ) AS subpointtotal";
+			. "count( a.points ) AS counttotal, sum( a.points ) AS pointtotal, sum( a.subpoints ) AS subpointtotal , (sum( a.points )*100000 + sum( a.subpoints )) as pointsForOrder ";
 			
 			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
 //			$table = 'tx_nemadvent_domain_model_user a' ;
@@ -227,7 +227,7 @@ class WinnerController extends BaseController {
 
 
 			$groupBy = 'a.feuser_uid';
-			$orderBy = 'pointtotal DESC, subpointtotal DESC, counttotal ASC';
+			$orderBy = 'pointsForOrder DESC, counttotal ASC';
 
 			 $limit = $offset . ',' . $count ;
 
@@ -247,6 +247,8 @@ class WinnerController extends BaseController {
 
 			for ( $i=0;$i< $count ;$i++) {
 				$winnerdata_res = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
+				// var_dump( $winnerdata_res) ;
+				// die;
 				if ( $winnerdata_res ) {
 					$winnerdata[$i] = $winnerdata_res ;
 					if(  $winnerdata[$i]['subpointtotal']  > 99999 ) {

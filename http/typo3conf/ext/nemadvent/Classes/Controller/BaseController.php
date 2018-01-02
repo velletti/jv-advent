@@ -223,7 +223,8 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->view->assign('adventscat', $this->adventCat);
 		
 		 $count = date("d" , mktime( 0,0,0, date("m" , $this->adventCat->getStartdate() ) , date("d" )  ,date("Y" , $this->adventCat->getStartdate() )  ) ) ;
-		$this->view->assign('adventCounter', $count);
+         $count = min ( $count , 24 ) ;
+		 $this->view->assign('adventCounter', $count);
 
 		return true;
 	}		

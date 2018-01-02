@@ -41,6 +41,21 @@
 		<br>
 	</f:if>
 </f:if>
+<f:if condition="{settings.count} = 24">
+	<f:if condition="{settings.afterenddate}">
+		<f:then>
+		</f:then>
+		<f:else>
+			<div class="alert alert-success">
+				<h3>Sie haben es geschafft!</h3>
+				Sie haben alle 24 Fragen beantwortet. Prima. Dann bleibt uns nur "Viel Glück" zu wünschen, auf das möglichst viele Ihrer Antworten stimmen<br>
+				Falls nicht, sind sie nun immerhin berechtigt, an der Verlosung des Allplan Fanpakets teilzunehmen.<br>
+
+			</div>
+			<br>
+		</f:else>
+	</f:if>
+</f:if>
 
 <div class="Tx_Nemadvent_pi1 well">
 		<f:FlashMessages renderMode="div"  class="message" />

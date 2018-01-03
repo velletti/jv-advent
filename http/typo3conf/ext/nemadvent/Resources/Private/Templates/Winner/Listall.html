@@ -51,7 +51,12 @@
 
 											</f:link.external>
 
-											<p title="Abgegebene Antworten : {winner.counttotal}">Points: {winner.pointtotal},{winner.subpointtotal}<br></p>
+											<p title="Abgegebene Antworten : {winner.counttotal}">
+												<f:format.crop maxCharacters="20" respectWordBoundaries="FALSE">{winner.username}</f:format.crop><br>
+												P: {winner.pointtotal},{winner.subpointtotal} / {winner.counttotal}
+
+												<br>
+											</p>
 										</f:then>
 										<f:else>
 											<f:if condition="{isnemintern} > 0">
@@ -59,7 +64,9 @@
 													<f:link.external uri="/user/{winner.username}"  defaultScheme="">
 														<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="180c" width="140" src="{winner.tx_mmforum_avatar}"/>
 													</f:link.external>
-													<p title="gewertete Antworten : {winner.counttotal}">Points: {winner.pointtotal},{winner.subpointtotal}
+													<p title="gewertete Antworten : {winner.counttotal}">
+														<f:format.crop maxCharacters="20" respectWordBoundaries="FALSE">{winner.username}</f:format.crop><br>
+														P: {winner.pointtotal},{winner.subpointtotal} / {winner.counttotal}
 
 														<br>
 													</p>
@@ -104,7 +111,7 @@
 										<div style="position: absolute; bottom:5px; right: 35px;">
 											<f:if condition="{winner.wishlistContent}">
 												<f:if condition="{isnemintern} > 0">
-													<div style="width:400px;  z-index: 9999" class="small allInfo collapse well well-sm well-default col-xs-12" id="wish-info-{winner.feuser_uid}">
+													<div style="width:400px;  z-index: 9999" class="small collapse well well-sm well-default col-xs-12" id="wish-info-{winner.feuser_uid}">
 														<f:format.html  parseFuncTSPath="">
 															{winner.wishlistContent}
 														</f:format.html>

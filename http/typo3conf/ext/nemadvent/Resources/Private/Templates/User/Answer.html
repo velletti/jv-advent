@@ -94,7 +94,8 @@
 					</div>
 					<div class="col-sm-2 col-xs-2">
 						<f:if condition="{settings.showtotal} > 0">
-							{answer.showpoint}
+
+							{answer.showpoint}<f:if condition="{answer.subpoints}">{answer.subpoints}</f:if>
 						</f:if>
 					</div>
 
@@ -114,7 +115,7 @@
 		<f:if condition="{settings.showtotal} > 0">
 		<f:then>
 			<f:translate key="yourresult">Your result</f:translate>
-					: {settings.total} / {settings.count}
+					: {settings.total}{settings.subtotal}  / {settings.count}
 		</f:then>
 		<f:else>
 			<f:translate key="result_visible_at">Result will be shown after</f:translate>

@@ -216,7 +216,12 @@ class UserController extends BaseController {
 					
 					if ( $this->settings['afterenddate'] ) {
 						$answerlist[$i]['showpoint'] = $answerlist[$i]['points'] ;
-						$this->settings['subtotal'] = intval( $this->settings['subtotal'] + $answerlist[$i]['points'] )  ;
+						$this->settings['subtotal'] = intval( $this->settings['subtotal'] + $this->answers[$i]->getSubpoints() )  ;
+
+                        $answerlist[$i]['subpoints'] = intval ( $this->answers[$i]->getSubpoints()  / 100 ) ;
+                        if ( $answerlist[$i]['subpoints'] > 0 ) {
+                            $answerlist[$i]['subpoints'] = "," . substr( "000" . trim( intval( $this->answers[$i]->getSubpoints() /100)) , -3 , 3 )  ;
+                        }
 						$this->settings['total'] = intval( $this->settings['total'] + $answerlist[$i]['points']) ;
 						$this->settings['showtotal'] = 1 ;
 					}
@@ -224,6 +229,12 @@ class UserController extends BaseController {
 				}
 				
 			}
+            $this->settings['subtotal'] = intval( $this->settings['subtotal'] / 100 ) ;
+			if ( $this->settings['subtotal'] > 1000 ) {
+                $this->settings['subtotal'] = $this->settings['subtotal'] - 1000 ;
+                $this->settings['total'] = $this->settings['total'] + 1 ;
+            }
+            $this->settings['subtotal'] = "," . trim( substr( "000" . $this->settings['subtotal']  , -3 , 3 )) ;
 
 			// j.v. TEMP Hack: gibt es einen wunschzettel auf PID 3929 ?
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*' , 'tx_powermail_domain_model_mails',

@@ -39,25 +39,25 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @var \Allplan\Nemadvent\Domain\Repository\WinnerRepository
 	 * @inject
 	 */
-	protected $winnerRepository;
+	public $winnerRepository;
 
 	/**
 	 * @var \Allplan\Nemadvent\Domain\Repository\AdventRepository
 	 * @inject
 	 */
-	protected $adventRepository;
+    public $adventRepository;
 
 	/**
 	 * @var \Allplan\Nemadvent\Domain\Repository\AdventCatRepository
 	 * @inject
 	 */
-	protected $adventCatRepository;
+    public $adventCatRepository;
 
 	/**
 	 * @var \Allplan\Nemadvent\Domain\Model\AdventCat
 	 * @inject
 	 */
-	protected $adventCat;
+    public $adventCat;
 
 	/**
 	 * @var boolean $isnem
@@ -69,31 +69,31 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public $isnemintern ;
 
-	/*
+	/**
 	 * @var \Allplan\Nemadvent\Domain\Repository\UserRepository
 	 * @inject
 	 */
-	protected $userRepository;
+	public $userRepository;
 
-	/*
+	/**
 	 * @var \Allplan\Nemadvent\Domain\Model\User
 	 * @inject
 	 */
-	protected $user;
+    public $user;
 
-	/*
+	/**
 	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUser
 	 * @inject
 	 */
 
-	protected $frontendUserRepository;
+    public $frontendUserRepository;
 
 
-	/*
+	/**
 	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroup
 	 * @inject
 	 */
-	protected $frontendUserGroupRepository;
+    public $frontendUserGroupRepository;
 
 
 
@@ -103,21 +103,22 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @return void
 	 */
 	public function initializeAction() {
+		$objectManager = $this->objectManager ;
 		/** @var \Allplan\Nemadvent\Domain\Repository\AdventRepository $this->adventRepository*/
-		$this->adventRepository	 	= $this->objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\AdventRepository') ;
+		$this->adventRepository	 	= $objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\AdventRepository') ;
 
 		/** @var \Allplan\Nemadvent\Domain\Repository\AdventCatRepository $this->adventCatRepository*/
-		$this->adventCatRepository	= $this->objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\AdventCatRepository') ;
+		$this->adventCatRepository	= $objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\AdventCatRepository') ;
 
 		/** @var \Allplan\Nemadvent\Domain\Repository\UserRepository $this->userRepository*/
-		$this->userRepository	 	= $this->objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\UserRepository') ;
+		$this->userRepository	 	= $objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\UserRepository') ;
 
 		/** @var \Allplan\Nemadvent\Domain\Repository\WinnerRepository $this->winnerRepository*/
-		$this->winnerRepository	 	= $this->objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\WinnerRepository') ;
+		$this->winnerRepository	 	= $objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\WinnerRepository') ;
 
 
-		$this->frontendUserRepository 	= $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository');
-		$this->frontendUserGroupRepository = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserGroupRepository');
+		$this->frontendUserRepository 	= $objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository');
+		$this->frontendUserGroupRepository = $objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserGroupRepository');
 
 		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
 		$this->initJS($this->settings['jsFiles']);

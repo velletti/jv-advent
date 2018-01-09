@@ -36,7 +36,7 @@ class WinnerController extends BaseController {
 	 * @var \Allplan\Nemadvent\Domain\Model\AdventCat
 	 * @inject
 	 */
-	protected $adventCat;
+	public $adventCat;
 
 	/**
 	 * Initializes the current action

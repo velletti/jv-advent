@@ -82,15 +82,14 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
     public $user;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUser
+	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
 	 * @inject
 	 */
 
     public $frontendUserRepository;
 
-
 	/**
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroup
+	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository
 	 * @inject
 	 */
     public $frontendUserGroupRepository;

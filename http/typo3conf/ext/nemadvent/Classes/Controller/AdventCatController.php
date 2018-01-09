@@ -37,7 +37,7 @@ class AdventCatController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @var \Allplan\Nemadvent\Domain\Repository\AdventCatRepository
 	 * @inject
 	 */
-	protected $adventCatRepository;
+	public $adventCatRepository;
 
 
 	/**

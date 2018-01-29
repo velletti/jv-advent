@@ -1,2 +1,0 @@
-  # cat=basic/enable; type=string; label=default Language code
- defaultLanguageCode = de

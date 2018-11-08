@@ -1,0 +1,98 @@
+    <f:if condition="{settings.afterenddate}">
+		<f:then>
+
+			<h3>Something is wrong: </h3><br/>
+			Plugin should not be visible AFTER  enddate!
+			enddate: {settings.enddate} <br/>
+			now: {settings.now} <br/>
+		</f:then>
+		<f:else>
+			<div class="hide">
+				<f:link.page id="tx_advent_answerpage" noCacheHash="1" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_nemadvent_pi1: {single: {adddate: ''}}}"> LINK </f:link.page>
+				<div class="tx_advent_no_accessMsg">
+					<f:security.ifAuthenticated>
+					<f:then>
+						<f:translate key="access_next"> Zur Frage </f:translate>
+					</f:then>
+						<f:else>
+							<f:translate key="access_false"> Bitte zuerst anmelden </f:translate>
+						</f:else>
+					</f:security.ifAuthenticated>
+				</div>
+			</div>
+
+			<div class="row center-block" style="display:block;">
+
+				<div id="tx_Advent_questions_img">
+					<f:for each="{questions}" as="question" iteration="count">
+
+						<f:if condition="{settings.beforestartdate}">
+							<f:then>
+								<div class="col-sm-2 col-xs-4 tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_day{count.cycle}">
+									<p class="tx_Advent_questions_inactive_background"><f:format.date format="d">{question.date}</f:format.date></p>
+								</div>
+							</f:then>
+							<f:else>
+								<f:if condition="{question.today}">
+									<f:then>
+
+											<f:security.ifAuthenticated>
+												<f:then>
+													<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_active tx_Advent_questions_today tx_Advent_questions_day{count.cycle}" onclick="openDoor(this, {count.cycle})">
+														<p><f:format.date format="d">{question.date}</f:format.date></p>
+													</div>
+												</f:then>
+												<f:else>
+													<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_inactive_background tx_Advent_questions_day{count.cycle}">
+														<p><f:translate key="access_false">Bitte zuerst anmelden!</f:translate></p>
+													</div>
+												</f:else>
+											</f:security.ifAuthenticated>
+									</f:then>
+									<f:else>
+										<f:if condition="{question.daybefore}">
+											<f:then>
+													<f:security.ifAuthenticated>
+														<f:then>
+															<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_active tx_Advent_questions_day{count.cycle}"  onclick="openDoor(this, {count.cycle})">
+																	<p><f:format.date format="d">{question.date}</f:format.date></p>
+															</div>
+														</f:then>
+														<f:else>
+															<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_active tx_Advent_questions_day{count.cycle}" >
+																<p><f:format.date format="d">{question.date}</f:format.date></p>
+															</div>
+														</f:else>
+													</f:security.ifAuthenticated>
+
+											</f:then>
+											<f:else>
+												<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_day{count.cycle} tx_Advent_questions_inactive_background">
+													<p class="tx_Advent_questions_inactive_background"><f:format.date format="d">{question.date}</f:format.date></p>
+												</div>
+											</f:else>
+										</f:if>
+
+									</f:else>
+								</f:if>
+
+							</f:else>
+						</f:if>
+
+					</f:for>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+
+		</f:else>
+	</f:if>
+
+	<script type="text/javascript" src="/typo3conf/ext/nemadvent/Resources/Public/Js/script.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		var syslng = {settings.sys_language_uid};
+		var sysid = {settings.list.pid.myanswersView};
+		tx_nemadvent_ajax(syslng , sysid) ;
+	});
+
+</script>

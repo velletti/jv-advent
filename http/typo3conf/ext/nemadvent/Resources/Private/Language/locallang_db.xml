@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'nemadvent'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+
+			<!-- Tx_Nemadvent_Domain_Model_Advent start -->
+			
+			
+			<label index="tx_nemadvent.settings.options">Options</label>
+			<label index="tx_nemadvent.settings.links">Links</label>
+			<label index="tx_nemadvent.settings.filter">Filter</label>
+
+			
+			<label index="Tx_Nemadvent_Domain_Model_Advent">Adventskalender Question</label>
+			<label index="tx_nemadvent.settings.question">Show single question</label>
+			<label index="tx_nemadvent.settings.calendar">Show Calendar view with doors</label>
+			<label index="tx_nemadvent.settings.listAnswers">List All Answers</label>
+
+			
+			<label index="Tx_Nemadvent_domain_model_link_to_main">Main Page</label>
+			<label index="Tx_Nemadvent_domain_model_link_to_question">Page with Question</label>
+			<label index="Tx_Nemadvent_domain_model_link_to_myanswers">Page with the users Answers</label>
+			
+			
+			<label index="Tx_Nemadvent_domain_model_myanswers">My Answers</label>
+			
+			<label index="Tx_Nemadvent_Domain_Model_Winner.prize">Prize</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.text">decription</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.date">Date</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.winner">Winner</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.winnerlist">Winnerlist</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.winnerlistall">Winnerlist All Days</label>
+			
+			<label index="Tx_Nemadvent_Domain_Model_Winner.sorting">Sorting</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Points</label>
+			<label index="Tx_Nemadvent_Domain_Model_Winners_pid">Page with winners</label>
+			
+			
+			<label index="Tx_Nemadvent_Domain_Model_Winner.winner_uid">Winners uid from fe_users</label>
+			
+			<label index="Tx_Nemadvent_Domain_Model_Advent.title">Titel</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.startdate">Startdate</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.date">Date</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.answer1">Answer No 1</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.answer2">Answer No 2</label>			
+			<label index="Tx_Nemadvent_Domain_Model_Advent.answer3">Answer No 3</label>			
+			<label index="Tx_Nemadvent_Domain_Model_Advent.answer4">Answer No 4</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.answer5">Answer No 5</label>			
+			<label index="Tx_Nemadvent_Domain_Model_Advent.correct">Correct answer(s) (if more than one, separate with ,)</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.rangemin">Range Min Value - integer (if used, must be > 0 !!!)</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.rangemax">Range Max Value - integer (if > 0 leave Answers 1-5 empty!) </label>
+
+			<label index="Tx_Nemadvent_Domain_Model_Advent.enddate">Enddate</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.days">How much Days</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.storeonpid">Where do you want to store the users Answers? Select a sysfolder!</label>
+			
+			
+			<label index="Tx_Nemadvent_Domain_Model_Advent.desc_short">Hint of the day</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.desc_long">question</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.video">Videofile (if available)</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.image">Image (if available)</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.categories">AKR Year:</label>
+			<label index="Tx_Nemadvent_Domain_Model_Advent.viewed">Angezeigt</label>
+			
+			<!-- Tx_Nemadvent_Domain_Model_Advent stop -->
+
+			<!-- Tx_Nemadvent_Domain_Model_Adventcat start -->
+			<label index="Tx_Nemadvent_Domain_Model_Adventcat">Advent Calendar</label>
+			<label index="Tx_Nemadvent_Domain_Model_Adventcat.title">Titel</label>
+			<label index="Tx_Nemadvent_Domain_Model_Adventcat.startdate">Startdate</label>
+			<label index="Tx_Nemadvent_Domain_Model_Adventcat.enddate">Enddate</label>
+			<label index="Tx_Nemadvent_Domain_Model_Adventcat.days">Days</label>
+			<label index="Tx_Nemadvent_Domain_Model_Adventcat.mustacceptagb">The - to-see-the-answers-you-must-accept-the-agb-s-text</label>
+			
+			<!-- Tx_Nemadvent_Domain_Model_Adventcat stop -->
+
+				<!-- Tx_Nemadvent_Domain_Model_Userlog start -->
+			<label index="Tx_Nemadvent_Domain_Model_User">Userlog</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.title">Title</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.uid">Vote uid (do not  change!)</label>
+			
+			<label index="Tx_Nemadvent_Domain_Model_User.question_uid">Question UID (do not  change!)</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.answer_uid">Answer UID (1-5)</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.advent_uid">UID of Kalender</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.question_date">Dateval of Question (do not  change!)</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.question_datef">Date of Question Formated (do not  change!)</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.feuser_uid">User UID</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.points">Points (do not  change!)</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.subpoints">subpoints (do not  change!)</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.customerno">Customer No</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.usergroup">Users Grouprights</label>
+			
+			<label index="Tx_Nemadvent_Domain_Model_User.sys_language_uid">UsersLang Uid</label>
+			<label index="Tx_Nemadvent_Domain_Model_User.title">Titel</label>
+			
+
+			<!-- Tx_Nemadvent_Domain_Model_Userlog stop -->
+
+
+		</languageKey>
+	</data>
+</T3locallang>

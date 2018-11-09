@@ -40,6 +40,7 @@ class AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		
 		$query->getQuerySettings()->setIgnoreEnableFields(true);
 		$query->getQuerySettings()->setRespectStoragePage(false);
+		$query->getQuerySettings()->setRespectSysLanguage(false);
 		$query->setOrderings(array( 'date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING )) ;
 
 

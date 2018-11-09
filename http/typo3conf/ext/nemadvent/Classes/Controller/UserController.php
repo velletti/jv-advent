@@ -162,7 +162,7 @@ class UserController extends BaseController {
 
 		} else {
 			if ( $answer > 0 ) {
-				$this->addFlashMessage('addanswer.WasNotSent: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question->getPid() , '' , \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+				$this->addFlashMessage('addanswer.WasNotSent: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . intval($this->request->getArgument('question'))  , '' , \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 			}
 			
 		}

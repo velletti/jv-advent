@@ -11,6 +11,7 @@ CREATE TABLE tx_nemadvent_domain_model_advent (
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l18n_parent int(11) DEFAULT '0' NOT NULL,
 	l18n_diffsource mediumblob NOT NULL,
+	l10n_state TEXT DEFAULT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
 	desc_short text NOT NULL,
@@ -49,6 +50,7 @@ CREATE TABLE tx_nemadvent_domain_model_adventcat (
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l18n_parent int(11) DEFAULT '0' NOT NULL,
 	l18n_diffsource mediumblob NOT NULL,
+	l10n_state TEXT DEFAULT NULL,
 	title varchar(255) DEFAULT '' NOT NULL,
 	startdate int(11) DEFAULT '0' NOT NULL,
 	enddate int(11) DEFAULT '0' NOT NULL,
@@ -95,6 +97,7 @@ CREATE TABLE tx_nemadvent_domain_model_winner (
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l18n_parent int(11) DEFAULT '0' NOT NULL,
 	l18n_diffsource mediumblob NOT NULL,
+	l10n_state TEXT DEFAULT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
 	desc_short text NOT NULL,

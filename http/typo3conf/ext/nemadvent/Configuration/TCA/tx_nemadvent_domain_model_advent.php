@@ -274,7 +274,7 @@ return
 
         ),
         'types' => array(
-            '0' => array('showitem' => 'hidden, categories, title, date,  desc_long;;4;richtext:rte_transform[flag=rte_enabled|mode=ts], image,  desc_short;;4;richtext:rte_transform[flag=rte_enabled|mode=ts], solution;;4;richtext:rte_transform[flag=rte_enabled|mode=ts],
+            '0' => array('showitem' => 'sys_language_uid, l18n_parent, hidden, categories, title, date,  desc_long, image,  desc_short, solution,
             --div--;Answers,answer1,answer2,answer3,answer4,answer5,correct,rangemin,rangemax,storeonpid')
         ),
         'palettes' => array(

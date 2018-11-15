@@ -59,12 +59,20 @@
 					</h4>
 					<div  class="Tx_Nemadvent_questlist_sub well hide">
 						<div class="row">
-							<div class="col-sm-9">
-								<f:format.html>{question.descLong}</f:format.html>
-							</div>
-							<div class="col-sm-3">
-								<f:image style="width:100%; height:auto;" width="220" src="{question.image.uid}" alt="{question.image.altText}" treatIdAsReference="1"/>
-							</div>
+							<f:if condition="{question.image}">
+								<f:then>
+									<div class="col-sm-9">
+										<f:format.html>{question.descLong}</f:format.html>
+									</div>
+									<div class="col-sm-3">
+										<f:image style="width:100%; height:auto;" width="220" src="{question.image.uid}" alt="{question.image.altText}" treatIdAsReference="1"/>
+									</div>
+								</f:then>
+								<f:else>
+									<f:format.html>{question.descLong}</f:format.html>
+								</f:else>
+							</f:if>
+
 
 						</div>
 

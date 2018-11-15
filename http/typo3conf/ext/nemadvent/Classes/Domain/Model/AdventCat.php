@@ -136,7 +136,19 @@ class AdventCat extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function getDays() {
 		return $this->days;
-	}			
+	}
+
+    /**
+     * @return int
+     */
+    public function getSysLanguageUid()
+    {
+        return $this->_languageUid;
+    }
+
+
+
+
 }
 
 ?>

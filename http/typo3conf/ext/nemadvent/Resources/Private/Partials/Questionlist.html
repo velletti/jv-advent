@@ -50,7 +50,7 @@
 			<div  class=".nemadvent_quest nemadvent_questlist left col-xs-12 col-md-8">
 				<f:for each="{questions}" as="question" iteration="count">
 
-					<h4>{count.cycle} - {question.title}
+					<h4><f:format.date format="%d">{question.date}</f:format.date> - {question.title}
 						<f:if condition="{isnemintern}">
 							<f:if condition="{question.totalAnswers} > 0 ">
 							<span class="small"> - {question.totalAnswers} User</span>

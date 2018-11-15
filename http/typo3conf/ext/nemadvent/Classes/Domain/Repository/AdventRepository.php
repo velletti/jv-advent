@@ -46,6 +46,7 @@ class AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 		if ($adventCat!= NULL){
 			$queryParams[] = $query->contains('categories', $adventCat);
+            $queryParams[] = $query->equals('sys_language_uid', $adventCat->getSysLanguageUid() );
 		}		
 					
 		if 	( $questiondate > 0 ) {

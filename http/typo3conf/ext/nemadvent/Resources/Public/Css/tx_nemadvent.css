@@ -179,7 +179,8 @@ div#tx_advent_WuerfelMauer {
 
 
 div#tx_Advent_questions_img {
-	background-image: url(../img/Sterne_Hintergrundbild980px_560px_72dpi.jpg);
+	/* background-image: url(../img/Sterne_Hintergrundbild980px_560px_72dpi.jpg);  */
+	background-image: url(../img/rentiere_hintergrundbild_akr_960_560_.jpg);
 	background-color: black;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;

@@ -187,8 +187,9 @@ class WinnerController extends BaseController {
         if (  $this->settings['afterenddate']  ) {
             $mindate= mktime( 23 , 59 , 59 , date("m") , date("d")  , date("Y"))  ;
         } else {
-            $mindate= mktime( 0 , 0 , 0 , date("m") , date("d")-1 , date("Y"))  ;
+            $mindate= mktime( 12 , 0 , 0 , date("m") , date("d")-1 , date("Y"))  ;
         }
+        $minCreated = now - ( 60*60 * 24 ) ;
 
 // during deployment ...
 		// unset($winnerdata);
@@ -228,7 +229,7 @@ class WinnerController extends BaseController {
 			
 			$where = "a.advent_uid = " . $this->adventCat->getUid() 
 			. "  AND a.deleted = 0 " . $notUserGroup . " AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid
-		    . " AND a.tstamp < " . $mindate . " AND a.question_date < " . $mindate
+		    . " AND a.crdate < " . $minCreated . " AND a.question_date < " . $mindate
 
 			. $onlyUserGroup
 			 ;

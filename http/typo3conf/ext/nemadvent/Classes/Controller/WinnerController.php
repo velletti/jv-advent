@@ -187,7 +187,7 @@ class WinnerController extends BaseController {
         if (  $this->settings['afterenddate']  ) {
             $mindate= mktime( 23 , 59 , 59 , date("m") , date("d")  , date("Y"))  ;
         } else {
-            $mindate= mktime( 4 , 59 , 59 , date("m") , date("d")-1 , date("Y"))  ;
+            $mindate= mktime( 0 , 0 , 0 , date("m") , date("d")-1 , date("Y"))  ;
         }
 
 // during deployment ...

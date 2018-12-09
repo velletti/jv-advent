@@ -189,7 +189,7 @@ class WinnerController extends BaseController {
         } else {
             $mindate= mktime( 12 , 0 , 0 , date("m") , date("d")-1 , date("Y"))  ;
         }
-        $minCreated = now - ( 60*60 * 24 ) ;
+        $minCreated = time() - ( 60*60 * 24 ) ;
 
 // during deployment ...
 		// unset($winnerdata);

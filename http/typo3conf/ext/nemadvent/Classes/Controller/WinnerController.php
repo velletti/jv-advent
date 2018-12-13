@@ -142,7 +142,7 @@ class WinnerController extends BaseController {
             $count = intval( $this->settings['winnerPerPageCount'] ) ;
 
         } else {
-            $this->settings['winnerPerPageCount'] = 42 ;
+            $this->settings['winnerPerPageCount'] = 72 ;
         }
         $this->settings['winnerPerPageCount1'] = $this->settings['winnerPerPageCount'] +1  ;
         $this->settings['winnerPerPageCount2'] = $this->settings['winnerPerPageCount'] * 2   ;

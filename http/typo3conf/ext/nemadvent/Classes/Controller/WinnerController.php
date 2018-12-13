@@ -137,7 +137,15 @@ class WinnerController extends BaseController {
 
 		// https://connect.allplan.com/de/home/advent-2013/rangliste.html?tx_nemadvent_pi1[offset]=0&tx_nemadvent_pi1[userGroup]=7
 		$doit = $this->settingsHelper() ;
-		$count = 42 ;
+        $count = 72 ;
+        if (  $this->settings['winnerPerPageCount']  ) {
+            $count = intval( $this->settings['winnerPerPageCount'] ) ;
+
+        } else {
+            $this->settings['winnerPerPageCount'] = 42 ;
+        }
+        $this->settings['winnerPerPageCount1'] = $this->settings['winnerPerPageCount'] +1  ;
+        $this->settings['winnerPerPageCount2'] = $this->settings['winnerPerPageCount'] * 2   ;
 
 		$userGroup = "-7" ;
 		$onlyUserGroup = '' ;

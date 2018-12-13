@@ -43,6 +43,7 @@ plugin.tx_nemadvent {
 		}
 		// See Extension template !!! will be overwritten at the end of the Advent game
 		maxDaysInFuture = 0
+		winnerPerPageCount = 72
 	}
 	persistence {
 		storagePid = {$plugin.tx_nemadvent.persistence.storagePid}

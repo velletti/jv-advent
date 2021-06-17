@@ -10,7 +10,7 @@
 # writing. "version" and "dependencies" must not be touched!
 ########################################################################
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF['nem_advent'] = array(
 	'title' => 'Connect Advent',
 	'description' => 'Creates a aventskalender page',
 	'category' => 'plugin',

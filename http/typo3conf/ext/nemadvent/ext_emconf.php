@@ -10,7 +10,7 @@
 # writing. "version" and "dependencies" must not be touched!
 ########################################################################
 
-$EM_CONF['nem_advent'] = array(
+$EM_CONF['nemadvent'] = array(
 	'title' => 'Connect Advent',
 	'description' => 'Creates a aventskalender page',
 	'category' => 'plugin',
@@ -45,5 +45,3 @@ $EM_CONF['nem_advent'] = array(
 	'suggests' => array(
 	),
 );
-
-?>

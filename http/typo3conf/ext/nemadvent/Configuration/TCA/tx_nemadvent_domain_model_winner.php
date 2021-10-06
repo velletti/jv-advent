@@ -23,22 +23,22 @@ return array (
     'columns' => array(
         'sys_language_uid' => Array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.language',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => Array (
                 'type' => 'select',
                 'renderType' => 'selectSingle' ,
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => Array(
-                    Array('LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',-1),
-                    Array('LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.default_value',0)
+                    Array('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',-1),
+                    Array('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value',0)
                 )
             )
         ),
         'l18n_parent' => Array (
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 0,
-            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => Array (
                 'type' => 'select',
                 'renderType' => 'selectSingle' ,
@@ -56,7 +56,7 @@ return array (
         ),
         'hidden' => array(
             'exclude' => 0,
-            'label'   => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
+            'label'   => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config'  => array(
                 'type' => 'check'
             )

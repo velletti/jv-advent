@@ -1,0 +1,30 @@
+{
+  "name": "typo3-local/nemadvent",
+  "description": "Allplan Software Downloads - full version or hotfixes ",
+  "type": "typo3-cms-extension",
+  "minimum-stability": "stable",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Jörg Velletti",
+      "email": "jvelletti@allplan.com"
+    },
+    {
+      "name": "Peter Benke",
+      "email": "pbenke@allplan.com"
+    }
+  ],
+  "require": {
+    "typo3/cms-core": "^10.4"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "nemadvent"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Allplan\\Nemadvent\\": "Classes"
+    }
+  }
+}

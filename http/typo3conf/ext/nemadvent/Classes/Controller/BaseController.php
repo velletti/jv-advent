@@ -1,6 +1,18 @@
 <?php
-namespace Allplan\Nemadvent\Controller ;
+namespace Allplan\Nemadvent\Controller;
 
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Allplan\Nemadvent\Domain\Repository\WinnerRepository;
+use Allplan\Nemadvent\Domain\Repository\AdventRepository;
+use Allplan\Nemadvent\Domain\Repository\AdventCatRepository;
+use Allplan\Nemadvent\Domain\Model\AdventCat;
+use Allplan\Nemadvent\Domain\Repository\UserRepository;
+use Allplan\Nemadvent\Domain\Model\User;
+use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
+use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 /***************************************************************
 *  Copyright notice
 *
@@ -21,78 +33,72 @@ namespace Allplan\Nemadvent\Controller ;
 *  GNU General Public License for more details.
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
-
-
-
-/**
+***************************************************************
  * Controller for varius objects
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-
-class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-
-	/**
-	 * @var \Allplan\Nemadvent\Domain\Repository\WinnerRepository
-	 * @inject
-	 */
-	public $winnerRepository;
+class BaseController extends ActionController {
 
 	/**
-	 * @var \Allplan\Nemadvent\Domain\Repository\AdventRepository
-	 * @inject
-	 */
-    public $adventRepository;
+  * @var WinnerRepository
+  * @TYPO3\CMS\Extbase\Annotation\Inject
+  */
+ public WinnerRepository $winnerRepository;
 
 	/**
-	 * @var \Allplan\Nemadvent\Domain\Repository\AdventCatRepository
-	 * @inject
-	 */
-    public $adventCatRepository;
+     * @var AdventRepository
+     * @TYPO3\CMS\Extbase\Annotation\Inject
+     */
+    public AdventRepository $adventRepository;
 
 	/**
-	 * @var \Allplan\Nemadvent\Domain\Model\AdventCat
-	 * @inject
-	 */
-    public $adventCat;
+     * @var AdventCatRepository
+     * @TYPO3\CMS\Extbase\Annotation\Inject
+     */
+    public AdventCatRepository $adventCatRepository;
 
 	/**
-	 * @var boolean $isnem
-	 */
-	public $isnem ;
+     * @var AdventCat
+     * @TYPO3\CMS\Extbase\Annotation\Inject
+     */
+    public AdventCat $adventCat;
 
 	/**
 	 * @var boolean $isnem
 	 */
-	public $isnemintern ;
+	public bool $isnem ;
 
 	/**
-	 * @var \Allplan\Nemadvent\Domain\Repository\UserRepository
-	 * @inject
+	 * @var boolean $isnem
 	 */
-	public $userRepository;
+	public bool $isnemintern ;
 
 	/**
-	 * @var \Allplan\Nemadvent\Domain\Model\User
-	 * @inject
-	 */
-    public $user;
+  * @var UserRepository
+  * @TYPO3\CMS\Extbase\Annotation\Inject
+  */
+ public UserRepository $userRepository;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
-	 * @inject
-	 */
-
-    public $frontendUserRepository;
+     * @var User
+     * @TYPO3\CMS\Extbase\Annotation\Inject
+     */
+    public User $user;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository
-	 * @inject
-	 */
-    public $frontendUserGroupRepository;
+     * @var FrontendUserRepository
+     * @TYPO3\CMS\Extbase\Annotation\Inject
+     */
+    public FrontendUserRepository $frontendUserRepository;
+
+	/**
+     * @var FrontendUserGroupRepository
+     * @TYPO3\CMS\Extbase\Annotation\Inject
+     */
+    public FrontendUserGroupRepository $frontendUserGroupRepository;
 
 
 
@@ -103,21 +109,21 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function initializeAction() {
 		$objectManager = $this->objectManager ;
-		/** @var \Allplan\Nemadvent\Domain\Repository\AdventRepository $this->adventRepository*/
-		$this->adventRepository	 	= $objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\AdventRepository') ;
+		/** @var AdventRepository $this ->adventRepository*/
+  		$this->adventRepository	 	= $objectManager->get(AdventRepository::class) ;
 
-		/** @var \Allplan\Nemadvent\Domain\Repository\AdventCatRepository $this->adventCatRepository*/
-		$this->adventCatRepository	= $objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\AdventCatRepository') ;
+		/** @var AdventCatRepository $this ->adventCatRepository*/
+  		$this->adventCatRepository	= $objectManager->get(AdventCatRepository::class) ;
 
-		/** @var \Allplan\Nemadvent\Domain\Repository\UserRepository $this->userRepository*/
-		$this->userRepository	 	= $objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\UserRepository') ;
+		/** @var UserRepository $this ->userRepository*/
+  		$this->userRepository	 	= $objectManager->get(UserRepository::class) ;
 
-		/** @var \Allplan\Nemadvent\Domain\Repository\WinnerRepository $this->winnerRepository*/
-		$this->winnerRepository	 	= $objectManager->get('Allplan\\Nemadvent\\Domain\\Repository\\WinnerRepository') ;
+		/** @var WinnerRepository $this ->winnerRepository*/
+  		$this->winnerRepository	 	= $objectManager->get(WinnerRepository::class) ;
 
 
-		$this->frontendUserRepository 	= $objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository');
-		$this->frontendUserGroupRepository = $objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserGroupRepository');
+		$this->frontendUserRepository 	= $objectManager->get(FrontendUserRepository::class);
+		$this->frontendUserGroupRepository = $objectManager->get(FrontendUserGroupRepository::class);
 
 		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
 		$this->initJS($this->settings['jsFiles']);
@@ -218,7 +224,7 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		if ( $this->isnemintern == true	) {
 			$this->view->assign('mypid', $this->settings['list']['pid']['myanswersView']) ; 
 		}
-		$this->settings['sys_language_uid'] = $GLOBALS['TSFE']->sys_language_uid  ; 
+		$this->settings['sys_language_uid'] = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id')  ; 
 		
 		$this->view->assign('adventscat', $this->adventCat);
 		
@@ -242,7 +248,7 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		}
 		// for development ... do not cache at all if activating the next line .. ... !
 		// $this->delete_from_Cache($identifier ) ;
-		$identifier =  $identifier . "-". $GLOBALS['TSFE']->sys_language_uid ;
+		$identifier =  $identifier . "-". GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id') ;
 		$where = 'identifier = "' . $identifier . '" and lifetime > ' . time() . " AND pid = " . $GLOBALS['TSFE']->id;
  		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('content','tx_nemadvent_cache', $where, '' , '');
 		$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
@@ -261,7 +267,7 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		if ( $this->CacheTime > 0 ) {
 				
 			$this->delete_from_Cache($identifier ) ;
-			$identifier =  $identifier . "-". $GLOBALS['TSFE']->sys_language_uid ;
+			$identifier =  $identifier . "-". GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id') ;
 			$data = array ( 'pid' => $GLOBALS['TSFE']->id  ,
 							'identifier' => $identifier ,
 							'lifetime' => time() + $this->CacheTime ,
@@ -279,7 +285,7 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @return	''
 	 */	
 	function delete_from_Cache($identifier ) {
-		$identifier =  $identifier . "-". $GLOBALS['TSFE']->sys_language_uid ;
+		$identifier =  $identifier . "-". GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id') ;
 		$this->CacheDebug .=  '<br>delete: -> ' . $identifier . " -> CacheTime" . $this->CacheTime ;	
 		$where = 'identifier LIKE "' . $identifier . '" AND pid = "' . $GLOBALS['TSFE']->id  . '"' ;
 		$res = $GLOBALS["TYPO3_DB"]->exec_DELETEquery("tx_nemadvent_cache", $where );	
@@ -293,7 +299,7 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @author Martin Heigermoser <martin.heigermoser@typovision.de>
 	 */
 	public function translate($label , $arguments=NULL) {
-		return \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($label, 'Nemadvent' , $arguments );
+		return LocalizationUtility::translate($label, 'Nemadvent' , $arguments );
 	}
 
 	public function showArrayAsJson($output) {
@@ -306,7 +312,7 @@ class BaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		header('Content-Type: application/json; charset=utf-8');
 		header('Content-Transfer-Encoding: 8bit');
 
-		$callbackId = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP("callback");
+		$callbackId = GeneralUtility::_GP("callback");
 		if ( $callbackId == '' ) {
 			echo $jsonOutput;
 		} else {

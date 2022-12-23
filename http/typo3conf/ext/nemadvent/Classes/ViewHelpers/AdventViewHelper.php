@@ -1,9 +1,10 @@
 <?php
-namespace Allplan\Nemadvent\Viewhelper  ;
+namespace Allplan\Nemadvent\Viewhelper;
+
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /* * *************************************************************
  *  Copyright notice
  *
-
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,15 +23,14 @@ namespace Allplan\Nemadvent\Viewhelper  ;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
-
 class Advent {
 
 	//put your code here
 
-	static function generateGroupList(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groups) {
+	static function generateGroupList(ObjectStorage $groups) {
 		$groupList = array();
 		foreach ($groups as $group) {
-			array_push($groupList, $group->getUid());
+			$groupList[] = $group->getUid();
 		}
 
 		return $groupList;

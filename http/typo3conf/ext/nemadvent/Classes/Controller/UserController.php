@@ -1,9 +1,10 @@
 <?php
-namespace Allplan\Nemadvent\Controller ;
+namespace Allplan\Nemadvent\Controller;
+
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
 /* * *************************************************************
  *  Copyright notice
  *
-
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,7 +23,6 @@ namespace Allplan\Nemadvent\Controller ;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
-
 /**
  * Controller for the advent object
  *
@@ -150,19 +150,19 @@ class UserController extends BaseController {
 																$question , $point, $subpoint, $answer );
 
 			if ( $userlog['TO-OLD'] > 0) {
-				$this->addFlashMessage( "Ihre Antwort wurde NICHT gespeichert da eine Änderung max innerhalb von 24h möglich ist! Gültig bleibt die bereits abgegebene Antwort vom " . date( "d.m.Y h:i" , $userlog["TO-OLD" ]) , '' , \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+				$this->addFlashMessage( "Ihre Antwort wurde NICHT gespeichert da eine Änderung max innerhalb von 24h möglich ist! Gültig bleibt die bereits abgegebene Antwort vom " . date( "d.m.Y h:i" , $userlog["TO-OLD" ]) , '' , AbstractMessage::ERROR);
 			} else {
 				if ( $userlog) {
 
 					$this->addFlashMessage($this->translate('addanswer.WasSent'));
 				} else {
-					$this->addFlashMessage('addanswer.WasNotStored: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question->getPid() , '' , \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+					$this->addFlashMessage('addanswer.WasNotStored: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question->getPid() , '' , AbstractMessage::ERROR);
 				}
 			}
 
 		} else {
 			if ( $answer > 0 ) {
-				$this->addFlashMessage('addanswer.WasNotSent: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . intval($this->request->getArgument('question'))  , '' , \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+				$this->addFlashMessage('addanswer.WasNotSent: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . intval($this->request->getArgument('question'))  , '' , AbstractMessage::ERROR);
 			}
 			
 		}

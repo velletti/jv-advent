@@ -1,5 +1,8 @@
 <?php
-namespace Allplan\Nemadvent\Controller ;
+namespace Allplan\Nemadvent\Controller;
+
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Allplan\Nemadvent\Domain\Repository\AdventCatRepository;
 /***************************************************************
 *  Copyright notice
 *
@@ -21,23 +24,20 @@ namespace Allplan\Nemadvent\Controller ;
 *  GNU General Public License for more details.
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
-
-/**
+*************************************************************** *
  * Controller for the adventcat object
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-
-class AdventCatController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class AdventCatController extends ActionController {
 
 	/**
-	 * @var \Allplan\Nemadvent\Domain\Repository\AdventCatRepository
-	 * @inject
-	 */
-	public $adventCatRepository;
+	  * @var AdventCatRepository
+	  * @TYPO3\CMS\Extbase\Annotation\Inject
+	  */
+	 public AdventCatRepository $adventCatRepository;
 
 
 	/**

@@ -114,7 +114,7 @@ class AdventController extends BaseController {
 			$count = count($question);
 			$this->view->assign('question', $question[0]);
 			$this->view->assign('adventCat', $this->adventCat );
-			
+
 	//		debug($question[0]) ;
 		}
 		
@@ -204,7 +204,7 @@ class AdventController extends BaseController {
 						} else {
 							$questions[$i]->setUserAnswer( 0 );
 						}
-						
+
 					}
 				}
 			}

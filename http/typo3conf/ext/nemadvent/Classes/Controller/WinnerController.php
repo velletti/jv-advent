@@ -1,9 +1,13 @@
 <?php
-namespace Allplan\Nemadvent\Controller ;
+namespace Allplan\Nemadvent\Controller;
+
+use Allplan\Nemadvent\Domain\Model\AdventCat;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Context\Context;
+use Allplan\AllplanTools\Utility\TyposcriptUtility;
 /* * *************************************************************
  *  Copyright notice
  *
-
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,7 +26,6 @@ namespace Allplan\Nemadvent\Controller ;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
-
 /**
  * Controller for the winner object
  *
@@ -33,10 +36,10 @@ namespace Allplan\Nemadvent\Controller ;
 class WinnerController extends BaseController {
 
 	/**
-	 * @var \Allplan\Nemadvent\Domain\Model\AdventCat
-	 * @inject
-	 */
-	public $adventCat;
+  * @var AdventCat
+  * @TYPO3\CMS\Extbase\Annotation\Inject
+  */
+ public AdventCat $adventCat;
 
 	/**
 	 * Initializes the current action
@@ -188,7 +191,7 @@ class WinnerController extends BaseController {
 		}
 
 		$offset = intval( $offset) ;
-		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup  . $isNem . "-L-" . $GLOBALS['TSFE']->sys_language_uid  . "-". $this->adventCat->getUid() . "-c" . $count ;
+		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup  . $isNem . "-L-" . GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id')  . "-". $this->adventCat->getUid() . "-c" . $count ;
 
 		$tempcontent = $this->get_content_from_Cache( $identifier ) ;
 		$winnerdata = unserialize($tempcontent);
@@ -203,7 +206,7 @@ class WinnerController extends BaseController {
 		// unset($winnerdata);
 
 		// load Typoscript from other extension
-		$nemSettings= \Allplan\AllplanTools\Utility\TyposcriptUtility::loadTypoScriptFromScratch(12 , "tx_nemconnections") ;
+		$nemSettings= TyposcriptUtility::loadTypoScriptFromScratch(12 , "tx_nemconnections") ;
 
 		$this->settings['privateicons'] = $nemSettings["settings"]["setup"]['privateicons'] ;
 
@@ -226,17 +229,17 @@ class WinnerController extends BaseController {
 
 
 		if ( ! is_array( $winnerdata ) ) {
-			
-			
+
+
 			$what = "a.feuser_uid,u.usergroup as usergroup, u.tx_nem_firstname as firstname, "
 			 . "u.username, u.email, u.crdate as crdate, u.tx_nem_gender, u.tx_nem_image, u.tx_mmforum_helpful_count  , u.tx_nem_navision_contactid, u.country as country, u.tx_nem_country , "
 			. "count( a.points ) AS counttotal, sum( a.points ) AS pointtotal, sum( a.subpoints ) AS subpointtotal , (sum( a.points )*100000 + sum( a.subpoints )) as pointsForOrder ";
-			
+
 			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
 //			$table = 'tx_nemadvent_domain_model_user a' ;
-			
+
 			$where = "a.advent_uid = " . $this->adventCat->getUid() 
-			. "  AND a.deleted = 0 " . $notUserGroup . " AND a.sys_language_uid = " . $GLOBALS['TSFE']->sys_language_uid
+			. "  AND a.deleted = 0 " . $notUserGroup . " AND a.sys_language_uid = " . GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id')
 		    . " AND a.crdate < " . $minCreated . " AND a.question_date < " . $mindate
 
 			. $onlyUserGroup
@@ -251,7 +254,7 @@ class WinnerController extends BaseController {
 			// echo " SELECT $what FROM $table WHERE $where GROUP BY $groupBy ORDER BY $orderBy LIMIT $limit " ;
 
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
-		
+
 			$winnerdata = array() ;
 			$ForumCount = 0 ;
 			$userWith24Answers = 0 ;
@@ -486,7 +489,7 @@ class WinnerController extends BaseController {
 		}
 		if ( $this->isnem ) {
 	//		$this->view->assign('debug', "select  " . $what . " FROM " . $table .  " WHERE " . $where . " GROUP BY " . $groupBy . " ORDER BY " . $orderBy . " - "  . $GLOBALS['TYPO3_DB']->sql_error() );
-			
+
 		}
         if ( $this->isnemintern ) {
             if ( $this->request->hasArgument('export')) {

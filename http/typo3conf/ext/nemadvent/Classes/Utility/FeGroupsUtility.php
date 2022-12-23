@@ -1,9 +1,10 @@
 <?php
-namespace Allplan\Nemadvent\Utility  ;
+namespace Allplan\Nemadvent\Utility;
+
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /* * *************************************************************
  *  Copyright notice
  *
-
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,12 +23,11 @@ namespace Allplan\Nemadvent\Utility  ;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
-
 class FeGroupsUtility {
 
 	//put your code here
 
-	static function generateGroupList(\TYPO3\CMS\Extbase\Persistence\ObjectStorage  $groups) {
+	static function generateGroupList(ObjectStorage  $groups) {
 		$groupList = array();
 		foreach ($groups as $group) {
 			array_push($groupList, $group->getUid());
@@ -45,7 +45,7 @@ class FeGroupsUtility {
 		return $groupList;
 	}
 
-	static function hasAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groups=null) {
+	static function hasAccess(ObjectStorage $groups=null) {
 		$groupList = array();
 
 		if ($groups != null && count($groups)) {
@@ -62,7 +62,7 @@ class FeGroupsUtility {
 		return true;
 	}
 	
-	static function needSPAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groups=null) {
+	static function needSPAccess(ObjectStorage $groups=null) {
 		$groupList = array();
 	//	echo "ich bin hier : ... " ;
 
@@ -79,7 +79,7 @@ class FeGroupsUtility {
 		return false;
 	}
 	
-	static function needNemAccess(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $groups=null) {
+	static function needNemAccess(ObjectStorage $groups=null) {
 		
 		$groupList = array();
 	//	echo "ich bin hier : ... " ;

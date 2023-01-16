@@ -22,7 +22,7 @@ $EM_CONF['nemadvent'] = array(
 	'author_company' => 'Allplan GmbH',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '8.7.0-10.99.99',
+			'typo3' => '10.4.0-11.5.99',
 		),
 		'conflicts' => array(
 		),

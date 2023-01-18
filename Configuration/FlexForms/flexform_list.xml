@@ -6,13 +6,13 @@
 		<sDEF>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:tx_nemadvent.settings.options</sheetTitle>
+					<sheetTitle>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:tx_nemadvent.settings.options</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<switchableControllerActions>
 						<TCEforms>
-							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:tx_nemadvent.settings.show</label>
+							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:tx_nemadvent.settings.show</label>
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
@@ -21,27 +21,27 @@
 								<maxitems>1</maxitems>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:tx_nemadvent.settings.question</numIndex>
+										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:tx_nemadvent.settings.question</numIndex>
 										<numIndex index="1">Advent->single</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_domain_model_myanswers</numIndex>
+										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_domain_model_myanswers</numIndex>
 										<numIndex index="1">User->answer</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Winner.winnerlist</numIndex>
+										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winner.winnerlist</numIndex>
 										<numIndex index="1">Winner->list</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Winner.winnerlistall</numIndex>
+										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winner.winnerlistall</numIndex>
 										<numIndex index="1">Winner->listall</numIndex>
 									</numIndex>
 									<numIndex index="4" type="array">
-										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:tx_nemadvent.settings.listAnswers</numIndex>
+										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:tx_nemadvent.settings.listAnswers</numIndex>
 										<numIndex index="1">Advent->listAnswers</numIndex>
 									</numIndex>
 									<numIndex index="5" type="array">
-										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:tx_nemadvent.settings.calendar</numIndex>
+										<numIndex index="0">LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:tx_nemadvent.settings.calendar</numIndex>
 										<numIndex index="1">Advent->showCalendar</numIndex>
 									</numIndex>
 								</items>
@@ -52,7 +52,7 @@
                         <TCEforms>
                          <exclude>1</exclude>
                          <displayCond>FIELD:switchableControllerActions:=:0</displayCond>
-					     <label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.startdate</label>
+					     <label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.startdate</label>
                             <config>
                             	
                                 <type>input</type>
@@ -67,7 +67,7 @@
                         <TCEforms>
                          <exclude>1</exclude>
                          <displayCond>FIELD:switchableControllerActions:=:1</displayCond>
-					     <label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.date</label>
+					     <label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.date</label>
                             <config>
                             	
                                 <type>input</type>
@@ -82,7 +82,7 @@
                         <TCEforms>
                          <exclude>1</exclude>
                          <displayCond>FIELD:switchableControllerActions:=:0</displayCond>
-					     <label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.enddate</label>
+					     <label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.enddate</label>
                             <config>
                                 <type>input</type>
 								<size>10</size>
@@ -96,7 +96,7 @@
                         <TCEforms>
                          <exclude>1</exclude>
                          <displayCond>FIELD:switchableControllerActions:=:0</displayCond>
-					     <label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.days</label>
+					     <label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.days</label>
                             <config>
                             	
                                 <type>input</type>
@@ -109,7 +109,7 @@
                     </settings.advent.list.filter.days>                                        
 					<settings.advent.list.filter.adventCat>
 						<TCEforms>
-							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Adventcat</label>
+							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Adventcat</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -139,7 +139,7 @@
 					</settings.advent.list.filter.adventCat>                    
 					<settings.advent.list.mustacceptagb>
 						<TCEforms>
-							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Adventcat.mustacceptagb</label>
+							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Adventcat.mustacceptagb</label>
 
 							<config>
 								<type>text</type>
@@ -159,13 +159,13 @@
 		<link>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:tx_nemadvent.settings.links</sheetTitle>
+					<sheetTitle>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:tx_nemadvent.settings.links</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.list.pid.listView>
 						<TCEforms>
-							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_domain_model_link_to_main</label>
+							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_domain_model_link_to_main</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -196,7 +196,7 @@
 					</settings.list.pid.listView>	
 					<settings.list.pid.singleView>
 						<TCEforms>
-							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_domain_model_link_to_question</label>
+							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_domain_model_link_to_question</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -226,7 +226,7 @@
 					</settings.list.pid.singleView>
 					<settings.list.pid.myanswersView>
 						<TCEforms>
-							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_domain_model_link_to_myanswers</label>
+							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_domain_model_link_to_myanswers</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -256,7 +256,7 @@
 					</settings.list.pid.myanswersView>
 					<settings.list.pid.winners>
 						<TCEforms>
-							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Winners_pid</label>
+							<label>LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winners_pid</label>
 							
 							<config>
 								<type>group</type>

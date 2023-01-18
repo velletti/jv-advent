@@ -3,7 +3,7 @@ defined('TYPO3_MODE') or die();
 
 return array (
     'ctrl' => array (
-        'title'             => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Adventcat',
+        'title'             => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Adventcat',
         'label' 			=> 'title',
         'tstamp' 			=> 'tstamp',
         'crdate' 			=> 'crdate',
@@ -62,7 +62,7 @@ return array (
         ),
         'title' => array(
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Adventcat.title',
+            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Adventcat.title',
             'config'  => array(
                 'type' => 'input',
                 'size' => 40,
@@ -72,7 +72,7 @@ return array (
         ),
         'startdate' => array(
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Adventcat.startdate',
+            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Adventcat.startdate',
             'config'  => array(
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -84,7 +84,7 @@ return array (
         ),
         'enddate' => array(
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Adventcat.enddate',
+            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Adventcat.enddate',
             'config'  => array(
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -96,7 +96,7 @@ return array (
         ),
         'days' => array(
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Adventcat.days',
+            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Adventcat.days',
             'config'  => array(
                 'type' => 'input',
                 'size' => 3,

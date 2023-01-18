@@ -3,7 +3,7 @@ defined('TYPO3_MODE') or die();
 return
     array(
         'ctrl' => array (
-            'title'             => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent',
+            'title'             => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent',
             'label' 			=> 'title',
             'tstamp' 			=> 'tstamp',
             'crdate' 			=> 'crdate',
@@ -66,7 +66,7 @@ return
             ),
             'title' => array(
                 'exclude' => 0,
-                'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.title',
+                'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.title',
                 'config'  => array(
                     'type' => 'input',
                     'size' => 40,
@@ -77,7 +77,7 @@ return
 
             'date' => array (
                 'exclude' => 0,
-                'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.date',
+                'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.date',
                 'config' => array (
                     'type' => 'input',
                     'renderType' => 'inputDateTime',
@@ -90,7 +90,7 @@ return
 
             'desc_short' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.desc_short',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.desc_short',
                 'richtextConfiguration' => 'connect_template',
                 'config' => array(
                     'type' => 'text',
@@ -102,7 +102,7 @@ return
 
             'desc_long' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.desc_long',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.desc_long',
                 'richtextConfiguration' => 'connect_template',
                 'config' => array(
                     'type' => 'text',
@@ -114,7 +114,7 @@ return
 
             'solution' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.solution',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.solution',
                 'richtextConfiguration' => 'connect_template',
                 'config' => array(
                     'type' => 'text',
@@ -125,7 +125,7 @@ return
             ),
 
             'image' => array(
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.image',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.image',
                 'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                     'tx_nemadvent_domain_model_advent_image',
                     array(
@@ -151,7 +151,7 @@ return
 
             'viewed' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.viewed',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.viewed',
                 'config' => array (
                     'type' => 'input',
                     'size' => '8',
@@ -159,7 +159,7 @@ return
             ),
             'answer1' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.answer1',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.answer1',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -168,7 +168,7 @@ return
             ),
             'answer2' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.answer2',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.answer2',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -177,7 +177,7 @@ return
             ),
             'answer3' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.answer3',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.answer3',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -186,7 +186,7 @@ return
             ),
             'answer4' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.answer4',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.answer4',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -195,7 +195,7 @@ return
             ),
             'answer5' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.answer5',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.answer5',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -204,7 +204,7 @@ return
             ),
             'correct' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.correct',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.correct',
                 'config' => array (
                     'type' => 'input',
                     'size' => '10',
@@ -213,7 +213,7 @@ return
             ),
             'rangemin' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.rangemin',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.rangemin',
                 'config' => array (
                     'type' => 'input',
                     'size' => '10',
@@ -223,7 +223,7 @@ return
             ),
             'rangemax' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.rangemax',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.rangemax',
                 'config' => array (
                     'type' => 'input',
                     'size' => '10',
@@ -233,7 +233,7 @@ return
             ),
             'storeonpid' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.storeonpid',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.storeonpid',
                 'config' => array (
                     'type' => 'group',
                     'size' => '1',
@@ -255,7 +255,7 @@ return
 
             'categories' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_Advent.categories',
+                'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Advent.categories',
                 'l10n_mode' => 'exclude',
                 'config' => array(
                     'type' => 'group',

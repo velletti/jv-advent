@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file t3:id="1674036876" source-language="en" datatype="plaintext" original="messages" date="2023-01-18T10:14:36Z" product-name="nemadvent">
+		<header/>
+		<body>
+			<trans-unit id="no_access_headline" resname="no_access_headline" >
+				<source>No Access</source>
+			</trans-unit>
+			<trans-unit id="no_access" resname="no_access" >
+				<source>Please log in with right access rights to see that page</source>
+			</trans-unit>
+			<trans-unit id="access_next" resname="access_next" >
+				<source>Go to the question</source>
+			</trans-unit>
+			<trans-unit id="access_false" resname="access_false" >
+				<source>Please log in, first!</source>
+			</trans-unit>
+			<trans-unit id="hintoftheday" resname="hintoftheday" >
+				<source>Hint of the Day</source>
+			</trans-unit>
+			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.points" resname="Tx_Nemadvent_Domain_Model_Winner.points" >
+				<source>Points</source>
+			</trans-unit>
+			<trans-unit id="yourresult" resname="yourresult" >
+				<source>Your Result</source>
+			</trans-unit>
+			<trans-unit id="result_visible_at" resname="result_visible_at" >
+				<source>Your final result will be shown after</source>
+			</trans-unit>
+			<trans-unit id="how_to_find_solution" resname="how_to_find_solution" >
+				<source>How to find the Solution</source>
+			</trans-unit>
+			<trans-unit id="addanswer.WasSent" resname="addanswer.WasSent" >
+				<source>Your answer was stored in our database and is shown in the list below.</source>
+			</trans-unit>
+			<trans-unit id="solutions.percentTooltip" resname="solutions.percentTooltip" >
+				<source>Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</source>
+			</trans-unit>
+			<trans-unit id="solutions.percentButton" resname="solutions.percentButton" >
+				<source>% Verteilung</source>
+			</trans-unit>
+			<trans-unit id="solutions.percentNormalTooltip" resname="solutions.percentNormalTooltip" >
+				<source>Zeige wieder die normale Liste der Fragen als Übersicht</source>
+			</trans-unit>
+			<trans-unit id="solutions.percentNormalButton" resname="solutions.percentNormalButton" >
+				<source>Normal</source>
+			</trans-unit>
+			<trans-unit id="solutions.expandTooltip" resname="solutions.expandTooltip" >
+				<source>Alle Fragen aufklappen inkl. der Antworten und Lösungshinweise</source>
+			</trans-unit>
+			<trans-unit id="correct_answer_was" resname="correct_answer_was" >
+				<source>The correct answer was</source>
+			</trans-unit>
+			<trans-unit id="use_range" resname="use_range" >
+				<source>For answering, use range and push button</source>
+			</trans-unit>
+			<trans-unit id="result_no_answers_found" resname="result_no_answers_found" >
+				<source>You have not answered any questions yet</source>
+			</trans-unit>
+			<trans-unit id="ChangeAnswer" resname="ChangeAnswer" >
+				<source>Change your Answer</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -3,7 +3,7 @@ defined('TYPO3_MODE') or die();
 
 return array (
     'ctrl' => array (
-        'title'		=> 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User',
+        'title'		=> 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User',
         'label'     => 'uid',
         'tstamp'    => 'tstamp',
         'crdate'    => 'crdate',
@@ -18,7 +18,7 @@ return array (
     'columns' => array (
         'feuser_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.feuser_uid',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.feuser_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -27,7 +27,7 @@ return array (
         ),
         'uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.uid',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 1,
@@ -37,7 +37,7 @@ return array (
         ),
         'sys_language_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.sys_language_uid',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.sys_language_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -47,7 +47,7 @@ return array (
 
         'usergroup' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.usergroup',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.usergroup',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -56,7 +56,7 @@ return array (
         ),
         'customerno' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.customerno',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.customerno',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -65,7 +65,7 @@ return array (
         ),
         'question_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.question_uid',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.question_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -74,7 +74,7 @@ return array (
         ),
         'question_date' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.question_date',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.question_date',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -106,7 +106,7 @@ return array (
         ),
         'question_datef' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.question_datef',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.question_datef',
             'config' => array (
                 'type' => 'input',
                 'size' => 10,
@@ -115,7 +115,7 @@ return array (
         ),
         'advent_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.advent_uid',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.advent_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -124,7 +124,7 @@ return array (
         ),
         'answer_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.answer_uid',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.answer_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -135,7 +135,7 @@ return array (
 
         'points' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.points',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.points',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -144,7 +144,7 @@ return array (
         ),
         'subpoints' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xml:Tx_Nemadvent_Domain_Model_User.subpoints',
+            'label' => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_User.subpoints',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file t3:id="1674036876" source-language="en" target-language="cz" datatype="plaintext" original="messages" date="2023-01-18T10:14:36Z" product-name="nemadvent">
+		<header/>
+		<body>
+			<trans-unit id="no_access_headline" resname="no_access_headline"  approved="yes">
+				<source>No Access</source>
+				<target>Nemáte přístupu</target>
+			</trans-unit>
+			<trans-unit id="no_access" resname="no_access"  approved="yes">
+				<source>Please log in with right access rights to see that page</source>
+				<target>Pro zobrazení obsahu stránky se prosím přihlaště.</target>
+			</trans-unit>
+			<trans-unit id="access_next" resname="access_next"  approved="yes">
+				<source>Go to the question</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="access_false" resname="access_false"  approved="yes">
+				<source>Please log in, first!</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="hintoftheday" resname="hintoftheday"  approved="yes">
+				<source>Hint of the Day</source>
+				<target>Tip dne</target>
+			</trans-unit>
+			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.points" resname="Tx_Nemadvent_Domain_Model_Winner.points"  approved="yes">
+				<source>Points</source>
+				<target>Body</target>
+			</trans-unit>
+			<trans-unit id="yourresult" resname="yourresult"  approved="yes">
+				<source>Your Result</source>
+				<target>Váš výsledek</target>
+			</trans-unit>
+			<trans-unit id="result_visible_at" resname="result_visible_at"  approved="yes">
+				<source>Your final result will be shown after</source>
+				<target>Váš výsledek bude zobrazen od</target>
+			</trans-unit>
+			<trans-unit id="how_to_find_solution" resname="how_to_find_solution"  approved="yes">
+				<source>How to find the Solution</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="addanswer.WasSent" resname="addanswer.WasSent"  approved="yes">
+				<source>Your answer was stored in our database and is shown in the list below.</source>
+				<target>Vaše odpověď byla uložena a zobrazí se v tabulce níže.</target>
+			</trans-unit>
+			<trans-unit id="solutions.percentTooltip" resname="solutions.percentTooltip"  approved="yes">
+				<source>Zeige alle Antworten auf alle Fragen, aber nur die prozentuale Verteilung der jeweiligen Antworten aller User</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="solutions.percentButton" resname="solutions.percentButton"  approved="yes">
+				<source>% Verteilung</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="solutions.percentNormalTooltip" resname="solutions.percentNormalTooltip"  approved="yes">
+				<source>Zeige wieder die normale Liste der Fragen als Übersicht</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="solutions.percentNormalButton" resname="solutions.percentNormalButton"  approved="yes">
+				<source>Normal</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="solutions.expandTooltip" resname="solutions.expandTooltip"  approved="yes">
+				<source>Alle Fragen aufklappen inkl. der Antworten und Lösungshinweise</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="correct_answer_was" resname="correct_answer_was"  approved="yes">
+				<source>The correct answer was</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="use_range" resname="use_range"  approved="yes">
+				<source>For answering, use range and push button</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="result_no_answers_found" resname="result_no_answers_found"  approved="yes">
+				<source>You have not answered any questions yet</source>
+				<target/>
+			</trans-unit>
+			<trans-unit id="ChangeAnswer" resname="ChangeAnswer"  approved="yes">
+				<source>Change your Answer</source>
+				<target/>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

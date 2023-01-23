@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file t3:id="1674036934" source-language="en" datatype="plaintext" original="messages" date="2023-01-18T10:15:34Z" product-name="nemadvent">
+	<file t3_id="1674036934" source-language="en" datatype="plaintext" original="messages" date="2023-01-18T10:15:34Z" product-name="nemadvent">
 		<header/>
 		<body>
 			<trans-unit id="tx_nemadvent.settings.options" resname="tx_nemadvent.settings.options" >

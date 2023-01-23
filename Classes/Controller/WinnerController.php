@@ -434,13 +434,20 @@ class WinnerController extends BaseController {
                     if( $withWishes ) {
                         $select = "uid,body" ;
                         $where = 'feuser = "' . intval($winnerdata[$i]['feuser_uid']). '" AND pid = ' . $this->settings['wishlistPidResults']  ;
+
+                        $WishList = false ;
+
+                        // todo 23.1.2023 Rebuild Wishlist hack
+                        /*
                         $resWishlist = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
                             'tx_powermail_domain_model_mail',
                             $where  , "" , "tstamp DESC " , "0,1");
+
                        // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
 
                         $winnerdata[$i]['wishlist'] = false ;
                         $WishList = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resWishlist ) ;
+                         */
                         // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
                         if (  $WishList  ) {
                             $winnerdata[$i]['wishlist'] = true ;

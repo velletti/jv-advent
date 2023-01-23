@@ -236,11 +236,14 @@ class UserController extends BaseController {
             }
             $this->settings['subtotal'] = "," . trim( substr( "000" . $this->settings['subtotal']  , -3 , 3 )) ;
 
-			// j.v. TEMP Hack: gibt es einen wunschzettel auf PID 3929 ?
+			// TODO 23.1.2023  -- need to reimplemante j.v.  Hack: gibt es einen wunschzettel auf PID 3929 ?
+            $row = false ;
+            /*
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*' , 'tx_powermail_domain_model_mail',
 				"pid = " . $this->settings['wishlistPidResults'] . " AND feuser = " . $GLOBALS['TSFE']->fe_user->user['uid']
 				, '' , 'tstamp DESC' , 1 ) ;
             $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res ) ;
+            */
             $this->view->assign('wishes', $row );
 
             // echo "<br>Line: " . __LINE__ . " : " . " File: " . __FILE__ . '<br>$row : ' . var_export($row, TRUE) . "<hr>";

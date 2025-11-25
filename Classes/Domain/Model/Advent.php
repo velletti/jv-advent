@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Domain\Model ;
+namespace Jvelletti\JvAdvent\Domain\Model ;
 /* * *************************************************************
  *  Copyright notice
  *
@@ -167,21 +167,16 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $userAnswer;
 
 	/**
-	 * image
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-	 */
-	protected $image;
+  * image
+  * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+  */
+ #[\TYPO3\CMS\Extbase\Annotation\ORM\Lazy]
+ protected $image;
 	/**
 	 * @var string
 	 */
 	protected $video;
-	/**
-	 * The categories of this advent
-	 *
-	 * @var \Allplan\Nemadvent\Domain\Model\AdventCat
-	 */
-	protected $categories;
+
 
 
 	/**
@@ -197,14 +192,6 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function __construct() {
 	}
 
-	/**
-	 * Getter for categories
-	 *
-	 * @return \Allplan\Nemadvent\Domain\Model\AdventCat categories
-	 */
-	public function getCategories() {
-		return $this->categories;
-	}
 
 	/**
 	 * Getter for title
@@ -297,7 +284,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup> $feGroup
 	 */
-	public function setFeGroup($feGroup) {
+	public function setFeGroup($feGroup): void {
 		$this->feGroup = $feGroup;
 	}
 
@@ -394,14 +381,14 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param string $correct
 	 */
-	public function setCorrect($correct) {
+	public function setCorrect($correct): void {
 		$this->correct = $correct;
 	}
 
 	/**
 	 * @param string $correct1
 	 */
-	public function setCorrect1($correct1) {
+	public function setCorrect1($correct1): void {
 		$this->correct1 = $correct1;
 	}
 
@@ -415,7 +402,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param string $correct2
 	 */
-	public function setCorrect2($correct2) {
+	public function setCorrect2($correct2): void {
 		$this->correct2 = $correct2;
 	}
 
@@ -456,7 +443,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param string $solution
 	 */
-	public function setSolution($solution) {
+	public function setSolution($solution): void {
 		$this->solution = $solution;
 	}
 
@@ -470,7 +457,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $answer_uid
 	 */
-	public function setAnswerUid($answer_uid) {
+	public function setAnswerUid($answer_uid): void {
 		$this->answer_uid = $answer_uid;
 	}
 
@@ -484,7 +471,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $userAnswer
 	 */
-	public function setUserAnswer($userAnswer) {
+	public function setUserAnswer($userAnswer): void {
 		$this->userAnswer = $userAnswer;
 	}
 
@@ -498,7 +485,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param string $video
 	 */
-	public function setVideo($video) {
+	public function setVideo($video): void {
 		$this->video = $video;
 	}
 
@@ -512,7 +499,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $answer1count
 	 */
-	public function setAnswer1count($answer1count) {
+	public function setAnswer1count($answer1count): void {
 		$this->answer1count = $answer1count;
 	}
 
@@ -526,7 +513,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $answer2count
 	 */
-	public function setAnswer2count($answer2count) {
+	public function setAnswer2count($answer2count): void {
 		$this->answer2count = $answer2count;
 	}
 
@@ -540,7 +527,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $answer3count
 	 */
-	public function setAnswer3count($answer3count) {
+	public function setAnswer3count($answer3count): void {
 		$this->answer3count = $answer3count;
 	}
 
@@ -554,7 +541,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $answer4count
 	 */
-	public function setAnswer4count($answer4count) {
+	public function setAnswer4count($answer4count): void {
 		$this->answer4count = $answer4count;
 	}
 
@@ -568,7 +555,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $answer5count
 	 */
-	public function setAnswer5count($answer5count) {
+	public function setAnswer5count($answer5count): void {
 		$this->answer5count = $answer5count;
 	}
 
@@ -582,7 +569,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $totalAnswers
 	 */
-	public function setTotalAnswers($totalAnswers) {
+	public function setTotalAnswers($totalAnswers): void {
 		$this->totalAnswers = $totalAnswers;
 	}
 
@@ -596,7 +583,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $rangemax
 	 */
-	public function setRangemax($rangemax) {
+	public function setRangemax($rangemax): void {
 		$this->rangemax = $rangemax;
 	}
 
@@ -610,7 +597,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $rangemin
 	 */
-	public function setRangemin($rangemin) {
+	public function setRangemin($rangemin): void {
 		$this->rangemin = $rangemin;
 	}
 

@@ -1,7 +1,7 @@
 
-		<div class="Tx_Nemadvent_pi1">
+		<div class="tx_jvadvent_pi1">
 
-			<div class="Tx_Nemadvent_pi1_legende right well col-xs-12 col-md-3">
+			<div class="tx_jvadvent_pi1_legende right well col-xs-12 col-md-3">
 				<div class="col-xs-8 col-md-12">
 					<f:if condition="{settings.afterenddate}">
 					<h3>Legende:</h3>
@@ -60,7 +60,7 @@
 							</f:if>
 						</f:if>
 					</h4>
-					<div  class="Tx_Nemadvent_questlist_sub well hide">
+					<div  class="tx_jvadvent_questlist_sub well hide">
 						<div class="row">
 							<f:if condition="{question.image}">
 								<f:then>
@@ -80,7 +80,7 @@
 						</div>
 
 
-						<div class="Tx_Nemadvent_answers">
+						<div class="tx_jvadvent_answers">
 
 							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer1count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
 							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer2count , settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
@@ -113,7 +113,7 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H4").each(function(){
+			jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H4").each(function(){
 				jQuery(this).click(function(eventObject){
 					eventObject.preventDefault();
 					adventQuestion = jQuery(this).next() ;
@@ -125,7 +125,7 @@
 				});
 			});
 			function showallAKRAnswers() {
-				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H4").each(function(){
+				jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H4").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).removeClass("hide") ;
 				});
@@ -133,7 +133,7 @@
 				jQuery("#hideallAKRAnswers").removeClass("hide") ;
 			}
 			function hideallAKRAnswers() {
-				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H4").each(function(){
+				jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H4").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).addClass("hide") ;
 				});
@@ -141,34 +141,34 @@
 				jQuery("#showallAKRAnswers").removeClass("hide") ;
 			}
 			function showOnlyAKRPercent() {
-				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H4").each(function(){
+				jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H4").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).removeClass("hide") ;
 				});
-				jQuery(".Tx_Nemadvent_pi1 .Tx_Nemadvent_questlist_sub P").each(function(){
+				jQuery(".tx_jvadvent_pi1 .tx_jvadvent_questlist_sub P").each(function(){
 					jQuery(this).addClass("hide") ;
 				});
-				jQuery(".Tx_Nemadvent_pi1 .Tx_Nemadvent_questlist_sub .clearfix").each(function(){
+				jQuery(".tx_jvadvent_pi1 .tx_jvadvent_questlist_sub .clearfix").each(function(){
 					jQuery(this).css("display" , "none") ;
 				});
-				jQuery(".Tx_Nemadvent_pi1 .nemadvent_tipp").each(function(){
+				jQuery(".tx_jvadvent_pi1 .nemadvent_tipp").each(function(){
 					jQuery(this).addClass("hide") ;
 				});
 				jQuery("#showAKRPercent").addClass("hide") ;
 				jQuery("#undoShowAKRPercent").removeClass("hide") ;
 			}
 			function undoShowOnlyAKRPercent() {
-				jQuery(".Tx_Nemadvent_pi1 .nemadvent_questlist H3").each(function(){
+				jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H3").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).addClass("hide") ;
 				});
-				jQuery(".Tx_Nemadvent_pi1 .Tx_Nemadvent_questlist_sub P").each(function(){
+				jQuery(".tx_jvadvent_pi1 .tx_jvadvent_questlist_sub P").each(function(){
 					jQuery(this).removeClass("hide") ;
 				});
-				jQuery(".Tx_Nemadvent_pi1 .Tx_Nemadvent_questlist_sub .clearfix").each(function(){
+				jQuery(".tx_jvadvent_pi1 .tx_jvadvent_questlist_sub .clearfix").each(function(){
 					jQuery(this).css("display" , "block") ;
 				});
-				jQuery(".Tx_Nemadvent_pi1 .nemadvent_tipp").each(function(){
+				jQuery(".tx_jvadvent_pi1 .nemadvent_tipp").each(function(){
 					jQuery(this).removeClass("hide") ;
 				});
 

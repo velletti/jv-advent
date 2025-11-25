@@ -13,12 +13,12 @@ function tx_quizSeite(field, DoorNr) {
 	window.location.href = (url + DoorNr);
 }
 
-function tx_nemadvent_ajax( syslng , sysid ) {
+function tx_jvadvent_ajax( syslng , sysid ) {
 	jQuery.ajax({
 		type: "GET",
 		url: "/index.php",
 		cache: false,
-		data: "id=" + sysid + "&L=" + syslng + "&tx_nemadvent_pi1[JSON]=1",
+		data: "id=" + sysid + "&L=" + syslng + "&tx_jvadvent_pi1[JSON]=1",
 		beforeSend: function() {
 		},
 		success: function(result) {

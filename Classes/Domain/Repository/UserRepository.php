@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Domain\Repository ;
+namespace Jvelletti\JvAdvent\Domain\Repository ;
 /***************************************************************
 *  Copyright notice
 *
@@ -43,7 +43,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 		if ($feUserUid > 0 and  ( $answer > 0 OR $subpoints > 0 ) and is_object($question) ) {
 
-			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*' , 'tx_nemadvent_domain_model_user',
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*' , 'tx_jvadvent_domain_model_user',
 				"feuser_uid ='" .   intval($feUserUid) ."' AND "
 				."advent_uid ='" .   intval($adventCat->getUid())    ."' AND "
 				."question_uid ='" . intval($question->getUid()) ."'"
@@ -60,7 +60,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			}
 
 
-			$res = $GLOBALS['TYPO3_DB']->exec_DELETEquery('tx_nemadvent_domain_model_user', 
+			$res = $GLOBALS['TYPO3_DB']->exec_DELETEquery('tx_jvadvent_domain_model_user', 
 															"feuser_uid ='" .   intval($feUserUid) ."' AND "
 															."advent_uid ='" .   intval($adventCat->getUid())    ."' AND "
 															."question_uid ='" . intval($question->getUid()) ."'"
@@ -84,7 +84,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 									"advent_uid" 		=> intval($adventCat->getUid()) , 
 								) ;
 
-			$return = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_nemadvent_domain_model_user'
+			$return = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_jvadvent_domain_model_user'
 								, $updateData);	
 		}
 		return $return;
@@ -114,9 +114,9 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query->setOrderings(array( 'question_datef' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING )) ;
 
 
-		$query = $query->matching($query->logicalAnd($queryParams));
+		$query = $query->matching($query->logicalAnd(...$queryParams));
 		$return = $query->execute()->toArray() ;
-		// SELECT * FROM tx_nemadvent_domain_model_user where ( advent_uid="72" and feuser_uid="353" and sys_language_uid="1" ) ORDER BY question_datef ASC
+		// SELECT * FROM tx_jvadvent_domain_model_user where ( advent_uid="72" and feuser_uid="353" and sys_language_uid="1" ) ORDER BY question_datef ASC
 		return $return;
 	}
 	/**
@@ -143,7 +143,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			$queryParams[] = $query->equals('question_date', $question);
 		}
 
-		$query = $query->matching($query->logicalAnd($queryParams));
+		$query = $query->matching($query->logicalAnd(...$queryParams));
 
 		$return =  $query->execute() ;
 

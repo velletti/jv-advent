@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Controller;
+namespace Jvelletti\JvAdvent\Controller;
 
 use Allplan\Nemadvent\Domain\Model\AdventCat;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -37,24 +37,19 @@ class WinnerController extends BaseController {
 
 	/**
   * @var AdventCat
-  * @TYPO3\CMS\Extbase\Annotation\Inject
   */
  public AdventCat $adventCat;
+ public function __construct(private \TYPO3\CMS\Core\Context\Context $context)
+ {
+ }
 
 	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
-	public function initializeAction() {
-
+	public function initializeAction(): void {
 		parent::initializeAction();
-
-		$this->initCSS($this->settings['cssFiles']);
-		$this->initJS($this->settings['jsFiles']);
-		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
-
-		//overwrite setting Configuration
 
 	}
 
@@ -63,13 +58,13 @@ class WinnerController extends BaseController {
 	 *
 	 * @return string The rendered view
 	 */
-	public function listAction( ) {
+	public function listAction( ): \Psr\Http\Message\ResponseInterface {
 		//default values
 		$doit = $this->settingsHelper( ) ;
 		$winnerspid = ($this->settings['list']['pid']['winners'] == '' ) ? $this->pid : $this->settings['list']['pid']['winners'] ;
-		
+
 		$winners =  $this->winnerRepository->getWinnerlist($winnerspid);
-		
+
 		// count advents
 		$count = count($winners);
 		$winnerdata = array() ;
@@ -117,18 +112,19 @@ class WinnerController extends BaseController {
 				//debug($winners[$i] );
 				$winnerdata[$i]['prize'] =  $winners[$i] ;
 				$winnerdata[$i]['user']['dateformated'] =  date( "d.m.Y" ,$winners[$i]->getDate()  );
-				
+
 			}
 		}
 	//	debug($winnerdata) ;
 		$this->view->assign('winnerdata', $winnerdata);
-		
-		
+
+
 		$this->view->assign('count', $count);
 		if ( $this->settings['afterenddate'] ) {
 			$this->settings['showtotal'] = 1 ;
 		}
 		$this->view->assign('settings', $this->settings);
+  return $this->htmlResponse();
 	}
 
 
@@ -136,9 +132,9 @@ class WinnerController extends BaseController {
 	 * listall action for this controller.
 	 * @param integer $offset 
 	 */
-	public function listallAction($offset=0) {
+	public function listallAction($offset=0): \Psr\Http\Message\ResponseInterface {
 
-		// https://connect.allplan.com/de/home/advent-2013/rangliste.html?tx_nemadvent_pi1[offset]=0&tx_nemadvent_pi1[userGroup]=7
+		// https://connect.allplan.com/de/home/advent-2013/rangliste.html?tx_jvadvent_pi1[offset]=0&tx_jvadvent_pi1[userGroup]=7
 		$doit = $this->settingsHelper() ;
         $count = 72 ;
         if (  $this->settings['winnerPerPageCount']  ) {
@@ -191,7 +187,7 @@ class WinnerController extends BaseController {
 		}
 
 		$offset = intval( $offset) ;
-		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup  . $isNem . "-L-" . GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id')  . "-". $this->adventCat->getUid() . "-c" . $count ;
+		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup  . $isNem . "-L-" . $this->context->getPropertyFromAspect('language', 'id')  . "-". $this->adventCat->getUid() . "-c" . $count ;
 
 		$tempcontent = $this->get_content_from_Cache( $identifier ) ;
 		$winnerdata = unserialize($tempcontent);
@@ -221,7 +217,7 @@ class WinnerController extends BaseController {
         }
 
 		$what = "a.feuser_uid ";
-		$table = 'tx_nemadvent_domain_model_user a ' ;
+		$table = 'tx_jvadvent_domain_model_user a ' ;
 		$where = "a.advent_uid = " . $this->adventCat->getUid() . "  AND a.deleted = 0 ";
 		$groupBy = 'a.feuser_uid';
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy);
@@ -235,11 +231,11 @@ class WinnerController extends BaseController {
 			 . "u.username, u.email, u.crdate as crdate, u.tx_nem_gender, u.tx_nem_image, u.tx_mmforum_helpful_count  , u.tx_nem_navision_contactid, u.country as country, u.tx_nem_country , "
 			. "count( a.points ) AS counttotal, sum( a.points ) AS pointtotal, sum( a.subpoints ) AS subpointtotal , (sum( a.points )*100000 + sum( a.subpoints )) as pointsForOrder ";
 
-			$table = '(tx_nemadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
-//			$table = 'tx_nemadvent_domain_model_user a' ;
+			$table = '(tx_jvadvent_domain_model_user a LEFT JOIN fe_users u ON a.feuser_uid = u.uid )' ;
+//			$table = 'tx_jvadvent_domain_model_user a' ;
 
 			$where = "a.advent_uid = " . $this->adventCat->getUid() 
-			. "  AND a.deleted = 0 " . $notUserGroup . " AND a.sys_language_uid = " . GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id')
+			. "  AND a.deleted = 0 " . $notUserGroup . " AND a.sys_language_uid = " . $this->context->getPropertyFromAspect('language', 'id')
 		    . " AND a.crdate < " . $minCreated . " AND a.question_date < " . $mindate
 
 			. $onlyUserGroup
@@ -381,13 +377,13 @@ class WinnerController extends BaseController {
 					// }
 
 					// wie Oft hat der user am AKR teilgenommen??
-					// SELECT  count( `advent_uid` ) as Count,  `feuser_uid` FROM `connect`.`tx_nemadvent_domain_model_user`
+					// SELECT  count( `advent_uid` ) as Count,  `feuser_uid` FROM `connect`.`tx_jvadvent_domain_model_user`
 					// where `feuser_uid` = 353
 					// GROUP BY  `advent_uid`
 					$select = "count( `advent_uid` ) as Count,  `feuser_uid` , advent_uid" ;
 					$where = 'feuser_uid = "' . intval($winnerdata[$i]['feuser_uid']). '"' ;
 					$resAKRs = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
-						'tx_nemadvent_domain_model_user',
+						'tx_jvadvent_domain_model_user',
 						$where  , 'advent_uid' );
 
 
@@ -415,16 +411,16 @@ class WinnerController extends BaseController {
 			//				$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = true;
 
 					$resAKR = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
-						'tx_nemadvent_domain_model_user',
+						'tx_jvadvent_domain_model_user',
 						$where  , "" , "crdate ASC" , "0,1" );
-					// echo "<br>Select " . $select . " FROM tx_nemadvent_domain_model_user WHERE " . $where . " ORDER BY crdate ASC LIMIT 0,1  ; # Error " . $GLOBALS['TYPO3_DB']->sql_error() ;
+					// echo "<br>Select " . $select . " FROM tx_jvadvent_domain_model_user WHERE " . $where . " ORDER BY crdate ASC LIMIT 0,1  ; # Error " . $GLOBALS['TYPO3_DB']->sql_error() ;
 					$getSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resAKR);
 						$winnerdata[$i]['AKRfirst'] = date("d.m H:i" , $getSingle['crdate']) ; // . " - " . $getSingle['uid'];
 						$winnerdata[$i]['AKRfirstUser'] = date("d." , $getSingle['crdate']) ;
 
 
 					$resAKR = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
-						'tx_nemadvent_domain_model_user',
+						'tx_jvadvent_domain_model_user',
 						$where  , "" , "crdate DESC" , "0,1");
 
 					$getSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resAKR);
@@ -569,7 +565,13 @@ class WinnerController extends BaseController {
 
 		//	var_dump($winnerdata) ;
 	//	die;
-	}	
+ return $this->htmlResponse();
+	}
+
+ public function injectAdventCat(AdventCat $adventCat): void
+ {
+     $this->adventCat = $adventCat;
+ }	
 
 		
 

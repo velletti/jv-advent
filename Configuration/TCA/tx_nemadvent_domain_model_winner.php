@@ -1,9 +1,9 @@
 <?php
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 return array (
     'ctrl' => array (
-        'title'             => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winner.winner',
+        'title'             => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.winner',
         'label' 			=> 'title',
         'tstamp' 			=> 'tstamp',
         'crdate' 			=> 'crdate',
@@ -15,38 +15,25 @@ return array (
         'enablecolumns' 	=> array(
             'disabled' => 'hidden'
         ),
-        'iconfile' 			=>  'EXT:nemadvent/Resources/Public/Icons/icon_tx_nemadvent_domain_model_winner.gif'
-    ) ,
-    'interface' => array(
-        'showRecordFieldList' => 'date,feuser_uid,title,desc_short,sys_language_uid,hidden,sorting,points'
+        'iconfile' 			=>  'EXT:jv-advent/Resources/Public/Icons/icon_tx_jvadvent_domain_model_winner.gif'
     ),
     'columns' => array(
         'sys_language_uid' => Array (
             'exclude' => 0,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
-            'config' => Array (
-                'type' => 'select',
-                'renderType' => 'selectSingle' ,
-                'foreign_table' => 'sys_language',
-                'foreign_table_where' => 'ORDER BY sys_language.title',
-                'items' => Array(
-                    Array('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',-1),
-                    Array('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value',0)
-                )
-            )
+            'config' => ['type' => 'language']
         ),
         'l18n_parent' => Array (
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 0,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => Array (
                 'type' => 'select',
                 'renderType' => 'selectSingle' ,
                 'items' => Array (
-                    Array('', 0),
+                    Array('label' => '', 'value' => 0),
                 ),
-                'foreign_table' => 'tx_nemadvent_domain_model_winner',
-                'foreign_table_where' => 'AND tx_nemadvent_domain_model_winner.uid=###REC_FIELD_l18n_parent### AND tx_nemadvent_domain_model_winner.sys_language_uid IN (-1,0)',
+                'foreign_table' => 'tx_jvadvent_domain_model_winner',
+                'foreign_table_where' => 'AND tx_jvadvent_domain_model_winner.uid=###REC_FIELD_l18n_parent### AND tx_jvadvent_domain_model_winner.sys_language_uid IN (-1,0)',
             )
         ),
         'l18n_diffsource' => Array(
@@ -63,7 +50,7 @@ return array (
         ),
         'title' => array(
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winner.prize',
+            'label'   => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.prize',
             'config'  => array(
                 'type' => 'input',
                 'size' => 40,
@@ -73,7 +60,7 @@ return array (
         ),
         'desc_short' => array(
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winner.text',
+            'label'   => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.text',
             'config'  => array(
                 'type' => 'text',
                 'rows' => 4,
@@ -85,7 +72,7 @@ return array (
         ),
         'date' => array(
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winner.date',
+            'label'   => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.date',
             'config'  => array(
                 'type' => 'input',
                 'size' => 20,
@@ -95,27 +82,27 @@ return array (
         ),
         'feuser_uid' => array (
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winner.winner_uid',
+            'label'   => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.winner_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 10,
-                'eval' => 'required',
                 'maxitem' => 1,
+                'required' => true,
             )
         ),
         'sorting' => array (
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winner.sorting',
+            'label'   => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.sorting',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
-                'eval' => 'required',
                 'maxitem' => 1,
+                'required' => true,
             )
         ),
         'points' => array (
             'exclude' => 0,
-            'label'   => 'LLL:EXT:nemadvent/Resources/Private/Language/locallang_db.xlf:Tx_Nemadvent_Domain_Model_Winner.points',
+            'label'   => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.points',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,

@@ -1,77 +1,77 @@
-#Tx_Nemadvent_question_image {
+#tx_jvadvent_question_image {
 	margin: 0 40px 40px ;
 }
-.Tx_Nemadvent_pi1 .width540 ,
-#Tx_Nemadvent_pi1 .width540 {
+.tx_jvadvent_pi1 .width540 ,
+#tx_jvadvent_pi1 .width540 {
 	margin: 0px 0 0 40px;
 	width:540px;
 }
 .nemadvent_quest {
 	width:640px;
 }
-.Tx_Nemadvent_pi1 .width40 {
+.tx_jvadvent_pi1 .width40 {
 	width:40px;
 }
 
-.Tx_Nemadvent_pi1 .width80 {
+.tx_jvadvent_pi1 .width80 {
 	width:80px;
 	display: inline-block;
 }
 
-.Tx_Nemadvent_pi1 .width70 {
+.tx_jvadvent_pi1 .width70 {
 	width:70px;
 	display: inline-block;
 }
-.Tx_Nemadvent_pi1 .width170 {
+.tx_jvadvent_pi1 .width170 {
 	width:170px;
 	display: inline-block;
 }
-.Tx_Nemadvent_pi1 .width400 {
+.tx_jvadvent_pi1 .width400 {
 	width:400px;
 	display: inline-block;
 }
 
-.Tx_Nemadvent_pi1 .width340 {
+.tx_jvadvent_pi1 .width340 {
 	width:340px;
 	display: inline-block;
 	margin:10px 0 10px;
 }
-.Tx_Nemadvent_pi1_prize{
+.tx_jvadvent_pi1_prize{
 	font-weight: bold;
 }
-.Tx_Nemadvent_pi1 .message{
+.tx_jvadvent_pi1 .message{
 	font-weight: bold;
 	color: #1E78BE;
 }
-#Tx_Nemadvent_showanswers {
+#tx_jvadvent_showanswers {
 	cursor: pointer;
 }
 
-#Tx_Nemadvent_answers {
+#tx_jvadvent_answers {
 	 display: none;
  }
-#Tx_Nemadvent_answers  .row {
+#tx_jvadvent_answers  .row {
 	margin-bottom: 15px;
 }
-.Tx_Nemadvent_pi1 .winnerall {
+.tx_jvadvent_pi1 .winnerall {
 	width:99px;
 	display: inline-block;
 	height:170px;
 	overflow: hidden;
 }
-.Tx_Nemadvent_pi1_wrong {
+.tx_jvadvent_pi1_wrong {
 	background-position: -554px -110px;
 	background-position: -55px -16px;
 }
-.Tx_Nemadvent_pi1_empty {
+.tx_jvadvent_pi1_empty {
 	background-position: -639px -110px;
 	background-position: -170px -16px;
 }
-.Tx_Nemadvent_pi1_correct {
+.tx_jvadvent_pi1_correct {
 	background-position: -537px -110px;
 	background-position: -58px -16px;
 }
-.Tx_Nemadvent_pi1_correct2 {
+.tx_jvadvent_pi1_correct2 {
 	background-position: -656px -110px;
 	background-position: -190px -16px;
 }
@@ -86,7 +86,7 @@
 	background: #8FADCC;
 	color: #FFF;
 }
-.Tx_Nemadvent_pi1_legende {
+.tx_jvadvent_pi1_legende {
 	padding: 16px;
 	margin-bottom: 16px;
 	background: #FFF;
@@ -209,17 +209,17 @@ div#tx_Advent_questions_img {
 
 
 
-input[id='tx_nemadvent_rangeanswer'] {
+input[id='tx_jvadvent_rangeanswer'] {
 	width: 100%;
 	display: block;
 }
 
-#tx_nemadvent_output {
+#tx_jvadvent_output {
 	font-size: 13px;
 
 }
 
-div#tx_nemadvent_Regler_Zahl {
+div#tx_jvadvent_Regler_Zahl {
 	text-align: center;
 
 }

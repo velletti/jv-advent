@@ -1,8 +1,8 @@
-plugin.tx_nemadvent {
+plugin.tx_jvadvent {
 	view {
-		templateRootPath = EXT:nemadvent/Resources/Private/Templates/
-		partialRootPath = EXT:nemadvent/Resources/Private/Partials/
-		layoutRootPath = EXT:nemadvent/Resources/Private/Layouts/
+		templateRootPath = EXT:jv-advent/Resources/Private/Templates/
+		partialRootPath = EXT:jv-advent/Resources/Private/Partials/
+		layoutRootPath = EXT:jv-advent/Resources/Private/Layouts/
 	}
 	persistence {
 		storagePid =

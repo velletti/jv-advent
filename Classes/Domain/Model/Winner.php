@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Domain\Model ;
+namespace Jvelletti\JvAdvent\Domain\Model ;
 /* * *************************************************************
  *  Copyright notice
  *

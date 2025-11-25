@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Controller ;
+namespace Jvelletti\JvAdvent\Controller ;
 
 /* * *************************************************************
  *  Copyright notice
@@ -39,7 +39,7 @@ class AdventController extends BaseController {
 	 *
 	 * @return void
 	 */
-	public function initializeAction() {
+	public function initializeAction(): void {
 
 		parent::initializeAction();
 
@@ -50,10 +50,11 @@ class AdventController extends BaseController {
 	 *
 	 * @return string The rendered view
 	 */
-	public function listAction( ) {
+	public function listAction( ): \Psr\Http\Message\ResponseInterface {
 		//default values
 		$doit = $this->settingsHelper( ) ;
 		$this->view->assign('settings', $this->settings);
+        return $this->htmlResponse();
 	}
 
 	/**
@@ -61,7 +62,7 @@ class AdventController extends BaseController {
 	 *
 	 * @return string The rendered view
 	 */
-	public function singleAction() {
+	public function singleAction(): \Psr\Http\Message\ResponseInterface {
 		
 		$doit = $this->settingsHelper( ) ;
 		$adddate = 0 ;
@@ -123,6 +124,7 @@ class AdventController extends BaseController {
 		
 		$this->view->assign('isnem', $this->isnem);
 		$this->view->assign('isnemintern', $this->isnemintern);
+        return $this->htmlResponse();
 
 	}
 
@@ -131,7 +133,7 @@ class AdventController extends BaseController {
 	 *
 	 * @return string The rendered view
 	 */
-	public function listAnswersAction() {
+	public function listAnswersAction(): \Psr\Http\Message\ResponseInterface {
 
 		$doit = $this->settingsHelper( ) ;
 		$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) ) ,date("Y" )  ) ;
@@ -221,6 +223,7 @@ class AdventController extends BaseController {
 		$this->view->assign('settings', $this->settings);
 
 		$this->view->assign('isnemintern', $this->isnemintern);
+        return $this->htmlResponse();
 
 	}
 
@@ -229,7 +232,7 @@ class AdventController extends BaseController {
 	 *
 	 * @return string The rendered view
 	 */
-	public function showCalendarAction() {
+	public function showCalendarAction(): \Psr\Http\Message\ResponseInterface {
 
 		$doit = $this->settingsHelper( ) ;
 		$adddate = 0 ;
@@ -305,6 +308,7 @@ class AdventController extends BaseController {
 
 		$this->view->assign('isnem', $this->isnem);
 		$this->view->assign('isnemintern', $this->isnemintern);
+        return $this->htmlResponse();
 
 	}
 }

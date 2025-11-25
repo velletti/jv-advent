@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Utility;
+namespace Jvelletti\JvAdvent\Utility;
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /* * *************************************************************
@@ -64,13 +64,10 @@ class FeGroupsUtility {
 	
 	static function needSPAccess(ObjectStorage $groups=null) {
 		$groupList = array();
-	//	echo "ich bin hier : ... " ;
 
 		if ($groups != null && count($groups)) {
 			// j.v. kann man das Objekt auch laden mit userGroup 11= Customer?
 			$groupList = self::generateGroupList($groups);
-		//	var_dump($groupList) ;
-		//	die() ;
 			if (in_array("11", $groupList)) {
 				return false;
 			}
@@ -82,13 +79,9 @@ class FeGroupsUtility {
 	static function needNemAccess(ObjectStorage $groups=null) {
 		
 		$groupList = array();
-	//	echo "ich bin hier : ... " ;
 
 		if ($groups != null && count($groups)) {
-			// j.v. kann man das Objekt auch laden mit userGroup 11= Customer bzw. Customer etc ?
 			$groupList = self::generateGroupList($groups);
-		//	var_dump($groupList) ;
-		//	die() ;
 			if (in_array("11", $groupList) or in_array("3", $groupList) or in_array("10", $groupList)) {
 				return false;
 			}

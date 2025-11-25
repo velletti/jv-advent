@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Controller;
+namespace Jvelletti\JvAdvent\Controller;
 
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Allplan\Nemadvent\Domain\Repository\WinnerRepository;
@@ -44,25 +44,21 @@ class BaseController extends ActionController {
 
 	/**
   * @var WinnerRepository
-  * @TYPO3\CMS\Extbase\Annotation\Inject
   */
  public WinnerRepository $winnerRepository;
 
 	/**
      * @var AdventRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     public AdventRepository $adventRepository;
 
 	/**
      * @var AdventCatRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     public AdventCatRepository $adventCatRepository;
 
 	/**
      * @var AdventCat
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     public AdventCat $adventCat;
 
@@ -78,27 +74,26 @@ class BaseController extends ActionController {
 
 	/**
   * @var UserRepository
-  * @TYPO3\CMS\Extbase\Annotation\Inject
   */
  public UserRepository $userRepository;
 
 	/**
      * @var User
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     public User $user;
 
 	/**
      * @var FrontendUserRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     public FrontendUserRepository $frontendUserRepository;
 
 	/**
      * @var FrontendUserGroupRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     public FrontendUserGroupRepository $frontendUserGroupRepository;
+    public function __construct(private \TYPO3\CMS\Core\Context\Context $context)
+    {
+    }
 
 
 
@@ -107,7 +102,7 @@ class BaseController extends ActionController {
 	 *
 	 * @return void
 	 */
-	public function initializeAction() {
+	public function initializeAction(): void {
 		$objectManager = $this->objectManager ;
 		/** @var AdventRepository $this ->adventRepository*/
   		$this->adventRepository	 	= $objectManager->get(AdventRepository::class) ;
@@ -125,7 +120,7 @@ class BaseController extends ActionController {
 		$this->frontendUserRepository 	= $objectManager->get(FrontendUserRepository::class);
 		$this->frontendUserGroupRepository = $objectManager->get(FrontendUserGroupRepository::class);
 
-		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
+		$GLOBALS['TSFE']->additionalHeaderData['tx_jvadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_jvadvent.css" media="screen, projection" />'."\n";
 		$this->initJS($this->settings['jsFiles']);
 	}
 	/**
@@ -135,13 +130,13 @@ class BaseController extends ActionController {
 	 * @return void
 	 *
 	 */
-	public function initCSS($files) {
+	public function initCSS($files): void {
 		if ( is_array($files)) {
 			foreach($files as $cssFile) {
-				$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_'.str_replace(array('/', '.'), '_', $cssFile)] = '<link rel="stylesheet" type="text/css" href="'.$cssFile.'" media="screen, projection" />'."\n";
+				$GLOBALS['TSFE']->additionalHeaderData['tx_jvadvent_'.str_replace(array('/', '.'), '_', $cssFile)] = '<link rel="stylesheet" type="text/css" href="'.$cssFile.'" media="screen, projection" />'."\n";
 			}	
 		}
-		
+
 	}
 
 	/**
@@ -151,19 +146,19 @@ class BaseController extends ActionController {
 	 * @return void
 	 *
 	 */
-	public function initJS($files) {
+	public function initJS($files): void {
 		if ( is_array($files)) {
 			foreach($files as $jsFile) {
-				$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_'.str_replace(array('/', '.'), '_', $jsFile)] = '<script type="text/javascript" src="'.$jsFile.'"></script>'."\n";
+				$GLOBALS['TSFE']->additionalHeaderData['tx_jvadvent_'.str_replace(array('/', '.'), '_', $jsFile)] = '<script type="text/javascript" src="'.$jsFile.'"></script>'."\n";
 			}
 		}
 	}
 	public function settingsHelper( ) {
 		$this->isnem = false;
 		$this->isnemintern = false;
-		
+
 		$this->settings['feUserUid'] = 0;
-		
+
 		if (!empty($GLOBALS['TSFE']->fe_user->user['uid'])){
 			$this->settings['feUserUid'] = $GLOBALS['TSFE']->fe_user->user['uid'];
 			if( in_array( "7" , explode( "," , $GLOBALS['TSFE']->fe_user->user['usergroup'] .","))) {
@@ -172,7 +167,7 @@ class BaseController extends ActionController {
 			if( in_array( "16" , explode( "," , $GLOBALS['TSFE']->fe_user->user['usergroup'] .","))) {
 				$this->isnemintern = true;	
 			} 
-			
+
 		}
 
 		$this->CacheTime = 60*60*4 ;
@@ -184,7 +179,7 @@ class BaseController extends ActionController {
 
 		$adventCat =  $this->adventCatRepository->getByUid( $this->settings['advent']['list']['filter']['adventCat'] )->toArray() ;
 
-		
+
 		if ( is_object($adventCat)) {
 			$this->adventCat = $adventCat->getFirst();
 		}
@@ -192,7 +187,7 @@ class BaseController extends ActionController {
 			$this->adventCat = $adventCat[0];
 		}
 		$this->settings['now']   = date( "d.m.Y H:i" ,time() ) ;
-		
+
 		$this->settings['afterenddate'] = FALSE ;
 		$this->settings['beforestartdate'] = FALSE ;
 		$this->settings['today']   = mktime( 0,0,0, date("m" ) ,(date("d" ) ) ,date("Y" )  ) ;
@@ -224,10 +219,10 @@ class BaseController extends ActionController {
 		if ( $this->isnemintern == true	) {
 			$this->view->assign('mypid', $this->settings['list']['pid']['myanswersView']) ; 
 		}
-		$this->settings['sys_language_uid'] = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id')  ; 
-		
+		$this->settings['sys_language_uid'] = $this->context->getPropertyFromAspect('language', 'id')  ; 
+
 		$this->view->assign('adventscat', $this->adventCat);
-		
+
 		 $count = date("d" , mktime( 0,0,0, date("m" , $this->adventCat->getStartdate() ) , date("d" )  ,date("Y" , $this->adventCat->getStartdate() )  ) ) ;
          $count = min ( $count , 24 ) ;
 		 $this->view->assign('adventCounter', $count);
@@ -242,15 +237,15 @@ class BaseController extends ActionController {
 	 * @return	string		output to website from Cache or empty
 	 */
 	function get_content_from_Cache($identifier) {
-		
+
 		if ( $this->CacheTime == 0 ) {
 			return '' ;
 		}
 		// for development ... do not cache at all if activating the next line .. ... !
 		// $this->delete_from_Cache($identifier ) ;
-		$identifier =  $identifier . "-". GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id') ;
+		$identifier =  $identifier . "-". $this->context->getPropertyFromAspect('language', 'id') ;
 		$where = 'identifier = "' . $identifier . '" and lifetime > ' . time() . " AND pid = " . $GLOBALS['TSFE']->id;
- 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('content','tx_nemadvent_cache', $where, '' , '');
+ 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('content','tx_jvadvent_cache', $where, '' , '');
 		$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res) ;
 		$this->CacheDebug .=  "<br>get: " . $where . (($row) ? ' -> found':' -> not cached') ;
 		return $row['content'] ;
@@ -262,19 +257,19 @@ class BaseController extends ActionController {
 	 * @param	string		$content
 	 * @return	''
 	 */	
-	function put_content_to_Cache($identifier , $content ) {
+	function put_content_to_Cache($identifier , $content ): void {
 		$this->CacheDebug .=  '<br>put: -> ' . $identifier . " -> CacheTime" . $this->CacheTime ;	
 		if ( $this->CacheTime > 0 ) {
-				
+
 			$this->delete_from_Cache($identifier ) ;
-			$identifier =  $identifier . "-". GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id') ;
+			$identifier =  $identifier . "-". $this->context->getPropertyFromAspect('language', 'id') ;
 			$data = array ( 'pid' => $GLOBALS['TSFE']->id  ,
 							'identifier' => $identifier ,
 							'lifetime' => time() + $this->CacheTime ,
 							'content' => $content ,
 						);
-			$res = $GLOBALS["TYPO3_DB"]->exec_INSERTquery("tx_nemadvent_cache", $data);	
-			
+			$res = $GLOBALS["TYPO3_DB"]->exec_INSERTquery("tx_jvadvent_cache", $data);	
+
 			$this->CacheDebug .=  ' -> til: ' . ( time() + $this->CacheTime )  ;	
 		}	
 	}
@@ -284,12 +279,12 @@ class BaseController extends ActionController {
 	 * @param	string		$identifier 
 	 * @return	''
 	 */	
-	function delete_from_Cache($identifier ) {
-		$identifier =  $identifier . "-". GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id') ;
+	function delete_from_Cache($identifier ): void {
+		$identifier =  $identifier . "-". $this->context->getPropertyFromAspect('language', 'id') ;
 		$this->CacheDebug .=  '<br>delete: -> ' . $identifier . " -> CacheTime" . $this->CacheTime ;	
 		$where = 'identifier LIKE "' . $identifier . '" AND pid = "' . $GLOBALS['TSFE']->id  . '"' ;
-		$res = $GLOBALS["TYPO3_DB"]->exec_DELETEquery("tx_nemadvent_cache", $where );	
-		
+		$res = $GLOBALS["TYPO3_DB"]->exec_DELETEquery("tx_jvadvent_cache", $where );	
+
 	}
 
 	/*
@@ -302,7 +297,7 @@ class BaseController extends ActionController {
 		return LocalizationUtility::translate($label, 'Nemadvent' , $arguments );
 	}
 
-	public function showArrayAsJson($output) {
+	public function showArrayAsJson($output): void {
 		$jsonOutput = json_encode($output);
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
@@ -312,7 +307,7 @@ class BaseController extends ActionController {
 		header('Content-Type: application/json; charset=utf-8');
 		header('Content-Transfer-Encoding: 8bit');
 
-		$callbackId = GeneralUtility::_GP("callback");
+		$callbackId = $this->request->getParsedBody()["callback"] ?? $this->request->getQueryParams()["callback"] ?? null;
 		if ( $callbackId == '' ) {
 			echo $jsonOutput;
 		} else {
@@ -322,5 +317,45 @@ class BaseController extends ActionController {
 		die;
 		exit();
 	}
+
+ public function injectWinnerRepository(WinnerRepository $winnerRepository): void
+ {
+     $this->winnerRepository = $winnerRepository;
+ }
+
+ public function injectAdventRepository(AdventRepository $adventRepository): void
+ {
+     $this->adventRepository = $adventRepository;
+ }
+
+ public function injectAdventCatRepository(AdventCatRepository $adventCatRepository): void
+ {
+     $this->adventCatRepository = $adventCatRepository;
+ }
+
+ public function injectAdventCat(AdventCat $adventCat): void
+ {
+     $this->adventCat = $adventCat;
+ }
+
+ public function injectUserRepository(UserRepository $userRepository): void
+ {
+     $this->userRepository = $userRepository;
+ }
+
+ public function injectUser(User $user): void
+ {
+     $this->user = $user;
+ }
+
+ public function injectFrontendUserRepository($frontendUserRepository): void
+ {
+     $this->frontendUserRepository = $frontendUserRepository;
+ }
+
+ public function injectFrontendUserGroupRepository($frontendUserGroupRepository): void
+ {
+     $this->frontendUserGroupRepository = $frontendUserGroupRepository;
+ }
 }
 ?>

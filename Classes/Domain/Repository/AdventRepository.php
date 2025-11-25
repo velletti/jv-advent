@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Domain\Repository ;
+namespace Jvelletti\JvAdvent\Domain\Repository ;
 /***************************************************************
 *  Copyright notice
 *
@@ -50,7 +50,6 @@ class AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		}		
 					
 		if 	( $questiondate > 0 ) {
-
 			$queryParams[] = $query->greaterThan('date', ($questiondate - (60 *60 * 4)));
 			$queryParams[] = $query->lessThan('date', ($questiondate + (60 * 60 * 4 )));
 		}
@@ -58,17 +57,8 @@ class AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			$queryParams[] = $query->equals('uid', $uid);
 		}		
 
-		$query = $query->matching($query->logicalAnd($queryParams));
+		$query = $query->matching($query->logicalAnd(...$queryParams));
 		$return =  $query->execute() ;
-		// $debug = TRUE ;
-		if ( $debug  ) {
-			$GLOBALS['TYPO3_DB']->debugOutput = 2;
-			$GLOBALS['TYPO3_DB']->explainOutput = true;
-			$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = true;
-
-			$return->toArray();
-			die;
-		}
 
 		return $return;
 	}

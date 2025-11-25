@@ -23,7 +23,7 @@
 				<source>Hint of the Day</source>
 				<target>Tip dne</target>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.points" resname="Tx_Nemadvent_Domain_Model_Winner.points"  approved="yes">
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.points" resname="tx_jvadvent_domain_Model_Winner.points"  approved="yes">
 				<source>Points</source>
 				<target>Body</target>
 			</trans-unit>

@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Viewhelper;
+namespace Jvelletti\JvAdvent\Viewhelper;
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /* * *************************************************************

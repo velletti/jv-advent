@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Controller;
+namespace Jvelletti\JvAdvent\Controller;
 
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 /* * *************************************************************
@@ -37,13 +37,8 @@ class UserController extends BaseController {
 	 *
 	 * @return void
 	 */
-	public function initializeAction() {
-
+	public function initializeAction(): void {
 		parent::initializeAction();
-		$GLOBALS['TSFE']->additionalHeaderData['Tx_Nemadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css" media="screen, projection" />'."\n";
-
-
-		//overwrite setting Configuration
 
 	}
 
@@ -54,7 +49,7 @@ class UserController extends BaseController {
 	 * answer action for this controller.
 	 *
 	 */
-	public function answerAction() {
+	public function answerAction(): \Psr\Http\Message\ResponseInterface {
 		$doit = $this->settingsHelper() ;
 		// First part: just return Json Array for Calender View
 		$this->currentArguments = $this->request->getArguments();
@@ -150,19 +145,19 @@ class UserController extends BaseController {
 																$question , $point, $subpoint, $answer );
 
 			if ( $userlog['TO-OLD'] > 0) {
-				$this->addFlashMessage( "Ihre Antwort wurde NICHT gespeichert da eine Änderung max innerhalb von 24h möglich ist! Gültig bleibt die bereits abgegebene Antwort vom " . date( "d.m.Y h:i" , $userlog["TO-OLD" ]) , '' , AbstractMessage::ERROR);
+				$this->addFlashMessage( "Ihre Antwort wurde NICHT gespeichert da eine Änderung max innerhalb von 24h möglich ist! Gültig bleibt die bereits abgegebene Antwort vom " . date( "d.m.Y h:i" , $userlog["TO-OLD" ]) , '' , \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
 			} else {
 				if ( $userlog) {
 
 					$this->addFlashMessage($this->translate('addanswer.WasSent'));
 				} else {
-					$this->addFlashMessage('addanswer.WasNotStored: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question->getPid() , '' , AbstractMessage::ERROR);
+					$this->addFlashMessage('addanswer.WasNotStored: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question->getPid() , '' , \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
 				}
 			}
 
 		} else {
 			if ( $answer > 0 ) {
-				$this->addFlashMessage('addanswer.WasNotSent: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . intval($this->request->getArgument('question'))  , '' , AbstractMessage::ERROR);
+				$this->addFlashMessage('addanswer.WasNotSent: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . intval($this->request->getArgument('question'))  , '' , \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
 			}
 			
 		}
@@ -235,30 +230,13 @@ class UserController extends BaseController {
                 $this->settings['total'] = $this->settings['total'] + 1 ;
             }
             $this->settings['subtotal'] = "," . trim( substr( "000" . $this->settings['subtotal']  , -3 , 3 )) ;
-
-			// TODO 23.1.2023  -- need to reimplemante j.v.  Hack: gibt es einen wunschzettel auf PID 3929 ?
-            $row = false ;
-            /*
-			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*' , 'tx_powermail_domain_model_mail',
-				"pid = " . $this->settings['wishlistPidResults'] . " AND feuser = " . $GLOBALS['TSFE']->fe_user->user['uid']
-				, '' , 'tstamp DESC' , 1 ) ;
-            $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res ) ;
-            */
-            $this->view->assign('wishes', $row );
-
-            // echo "<br>Line: " . __LINE__ . " : " . " File: " . __FILE__ . '<br>$row : ' . var_export($row, TRUE) . "<hr>";
-			// echo $GLOBALS['TYPO3_DB']->sql_error() ;
-            // echo $this->settings['wishlistPid'] ;
-			if( is_array( $row ) || count( $this->answers) < 5 || $this->settings['afterenddate'] ) {
-				$this->settings['wishlistPid'] = 0 ;
-			}
 			$this->settings['nowMinus24h'] = mktime( (date("h") -24) , date("i") , 0 , date("m"), date("d") , date("Y")) ;
 
-			//overwrite Settings in view
 			$this->settings['count'] = count($this->answers) ;
 			$this->view->assign('settings', $this->settings);
 			$this->view->assign('answerlist', $answerlist );
 		}
+        return $this->htmlResponse();
 	}
 
 }

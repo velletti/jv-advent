@@ -3,16 +3,16 @@
 
 		<span class="left width540">
 
-			<div id="tx_nemadvent_Regler_Zahl"><p id="tx_nemdvent_output_div"><b>Ihre Antwort:</b> </p>
+			<div id="tx_jvadvent_Regler_Zahl"><p id="tx_nemdvent_output_div"><b>Ihre Antwort:</b> </p>
 
 
 
-					<input id="tx_nemadvent_rangeanswer" type="range" min="{question.rangemin}" max="{question.rangemax}"
-					value="{question.rangemin}" onchange="tx_nemadvent_liveValue()" oninput="tx_nemadvent_liveValue()">
+					<input id="tx_jvadvent_rangeanswer" type="range" min="{question.rangemin}" max="{question.rangemax}"
+					value="{question.rangemin}" onchange="tx_jvadvent_liveValue()" oninput="tx_jvadvent_liveValue()">
 
 					<br>
 					<div class="col-xs-8">
-					<output id="tx_nemadvent_output" name="tx_nemadvent_amount" for="tx_nemadvent_rangeanswer">
+					<output id="tx_jvadvent_output" name="tx_jvadvent_amount" for="tx_jvadvent_rangeanswer">
 						<f:translate key="use_range">Zum beantworten, Schieberegler benutzen und Button anklicken</f:translate>! </output>
 					</div>
 					<div class="col-xs-4 text-right">
@@ -34,21 +34,21 @@
 	</f:else>
 </f:if>	
 <div class="clearfix">&nbsp;</div>
-<f:link.action action="answer" class="hide" id="tx_nemadvent_rangeUrl" controller="User" pageUid="{mypid}" arguments="{adventscat: adventscat, question: question.uid, answer:  adddate: adddate}">
+<f:link.action action="answer" class="hide" id="tx_jvadvent_rangeUrl" controller="User" pageUid="{mypid}" arguments="{adventscat: adventscat, question: question.uid, answer:  adddate: adddate}">
 </f:link.action>
 										
 <script type="text/javascript">
 	function tx_advent_range() {
-		var url = "https://" + window.location.hostname + "/" + jQuery("#tx_nemadvent_rangeUrl").attr("href");
-		url = url +  "&tx_nemadvent_pi1[rangeanswer]=" + jQuery("#tx_nemadvent_rangeanswer").val();
+		var url = "https://" + window.location.hostname + "/" + jQuery("#tx_jvadvent_rangeUrl").attr("href");
+		url = url +  "&tx_jvadvent_pi1[rangeanswer]=" + jQuery("#tx_jvadvent_rangeanswer").val();
 		window.location.href = (url);
 
 	}
 
-	function tx_nemadvent_liveValue() {
-		var tx_nemadvent_Input_Zahl = jQuery("#tx_nemadvent_rangeanswer").val();
-		jQuery("#tx_nemadvent_output").html(tx_nemadvent_Input_Zahl);
-		jQuery("#tx_nemadvent_output").css("fontSize", "30px");
+	function tx_jvadvent_liveValue() {
+		var tx_jvadvent_Input_Zahl = jQuery("#tx_jvadvent_rangeanswer").val();
+		jQuery("#tx_jvadvent_output").html(tx_jvadvent_Input_Zahl);
+		jQuery("#tx_jvadvent_output").css("fontSize", "30px");
 
 
 	};

@@ -3,187 +3,187 @@
 	<file t3_id="1674036934" source-language="en" datatype="plaintext" original="messages" date="2023-01-18T10:15:34Z" product-name="nemadvent">
 		<header/>
 		<body>
-			<trans-unit id="tx_nemadvent.settings.options" resname="tx_nemadvent.settings.options" >
+			<trans-unit id="tx_jvadvent.settings.options" resname="tx_jvadvent.settings.options" >
 				<source>Options</source>
 			</trans-unit>
-			<trans-unit id="tx_nemadvent.settings.links" resname="tx_nemadvent.settings.links" >
+			<trans-unit id="tx_jvadvent.settings.links" resname="tx_jvadvent.settings.links" >
 				<source>Links</source>
 			</trans-unit>
-			<trans-unit id="tx_nemadvent.settings.filter" resname="tx_nemadvent.settings.filter" >
+			<trans-unit id="tx_jvadvent.settings.filter" resname="tx_jvadvent.settings.filter" >
 				<source>Filter</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent" resname="Tx_Nemadvent_Domain_Model_Advent" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent" resname="tx_jvadvent_domain_Model_Advent" >
 				<source>Adventskalender Question</source>
 			</trans-unit>
-			<trans-unit id="tx_nemadvent.settings.question" resname="tx_nemadvent.settings.question" >
+			<trans-unit id="tx_jvadvent.settings.question" resname="tx_jvadvent.settings.question" >
 				<source>Show single question</source>
 			</trans-unit>
-			<trans-unit id="tx_nemadvent.settings.calendar" resname="tx_nemadvent.settings.calendar" >
+			<trans-unit id="tx_jvadvent.settings.calendar" resname="tx_jvadvent.settings.calendar" >
 				<source>Show Calendar view with doors</source>
 			</trans-unit>
-			<trans-unit id="tx_nemadvent.settings.listAnswers" resname="tx_nemadvent.settings.listAnswers" >
+			<trans-unit id="tx_jvadvent.settings.listAnswers" resname="tx_jvadvent.settings.listAnswers" >
 				<source>List All Answers</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_domain_model_link_to_main" resname="Tx_Nemadvent_domain_model_link_to_main" >
+			<trans-unit id="tx_jvadvent_domain_model_link_to_main" resname="tx_jvadvent_domain_model_link_to_main" >
 				<source>Main Page</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_domain_model_link_to_question" resname="Tx_Nemadvent_domain_model_link_to_question" >
+			<trans-unit id="tx_jvadvent_domain_model_link_to_question" resname="tx_jvadvent_domain_model_link_to_question" >
 				<source>Page with Question</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_domain_model_link_to_myanswers" resname="Tx_Nemadvent_domain_model_link_to_myanswers" >
+			<trans-unit id="tx_jvadvent_domain_model_link_to_myanswers" resname="tx_jvadvent_domain_model_link_to_myanswers" >
 				<source>Page with the users Answers</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_domain_model_myanswers" resname="Tx_Nemadvent_domain_model_myanswers" >
+			<trans-unit id="tx_jvadvent_domain_model_myanswers" resname="tx_jvadvent_domain_model_myanswers" >
 				<source>My Answers</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.prize" resname="Tx_Nemadvent_Domain_Model_Winner.prize" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.prize" resname="tx_jvadvent_domain_Model_Winner.prize" >
 				<source>Prize</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.text" resname="Tx_Nemadvent_Domain_Model_Winner.text" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.text" resname="tx_jvadvent_domain_Model_Winner.text" >
 				<source>decription</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.date" resname="Tx_Nemadvent_Domain_Model_Winner.date" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.date" resname="tx_jvadvent_domain_Model_Winner.date" >
 				<source>Date</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.winner" resname="Tx_Nemadvent_Domain_Model_Winner.winner" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.winner" resname="tx_jvadvent_domain_Model_Winner.winner" >
 				<source>Winner</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.winnerlist" resname="Tx_Nemadvent_Domain_Model_Winner.winnerlist" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.winnerlist" resname="tx_jvadvent_domain_Model_Winner.winnerlist" >
 				<source>Winnerlist</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.winnerlistall" resname="Tx_Nemadvent_Domain_Model_Winner.winnerlistall" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.winnerlistall" resname="tx_jvadvent_domain_Model_Winner.winnerlistall" >
 				<source>Winnerlist All Days</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.sorting" resname="Tx_Nemadvent_Domain_Model_Winner.sorting" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.sorting" resname="tx_jvadvent_domain_Model_Winner.sorting" >
 				<source>Sorting</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.points" resname="Tx_Nemadvent_Domain_Model_Winner.points" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.points" resname="tx_jvadvent_domain_Model_Winner.points" >
 				<source>Points</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winners_pid" resname="Tx_Nemadvent_Domain_Model_Winners_pid" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winners_pid" resname="tx_jvadvent_domain_Model_Winners_pid" >
 				<source>Page with winners</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Winner.winner_uid" resname="Tx_Nemadvent_Domain_Model_Winner.winner_uid" >
+			<trans-unit id="tx_jvadvent_domain_Model_Winner.winner_uid" resname="tx_jvadvent_domain_Model_Winner.winner_uid" >
 				<source>Winners uid from fe_users</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.title" resname="Tx_Nemadvent_Domain_Model_Advent.title" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.title" resname="tx_jvadvent_domain_Model_Advent.title" >
 				<source>Titel</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.startdate" resname="Tx_Nemadvent_Domain_Model_Advent.startdate" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.startdate" resname="tx_jvadvent_domain_Model_Advent.startdate" >
 				<source>Startdate</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.date" resname="Tx_Nemadvent_Domain_Model_Advent.date" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.date" resname="tx_jvadvent_domain_Model_Advent.date" >
 				<source>Date</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.answer1" resname="Tx_Nemadvent_Domain_Model_Advent.answer1" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.answer1" resname="tx_jvadvent_domain_Model_Advent.answer1" >
 				<source>Answer No 1</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.answer2" resname="Tx_Nemadvent_Domain_Model_Advent.answer2" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.answer2" resname="tx_jvadvent_domain_Model_Advent.answer2" >
 				<source>Answer No 2</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.answer3" resname="Tx_Nemadvent_Domain_Model_Advent.answer3" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.answer3" resname="tx_jvadvent_domain_Model_Advent.answer3" >
 				<source>Answer No 3</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.answer4" resname="Tx_Nemadvent_Domain_Model_Advent.answer4" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.answer4" resname="tx_jvadvent_domain_Model_Advent.answer4" >
 				<source>Answer No 4</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.answer5" resname="Tx_Nemadvent_Domain_Model_Advent.answer5" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.answer5" resname="tx_jvadvent_domain_Model_Advent.answer5" >
 				<source>Answer No 5</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.correct" resname="Tx_Nemadvent_Domain_Model_Advent.correct" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.correct" resname="tx_jvadvent_domain_Model_Advent.correct" >
 				<source>Correct answer(s) (if more than one, separate with ,)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.rangemin" resname="Tx_Nemadvent_Domain_Model_Advent.rangemin" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.rangemin" resname="tx_jvadvent_domain_Model_Advent.rangemin" >
 				<source>Range Min Value - integer (if used, must be &gt; 0 !!!)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.rangemax" resname="Tx_Nemadvent_Domain_Model_Advent.rangemax" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.rangemax" resname="tx_jvadvent_domain_Model_Advent.rangemax" >
 				<source>Range Max Value - integer (if &gt; 0 leave Answers 1-5 empty!) </source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.enddate" resname="Tx_Nemadvent_Domain_Model_Advent.enddate" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.enddate" resname="tx_jvadvent_domain_Model_Advent.enddate" >
 				<source>Enddate</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.days" resname="Tx_Nemadvent_Domain_Model_Advent.days" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.days" resname="tx_jvadvent_domain_Model_Advent.days" >
 				<source>How much Days</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.storeonpid" resname="Tx_Nemadvent_Domain_Model_Advent.storeonpid" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.storeonpid" resname="tx_jvadvent_domain_Model_Advent.storeonpid" >
 				<source>Where do you want to store the users Answers? Select a sysfolder!</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.desc_short" resname="Tx_Nemadvent_Domain_Model_Advent.desc_short" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.desc_short" resname="tx_jvadvent_domain_Model_Advent.desc_short" >
 				<source>Hint of the day</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.desc_long" resname="Tx_Nemadvent_Domain_Model_Advent.desc_long" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.desc_long" resname="tx_jvadvent_domain_Model_Advent.desc_long" >
 				<source>question</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.video" resname="Tx_Nemadvent_Domain_Model_Advent.video" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.video" resname="tx_jvadvent_domain_Model_Advent.video" >
 				<source>Videofile (if available)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.image" resname="Tx_Nemadvent_Domain_Model_Advent.image" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.image" resname="tx_jvadvent_domain_Model_Advent.image" >
 				<source>Image (if available)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.categories" resname="Tx_Nemadvent_Domain_Model_Advent.categories" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.categories" resname="tx_jvadvent_domain_Model_Advent.categories" >
 				<source>AKR Year:</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Advent.viewed" resname="Tx_Nemadvent_Domain_Model_Advent.viewed" >
+			<trans-unit id="tx_jvadvent_domain_Model_Advent.viewed" resname="tx_jvadvent_domain_Model_Advent.viewed" >
 				<source>Angezeigt</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Adventcat" resname="Tx_Nemadvent_Domain_Model_Adventcat" >
+			<trans-unit id="tx_jvadvent_domain_Model_Adventcat" resname="tx_jvadvent_domain_Model_Adventcat" >
 				<source>Advent Calendar</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Adventcat.title" resname="Tx_Nemadvent_Domain_Model_Adventcat.title" >
+			<trans-unit id="tx_jvadvent_domain_Model_Adventcat.title" resname="tx_jvadvent_domain_Model_Adventcat.title" >
 				<source>Titel</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Adventcat.startdate" resname="Tx_Nemadvent_Domain_Model_Adventcat.startdate" >
+			<trans-unit id="tx_jvadvent_domain_Model_Adventcat.startdate" resname="tx_jvadvent_domain_Model_Adventcat.startdate" >
 				<source>Startdate</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Adventcat.enddate" resname="Tx_Nemadvent_Domain_Model_Adventcat.enddate" >
+			<trans-unit id="tx_jvadvent_domain_Model_Adventcat.enddate" resname="tx_jvadvent_domain_Model_Adventcat.enddate" >
 				<source>Enddate</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Adventcat.days" resname="Tx_Nemadvent_Domain_Model_Adventcat.days" >
+			<trans-unit id="tx_jvadvent_domain_Model_Adventcat.days" resname="tx_jvadvent_domain_Model_Adventcat.days" >
 				<source>Days</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_Adventcat.mustacceptagb" resname="Tx_Nemadvent_Domain_Model_Adventcat.mustacceptagb" >
+			<trans-unit id="tx_jvadvent_domain_Model_Adventcat.mustacceptagb" resname="tx_jvadvent_domain_Model_Adventcat.mustacceptagb" >
 				<source>The - to-see-the-answers-you-must-accept-the-agb-s-text</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User" resname="Tx_Nemadvent_Domain_Model_User" >
+			<trans-unit id="tx_jvadvent_domain_Model_User" resname="tx_jvadvent_domain_Model_User" >
 				<source>Userlog</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.title" resname="Tx_Nemadvent_Domain_Model_User.title" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.title" resname="tx_jvadvent_domain_Model_User.title" >
 				<source>Titel</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.uid" resname="Tx_Nemadvent_Domain_Model_User.uid" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.uid" resname="tx_jvadvent_domain_Model_User.uid" >
 				<source>Vote uid (do not  change!)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.question_uid" resname="Tx_Nemadvent_Domain_Model_User.question_uid" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.question_uid" resname="tx_jvadvent_domain_Model_User.question_uid" >
 				<source>Question UID (do not  change!)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.answer_uid" resname="Tx_Nemadvent_Domain_Model_User.answer_uid" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.answer_uid" resname="tx_jvadvent_domain_Model_User.answer_uid" >
 				<source>Answer UID (1-5)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.advent_uid" resname="Tx_Nemadvent_Domain_Model_User.advent_uid" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.advent_uid" resname="tx_jvadvent_domain_Model_User.advent_uid" >
 				<source>UID of Kalender</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.question_date" resname="Tx_Nemadvent_Domain_Model_User.question_date" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.question_date" resname="tx_jvadvent_domain_Model_User.question_date" >
 				<source>Dateval of Question (do not  change!)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.question_datef" resname="Tx_Nemadvent_Domain_Model_User.question_datef" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.question_datef" resname="tx_jvadvent_domain_Model_User.question_datef" >
 				<source>Date of Question Formated (do not  change!)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.feuser_uid" resname="Tx_Nemadvent_Domain_Model_User.feuser_uid" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.feuser_uid" resname="tx_jvadvent_domain_Model_User.feuser_uid" >
 				<source>User UID</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.points" resname="Tx_Nemadvent_Domain_Model_User.points" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.points" resname="tx_jvadvent_domain_Model_User.points" >
 				<source>Points (do not  change!)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.subpoints" resname="Tx_Nemadvent_Domain_Model_User.subpoints" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.subpoints" resname="tx_jvadvent_domain_Model_User.subpoints" >
 				<source>subpoints (do not  change!)</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.customerno" resname="Tx_Nemadvent_Domain_Model_User.customerno" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.customerno" resname="tx_jvadvent_domain_Model_User.customerno" >
 				<source>Customer No</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.usergroup" resname="Tx_Nemadvent_Domain_Model_User.usergroup" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.usergroup" resname="tx_jvadvent_domain_Model_User.usergroup" >
 				<source>Users Grouprights</source>
 			</trans-unit>
-			<trans-unit id="Tx_Nemadvent_Domain_Model_User.sys_language_uid" resname="Tx_Nemadvent_Domain_Model_User.sys_language_uid" >
+			<trans-unit id="tx_jvadvent_domain_Model_User.sys_language_uid" resname="tx_jvadvent_domain_Model_User.sys_language_uid" >
 				<source>UsersLang Uid</source>
 			</trans-unit>
 		</body>

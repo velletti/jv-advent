@@ -1,18 +1,6 @@
  # Plugin configuration
-plugin.tx_nemadvent {
+plugin.tx_jvadvent {
 	settings {
-		cssFiles {
-			#10 = typo3conf/ext/nemadvent/Resources/Public/Css/tx_nemadvent.css
-		}
-		jsFiles {
-			 10 = typo3conf/ext/nemadvent/Resources/Public/Js/script.js
-		}
-		// WishList Form
-		wishlistPid = 4223
-
-		// where are the answered Stored
-		wishlistPidResults = 4192
-
 		advent {
 			list {
 				pageBrowser {
@@ -46,33 +34,17 @@ plugin.tx_nemadvent {
 		winnerPerPageCount = 72
 	}
 	persistence {
-		storagePid = {$plugin.tx_nemadvent.persistence.storagePid}
+		storagePid = {$plugin.tx_jvadvent.persistence.storagePid}
 		classes {
 			
 		}
 	}
 	view {
-		templateRootPath = {$plugin.tx_nemadvent.view.templateRootPath}
-		partialRootPath = {$plugin.tx_nemadvent.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_nemadvent.view.layoutRootPath}
+		templateRootPath = {$plugin.tx_jvadvent.view.templateRootPath}
+		partialRootPath = {$plugin.tx_jvadvent.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_jvadvent.view.layoutRootPath}
 	}
 	
 	
-}
-config.tx_extbase.persistence.classes{
-	\TYPO3\CMS\Extbase\Domain\Model\FrontendUser.mapping.recordType =
-	\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup.mapping.recordType =
-
-	\Allplan\Nemadvent\Domain\Model\User {
-
-			mapping {
-				columns.crdate.mapOnProperty = crdate
-				columns.tstamp.mapOnProperty = tstamp
-				tableName = tx_nemadvent_domain_model_user
-				recordType =
-			}
-	}
-
-
 }
 

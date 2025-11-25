@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Domain\Repository ;
+namespace Jvelletti\JvAdvent\Domain\Repository ;
 /***************************************************************
 *  Copyright notice
 *
@@ -34,7 +34,7 @@ class WinnerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function getWinnerlist( $pid =0) {
 		$query = $this->createQuery();
-		$querystring = 'SELECT * from tx_nemadvent_domain_model_winner p ' .
+		$querystring = 'SELECT * from tx_jvadvent_domain_model_winner p ' .
 	//					'LEFT JOIN fe_users AS u ON u.uid = p.feuser_uid ' .
 						'where p.pid="' .$pid .'" '.
 						'  and p.deleted="0" and p.hidden="0" and p.sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid .

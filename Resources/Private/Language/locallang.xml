@@ -12,7 +12,7 @@
 			<label index="access_false">Please log in, first!</label>
 						
 			<label index="hintoftheday">Hint of the Day</label>
-			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Points</label>
+			<label index="tx_jvadvent_domain_Model_Winner.points">Points</label>
 			<label index="yourresult">Your Result</label>
 			<label index="result_visible_at">Your final result will be shown after</label>
 			<label index="how_to_find_solution">How to find the Solution</label>
@@ -38,7 +38,7 @@
 			<label index="access_false">Bitte zuerst anmelden!</label>
 						
 			<label index="hintoftheday">Tipp des Tages</label>
-			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Punkte</label>
+			<label index="tx_jvadvent_domain_Model_Winner.points">Punkte</label>
 			<label index="yourresult">Ihr Ergebnis</label>
 			<label index="result_visible_at">Ihr Endergebnis ist sichtbar am</label>
 			<label index="how_to_find_solution">Der Lösungsweg</label>
@@ -61,7 +61,7 @@
 			<label index="access_false">Bitte zuerst anmelden!</label>
 						
 			<label index="hintoftheday">Tipp des Tages</label>
-			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Punkte</label>
+			<label index="tx_jvadvent_domain_Model_Winner.points">Punkte</label>
 			<label index="yourresult">Ihr Ergebnis</label>
 			<label index="result_visible_at">Ihr Endergebnis ist sichtbar am</label>
 			<label index="how_to_find_solution">Der Lösungsweg</label>
@@ -83,7 +83,7 @@
 			<label index="no_access">Bitte melden Sie sich mit Ihrem usernamen an, um diese Seite zu sehen.</label>
 						
 			<label index="hintoftheday">Tipp des Tages</label>
-			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Punkte</label>
+			<label index="tx_jvadvent_domain_Model_Winner.points">Punkte</label>
 			<label index="yourresult">Ihr Ergebnis</label>
 			<label index="result_visible_at">Ihr Endergebnis ist sichtbar am</label>
 			<label index="how_to_find_solution">Der Lösungsweg</label>
@@ -103,7 +103,7 @@
 			<label index="no_access">Pro zobrazení obsahu stránky se prosím přihlaště.</label>
 						
 			<label index="hintoftheday">Tip dne</label>
-			<label index="Tx_Nemadvent_Domain_Model_Winner.points">Body</label>
+			<label index="tx_jvadvent_domain_Model_Winner.points">Body</label>
 			<label index="yourresult">Váš výsledek</label>
 			<label index="result_visible_at">Váš výsledek bude zobrazen od</label>
 			<label index="addanswer.WasSent">Vaše odpověď byla uložena a zobrazí se v tabulce níže.</label>
@@ -113,7 +113,7 @@
              <label index="no_access_headline">Aucun accès </label>
              <label index="no_access">Connectez-vous s'il vousplaît pour accéder à cette page</label>
              <label index="hintoftheday">Conseil du jour </label>
-             <label index="tx_nemadvent_domain_model_winner.points">Points</label>
+             <label index="tx_jvadvent_domain_model_winner.points">Points</label>
              <label index="yourresult">Votre résultat</label>
              <label index="result_visible_at">Votre résultat final sera disponible après</label>
              <label index="addanswer.WasSent">Votre réponse est enregistrée dans notre base de données et peut être vue dans la liste ci-dessous.</label>
@@ -123,7 +123,7 @@
 			<label index="no_access">Per vedere questa pagina, esegui il login.</label> 
 			
 			<label index="hintoftheday">Tipp del giorno</label> 
-			<label index="tx_nemadvent_domain_model_winner.points">Punti</label> 
+			<label index="tx_jvadvent_domain_model_winner.points">Punti</label>
 			<label index="yourresult">Il tuo risultato</label> 
 			<label index="result_visible_at">Il tuo risultato finale è visibile dopo</label>
 			<label index="addanswer.WasSent">La tua risposta è stata salvata ed elencata nella tabella seguente.</label>

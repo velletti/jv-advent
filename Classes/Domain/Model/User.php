@@ -1,5 +1,5 @@
 <?php
-namespace Allplan\Nemadvent\Domain\Model ;
+namespace Jvelletti\JvAdvent\Domain\Model ;
 /* * *************************************************************
  *  Copyright notice
  *
@@ -83,12 +83,12 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $feuserUid;
 
 	/**
-	 * The advents of this category
-	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Allplan\Nemadvent\Domain\Model\Advent>
-	 * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-	 */
-	protected $advents;
+  * The advents of this category
+  *
+  * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Allplan\Nemadvent\Domain\Model\Advent>
+  */
+ #[\TYPO3\CMS\Extbase\Annotation\ORM\Lazy]
+ protected $advents;
 
 	/**
 	 * Constructor. Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
@@ -135,7 +135,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param string $questionDateF
 	 */
-	public function setQuestionDateF($questionDatef) {
+	public function setQuestionDateF($questionDatef): void {
 		$this->questionDatef = $questionDatef;
 	}
 
@@ -201,7 +201,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $crdate
 	 */
-	public function setCrdate($crdate) {
+	public function setCrdate($crdate): void {
 		$this->crdate = $crdate;
 	}
 
@@ -215,7 +215,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param int $tstamp
 	 */
-	public function setTstamp($tstamp) {
+	public function setTstamp($tstamp): void {
 		$this->tstamp = $tstamp;
 	}
 

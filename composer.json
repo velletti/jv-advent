@@ -1,14 +1,13 @@
 {
   "name": "jvelletti/jv-advent",
-  "description": "Allplan Software Downloads - full version or hotfixes ",
+  "description": "Advent Calendar Extension for TYPO3 CMS",
   "type": "typo3-cms-extension",
-  "minimum-stability": "stable",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Jörg Velletti",
       "email": "jvelletti@allplan.com"
-    },
+    }
   ],
   "require": {
     "typo3/cms-core": "^12.4"

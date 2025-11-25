@@ -289,11 +289,11 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	public function getHasAccess() {
-		return \Allplan\Nemadvent\Utility\FeGroupsUtility::hasAccess($this->getFeGroup());
+		return \Jvelletti\JvAdvent\Utility\FeGroupsUtility::hasAccess($this->getFeGroup());
 	}
 
 	public function getneedSPAccess() {
-		return \Allplan\Nemadvent\Utility\FeGroupsUtility::needSPAccess($this->getFeGroup());
+		return \Jvelletti\JvAdvent\Utility\FeGroupsUtility::needSPAccess($this->getFeGroup());
 	}
 		/**
 	 * Getter for answer

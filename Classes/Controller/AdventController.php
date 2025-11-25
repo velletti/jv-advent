@@ -80,12 +80,12 @@ class AdventController extends BaseController {
 			$adddate = intval( date("d" )) -1  ;
 		}
 		// Was ist die maximale Anzahl an tagen ? normal 24. Also ab dem 25.
-		if ( $adddate >  ( $this->adventCat->getDays()  )) {
-			$adddate = $this->adventCat->getDays() -1  ;
+		if ( $adddate >  (  $this->settings['maxDays'] ?? 24 )  -1 ) {
+			$adddate = (  $this->settings['maxDays'] ?? 24 )  -1   ;
 		}
 
 		// 7.10.2014 j.v. : rückwirkendes / Beantworten auch für Nicht Nemetschek MA
-		$month = date("m" ,  $this->adventCat->getStartdate() ) ;
+		$month = date("m" ,  (  $this->settings['startDate'] ?? 24 )  -1 ) ) ;
 
 		$this->settings['showtip']   =  FALSE ;
 		if ( $this->isnem  ) {

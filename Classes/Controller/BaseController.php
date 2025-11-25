@@ -2,12 +2,10 @@
 namespace Jvelletti\JvAdvent\Controller;
 
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use Allplan\Nemadvent\Domain\Repository\WinnerRepository;
-use Allplan\Nemadvent\Domain\Repository\AdventRepository;
-use Allplan\Nemadvent\Domain\Repository\AdventCatRepository;
-use Allplan\Nemadvent\Domain\Model\AdventCat;
-use Allplan\Nemadvent\Domain\Repository\UserRepository;
-use Allplan\Nemadvent\Domain\Model\User;
+use Jvelletti\JvAdvent\Domain\Repository\WinnerRepository;
+use Jvelletti\JvAdvent\Domain\Repository\AdventRepository;
+use Jvelletti\JvAdvent\Domain\Repository\UserRepository;
+use Jvelletti\JvAdvent\Domain\Model\User;
 use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -52,15 +50,6 @@ class BaseController extends ActionController {
      */
     public AdventRepository $adventRepository;
 
-	/**
-     * @var AdventCatRepository
-     */
-    public AdventCatRepository $adventCatRepository;
-
-	/**
-     * @var AdventCat
-     */
-    public AdventCat $adventCat;
 
 	/**
 	 * @var boolean $isnem
@@ -82,15 +71,6 @@ class BaseController extends ActionController {
      */
     public User $user;
 
-	/**
-     * @var FrontendUserRepository
-     */
-    public FrontendUserRepository $frontendUserRepository;
-
-	/**
-     * @var FrontendUserGroupRepository
-     */
-    public FrontendUserGroupRepository $frontendUserGroupRepository;
     public function __construct(private \TYPO3\CMS\Core\Context\Context $context)
     {
     }
@@ -103,56 +83,17 @@ class BaseController extends ActionController {
 	 * @return void
 	 */
 	public function initializeAction(): void {
-		$objectManager = $this->objectManager ;
 		/** @var AdventRepository $this ->adventRepository*/
-  		$this->adventRepository	 	= $objectManager->get(AdventRepository::class) ;
-
-		/** @var AdventCatRepository $this ->adventCatRepository*/
-  		$this->adventCatRepository	= $objectManager->get(AdventCatRepository::class) ;
+  		$this->adventRepository	 	= GeneralUtility::makeInstance(AdventRepository::class) ;
 
 		/** @var UserRepository $this ->userRepository*/
-  		$this->userRepository	 	= $objectManager->get(UserRepository::class) ;
+  		$this->userRepository	 	= GeneralUtility::makeInstance(UserRepository::class) ;
 
 		/** @var WinnerRepository $this ->winnerRepository*/
-  		$this->winnerRepository	 	= $objectManager->get(WinnerRepository::class) ;
-
-
-		$this->frontendUserRepository 	= $objectManager->get(FrontendUserRepository::class);
-		$this->frontendUserGroupRepository = $objectManager->get(FrontendUserGroupRepository::class);
-
-		$GLOBALS['TSFE']->additionalHeaderData['tx_jvadvent_CSS'] = '<link rel="stylesheet" type="text/css" href="typo3conf/ext/nemadvent/Resources/Public/Css/tx_jvadvent.css" media="screen, projection" />'."\n";
-		$this->initJS($this->settings['jsFiles']);
-	}
-	/**
-	 * add css-files to header
-	 *
-	 * @array $files array with pathes to css-files, typically from typoscript
-	 * @return void
-	 *
-	 */
-	public function initCSS($files): void {
-		if ( is_array($files)) {
-			foreach($files as $cssFile) {
-				$GLOBALS['TSFE']->additionalHeaderData['tx_jvadvent_'.str_replace(array('/', '.'), '_', $cssFile)] = '<link rel="stylesheet" type="text/css" href="'.$cssFile.'" media="screen, projection" />'."\n";
-			}	
-		}
-
+  		$this->winnerRepository	 	= GeneralUtility::makeInstance(WinnerRepository::class) ;
 	}
 
-	/**
-	 * add js-files to header
-	 *
-	 * @array $files array with pathes to js-files, typically from typoscript
-	 * @return void
-	 *
-	 */
-	public function initJS($files): void {
-		if ( is_array($files)) {
-			foreach($files as $jsFile) {
-				$GLOBALS['TSFE']->additionalHeaderData['tx_jvadvent_'.str_replace(array('/', '.'), '_', $jsFile)] = '<script type="text/javascript" src="'.$jsFile.'"></script>'."\n";
-			}
-		}
-	}
+
 	public function settingsHelper( ) {
 		$this->isnem = false;
 		$this->isnemintern = false;
@@ -167,25 +108,11 @@ class BaseController extends ActionController {
 			if( in_array( "16" , explode( "," , $GLOBALS['TSFE']->fe_user->user['usergroup'] .","))) {
 				$this->isnemintern = true;	
 			} 
-
 		}
 
 		$this->CacheTime = 60*60*4 ;
 		$this->pid = intval( $GLOBALS['TSFE']->id ) ;
 
-		// $GLOBALS['TYPO3_DB']->debugOutput = 2;
-		// $GLOBALS['TYPO3_DB']->explainOutput = true;
-		// $GLOBALS['TYPO3_DB']->store_lastBuiltQuery = true;
-
-		$adventCat =  $this->adventCatRepository->getByUid( $this->settings['advent']['list']['filter']['adventCat'] )->toArray() ;
-
-
-		if ( is_object($adventCat)) {
-			$this->adventCat = $adventCat->getFirst();
-		}
-		if ( is_array($adventCat)) {
-			$this->adventCat = $adventCat[0];
-		}
 		$this->settings['now']   = date( "d.m.Y H:i" ,time() ) ;
 
 		$this->settings['afterenddate'] = FALSE ;
@@ -220,8 +147,6 @@ class BaseController extends ActionController {
 			$this->view->assign('mypid', $this->settings['list']['pid']['myanswersView']) ; 
 		}
 		$this->settings['sys_language_uid'] = $this->context->getPropertyFromAspect('language', 'id')  ; 
-
-		$this->view->assign('adventscat', $this->adventCat);
 
 		 $count = date("d" , mktime( 0,0,0, date("m" , $this->adventCat->getStartdate() ) , date("d" )  ,date("Y" , $this->adventCat->getStartdate() )  ) ) ;
          $count = min ( $count , 24 ) ;
@@ -294,7 +219,7 @@ class BaseController extends ActionController {
 	 * @author Martin Heigermoser <martin.heigermoser@typovision.de>
 	 */
 	public function translate($label , $arguments=NULL) {
-		return LocalizationUtility::translate($label, 'Nemadvent' , $arguments );
+		return LocalizationUtility::translate($label, 'JvAdvent' , $arguments );
 	}
 
 	public function showArrayAsJson($output): void {

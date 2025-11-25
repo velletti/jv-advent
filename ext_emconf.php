@@ -1,7 +1,7 @@
 <?php
 
 ########################################################################
-# Extension Manager/Repository config file for ext "nemadvent".
+# Extension Manager/Repository config file for ext "JvAdvent".
 #
 # Auto generated 21-09-2010 09:46
 #

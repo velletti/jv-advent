@@ -28,17 +28,17 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 
  	/**
 	 * Updates the counter for a advent
-	 * @param \Allplan\Nemadvent\Domain\Model\AdventCat $adventCat
+	 * @param \Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat
 	 * @param integer $pid
 	 *  @param integer $feUserUid
-	 * @param \Allplan\Nemadvent\Domain\Model\Advent $question
+	 * @param \Jvelletti\JvAdvent\Domain\Model\Advent $question
 	 *  @param integer $points
 	 * @param integer $subpoints
 	 * @param integer $answer
 	 * @return int $result
 	 */
 	
-	public function insertAnswer(\Allplan\Nemadvent\Domain\Model\AdventCat $adventCat, $pid ,$feUserUid,\Allplan\Nemadvent\Domain\Model\Advent $question,$points,$subpoints,$answer){
+	public function insertAnswer(\Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat, $pid ,$feUserUid,\Jvelletti\JvAdvent\Domain\Model\Advent $question,$points,$subpoints,$answer){
 		$return = FALSE ;
 
 		if ($feUserUid > 0 and  ( $answer > 0 OR $subpoints > 0 ) and is_object($question) ) {
@@ -92,13 +92,13 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	
 	/**
 	 * get answerlist for user
-	 * @param \Allplan\Nemadvent\Domain\Model\AdventCat $adventCat
+	 * @param \Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat
 	 * @param integer $feUserUid
 	 * @param integer $limit
 	 * @param integer $offset
 	 *  @return array answers
 	 */
-	public function findMyanswers(\Allplan\Nemadvent\Domain\Model\AdventCat $adventCat,$feUserUid= 0, $limit=24,$offset= 0){
+	public function findMyanswers(\Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat,$feUserUid= 0, $limit=24,$offset= 0){
 		$query = $this->createQuery();
 
 		$query->getQuerySettings()->setIgnoreEnableFields(true);
@@ -121,12 +121,12 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 	/**
 	 * get ONE answer for user
-	 * @param \Allplan\Nemadvent\Domain\Model\AdventCat $adventCat
+	 * @param \Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat
 	 * @param integer $feUserUid
 	 * @param integer $question
 	 *  @return array answer
 	 */
-	public function findAnswer(\Allplan\Nemadvent\Domain\Model\AdventCat $adventCat,$feUserUid, $question){
+	public function findAnswer(\Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat,$feUserUid, $question){
 		$query = $this->createQuery();
 
 		$query->getQuerySettings()->setIgnoreEnableFields(true);

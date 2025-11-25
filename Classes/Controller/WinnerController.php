@@ -1,7 +1,7 @@
 <?php
 namespace Jvelletti\JvAdvent\Controller;
 
-use Allplan\Nemadvent\Domain\Model\AdventCat;
+use Jvelletti\JvAdvent\Domain\Model\AdventCat;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Context\Context;
 use Allplan\AllplanTools\Utility\TyposcriptUtility;

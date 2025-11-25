@@ -85,7 +85,7 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
   * The advents of this category
   *
-  * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Allplan\Nemadvent\Domain\Model\Advent>
+  * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jvelletti\JvAdvent\Domain\Model\Advent>
   */
  #[\TYPO3\CMS\Extbase\Annotation\ORM\Lazy]
  protected $advents;

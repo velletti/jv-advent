@@ -28,13 +28,13 @@ class AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	/**
 	 * find advent by given tag object
 	 *
-	 * @param \Allplan\Nemadvent\Domain\Model\AdventCat $adventCat
+	 * @param \Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat
 	 * @param integer $questiondate
 	 * @param integer $uid
 	 * @return array advents
 	 *
 	 */
-	public function findOneByFilter( \Allplan\Nemadvent\Domain\Model\AdventCat $adventCat=NULL , $questiondate=0, $uid =0) {
+	public function findOneByFilter( \Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat=NULL , $questiondate=0, $uid =0) {
 			
 		$query = $this->createQuery();
 		

@@ -6,7 +6,7 @@ plugin.tx_jvadvent {
 				pageBrowser {
 					maxItems = 10
 					range = 1
-					wrap = <div class="nemadvent_pageBrowser">|</div>
+					wrap = <div class="JvAdvent_pageBrowser">|</div>
 				}
 				pid{
 					singleView = 

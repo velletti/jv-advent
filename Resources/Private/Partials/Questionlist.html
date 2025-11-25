@@ -50,7 +50,7 @@
 
 
 			</div>
-			<div  class=".nemadvent_quest nemadvent_questlist left col-xs-12 col-md-8">
+			<div  class=".JvAdvent_quest JvAdvent_questlist left col-xs-12 col-md-8">
 				<f:for each="{questions}" as="question" iteration="count">
 
 					<h4><f:format.date format="%d">{question.date}</f:format.date> - {question.title}
@@ -90,7 +90,7 @@
 
 							<f:if condition="{question.descShort}">
 								<div class="clearfix"> <br /></div>
-								<div class="nemadvent_tipp">
+								<div class="JvAdvent_tipp">
 									<h4><f:translate key="hintoftheday">Tipp des Tages</f:translate></h4>
 									<div>
 										<f:format.html>{question.descShort}</f:format.html>
@@ -99,7 +99,7 @@
 							</f:if>
 							<f:if condition="{question.solution}">
 								<div class="clearfix"> <br /></div>
-								<div class="nemadvent_tipp">
+								<div class="JvAdvent_tipp">
 									<h4><f:translate key="how_to_find_solution">Lösungsweg</f:translate></h4>
 									<div>
 										<f:format.html>{question.solution}</f:format.html>
@@ -113,7 +113,7 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H4").each(function(){
+			jQuery(".tx_jvadvent_pi1 .JvAdvent_questlist H4").each(function(){
 				jQuery(this).click(function(eventObject){
 					eventObject.preventDefault();
 					adventQuestion = jQuery(this).next() ;
@@ -125,7 +125,7 @@
 				});
 			});
 			function showallAKRAnswers() {
-				jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H4").each(function(){
+				jQuery(".tx_jvadvent_pi1 .JvAdvent_questlist H4").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).removeClass("hide") ;
 				});
@@ -133,7 +133,7 @@
 				jQuery("#hideallAKRAnswers").removeClass("hide") ;
 			}
 			function hideallAKRAnswers() {
-				jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H4").each(function(){
+				jQuery(".tx_jvadvent_pi1 .JvAdvent_questlist H4").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).addClass("hide") ;
 				});
@@ -141,7 +141,7 @@
 				jQuery("#showallAKRAnswers").removeClass("hide") ;
 			}
 			function showOnlyAKRPercent() {
-				jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H4").each(function(){
+				jQuery(".tx_jvadvent_pi1 .JvAdvent_questlist H4").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).removeClass("hide") ;
 				});
@@ -151,14 +151,14 @@
 				jQuery(".tx_jvadvent_pi1 .tx_jvadvent_questlist_sub .clearfix").each(function(){
 					jQuery(this).css("display" , "none") ;
 				});
-				jQuery(".tx_jvadvent_pi1 .nemadvent_tipp").each(function(){
+				jQuery(".tx_jvadvent_pi1 .JvAdvent_tipp").each(function(){
 					jQuery(this).addClass("hide") ;
 				});
 				jQuery("#showAKRPercent").addClass("hide") ;
 				jQuery("#undoShowAKRPercent").removeClass("hide") ;
 			}
 			function undoShowOnlyAKRPercent() {
-				jQuery(".tx_jvadvent_pi1 .nemadvent_questlist H3").each(function(){
+				jQuery(".tx_jvadvent_pi1 .JvAdvent_questlist H3").each(function(){
 					adventQuestion = jQuery(this).next() ;
 					jQuery(adventQuestion).addClass("hide") ;
 				});
@@ -168,7 +168,7 @@
 				jQuery(".tx_jvadvent_pi1 .tx_jvadvent_questlist_sub .clearfix").each(function(){
 					jQuery(this).css("display" , "block") ;
 				});
-				jQuery(".tx_jvadvent_pi1 .nemadvent_tipp").each(function(){
+				jQuery(".tx_jvadvent_pi1 .JvAdvent_tipp").each(function(){
 					jQuery(this).removeClass("hide") ;
 				});
 

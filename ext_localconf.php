@@ -3,32 +3,81 @@
 if(!defined('TYPO3')) Die ('Access denied.');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'Nemadvent' ,
+	'JvAdvent' ,
 	'Calendar',
 	array (
-		\Allplan\Nemadvent\Controller\AdventController::class		=>	'single,showCalendar',
-        \Allplan\Nemadvent\Controller\UserController::class			=>	'answer',
+		\Jvelletti\JvAdvent\Controller\AdventController::class		=>	'single,showCalendar',
+        \Jvelletti\JvAdvent\Controller\UserController::class			=>	'answer',
 	),
     array (
-        \Allplan\Nemadvent\Controller\AdventController::class		=>	'single',
-        \Allplan\Nemadvent\Controller\UserController::class			=>	'answer',
-    )
+        \Jvelletti\JvAdvent\Controller\AdventController::class		=>	'single',
+        \Jvelletti\JvAdvent\Controller\UserController::class			=>	'answer',
+    ),
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Nemadvent' ,
+    'JvAdvent' ,
     'Solution',
     array (
-        \Allplan\Nemadvent\Controller\AdventController::class		=>	'listAnswers',
-    )
+        \Jvelletti\JvAdvent\Controller\AdventController::class		=>	'listAnswers',
+    ),
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Nemadvent' ,
+    'JvAdvent' ,
     'Winner',
     array (
-        \Allplan\Nemadvent\Controller\WinnerController::class		=>	'list,listall',
+        \Jvelletti\JvAdvent\Controller\WinnerController::class		=>	'list,listall',
     ),
     array (
-        \Allplan\Nemadvent\Controller\WinnerController::class		=>	'',
-    )
+        \Jvelletti\JvAdvent\Controller\WinnerController::class		=>	'',
+    ),
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+);
+
+
+
+$iconRegistry =
+    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+
+$iconRegistry->registerIcon(
+    'extension-jvadvent',
+    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+    ['source' => 'EXT:jv-advent/Resources/Public/Icons/Extension.svg']
+);
+
+// wizards
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+    'mod {
+            wizards.newContentElement.wizardItems.plugins {
+                elements {
+                    jvchat {
+                        iconIdentifier = extension-jvadvent
+                        title = Aventskalender
+                        tt_content_defValues {
+                            CType = jv-advent_calendar
+                        }
+                    }
+                }
+                show = *
+            }
+       }'
+);
+// wizards
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+    'mod {
+            wizards.newContentElement.wizardItems.plugins {
+                elements {
+                    jvchat {
+                        iconIdentifier = extension-jvadvent
+                        title = Advent Solutions
+                        tt_content_defValues {
+                            CType = jv-advent_solution
+                        }
+                    }
+                }
+                show = *
+            }
+       }'
 );

@@ -6,7 +6,7 @@
 	margin: 0px 0 0 40px;
 	width:540px;
 }
-.nemadvent_quest {
+.JvAdvent_quest {
 	width:640px;
 }
 .tx_jvadvent_pi1 .width40 {
@@ -77,12 +77,12 @@
 }
 
 
-.nemadvent_questlist H3 ,
-.nemadvent_questlist H4 {
+.JvAdvent_questlist H3 ,
+.JvAdvent_questlist H4 {
 	padding: 4px;
 	cursor: pointer;
 }
-.nemadvent_questlist H3:hover {
+.JvAdvent_questlist H3:hover {
 	background: #8FADCC;
 	color: #FFF;
 }

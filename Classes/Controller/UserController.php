@@ -90,7 +90,6 @@ class UserController extends BaseController {
 			$question = intval($this->request->getArgument('question')) ;
 		}
 		if ( $this->request->hasArgument('answer')) {
-			
 			$answer = intval($this->request->getArgument('answer')) ;
 		}
 
@@ -100,8 +99,7 @@ class UserController extends BaseController {
 		}
 
 		if ( $answer > 0  OR $rangeanswer > 0 OR $question > 0 )  {
-            // j.v. 7.10.2014 Nachträgliches Beantworten nicht nur für NEM !
-            $question =  $this->adventRepository->findOneByFilter($this->adventCat , 0 , $question )->getFirst();
+            $question =  $this->adventRepository->findOneByFilter( 0 , $question );
 		}
 
 		// Second Part : yes he has ansered a question ?
@@ -177,7 +175,7 @@ class UserController extends BaseController {
 						
 					$answerlist[$i]['answerPID'] = "" ;
 					
-					if ($this->settings['isnem']  OR $this->answers[$i]->getTstamp() >  ( time() - (60*60*24)) ) {
+					if ($this->settings['isTester']  OR $this->answers[$i]->getTstamp() >  ( time() - (60*60*24)) ) {
 						$answerlist[$i]['answerPID'] = $this->settings['list']['pid']['singleView']  ;	
 					} 		
 					$answerlist[$i]['answerUID'] = $this->answers[$i]->getQuestionUid() ;	
@@ -187,19 +185,15 @@ class UserController extends BaseController {
 					$answerlist[$i]['myanswer'] = $this->answers[$i]->getAnswerUid()  ;
 					$answerlist[$i]['adddate'] = date ( "j" , $this->answers[$i]->getQuestionDate() ) ;
 
-					$question =  $this->adventRepository->findOneByFilter( $this->adventCat , 
-														$this->answers[$i]->getQuestionDate()  );
+					$question =  $this->adventRepository->findOneByFilter( $this->answers[$i]->getQuestionDate()  );
 
 
 					$answerlist[$i]['myanswerTEXT'] = "";
 
-					if ( count($question) > 0 && ( is_array($question) || is_object($question) ) ) {
-						$question = $question->getFirst() ;
+					if ( is_object($question) )  {
 						if( $answerlist[$i]['myanswer'] > 0 and $answerlist[$i]['myanswer'] < 6) {
 							$answerlist[$i]['myanswerTEXT'] .= $question->getMyanswertext( $answerlist[$i]['myanswer'] ) ;
-
 						}
-
 						$correct= $question->getCorrect( ) ;
 					}
 
@@ -240,5 +234,3 @@ class UserController extends BaseController {
 	}
 
 }
-
-?>

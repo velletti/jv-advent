@@ -1,6 +1,6 @@
 ﻿<f:if condition="{winnerdata}">
 	<f:then>
-		<div class="tx_jvadvent_pi1">
+		<div class="tx_jvadvent_calendar">
 				<f:for each="{winnerdata}" as="winner">
 					<f:if condition="{winner.prize.title}">
 						<f:then>
@@ -12,7 +12,7 @@
 								</span>
 								<span class="left width170">
 									<h3>{winner.user.username}</h3>
-									<div class="tx_jvadvent_pi1_prize">{winner.prize.title}</div>
+									<div class="tx_jvadvent_calendar_prize">{winner.prize.title}</div>
 									{winner.prize.descShort}<br/>
 								</span>
 								

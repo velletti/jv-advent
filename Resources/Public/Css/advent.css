@@ -1,45 +1,45 @@
 #tx_jvadvent_question_image {
 	margin: 0 40px 40px ;
 }
-.tx_jvadvent_pi1 .width540 ,
-#tx_jvadvent_pi1 .width540 {
+.tx_jvadvent_calendar .width540 ,
+#tx_jvadvent_calendar .width540 {
 	margin: 0px 0 0 40px;
 	width:540px;
 }
 .JvAdvent_quest {
 	width:640px;
 }
-.tx_jvadvent_pi1 .width40 {
+.tx_jvadvent_calendar .width40 {
 	width:40px;
 }
 
-.tx_jvadvent_pi1 .width80 {
+.tx_jvadvent_calendar .width80 {
 	width:80px;
 	display: inline-block;
 }
 
-.tx_jvadvent_pi1 .width70 {
+.tx_jvadvent_calendar .width70 {
 	width:70px;
 	display: inline-block;
 }
-.tx_jvadvent_pi1 .width170 {
+.tx_jvadvent_calendar .width170 {
 	width:170px;
 	display: inline-block;
 }
-.tx_jvadvent_pi1 .width400 {
+.tx_jvadvent_calendar .width400 {
 	width:400px;
 	display: inline-block;
 }
 
-.tx_jvadvent_pi1 .width340 {
+.tx_jvadvent_calendar .width340 {
 	width:340px;
 	display: inline-block;
 	margin:10px 0 10px;
 }
-.tx_jvadvent_pi1_prize{
+.tx_jvadvent_calendar_prize{
 	font-weight: bold;
 }
-.tx_jvadvent_pi1 .message{
+.tx_jvadvent_calendar .message{
 	font-weight: bold;
 	color: #1E78BE;
 }
@@ -53,25 +53,25 @@
 #tx_jvadvent_answers  .row {
 	margin-bottom: 15px;
 }
-.tx_jvadvent_pi1 .winnerall {
+.tx_jvadvent_calendar .winnerall {
 	width:99px;
 	display: inline-block;
 	height:170px;
 	overflow: hidden;
 }
-.tx_jvadvent_pi1_wrong {
+.tx_jvadvent_calendar_wrong {
 	background-position: -554px -110px;
 	background-position: -55px -16px;
 }
-.tx_jvadvent_pi1_empty {
+.tx_jvadvent_calendar_empty {
 	background-position: -639px -110px;
 	background-position: -170px -16px;
 }
-.tx_jvadvent_pi1_correct {
+.tx_jvadvent_calendar_correct {
 	background-position: -537px -110px;
 	background-position: -58px -16px;
 }
-.tx_jvadvent_pi1_correct2 {
+.tx_jvadvent_calendar_correct2 {
 	background-position: -656px -110px;
 	background-position: -190px -16px;
 }
@@ -86,13 +86,13 @@
 	background: #8FADCC;
 	color: #FFF;
 }
-.tx_jvadvent_pi1_legende {
+.tx_jvadvent_calendar_legende {
 	padding: 16px;
 	margin-bottom: 16px;
 	background: #FFF;
 }
 
-div#tx_advent_Wuerfel {margin-left: 50px; width: 50px; height: 50px;
+div#tx_jvadvent_Wuerfel {margin-left: 50px; width: 50px; height: 50px;
 	border-color:#D1D1D1;
 	border-radius: 6px;
 	border-style: solid;
@@ -106,12 +106,12 @@ div#tx_advent_Wuerfel {margin-left: 50px; width: 50px; height: 50px;
 	box-shadow: 5px 3px 3px 0px rgba(46,38,46,0.7);
 
 }
-div#tx_advent_Wuerfel P {
+div#tx_jvadvent_Wuerfel P {
 	text-align: center; vertical-align: middle; font-size: 40px; margin-top: 0px;
 	line-height: 1.231;
 }
 
-div#tx_advent_WuerfelMauer {
+div#tx_jvadvent_WuerfelMauer {
 	left:0px;
 	background-color:#8fadcc;
 	height:56px;
@@ -121,7 +121,7 @@ div#tx_advent_WuerfelMauer {
 	overflow:hidden;
 	display: none;
 }
-.tx_advent_WuerfelWeg {
+.tx_jvadvent_WuerfelWeg {
 	margin-bottom: 24px;
 }
 
@@ -133,7 +133,7 @@ div#tx_advent_WuerfelMauer {
 /* NEU */
 
 
-.tx_advent_doorMsg {
+.tx_jvadvent_doorMsg {
 	margin-top: 20px;
 	text-align: center;
 	color: #fff;
@@ -142,7 +142,7 @@ div#tx_advent_WuerfelMauer {
 
 
 /* /NEU */
-.tx_Advent_questions_day {
+.tx_jvadvent_questions_day {
 	border: #ccc ;
 	border-width: 1px;
 	border-style: solid;
@@ -155,22 +155,22 @@ div#tx_advent_WuerfelMauer {
 	padding: 0 ;
 
 }
-.tx_Advent_questions_active {
+.tx_jvadvent_questions_active {
 	cursor: pointer;
 }
-.tx_Advent_questions_active:hover {
+.tx_jvadvent_questions_active:hover {
 	background: none;
 	opacity: 1 ;
 }
 
-.tx_Advent_questions_day P {
+.tx_jvadvent_questions_day P {
 	color: #444 ;
 	text-shadow: #CCC 2px 2px;
 	margin: 30px auto 0;
 
 }
 
-.tx_Advent_questions_today P
+.tx_jvadvent_questions_today P
 {
 	font-size:80px;
 	color: #AA221a;
@@ -178,7 +178,7 @@ div#tx_advent_WuerfelMauer {
 }
 
 
-div#tx_Advent_questions_img {
+div#tx_jvadvent_questions_img {
 	/* background-image: url(../img/Sterne_Hintergrundbild980px_560px_72dpi.jpg);  */
 	background-image: url(../img/rentiere_hintergrundbild_akr_960_560_.jpg);
 	background-color: black;
@@ -187,12 +187,12 @@ div#tx_Advent_questions_img {
 	background-size: 100% 100%;
 	height:560px;
 }
-.tx_Advent_questions_closed {
+.tx_jvadvent_questions_closed {
 	background-color: white;
 	opacity: 0.7;
 }
 
-.tx_Advent_questions_dayOpened {
+.tx_jvadvent_questions_dayOpened {
 
 	transition: opacity .5s ease-out-in ;
 	background: none;
@@ -201,7 +201,7 @@ div#tx_Advent_questions_img {
 }
 
 
-.tx_Advent_questions_inactive_background {
+.tx_jvadvent_questions_inactive_background {
 	background-color: white;
 	opacity: 0.7;
 	height: 140px;
@@ -227,27 +227,27 @@ div#tx_jvadvent_Regler_Zahl {
 
 
 @media screen and (max-width: 900px) {
-	.tx_Advent_questions_day {
+	.tx_jvadvent_questions_day {
 		height: 100px;
 	}
-	div#tx_Advent_questions_img {
+	div#tx_jvadvent_questions_img {
 		height: 400px;
 	}
-	.tx_Advent_questions_day P {
+	.tx_jvadvent_questions_day P {
 		margin: 15px auto 0;
 		font-size: 35px;
 	}
-	.tx_Advent_questions_today P {
+	.tx_jvadvent_questions_today P {
 		margin: 5px auto 0;
 		font-size: 50px;
 
 	}
 }
 @media screen and (max-width: 760px) {
-	.tx_Advent_questions_day {
+	.tx_jvadvent_questions_day {
 		height: 75px;
 	}
-	div#tx_Advent_questions_img {
+	div#tx_jvadvent_questions_img {
 		height: 600px;
 		background-image: url(../img/Sterne_Hintergrundbild560_px_980px_72dpi.jpg);
 	}

@@ -28,7 +28,6 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 
  	/**
 	 * Updates the counter for a advent
-	 * @param \Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat
 	 * @param integer $pid
 	 *  @param integer $feUserUid
 	 * @param \Jvelletti\JvAdvent\Domain\Model\Advent $question
@@ -38,7 +37,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return int $result
 	 */
 	
-	public function insertAnswer(\Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat, $pid ,$feUserUid,\Jvelletti\JvAdvent\Domain\Model\Advent $question,$points,$subpoints,$answer){
+	public function insertAnswer( $pid ,$feUserUid,\Jvelletti\JvAdvent\Domain\Model\Advent $question,$points,$subpoints,$answer){
 		$return = FALSE ;
 
 		if ($feUserUid > 0 and  ( $answer > 0 OR $subpoints > 0 ) and is_object($question) ) {
@@ -98,15 +97,11 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param integer $offset
 	 *  @return array answers
 	 */
-	public function findMyanswers(\Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat,$feUserUid= 0, $limit=24,$offset= 0){
+	public function findMyanswers( $feUserUid= 0, $limit=24,$offset= 0){
 		$query = $this->createQuery();
 
 		$query->getQuerySettings()->setIgnoreEnableFields(true);
 		$query->getQuerySettings()->setRespectStoragePage(false);
-
-		if ($adventCat!= NULL){
-			$queryParams[] = $query->equals('advent_uid', $adventCat->getUid());
-		}
 
 		$queryParams[] = $query->equals('feuser_uid', $feUserUid);
 		$queryParams[] = $query->equals('sys_language_uid', $GLOBALS['TSFE']->sys_language_uid );
@@ -126,15 +121,11 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param integer $question
 	 *  @return array answer
 	 */
-	public function findAnswer(\Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat,$feUserUid, $question){
+	public function findAnswer( $feUserUid, $question){
 		$query = $this->createQuery();
 
 		$query->getQuerySettings()->setIgnoreEnableFields(true);
 		$query->getQuerySettings()->setRespectStoragePage(false);
-
-		if ($adventCat!= NULL){
-			$queryParams[] = $query->equals('advent_uid', $adventCat->getUid());
-		}
 
 		if ( $feUserUid > 0) {
 			$queryParams[] = $query->equals('feuser_uid', $feUserUid);

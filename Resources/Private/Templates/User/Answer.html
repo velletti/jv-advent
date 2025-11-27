@@ -57,7 +57,7 @@
 	</f:if>
 </f:if>
 
-<div class="tx_jvadvent_pi1 well">
+<div class="tx_jvadvent_calendar well">
 	<f:flashMessages>
 		<f:for each="{flashMessages}" as="flashMessage">
 			<div class="alert alert-info message">
@@ -72,7 +72,7 @@
 	<f:if condition="{answerlist}">
 		<f:then>
 			<f:for each="{answerlist}" as="answer">
-				<div class="tx_jvadvent_pi1_answer row">
+				<div class="tx_jvadvent_calendar_answer row">
 					<div class="col-sm-2 col-xs-5">
 						{answer.date}
 					</div>
@@ -90,7 +90,7 @@
 							<f:else>
 								<f:if condition="{answer.crdate} > {settings.nowMinus24h}">
 									<f:then>
-										<f:link.page class="btn btn-default" title="{f:translate(key:'ChangeAnswer' , default:'ChangeAnswer')}" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_jvadvent_pi1: {single: {adddate: '{answer.adddate}'}}}"> >> </f:link.page>
+										<f:link.page class="btn btn-default" title="{f:translate(key:'ChangeAnswer' , default:'ChangeAnswer')}" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_jvadvent_calendar: {single: {adddate: '{answer.adddate}'}}}"> >> </f:link.page>
 									</f:then>
 									<f:else>
 										<span class="btn glyphicon glyphicon-info-sign" title="Ihre Antwort vom {answer.crdate -> f:format.date( format:'d.m. H:i')} kann nicht mehr ge&auml;ndert werden ">
@@ -119,7 +119,7 @@
 		</f:else>
 	</f:if>
 </div>
-<div class="tx_jvadvent_pi1 well well-primary">
+<div class="tx_jvadvent_calendar well well-primary">
 	<b>
 		<f:if condition="{settings.showtotal} > 0">
 		<f:then>

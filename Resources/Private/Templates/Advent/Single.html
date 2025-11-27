@@ -1,11 +1,11 @@
 <f:if condition="{question}">
 	<f:then>
 		<div class="tx_jvadvent_question">
-			<f:if condition="{isnem}">
+			<f:if condition="{isTester}">
 				<f:then>
-					<f:render partial="Adddate" arguments="{isnem: isnem}"/>
+					<f:render partial="Adddate" arguments="{isTester: isTester}"/>
 				
-					<f:render partial="Question" arguments="{question: question, settings: settings, adventscat:adventscat,isnem: isnem,isnemintern: isnemintern, mypid: mypid}"/>
+					<f:render partial="Question" arguments="{question: question, settings: settings, adventscat:adventscat,isTester: isTester,isOrganisator: isOrganisator, mypid: mypid}"/>
 				</f:then>	
 				<f:else>	
 					<f:if condition="{settings.beforestartdate}">
@@ -26,7 +26,7 @@
 								<f:else>	
 									<f:if condition="{mypid}">
 										<f:then>
-											<f:render partial="Question" arguments="{question: question, settings: settings, adventscat:adventscat, isnem: isnem,isnemintern: isnemintern, adddate:adddate,  mypid: mypid}"/>
+											<f:render partial="Question" arguments="{question: question, settings: settings, adventscat:adventscat, isTester: isTester,isOrganisator: isOrganisator, adddate:adddate,  mypid: mypid}"/>
 										</f:then>	
 									<f:else>
 											<h3>Something is wrong: </h3><br/>
@@ -46,7 +46,7 @@
 
 	</f:then>
 	<f:else>
-		<f:render partial="Adddate" arguments="{isnem: isnem}"/>
+		<f:render partial="Adddate" arguments="{isTester: isTester}"/>
 
 		<p><h3>
 			<f:translate key="no_questions">Definitions of Question is missing</f:translate>

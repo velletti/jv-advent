@@ -18,7 +18,7 @@ function tx_jvadvent_ajax( syslng , sysid ) {
 		type: "GET",
 		url: "/index.php",
 		cache: false,
-		data: "id=" + sysid + "&L=" + syslng + "&tx_jvadvent_pi1[JSON]=1",
+		data: "id=" + sysid + "&L=" + syslng + "&tx_jvadvent_calendar[JSON]=1",
 		beforeSend: function() {
 		},
 		success: function(result) {

@@ -1,0 +1,10 @@
+plugin.tx_jvadvent {
+	view {
+		templateRootPath = EXT:jvadvent/Resources/Private/Templates/
+		partialRootPath = EXT:jvadvent/Resources/Private/Partials/
+		layoutRootPath = EXT:jvadvent/Resources/Private/Layouts/
+	}
+	persistence {
+		storagePid = 22584
+	}
+}

@@ -1,17 +1,17 @@
 <f:if condition="{questions}">
 	<f:then>
 		<div class="tx_jvadvent_questionsList">
-			<f:if condition="{isnemintern}">
+			<f:if condition="{isOrganisator}">
 				<f:then>
 					<h1>ONLY Visible for NemIntern Users!</h1>
-					<f:render partial="Questionlist" arguments="{questions: questions, settings: settings, adventscat: adventscat, isnem: isnem,isnemintern: isnemintern}"/>
+					<f:render partial="Questionlist" arguments="{questions: questions, settings: settings, adventscat: adventscat, isTester: isTester,isOrganisator: isOrganisator}"/>
 
 				</f:then>
 				<f:else>	
 							<f:if condition="{settings.afterenddate}">
 								<f:then>
 								<div style="display:block;">
-									<f:render partial="Questionlist" arguments="{questions: questions, settings: settings, adventscat: adventscat, isnem: isnem,isnemintern: isnemintern}"/>
+									<f:render partial="Questionlist" arguments="{questions: questions, settings: settings, adventscat: adventscat, isTester: isTester,isOrganisator: isOrganisator}"/>
 								</div>
 								</f:then>	
 								<f:else>	

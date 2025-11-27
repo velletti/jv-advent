@@ -6,14 +6,14 @@
 		<sDEF>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent.settings.options</sheetTitle>
+					<sheetTitle>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent.settings.options</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<settings.advent.list.filter.startdate>
+					<settings.setup.startdate>
                         <TCEforms>
                          <exclude>1</exclude>
-					     <label>LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.startdate</label>
+					     <label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.startdate</label>
                             <config>
                             	
                                 <type>input</type>
@@ -22,12 +22,12 @@
 								<eval>date</eval>
                             </config>
                     	</TCEforms>
-                    </settings.advent.list.filter.startdate>
+                    </settings.setup.startdate>
                     
-                    <settings.advent.list.filter.date>               	
+                    <settings.setup.date>
                         <TCEforms>
                          <exclude>1</exclude>
-					     <label>LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.date</label>
+					     <label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.date</label>
                             <config>
                             	
                                 <type>input</type>
@@ -36,12 +36,12 @@
 								<eval>date</eval>
                             </config>
                     	</TCEforms>
-                    </settings.advent.list.filter.date>
+                    </settings.setup.date>
                     
-					<settings.advent.list.filter.enddate>               	
+					<settings.setup.enddate>
                         <TCEforms>
                          <exclude>1</exclude>
-					     <label>LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.enddate</label>
+					     <label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.enddate</label>
                             <config>
                                 <type>input</type>
 								<size>10</size>
@@ -49,13 +49,13 @@
 								<eval>date</eval>
                             </config>
                     	</TCEforms>
-                    </settings.advent.list.filter.enddate>  
+                    </settings.setup.enddate>
                     
-					<settings.advent.list.filter.days>               	
+					<settings.setup.days>
                         <TCEforms>
                          <exclude>1</exclude>
                          <displayCond>FIELD:switchableControllerActions:=:0</displayCond>
-					     <label>LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.days</label>
+					     <label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.days</label>
                             <config>
                             	
                                 <type>input</type>
@@ -65,11 +65,11 @@
 								<eval>integer</eval>
                             </config>
                     	</TCEforms>
-                    </settings.advent.list.filter.days>                                        
+                    </settings.setup.days>
 
 					<settings.advent.list.mustacceptagb>
 						<TCEforms>
-							<label>LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Adventcat.mustacceptagb</label>
+							<label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Adventcat.mustacceptagb</label>
 
 							<config>
 								<type>text</type>

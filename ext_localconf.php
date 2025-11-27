@@ -3,10 +3,10 @@
 if(!defined('TYPO3')) Die ('Access denied.');
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'JvAdvent' ,
+	'Jvadvent' ,
 	'Calendar',
 	array (
-		\Jvelletti\JvAdvent\Controller\AdventController::class		=>	'single,showCalendar',
+		\Jvelletti\JvAdvent\Controller\AdventController::class		=>	'showCalendar,single',
         \Jvelletti\JvAdvent\Controller\UserController::class			=>	'answer',
 	),
     array (
@@ -16,8 +16,11 @@ if(!defined('TYPO3')) Die ('Access denied.');
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'JvAdvent' ,
+    'Jvadvent' ,
     'Solution',
+    array (
+        \Jvelletti\JvAdvent\Controller\AdventController::class		=>	'listAnswers',
+    ),
     array (
         \Jvelletti\JvAdvent\Controller\AdventController::class		=>	'listAnswers',
     ),
@@ -25,7 +28,7 @@ if(!defined('TYPO3')) Die ('Access denied.');
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'JvAdvent' ,
+    'Jvadvent' ,
     'Winner',
     array (
         \Jvelletti\JvAdvent\Controller\WinnerController::class		=>	'list,listall',
@@ -37,43 +40,33 @@ if(!defined('TYPO3')) Die ('Access denied.');
 );
 
 
-
-$iconRegistry =
-    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-
-$iconRegistry->registerIcon(
-    'extension-jvadvent',
-    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-    ['source' => 'EXT:jv-advent/Resources/Public/Icons/Extension.svg']
-);
-
 // wizards
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
     'mod {
             wizards.newContentElement.wizardItems.plugins {
                 elements {
-                    jvchat {
+                    jvadvent_calendar {
                         iconIdentifier = extension-jvadvent
                         title = Aventskalender
                         tt_content_defValues {
-                            CType = jv-advent_calendar
+                            CType = list
+                            list_type = jvadvent_calendar
                         }
                     }
-                }
-                show = *
-            }
-       }'
-);
-// wizards
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-    'mod {
-            wizards.newContentElement.wizardItems.plugins {
-                elements {
-                    jvchat {
+                    jvadvent_solutions {
                         iconIdentifier = extension-jvadvent
-                        title = Advent Solutions
+                        title = Advent Calendar Solutions
                         tt_content_defValues {
-                            CType = jv-advent_solution
+                            CType = list
+                            list_type = jvadvent_solution
+                        }
+                    }
+                    jvadvent_winner {
+                        iconIdentifier = extension-jvadvent
+                        title = Advent Calendar Winner
+                        tt_content_defValues {
+                            CType = list
+                            list_type = jvadvent_winner
                         }
                     }
                 }

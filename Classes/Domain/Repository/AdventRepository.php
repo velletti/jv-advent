@@ -28,41 +28,51 @@ class AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	/**
 	 * find advent by given tag object
 	 *
-	 * @param \Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat
-	 * @param integer $questiondate
-	 * @param integer $uid
-	 * @return array advents
+	 * @param integer|null $questiondate
+	 * @param integer|null $uid
 	 *
 	 */
-	public function findOneByFilter( \Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat=NULL , $questiondate=0, $uid =0) {
+	public function findOneByFilter(  $questiondate=0, $uid =0)
+    {
 			
 		$query = $this->createQuery();
 		
 		$query->getQuerySettings()->setIgnoreEnableFields(true);
-		$query->getQuerySettings()->setRespectStoragePage(false);
-		$query->getQuerySettings()->setRespectSysLanguage(false);
 		$query->setOrderings(array( 'date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING )) ;
 
-
-		if ($adventCat!= NULL){
-			$queryParams[] = $query->contains('categories', $adventCat);
-            $queryParams[] = $query->equals('sys_language_uid', $adventCat->getSysLanguageUid() );
-		}		
-					
 		if 	( $questiondate > 0 ) {
 			$queryParams[] = $query->greaterThan('date', ($questiondate - (60 *60 * 4)));
 			$queryParams[] = $query->lessThan('date', ($questiondate + (60 * 60 * 4 )));
 		}
 		if 	( $uid > 0 ) {
 			$queryParams[] = $query->equals('uid', $uid);
-		}		
+		}
 
-		$query = $query->matching($query->logicalAnd(...$queryParams));
+        $query = $query->matching($query->logicalAnd(...$queryParams));
 		$return =  $query->execute() ;
-
-		return $return;
+        if ( $return->count() > 0 ) {
+            return $return->getFirst() ;
+        }
+		return false;
 	}
+
+    /**
+     * find advent by given tag object
+     *
+     * @param integer|null $questiondate
+     * @param integer|null $uid
+     *
+     */
+    public function findAll(  )
+    {
+
+        $query = $this->createQuery();
+
+        $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $query->setOrderings(array( 'date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING )) ;
+
+        return  $query->execute()->toArray() ;
+    }
 
 
 }
-?>

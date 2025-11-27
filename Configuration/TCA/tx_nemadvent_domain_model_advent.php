@@ -3,7 +3,7 @@ defined('TYPO3') or die();
 return
     array(
         'ctrl' => array (
-            'title'             => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent',
+            'title'             => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent',
             'label' 			=> 'title',
             'tstamp' 			=> 'tstamp',
             'crdate' 			=> 'crdate',
@@ -18,7 +18,7 @@ return
                 'disabled' => 'hidden'
             ),
 
-            'iconfile' 			=> 'EXT:jv-advent/Resources/Public/Icons/icon_tx_jvadvent_domain_model_advent.gif'
+            'iconfile' 			=> 'EXT:jvadvent/Resources/Public/Icons/icon_tx_jvadvent_domain_model_advent.gif'
         ),
         'columns' => array(
             'sys_language_uid' => Array (
@@ -53,7 +53,7 @@ return
             ),
             'title' => array(
                 'exclude' => 0,
-                'label'   => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.title',
+                'label'   => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.title',
                 'config'  => array(
                     'type' => 'input',
                     'size' => 40,
@@ -65,7 +65,7 @@ return
 
             'date' => array (
                 'exclude' => 0,
-                'label'   => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.date',
+                'label'   => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.date',
                 'config' => array (
                     'type' => 'datetime',
                     'size' => 12,
@@ -78,7 +78,7 @@ return
 
             'desc_short' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.desc_short',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.desc_short',
                 'richtextConfiguration' => 'connect_template',
                 'config' => array(
                     'type' => 'text',
@@ -90,7 +90,7 @@ return
 
             'desc_long' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.desc_long',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.desc_long',
                 'richtextConfiguration' => 'connect_template',
                 'config' => array(
                     'type' => 'text',
@@ -102,7 +102,7 @@ return
 
             'solution' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.solution',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.solution',
                 'richtextConfiguration' => 'connect_template',
                 'config' => array(
                     'type' => 'text',
@@ -113,7 +113,7 @@ return
             ),
 
             'image' => array(
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.image',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.image',
                 'config' => [
                     ### !!! Watch out for fieldName different from columnName
                     'type' => 'file',
@@ -138,7 +138,7 @@ return
 
             'viewed' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.viewed',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.viewed',
                 'config' => array (
                     'type' => 'input',
                     'size' => '8',
@@ -146,7 +146,7 @@ return
             ),
             'answer1' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer1',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer1',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -155,7 +155,7 @@ return
             ),
             'answer2' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer2',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer2',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -164,7 +164,7 @@ return
             ),
             'answer3' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer3',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer3',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -173,7 +173,7 @@ return
             ),
             'answer4' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer4',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer4',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -182,7 +182,7 @@ return
             ),
             'answer5' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer5',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.answer5',
                 'config' => array (
                     'type' => 'text',
                     'cols' => '48',
@@ -191,7 +191,7 @@ return
             ),
             'correct' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.correct',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.correct',
                 'config' => array (
                     'type' => 'input',
                     'size' => '10',
@@ -200,7 +200,7 @@ return
             ),
             'rangemin' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.rangemin',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.rangemin',
                 'config' => array (
                     'type' => 'number',
                     'size' => '10',
@@ -209,7 +209,7 @@ return
             ),
             'rangemax' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.rangemax',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.rangemax',
                 'config' => array (
                     'type' => 'number',
                     'size' => '10',
@@ -218,7 +218,7 @@ return
             ),
             'storeonpid' => array (
                 'exclude' => 0,
-                'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.storeonpid',
+                'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.storeonpid',
                 'config' => array (
                     'type' => 'group',
                     'size' => '1',

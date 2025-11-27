@@ -42,7 +42,7 @@
 			
 			<label index="tx_jvadvent_domain_Model_Winner.winner_uid">Winners uid from fe_users</label>
 			
-			<label index="tx_jvadvent_domain_Model_Advent.title">Titel</label>
+			<label index="tx_jvadvent_domain_Model_Advent.title">Avent Calendar</label>
 			<label index="tx_jvadvent_domain_Model_Advent.startdate">Startdate</label>
 			<label index="tx_jvadvent_domain_Model_Advent.date">Date</label>
 			<label index="tx_jvadvent_domain_Model_Advent.answer1">Answer No 1</label>
@@ -68,15 +68,6 @@
 			
 			<!-- tx_jvadvent_domain_Model_Advent stop -->
 
-			<!-- tx_jvadvent_domain_Model_Adventcat start -->
-			<label index="tx_jvadvent_domain_Model_Adventcat">Advent Calendar</label>
-			<label index="tx_jvadvent_domain_Model_Adventcat.title">Titel</label>
-			<label index="tx_jvadvent_domain_Model_Adventcat.startdate">Startdate</label>
-			<label index="tx_jvadvent_domain_Model_Adventcat.enddate">Enddate</label>
-			<label index="tx_jvadvent_domain_Model_Adventcat.days">Days</label>
-			<label index="tx_jvadvent_domain_Model_Adventcat.mustacceptagb">The - to-see-the-answers-you-must-accept-the-agb-s-text</label>
-			
-			<!-- tx_jvadvent_domain_Model_Adventcat stop -->
 
 				<!-- tx_jvadvent_domain_Model_Userlog start -->
 			<label index="tx_jvadvent_domain_Model_User">Userlog</label>

@@ -1,0 +1,70 @@
+# Plugin configuration
+plugin.tx_jvadvent {
+	settings {
+		advent {
+			list {
+				pageBrowser {
+					maxItems = 10
+					range = 1
+					wrap = <div class="JvAdvent_pageBrowser">|</div>
+				}
+				pid{
+					singleView = 
+					viewAll = 
+				}
+			}
+		}
+		// See Extension template !!! will be overwritten at the end of the Advent game
+		maxDaysInFuture = 0
+		winnerPerPageCount = 72
+		testerGroup = 7
+		organizerGroup = 6
+
+		startDate = 2025-12-01 09:00:00
+		endDate = 2025-12-24 23:59:59
+		days = 24
+
+	}
+	persistence {
+		storagePid = {$plugin.tx_jvadvent.persistence.storagePid}
+	}
+	view {
+		templateRootPath = {$plugin.tx_jvadvent.view.templateRootPath}
+		partialRootPath = {$plugin.tx_jvadvent.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_jvadvent.view.layoutRootPath}
+	}
+}
+ plugin.tx_jvadvent_calendar < plugin.tx_jvadvent
+ plugin.tx_jvadvent_winner < plugin.tx_jvadvent
+ plugin.tx_jvadvent_user < plugin.tx_jvadvent
+
+# Rendering configuration for TYPO3 12.4
+tt_content.list.20.jvadvent_calendar =< lib.contentElement
+tt_content.list.20.jvadvent_calendar {
+	templateName = Generic
+	20 = EXTBASEPLUGIN
+	20 {
+		extensionName = Jvadvent
+		pluginName = Calendar
+	}
+}
+
+tt_content.list.20.jvadvent_solution =< lib.contentElement
+tt_content.list.20.jvadvent_solution {
+	templateName = Generic
+	20 = EXTBASEPLUGIN
+	20 {
+		extensionName = Jvadvent
+		pluginName = Solution
+	}
+}
+
+tt_content.list.20.jvadvent_winner =< lib.contentElement
+tt_content.list.20.jvadvent_winner {
+	templateName = Generic
+	20 = EXTBASEPLUGIN
+	20 {
+		extensionName = Jvadvent
+		pluginName = Winner
+	}
+}

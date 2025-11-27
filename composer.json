@@ -14,7 +14,7 @@
   },
   "extra": {
     "typo3/cms": {
-      "extension-key": "jv-advent"
+      "extension-key": "jvadvent"
     }
   },
   "autoload": {

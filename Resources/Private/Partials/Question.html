@@ -1,5 +1,5 @@
 
-							<div id="tx_jvadvent_pi1">
+							<div id="tx_jvadvent_calendar">
 								<div id="tx_jvadvent_question_top">
 								
 		  							<div class="well  well-default">
@@ -27,8 +27,8 @@
 									<div class="clearfix">&nbsp;</div>
 									<div id="tx_jvadvent_showanswers" class="row" >
 										<span class="col-xs-push-1 col-xs-2 col-md-1">
-											<input type="checkbox" value="y" name="tx_jvadvent_pi1[accepted]" onClick="jQuery('#tx_jvadvent_answers').show();jQuery('#tx_jvadvent_showanswers').hide();">
-											<input type="hidden" value="{adddate}" name="tx_jvadvent_pi1[answer]">
+											<input type="checkbox" value="y" name="tx_jvadvent_calendar[accepted]" onClick="jQuery('#tx_jvadvent_answers').show();jQuery('#tx_jvadvent_showanswers').hide();">
+											<input type="hidden" value="{adddate}" name="tx_jvadvent_calendar[answer]">
 										</span>
 										<span class="col-xs-push-1 col-xs-9 col-md-10">
 											<f:format.html>{settings.advent.list.mustacceptagb}</f:format.html>
@@ -37,7 +37,7 @@
 									<div id="tx_jvadvent_answers" class="row" >
 										<f:if condition="{question.rangemax} > 0">
 											<f:then>
-												<f:render partial="RangeAnswer" arguments="{question: question, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+												<f:render partial="RangeAnswer" arguments="{question: question, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
 
 											</f:then>
 											<f:else>
@@ -51,11 +51,11 @@
 													</div>
 												</div>
 
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isnem: isnem, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
 
 
 											</f:else>
@@ -79,7 +79,7 @@
 												</div>
 											</f:then>
 											<f:else>
-												<f:if condition="{isnemintern}">
+												<f:if condition="{isOrganisator}">
 													<div class="well well-default">
 														<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated} (visible Nem Intern)</h3>
 														<div>

@@ -1,4 +1,4 @@
 <?php
 defined('TYPO3') or die();
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('jv-advent', 'Configuration/TypoScript', 'Adventskalender Plugin');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('jvadvent', 'Configuration/TypoScript', 'Adventskalender Plugin');

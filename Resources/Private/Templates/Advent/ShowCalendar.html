@@ -1,6 +1,5 @@
     <f:if condition="{settings.afterenddate}">
 		<f:then>
-
 			<h3>Something is wrong: </h3><br/>
 			Plugin should not be visible AFTER  enddate!
 			enddate: {settings.enddate} <br/>
@@ -8,7 +7,7 @@
 		</f:then>
 		<f:else>
 			<div class="hide">
-				<f:link.page id="tx_advent_answerpage" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_jvadvent_pi1: {single: {adddate: ''}}}"> LINK </f:link.page>
+				<f:link.page id="tx_advent_answerpage" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_jvadvent_calendar: {single: {adddate: ''}}}"> LINK </f:link.page>
 				<div class="tx_advent_no_accessMsg">
 					<f:security.ifAuthenticated>
 					<f:then>
@@ -87,7 +86,8 @@
 		</f:else>
 	</f:if>
 
-	<script type="text/javascript" src="/typo3conf/ext/nemadvent/Resources/Public/Js/script.js"></script>
+	<f:asset.css identifier="jvadvent-css" href="EXT:jvadvent/Resources/Public/Css/tx_nemadvent.css"></f:asset.css>
+	<f:asset.script identifier="jvadvent-main" src="EXT:jvadvent/Resources/Public/JavaScript/script.js"></f:asset.script>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		var syslng = {settings.sys_language_uid};

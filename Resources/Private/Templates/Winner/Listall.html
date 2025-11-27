@@ -4,7 +4,7 @@
 		<f:if condition="{winnerdata}">
 
 			<f:then>
-				<div class="tx_jvadvent_pi1">
+				<div class="tx_jvadvent_calendar">
 					<f:if condition="{settings.day} < 20">
 						<f:then>
 							<style type="text/css">
@@ -59,7 +59,7 @@
 											</p>
 										</f:then>
 										<f:else>
-											<f:if condition="{isnemintern} > 0">
+											<f:if condition="{isOrganisator} > 0">
 												<f:then>
 													<f:link.external uri="/user/{winner.username}"  defaultScheme="">
 														<f:image title="{winner.username}" id="user{winner.feuser_uid}" alt="img" height="180c" width="140" src="{winner.tx_mmforum_avatar}"/>
@@ -110,7 +110,7 @@
 									</f:if>
 										<div style="position: absolute; bottom:5px; right: 35px;">
 											<f:if condition="{winner.wishlistContent}">
-												<f:if condition="{isnemintern} > 0">
+												<f:if condition="{isOrganisator} > 0">
 													<div style="width:400px;  z-index: 9999" class="small collapse well well-sm well-default col-xs-12" id="wish-info-{winner.feuser_uid}">
 														<f:format.html  parseFuncTSPath="">
 															{winner.wishlistContent}
@@ -136,7 +136,7 @@
 
 												<f:if condition="{settings.day} > 22">
 													<div class="text-right"><span style="float:left;"><f:format.date format="Y">now</f:format.date>:</span>
-														<f:if condition="{isnemintern} > 0">
+														<f:if condition="{isOrganisator} > 0">
 															<f:then>
 																{winner.AKRfirst}<br>- {winner.AKRlast}
 															</f:then>
@@ -176,7 +176,7 @@
 												<i class="glyphicon glyphicon-info-sign" ></i>
 											</button>
 
-											<f:if condition="{isnemintern} > 0">
+											<f:if condition="{isOrganisator} > 0">
 												<f:then>
 													<span class="btn btn-sm right">
 														<f:if condition="{winner.wishlist}">
@@ -224,7 +224,7 @@
 
 										</div>
 
-									<f:if condition="{isnemintern} > 0">
+									<f:if condition="{isOrganisator} > 0">
                                         <f:then>
                                             <f:if condition="{winner.isPowerUser}">
                                                 <f:then>
@@ -254,13 +254,13 @@
 				<div class="right">
 					<f:render partial="NextWinners" arguments="{offset: offset, newOffset: 0, newOffset1:1, newOffset2: settings.winnerPerPageCount}" />
 					<f:render partial="NextWinners" arguments="{offset: offset, newOffset: settings.winnerPerPageCount, newOffset1:settings.winnerPerPageCount1, newOffset2:settings.winnerPerPageCount2}" />
-					<f:if condition="{isnemintern} > 0">
+					<f:if condition="{isOrganisator} > 0">
 						<f:then>
 
 							<f:render partial="NextWinners" arguments="{offset: offset, newOffset: 144, newOffset1:145, newOffset2:216}" />
 							<f:render partial="NextWinners" arguments="{offset: offset, newOffset: 216, newOffset1:217, newOffset2: 288}" />
-							<f:link.page class="btn btn-danger" additionalParams="{tx_jvadvent_pi1:{count:1000}}">Alle &gt;&gt;</f:link.page>
-							<f:link.page class="btn btn-danger" additionalParams="{tx_jvadvent_pi1:{export:1,count:1000}}">CSV Export</f:link.page>
+							<f:link.page class="btn btn-danger" additionalParams="{tx_jvadvent_calendar:{count:1000}}">Alle &gt;&gt;</f:link.page>
+							<f:link.page class="btn btn-danger" additionalParams="{tx_jvadvent_calendar:{export:1,count:1000}}">CSV Export</f:link.page>
 						</f:then>
 					</f:if>
 				</div>

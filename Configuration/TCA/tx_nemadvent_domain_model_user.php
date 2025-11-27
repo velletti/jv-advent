@@ -3,18 +3,18 @@ defined('TYPO3') or die();
 
 return array (
     'ctrl' => array (
-        'title'		=> 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User',
+        'title'		=> 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User',
         'label'     => 'uid',
         'tstamp'    => 'tstamp',
         'crdate'    => 'crdate',
         'default_sortby' => 'ORDER BY crdate',
-        'iconfile' 		=> 'EXT:jv-advent/Resources/Public/Icons/icon_tx_jvadvent_domain_model_user'
+        'iconfile' 		=> 'EXT:jvadvent/Resources/Public/Icons/icon_tx_jvadvent_domain_model_user'
     ) ,
     'default_sortby' =>  'ORDER BY points DESC, tstamp, sys_language_uid',
     'columns' => array (
         'feuser_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.feuser_uid',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.feuser_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -23,7 +23,7 @@ return array (
         ),
         'uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.uid',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 1,
@@ -33,7 +33,7 @@ return array (
         ),
         'sys_language_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.sys_language_uid',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.sys_language_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -43,7 +43,7 @@ return array (
 
         'usergroup' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.usergroup',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.usergroup',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -52,7 +52,7 @@ return array (
         ),
         'customerno' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.customerno',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.customerno',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -61,7 +61,7 @@ return array (
         ),
         'question_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.question_uid',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.question_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -70,7 +70,7 @@ return array (
         ),
         'question_date' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.question_date',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.question_date',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -101,7 +101,7 @@ return array (
         ),
         'question_datef' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.question_datef',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.question_datef',
             'config' => array (
                 'type' => 'input',
                 'size' => 10,
@@ -110,7 +110,7 @@ return array (
         ),
         'advent_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.advent_uid',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.advent_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -119,7 +119,7 @@ return array (
         ),
         'answer_uid' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.answer_uid',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.answer_uid',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -130,7 +130,7 @@ return array (
 
         'points' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.points',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.points',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,
@@ -139,7 +139,7 @@ return array (
         ),
         'subpoints' => array (
             'exclude' => 0,
-            'label' => 'LLL:EXT:jv-advent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.subpoints',
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.subpoints',
             'config' => array (
                 'type' => 'input',
                 'size' => 11,

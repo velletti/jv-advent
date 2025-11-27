@@ -1,7 +1,6 @@
 <?php
 namespace Jvelletti\JvAdvent\Controller;
 
-use Jvelletti\JvAdvent\Domain\Model\AdventCat;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Context\Context;
 use Allplan\AllplanTools\Utility\TyposcriptUtility;
@@ -34,11 +33,6 @@ use Allplan\AllplanTools\Utility\TyposcriptUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class WinnerController extends BaseController {
-
-	/**
-  * @var AdventCat
-  */
- public AdventCat $adventCat;
  public function __construct(private \TYPO3\CMS\Core\Context\Context $context)
  {
  }
@@ -50,7 +44,6 @@ class WinnerController extends BaseController {
 	 */
 	public function initializeAction(): void {
 		parent::initializeAction();
-
 	}
 
 	/**
@@ -93,7 +86,7 @@ class WinnerController extends BaseController {
 					$winnerdata[$i]['user']['tx_mmforum_avatar'] = "typo3conf/ext/connect_template/Resources/Public/Images/avatars/avatar-woman.png" ;
 
 				}
-				if ( $this->settings['afterenddate'] ||  $this->isnemintern ) {
+				if ( $this->settings['afterenddate'] ||  $this->isOrganisator ) {
 
                     $imageDirectoryName = 'uploads/tx_feusers_img/'  ;
                     $subPath = substr( "0000" . intval( round(  $winnerdata[$i]['uid'] / 1000 , 0 )) , -4 , 4 )  ;
@@ -155,10 +148,10 @@ class WinnerController extends BaseController {
                 $offset = intval($this->request->getArgument('offset'))  ;
             }
         }
-		$isNem = '' ;
+		$isTester = '' ;
         $withWishes = true ;
-		if ( $this->isnem ) {
-			$isNem = "-nem-" ;
+		if ( $this->isTester ) {
+			$isTester = "-nem-" ;
 	    	if ( $this->request->hasArgument('offset')) {
 	    		$offset = intval($this->request->getArgument('offset')) ;
 	    	}
@@ -187,10 +180,6 @@ class WinnerController extends BaseController {
 		}
 
 		$offset = intval( $offset) ;
-		$identifier  =  'listallWinner-offset-' . $offset . "-UG-" . $userGroup  . $isNem . "-L-" . $this->context->getPropertyFromAspect('language', 'id')  . "-". $this->adventCat->getUid() . "-c" . $count ;
-
-		$tempcontent = $this->get_content_from_Cache( $identifier ) ;
-		$winnerdata = unserialize($tempcontent);
         if (  $this->settings['afterenddate']  ) {
             $mindate= mktime( 23 , 59 , 59 , date("m") , date("d")  , date("Y"))  ;
         } else {
@@ -198,19 +187,10 @@ class WinnerController extends BaseController {
         }
         $minCreated = time() - ( 60*60 * 24 ) ;
 
-// during deployment ...
-		// unset($winnerdata);
-
-		// load Typoscript from other extension
-		$nemSettings= TyposcriptUtility::loadTypoScriptFromScratch(12 , "tx_nemconnections") ;
-
-		$this->settings['privateicons'] = $nemSettings["settings"]["setup"]['privateicons'] ;
-
-		$this->settings['Year'] = date( "Y" , $this->adventCat->getStartdate() )  ;
-		$this->settings['NewsletterDate'] = $this->adventCat->getStartdate() - ( 60 * 60 * 24 * 3 )  ;
+		$this->settings['Year'] = date( "Y" , $this->settings['startDateTimeStamp'] )  ;
 
 
-		if ( $this->isnemintern ) {
+		if ( $this->isOrganisator ) {
             if ( $this->request->hasArgument('export') || $this->request->hasArgument('count')) {
                 unset($winnerdata) ;
             }
@@ -220,8 +200,7 @@ class WinnerController extends BaseController {
 		$table = 'tx_jvadvent_domain_model_user a ' ;
 		$where = "a.advent_uid = " . $this->adventCat->getUid() . "  AND a.deleted = 0 ";
 		$groupBy = 'a.feuser_uid';
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy);
-		$this->settings['totalUser'] = $GLOBALS['TYPO3_DB']->sql_num_rows($res ) ;
+		$this->settings['totalUser'] =0 ;
 
 
 		if ( ! is_array( $winnerdata ) ) {
@@ -249,7 +228,7 @@ class WinnerController extends BaseController {
 
 			// echo " SELECT $what FROM $table WHERE $where GROUP BY $groupBy ORDER BY $orderBy LIMIT $limit " ;
 
-			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($what,$table,$where,$groupBy,$orderBy,$limit);	
+
 
 			$winnerdata = array() ;
 			$ForumCount = 0 ;
@@ -358,151 +337,26 @@ class WinnerController extends BaseController {
 						}
 					}
 
-					// Addtional Data for Export and New Ranking
-					// if( $this->request->hasArgument('export') ) {
-						$where = 'author = "' . intval($winnerdata[$i]['feuser_uid']). '"'
-							. " AND crdate > " . ( time() - (60*60*24*365) ) . " AND crdate < " . mktime( 0,0,0, date("m"),date("d")-1,date("Y"));
-
-						$resPosts = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(uid) as count',
-							'tx_mmforum_domain_model_forum_post',
-							$where  );
-
-						if ($GLOBALS['TYPO3_DB']->sql_num_rows($resPosts) > 0) {
-							$ForumCountSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resPosts);
-
-							$winnerdata[$i]['forumcount'] = $ForumCountSingle['count'];
-							$ForumCount = $ForumCount + intval( $ForumCountSingle['count'] ) ;
-						}
-						$helpfullCount = $helpfullCount + intval( $winnerdata[$i]['tx_mmforum_helpful_count'] ) ;
-					// }
-
-					// wie Oft hat der user am AKR teilgenommen??
-					// SELECT  count( `advent_uid` ) as Count,  `feuser_uid` FROM `connect`.`tx_jvadvent_domain_model_user`
-					// where `feuser_uid` = 353
-					// GROUP BY  `advent_uid`
-					$select = "count( `advent_uid` ) as Count,  `feuser_uid` , advent_uid" ;
-					$where = 'feuser_uid = "' . intval($winnerdata[$i]['feuser_uid']). '"' ;
-					$resAKRs = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
-						'tx_jvadvent_domain_model_user',
-						$where  , 'advent_uid' );
-
-
-					$CountSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resAKRs);
-
-					$winnerdata[$i]['AKRcount'] = $GLOBALS['TYPO3_DB']->sql_num_rows($resAKRs) - 1 ;
-                    $tempKey = $winnerdata[$i]['AKRcount'] ;
-                    $akrCount[ $tempKey] = $akrCount[ $tempKey] + 1 ;
-					if( $winnerdata[$i]['AKRcount'] > 5 ) {
-						$winnerdata[$i]['AKRcount'] = "≥ 6" ;
-					}
-					if( $winnerdata[$i]['AKRcount'] == 0 && $winnerdata[$i]['btnClass'] == '' ) {
-						// Neue AKR teilnehmer in Blau wenn nciht vorher anders gesetzt (neuregistriert, Poweruser )
-						$winnerdata[$i]['btnClass'] = "alert-info";
-					}
-
-
-
-
-					// wann hat der user an DIESEM AKR Zuerst / zuletzt teilgenommen??
-					$select = "crdate , uid" ;
-					$where = 'feuser_uid = "' . intval($winnerdata[$i]['feuser_uid']). '" AND advent_uid = ' . $this->adventCat->getUid()  ;
-			//				$GLOBALS['TYPO3_DB']->debugOutput = 2;
-			//				$GLOBALS['TYPO3_DB']->explainOutput = true;
-			//				$GLOBALS['TYPO3_DB']->store_lastBuiltQuery = true;
-
-					$resAKR = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
-						'tx_jvadvent_domain_model_user',
-						$where  , "" , "crdate ASC" , "0,1" );
-					// echo "<br>Select " . $select . " FROM tx_jvadvent_domain_model_user WHERE " . $where . " ORDER BY crdate ASC LIMIT 0,1  ; # Error " . $GLOBALS['TYPO3_DB']->sql_error() ;
-					$getSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resAKR);
-						$winnerdata[$i]['AKRfirst'] = date("d.m H:i" , $getSingle['crdate']) ; // . " - " . $getSingle['uid'];
-						$winnerdata[$i]['AKRfirstUser'] = date("d." , $getSingle['crdate']) ;
-
-
-					$resAKR = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
-						'tx_jvadvent_domain_model_user',
-						$where  , "" , "crdate DESC" , "0,1");
-
-					$getSingle = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resAKR);
-					$winnerdata[$i]['AKRlast'] = date("d.m H:i" , $getSingle['crdate']) ; // . " - " . $getSingle['uid'] ;
-					$winnerdata[$i]['AKRlastUser'] = date("d." , $getSingle['crdate']) ;
-
-                    if( $withWishes ) {
-                        $select = "uid,body" ;
-                        $where = 'feuser = "' . intval($winnerdata[$i]['feuser_uid']). '" AND pid = ' . $this->settings['wishlistPidResults']  ;
-
-                        $WishList = false ;
-
-                        // todo 23.1.2023 Rebuild Wishlist hack
-                        /*
-                        $resWishlist = $GLOBALS['TYPO3_DB']->exec_SELECTquery( $select ,
-                            'tx_powermail_domain_model_mail',
-                            $where  , "" , "tstamp DESC " , "0,1");
-
-                       // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
-
-                        $winnerdata[$i]['wishlist'] = false ;
-                        $WishList = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resWishlist ) ;
-                         */
-                        // echo "<br>" . $i . $GLOBALS['TYPO3_DB']->sql_error() ;
-                        if (  $WishList  ) {
-                            $winnerdata[$i]['wishlist'] = true ;
-                            if ( $this->isnemintern ) {
-                                $winnerdata[$i]['wishlistContent'] = $WishList['body'];
-                            }
-                            $this->settings['wishlist'] ++ ;
-                        }
-                    }
-
-
-						/*
-						if ( !$this->isnem ) {
-							if (  !$this->settings['afterenddate']  ) {
-								$winnerdata[$i]['tx_mmforum_avatar'] = $winnerdata[$i]['avatar'] ;
-							}
-						}
-						*/
-                    //$export = "'username','email','points','answers','usergroup'\n" ;
                     $export .= "'"  . $winnerdata[$i]['username'] . "','" . $winnerdata[$i]['firstname'] . "','" . $winnerdata[$i]['email'] . "',"
                                     . $winnerdata[$i]['pointtotal']."," . $winnerdata[$i]['subpointtotal']."," .$winnerdata[$i]['counttotal']
 									. ",'" . $winnerdata[$i]['tx_nem_country']."','" . $winnerdata[$i]['country']."','"
                                     . $winnerdata[$i]['usergroup'] . "', "
                                     . " '" . $winnerdata[$i]['crdate']  . "', "
-									. $winnerdata[$i]['forumcount']
-						            .   ", " .  $winnerdata[$i]['tx_mmforum_helpful_count']
-						            .   ", " .  $winnerdata[$i]['AKRcount']
-						            .   ", '" .  $winnerdata[$i]['AKRfirst'] . "'"
-						            .   ", '" .  $winnerdata[$i]['AKRlast'] . "'"
-
 									. "\n"  ;
 
                     // end of User
 				}
 
 			}
-			$winnerdata[1]['settings']['forumCount'] = $ForumCount ;
 			$winnerdata[1]['settings']['userWith24Answers'] = $userWith24Answers ;
 			$winnerdata[1]['settings']['helpfullCount'] = $helpfullCount ;
-			$winnerdata[1]['settings']['newUser'] = $newUser ;
-			$winnerdata[1]['settings']['newUserDez'] = $newUserDez ;
-			$winnerdata[1]['settings']['akrCount'] = $akrCount ;
 			$winnerdata[1]['settings']['count'] = $count ;
-			$toBeSaved = serialize($winnerdata);
-			$tempcontent = $this->put_content_to_Cache($identifier , $toBeSaved ) ;
 		}
-		if ( $this->isnem ) {
-	//		$this->view->assign('debug', "select  " . $what . " FROM " . $table .  " WHERE " . $where . " GROUP BY " . $groupBy . " ORDER BY " . $orderBy . " - "  . $GLOBALS['TYPO3_DB']->sql_error() );
-
-		}
-        if ( $this->isnemintern ) {
+        if ( $this->isOrganisator ) {
             if ( $this->request->hasArgument('export')) {
 
-				$export = $export  . "\n\nForumposts Total Count: " . $ForumCount ;
-				$export = $export  . "\n\nHelpfull Forumposts Total Count: " . $helpfullCount ;
 				$export = $export  . "\n\nUser with 24 Answers: " . $userWith24Answers ;
 				$export = $export  . "\n\nNew usersCount: " . $newUser ;
-				$export = $export  . "\n\nNew usersCount Dez: " . $newUserDez ;
-				$export = $export  . "\n\nAKR Teilnahmen: " . var_export( $akrCount , true ) ;
 
 				$export = pack("CCC", 0xef, 0xbb, 0xbf) .  $export   ;
 
@@ -531,51 +385,17 @@ class WinnerController extends BaseController {
 			$this->settings['day'] =  24  ;
 			$this->settings['showtotal'] = 1 ;
 		}
-		if ( $this->isnemintern ) {
+		if ( $this->isOrganisator ) {
 			$this->settings['day'] = 24 ;
 		}
-		// $this->settings['day'] = 21 ;
-		if( is_array( $winnerdata[1]['settings'] )) {
-			$this->settings['helpfullCount'] 	= $winnerdata[1]['settings']['helpfullCount'] ;
-			$this->settings['userWith24Answers'] 	= $winnerdata[1]['settings']['userWith24Answers'] ;
-			$this->settings['forumCount'] 		= $winnerdata[1]['settings']['forumCount'] ;
-			$this->settings['akrCount'] 		= $winnerdata[1]['settings']['akrCount'] ;
-			$this->settings['count'] 		= $winnerdata[1]['settings']['count'] ;
-			$this->settings['newUser'] 			= $winnerdata[1]['settings']['newUser'] ;
-			$this->settings['newUserDez'] 		= $winnerdata[1]['settings']['newUserDez'];
-		} else {
-			$this->settings['helpfullCount'] = $helpfullCount ;
-			$this->settings['userWith24Answers'] = $userWith24Answers ;
-			$this->settings['forumCount'] 	= $ForumCount ;
-			$this->settings['akrCount'] 	= $akrCount ;
-			$this->settings['count'] 	= $count ;
-			$this->settings['newUser'] 		= $newUser ;
-			$this->settings['newUserDez'] 	= $newUserDez ;
-		}
-
 
 		$this->view->assign('settings', $this->settings);
 		$this->view->assign('winnerdata', $winnerdata);
-        $this->view->assign('isnemintern',$this->isnemintern ) ;
+        $this->view->assign('isOrganisator',$this->isOrganisator ) ;
 
 		$this->view->assign('mindate', date("d.M H:i:s" , $mindate));
 
 		$this->view->assign('offset', $offset );
-
-
-		//	var_dump($winnerdata) ;
-	//	die;
- return $this->htmlResponse();
+        return $this->htmlResponse();
 	}
-
- public function injectAdventCat(AdventCat $adventCat): void
- {
-     $this->adventCat = $adventCat;
- }	
-
-		
-
-
 }
-
-?>

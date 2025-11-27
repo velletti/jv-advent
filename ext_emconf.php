@@ -10,7 +10,7 @@
 # writing. "version" and "dependencies" must not be touched!
 ########################################################################
 
-$EM_CONF['jv-advent'] = array(
+$EM_CONF['jvadvent'] = array(
 	'title' => 'Advent Calendar',
 	'description' => 'Creates a aventskalender page',
 	'category' => 'plugin',

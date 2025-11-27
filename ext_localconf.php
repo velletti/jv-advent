@@ -6,12 +6,9 @@ if(!defined('TYPO3')) Die ('Access denied.');
 	'Jvadvent' ,
 	'Calendar',
 	array (
-		\Jvelletti\JvAdvent\Controller\AdventController::class		=>	'showCalendar,single',
-        \Jvelletti\JvAdvent\Controller\UserController::class			=>	'answer',
+		\Jvelletti\JvAdvent\Controller\AdventController::class		=>	'showCalendar'
 	),
     array (
-        \Jvelletti\JvAdvent\Controller\AdventController::class		=>	'single',
-        \Jvelletti\JvAdvent\Controller\UserController::class			=>	'answer',
     ),
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
@@ -19,10 +16,21 @@ if(!defined('TYPO3')) Die ('Access denied.');
     'Jvadvent' ,
     'Solution',
     array (
-        \Jvelletti\JvAdvent\Controller\AdventController::class		=>	'listAnswers',
+        \Jvelletti\JvAdvent\Controller\AdventController::class		    =>	'listAnswers,single',
     ),
     array (
-        \Jvelletti\JvAdvent\Controller\AdventController::class		=>	'listAnswers',
+        \Jvelletti\JvAdvent\Controller\AdventController::class		    =>	'listAnswers,single',
+    ),
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+);
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'Jvadvent' ,
+    'User',
+    array (
+        \Jvelletti\JvAdvent\Controller\UserController::class			=>	'answer',
+    ),
+    array (
+        \Jvelletti\JvAdvent\Controller\UserController::class			=>	'answer',
     ),
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
@@ -48,25 +56,31 @@ if(!defined('TYPO3')) Die ('Access denied.');
                     jvadvent_calendar {
                         iconIdentifier = extension-jvadvent
                         title = Aventskalender
+                        description = Fügt einen Adventskalender ein.
                         tt_content_defValues {
-                            CType = list
-                            list_type = jvadvent_calendar
+                            CType = jvadvent_calendar
                         }
                     }
                     jvadvent_solutions {
                         iconIdentifier = extension-jvadvent
                         title = Advent Calendar Solutions
+                        description = Zeigt Liste aller Fragen (und nach Ende auch Antworten) des Adventskalenders ein.
                         tt_content_defValues {
-                            CType = list
-                            list_type = jvadvent_solution
+                            CType = jvadvent_solution
+                        }
+                    }
+                    jvadvent_winner {
+                        iconIdentifier = extension-jvadvent
+                        title = Advent Calendar User Answer(s)
+                        tt_content_defValues {
+                            CType = jvadvent_user
                         }
                     }
                     jvadvent_winner {
                         iconIdentifier = extension-jvadvent
                         title = Advent Calendar Winner
                         tt_content_defValues {
-                            CType = list
-                            list_type = jvadvent_winner
+                            CType = jvadvent_winner
                         }
                     }
                 }

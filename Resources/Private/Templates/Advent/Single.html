@@ -1,17 +1,18 @@
 <f:if condition="{question}">
 	<f:then>
 		<div class="tx_jvadvent_question">
-			<f:if condition="{isTester}">
+			<f:if condition="{isTester || isOrganizer}">
 				<f:then>
-					<f:render partial="Adddate" arguments="{isTester: isTester}"/>
+					<f:render partial="Adddate" arguments="{isTester: isTester, isOrganisator: isOrganisator}"/>
 				
 					<f:render partial="Question" arguments="{question: question, settings: settings, adventscat:adventscat,isTester: isTester,isOrganisator: isOrganisator, mypid: mypid}"/>
 				</f:then>	
 				<f:else>	
 					<f:if condition="{settings.beforestartdate}">
 						<f:then>
-							<div style="display:block;"> 
-								<f:translate key="willstart">Startdate: {settings.startdate}</f:translate>
+							<div style="display:block;">
+								You are too early and not in Group Tester or Organizer!<br/>
+								<f:translate key="willstart">Startdate: {settings.startDate}</f:translate>
 								<f:translate key="itisnow"> - Now it is : {settings.now} </f:translate>
 							</div>
 						</f:then>	
@@ -33,7 +34,7 @@
 											question was found, it is not to early, and not too late, your are not nem but you cant Vote.
 											startdate: {settings.enddate} <br/>
 											now: {settings.now} <br/>
-											
+										debug: {settings.debug}
 									</f:else>
 									</f:if>		
 								</f:else>	
@@ -46,14 +47,15 @@
 
 	</f:then>
 	<f:else>
-		<f:render partial="Adddate" arguments="{isTester: isTester}"/>
+		<f:render partial="Adddate" arguments="{isTester: isTester, isOrganizer: isOrganisator}"/>
 
 		<p><h3>
 			<f:translate key="no_questions">Definitions of Question is missing</f:translate>
 			</h3>
-			Startdate settings: {settings.startdate}<br/>
+			Startdate settings: {settings.startDate}<br/>
 			Question as Intval: {settings.today}<br/>
 			Question formated : {settings.todayformated}<br/>
+			debug: {settings.debug}
 		</p>						
 								
 	</f:else>

@@ -22,13 +22,13 @@
 
 			<div class="row center-block" style="display:block;">
 
-				<div id="tx_Advent_questions_img">
+				<div id="tx_jvadvent_questions_img">
 					<f:for each="{questions}" as="question" iteration="count">
 
 						<f:if condition="{settings.beforestartdate}">
 							<f:then>
-								<div class="col-sm-2 col-xs-4 tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_day{count.cycle}">
-									<p class="tx_Advent_questions_inactive_background"><f:format.date format="d">{question.date}</f:format.date></p>
+								<div class="col-sm-2 col-xs-4 tx_jvadvent_questions_day tx_jvadvent_questions_closed tx_jvadvent_questions_day{count.cycle}">
+									<p class="tx_jvadvent_questions_inactive_background"><f:format.date format="d">{question.date}</f:format.date></p>
 								</div>
 							</f:then>
 							<f:else>
@@ -37,12 +37,12 @@
 
 											<f:security.ifAuthenticated>
 												<f:then>
-													<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_active tx_Advent_questions_today tx_Advent_questions_day{count.cycle}" onclick="openDoor(this, {count.cycle})">
+													<div class="col-sm-2 col-xs-4  tx_jvadvent_questions_day tx_jvadvent_questions_closed tx_jvadvent_questions_active tx_jvadvent_questions_today tx_jvadvent_questions_day{count.cycle}" onclick="openDoor(this, {count.cycle})">
 														<p><f:format.date format="d">{question.date}</f:format.date></p>
 													</div>
 												</f:then>
 												<f:else>
-													<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_inactive_background tx_Advent_questions_day{count.cycle}">
+													<div class="col-sm-2 col-xs-4  tx_jvadvent_questions_day tx_jvadvent_questions_inactive_background tx_jvadvent_questions_day{count.cycle}">
 														<p><f:translate key="access_false">Bitte zuerst anmelden!</f:translate></p>
 													</div>
 												</f:else>
@@ -53,12 +53,12 @@
 											<f:then>
 													<f:security.ifAuthenticated>
 														<f:then>
-															<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_active tx_Advent_questions_day{count.cycle}"  onclick="openDoor(this, {count.cycle})">
+															<div class="col-sm-2 col-xs-4  tx_jvadvent_questions_day tx_jvadvent_questions_closed tx_jvadvent_questions_active tx_jvadvent_questions_day{count.cycle}"  onclick="openDoor(this, {count.cycle})">
 																	<p><f:format.date format="d">{question.date}</f:format.date></p>
 															</div>
 														</f:then>
 														<f:else>
-															<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_closed tx_Advent_questions_active tx_Advent_questions_day{count.cycle}" >
+															<div class="col-sm-2 col-xs-4  tx_jvadvent_questions_day tx_jvadvent_questions_closed tx_jvadvent_questions_active tx_jvadvent_questions_day{count.cycle}" >
 																<p><f:format.date format="d">{question.date}</f:format.date></p>
 															</div>
 														</f:else>
@@ -66,8 +66,8 @@
 
 											</f:then>
 											<f:else>
-												<div class="col-sm-2 col-xs-4  tx_Advent_questions_day tx_Advent_questions_day{count.cycle} tx_Advent_questions_inactive_background">
-													<p class="tx_Advent_questions_inactive_background"><f:format.date format="d">{question.date}</f:format.date></p>
+												<div class="col-sm-2 col-xs-4  tx_jvadvent_questions_day tx_jvadvent_questions_day{count.cycle} tx_jvadvent_questions_inactive_background">
+													<p class="tx_jvadvent_questions_inactive_background"><f:format.date format="d">{question.date}</f:format.date></p>
 												</div>
 											</f:else>
 										</f:if>
@@ -86,12 +86,19 @@
 		</f:else>
 	</f:if>
 
-	<f:asset.css identifier="jvadvent-css" href="EXT:jvadvent/Resources/Public/Css/tx_nemadvent.css"></f:asset.css>
+	<f:security.ifAuthenticated>
+		<f:then>
+			User is authenticated. {f:if( condition:"{isTester}", then: " and isTester")}   {f:if( condition:"{isOrganizer}", then: "and is the Organizer")}
+		</f:then>
+	</f:security.ifAuthenticated>
+
+
+	<f:asset.css identifier="jvadvent-css" href="EXT:jvadvent/Resources/Public/Css/advent.css"></f:asset.css>
 	<f:asset.script identifier="jvadvent-main" src="EXT:jvadvent/Resources/Public/JavaScript/script.js"></f:asset.script>
 <script type="text/javascript">
+	var syslng = '{settings.sys_language_uid}';
+	var sysid = '{settings.list.pid.myanswersView}';
 	jQuery(document).ready(function(){
-		var syslng = {settings.sys_language_uid};
-		var sysid = {settings.list.pid.myanswersView};
 		tx_jvadvent_ajax(syslng , sysid) ;
 	});
 

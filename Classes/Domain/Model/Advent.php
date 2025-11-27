@@ -129,6 +129,8 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var integer
 	 */
 	protected $date;
+
+
 	/**
 	 * @var integer
 	 */
@@ -235,6 +237,7 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function getDate(){
 		return $this->date;
 	}
+
 	/**
 	 * Getter for hidden
 	 *

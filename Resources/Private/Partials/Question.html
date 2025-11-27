@@ -6,18 +6,19 @@
 										<div class="row">
 											<div class="col-xs-12 col-sm-9">
 												<h3>{settings.todayformated}: {question.title}</h3>
-												<f:format.html>{question.descLong}</f:format.html>
+												<div class="tx_jvadvent_question_longdesc">
+													<f:format.raw>{question.descLong}</f:format.raw>
+												</div>
 											</div>
 											<div class="col-xs-12 col-sm-3">
 
-												<f:if condition="{question.image}">
+												<f:if condition="{question.image.uid}">
 													<f:then>
 														<a class="btmModalLink" href="#" title="{question.title}" data-bmdwidth="970" data-bmdheight="600" data-target="#adventModal" data-toggle="modal" >
-															<f:image width="220c" style="width:100%; height:auto;" src="{question.image.uid}" alt="img" treatIdAsReference="1"/>
+															<f:if condition="{question.image.uid}">
+																<f:image style="width: 100%; height: auto;" src="{question.image.uid}" alt="IMG" treatIdAsReference="1"/>
+															</f:if>
 														</a>
-
-
-
 													</f:then>
 												</f:if>
 											</div>
@@ -51,11 +52,11 @@
 													</div>
 												</div>
 
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
-												<f:render partial="Answer" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, isOrganizer: isOrganizer, mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, isOrganizer: isOrganizer,  mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, isOrganizer: isOrganizer,  mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, isOrganizer: isOrganizer,  mypid: mypid}"/>
+												<f:render partial="Answer" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, question: question.uid, settings: settings, adventscat:adventscat, isTester: isTester, isOrganizer: isOrganizer,  mypid: mypid}"/>
 
 
 											</f:else>
@@ -81,13 +82,13 @@
 											<f:else>
 												<f:if condition="{isOrganisator}">
 													<div class="well well-default">
-														<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated} (visible Nem Intern)</h3>
+														<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated} (visible for Organisator)</h3>
 														<div>
 															<f:format.html>{question.descShort}</f:format.html>
 														</div>
 														<f:if condition="{settings.beforestartdate}">
 															<hr />
-															<p><i>Visible for Nemetschek Internal: the correct is answer: {question.correct}</i></p>
+															<p><i>Visible for Organisator: the correct is answer: {question.correct}</i></p>
 														</f:if>
 													</div>
 												</f:if>
@@ -98,7 +99,7 @@
 								</div>
 							</div>
 
-							<script>
+							<f:asset.script identifier="advent-dice">
 								var advent_gX = 0;
 								jQuery("#tx_advent_WuerfelZahl").html( "?" );
 								var advent_firstClick = 1;
@@ -166,7 +167,7 @@
 									}
 								}
 
-							</script>
+							</f:asset.script>
 
 
 							<div class="modal fade" id="adventModal" style="padding: 16px;">
@@ -175,7 +176,9 @@
 										<div class="modal-body">
 											<div class="close-button"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
 											<div class="">
-												<f:image style="width: 100%; height: auto;" src="{question.image.uid}" alt="IMG" treatIdAsReference="1"/>
+												<f:if condition="{question.image.uid}">
+													<f:image style="width: 100%; height: auto;" src="{question.image.uid}" alt="IMG" treatIdAsReference="1"/>
+												</f:if>
 											</div>
 										</div>
 									</div>

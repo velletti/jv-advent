@@ -1,22 +1,18 @@
 # Plugin configuration
 plugin.tx_jvadvent {
 	settings {
-		advent {
-			list {
-				pageBrowser {
-					maxItems = 10
-					range = 1
-					wrap = <div class="JvAdvent_pageBrowser">|</div>
-				}
-				pid{
-					singleView = 
-					viewAll = 
-				}
+
+		list {
+			pid{
+				singleView = 22592
+				viewAll = 22584
+				myanswersView = 22590
 			}
 		}
+
 		// See Extension template !!! will be overwritten at the end of the Advent game
-		maxDaysInFuture = 0
-		winnerPerPageCount = 72
+		maxDaysInFuture = 7
+		winnerPerPageCount = 20
 		testerGroup = 7
 		organizerGroup = 6
 

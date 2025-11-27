@@ -54,14 +54,16 @@
 				<f:for each="{questions}" as="question" iteration="count">
 
 					<h4><f:format.date format="%d">{question.date}</f:format.date> - {question.title}
+
 						<f:if condition="{isOrganisator}">
 							<f:if condition="{question.totalAnswers} > 0 ">
-							<span class="small"> - {question.totalAnswers} User</span>
+								<span class="small"> - {question.totalAnswers} User</span>
 							</f:if>
 						</f:if>
 					</h4>
 					<div  class="tx_jvadvent_questlist_sub well hide">
 						<div class="row">
+							<f:link.action class="btn btn-default rounded" action="single" controller="Advent" arguments="{single: {adddate: count.index}}">Show full question</f:link.action>
 							<f:if condition="{question.image}">
 								<f:then>
 									<div class="col-sm-9">
@@ -112,7 +114,8 @@
 				</f:for>
 			</div>
 		</div>
-		<script type="text/javascript">
+
+		<f:asset.script identifier="jvadvent_qeustionlist">
 			jQuery(".tx_jvadvent_calendar .JvAdvent_questlist H4").each(function(){
 				jQuery(this).click(function(eventObject){
 					eventObject.preventDefault();
@@ -177,7 +180,7 @@
 				jQuery("#hideallAKRAnswers").addClass("hide") ;
 				jQuery("#showallAKRAnswers").removeClass("hide") ;
 			}
-		</script>
+		</f:asset.script>
 								
 								
 								

@@ -86,11 +86,15 @@ class AdventController extends BaseController {
 		}
 
 		// 7.10.2014 j.v. : rückwirkendes / Beantworten auch für Nicht Nemetschek MA
-		$month = date("m" ,  ((  $this->settings['startDate'] ?? 24 )  -1 ) ) ;
+		$month = date("m" ,  $this->settings['startDateTimeStamp'] ?? 12  ) ;
+
 
 		$this->settings['showtip']   =  FALSE ;
-		if ( $this->isTester  ) {
-			$this->settings['today']   = mktime( 0,0,0, $month ,$adddate + date("d" ,$this->settings['startDateTimeStamp'] ) ,date("Y" ,$this->settings['startDateTimeStamp'])  ) ;
+		if ( $this->isTester || $this->isOrganisator ) {
+            $day = $adddate + date("d" ,$this->settings['startDateTimeStamp'] ) ;
+            $year = date("Y" ,$this->settings['startDateTimeStamp']);
+            $this->settings['debug'] = "Tester/Organisator Mode: Setting today to $day.$month.$year" ;
+			$this->settings['today']   = mktime( 0,0,0, $month , $day , $year  ) ;
 			$this->settings['showtip']   =  TRUE  ;
 		} else {
 			$this->settings['today']   =  mktime( 0,0,0, $month , date("d" ) ,date("Y" )  ) ;
@@ -115,8 +119,8 @@ class AdventController extends BaseController {
 
 		$this->view->assign('settings', $this->settings);
 		$this->view->assign('adddate', $adddate);
-		
-		$this->view->assign('isTester', $this->isTester);
+		$this->view->assign('mypid', $this->settings['list']['pid']['myanswersView']) ;
+        $this->view->assign('isTester', $this->isTester);
 		$this->view->assign('isOrganisator', $this->isOrganisator);
         return $this->htmlResponse();
 
@@ -136,7 +140,6 @@ class AdventController extends BaseController {
 		//  $this->settings['today']   =  1318284000 ;
 		$this->settings['todayformated']   =  date( "d.m.Y" , $this->settings['today'] ) ;
         $questions =  $this->adventRepository->findAll() ;
-
         if ( $this->settings['feUserUid'] > 0) {
 
             if ( is_array($questions) && count($questions) > 0 ) {
@@ -248,40 +251,59 @@ class AdventController extends BaseController {
             $debug[] = "settings today after Add Date:" . $this->settings['today'] . " (" . date("d.M.Y" , $this->settings['today'] ) . ")";
         }
 		$questions = array() ;
-		// for testing
-        // $this->settings['beforestartdate'] = 1 ;
-        // $this->settings['maxDaysInFuture'] = 0 ;
 
+        $questionsFound = 0 ;
+        $questionsNotFound = 0 ;
 		for($i=0;$i<24;$i++) {
 			$questions[] = array( "day" => $i , "date" => mktime( 0,0,0,  date("m" , $this->settings['startDateTimeStamp']) , $i+1 ,date("Y" )  ) , 'today' => FALSE , 'daybefore' => FALSE) ;
 			$question =  $this->adventRepository->findOneByFilter( $questions[$i]['date'] )  ;
-            if(is_object($question)) {
-                $questions[$i]['title'] = $question->getTitle() ;
+            if(is_array($question)) {
+                $questions[$i]['title'] = $question["title"] ;
                 $questions[$i]['dateF'] = date("d.m.Y" , $questions[$i]['date']) ;
+                $questionsFound ++;
+                $questions[$i]['today'] = TRUE ;
+            } else {
+                if( $questionsNotFound == 0) {
+                    $debug[] = "No Question found for date: " . date("d.m.Y" , $questions[$i]['date']) ;
+                    $debug[] = "condtions : > " .  ( $questions[$i]['date'] - (60 *60 * 4) ) . "  and < " . ( $questions[$i]['date'] + (60 * 60 * 4 )) ;
+                    $debug[] = "condtions : > " .  date( "d.m. H:i" , $questions[$i]['date'] - (60 *60 * 4) ) . "  and < " . date( "d.m. H:i" , $questions[$i]['date'] + (60 * 60 * 4 )) ;
+                }
+                $questionsNotFound ++;
             }
 			if ( $this->settings['today'] == $questions[$i]['date'] ) {
 				$questions[$i]['today'] = TRUE ;
 				$questions[$i]['title'] = '' ;
 			}
 			// allow to answer also days in Front
-            $debug[] = "Is: " . intval( date("d" , $this->settings['today'] ) ) . " > " . ( intval( date("d" , $questions[$i]['date'])) - $this->settings['maxDaysInFuture'] ) ;
-			if ( intval( date("d" , $this->settings['today'] ) ) >  ( intval( date("d" , $questions[$i]['date'])  ) - $this->settings['maxDaysInFuture'] )) {
-				$questions[$i]['daybefore'] = TRUE ;
+            if ( intval( date("d" , $this->settings['today'] ) ) >  ( intval( date("d" , $questions[$i]['date'])  ) - $this->settings['maxDaysInFuture'] )) {
+              //  $debug[] = "Is: " . intval( date("d" , $this->settings['today'] ) ) . " > " . ( intval( date("d" , $questions[$i]['date'])) - $this->settings['maxDaysInFuture'] ) ;
+                $questions[$i]['daybefore'] = TRUE ;
 			} else {
 				$questions[$i]['dateF'] = '' ;
 				$questions[$i]['title'] = '' ;
 			}
         }
+        $debug[] = "Final settings today:" . $this->settings['today'] . " (" . date("d.M.Y" , $this->settings['today'] ) . ")";
+
 		$this->settings['todayformated']   =  date( "d.m.Y" , $this->settings['today'] ) ;
 		$this->settings['today']   =  intval( date( "d" , $this->settings['today'] )) ;
+        $this->view->assign('settings', $this->settings);
+        $this->view->assign('adddate', $adddate);
+
+        $debug[] = "isTester:" .  $this->isTester ? "JA" : "NEIN" ;
+        $debug[] = "isOrganisator:" .  $this->isOrganisator ? "JA" : "NEIN" ;
+        $debug[] = "StartDate" .  $this->settings['startDate'];
+        $debug[] = "StartDateTstamp" .  date( "d.m.Y H:i" , $this->settings['startDateTimeStamp'] );
+
+        $debug[] = "Number of Questions found: " . (string)($questionsFound) ;
+
+        $this->view->assign('questions', $questions);
+
+        $this->view->assign('isTester', $this->isTester);
+        $this->view->assign('isOrganisator', $this->isOrganisator);
 
         $this->view->assign('debug', $debug );
 
-		$this->view->assign('settings', $this->settings);
-		$this->view->assign('adddate', $adddate);
-
-		$this->view->assign('isTester', $this->isTester);
-		$this->view->assign('isOrganisator', $this->isOrganisator);
         return $this->htmlResponse();
 
 	}

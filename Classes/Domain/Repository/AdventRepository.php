@@ -1,5 +1,8 @@
 <?php
 namespace Jvelletti\JvAdvent\Domain\Repository ;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
+
 /***************************************************************
 *  Copyright notice
 *
@@ -38,20 +41,20 @@ class AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query = $this->createQuery();
 		
 		$query->getQuerySettings()->setIgnoreEnableFields(true);
-		$query->setOrderings(array( 'date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING )) ;
 
 		if 	( $questiondate > 0 ) {
 			$queryParams[] = $query->greaterThan('date', ($questiondate - (60 *60 * 4)));
 			$queryParams[] = $query->lessThan('date', ($questiondate + (60 * 60 * 4 )));
+
 		}
 		if 	( $uid > 0 ) {
 			$queryParams[] = $query->equals('uid', $uid);
 		}
-
         $query = $query->matching($query->logicalAnd(...$queryParams));
-		$return =  $query->execute() ;
-        if ( $return->count() > 0 ) {
-            return $return->getFirst() ;
+		$return =  $query->execute()->toArray() ;
+        // $this->debug($query) ;
+        if ( is_array( $return ) && count($return) > 0 ) {
+            return $return[0] ;
         }
 		return false;
 	}
@@ -73,6 +76,21 @@ class AdventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
         return  $query->execute()->toArray() ;
     }
+    private function debug($query): void  {
 
+        $queryParser = GeneralUtility::makeinstance(Typo3DbQueryParser::class);
+
+        $select = $queryParser->convertQueryToDoctrineQueryBuilder($query)->getSQL() ;
+        $params = ($queryParser->convertQueryToDoctrineQueryBuilder($query)->getParameters());
+        $params = array_reverse($params) ;
+        foreach ($params  as $index => $param) {
+            if( is_string( $param)) {
+                $param = "'" . $param . "'" ;
+            }
+            $select = str_replace( ":" . $index , $param ,  $select)  ;
+        }
+        echo $select;
+        die;
+    }
 
 }

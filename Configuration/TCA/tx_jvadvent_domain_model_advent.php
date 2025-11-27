@@ -18,7 +18,7 @@ return
                 'disabled' => 'hidden'
             ),
 
-            'iconfile' 			=> 'EXT:jvadvent/Resources/Public/Icons/icon_tx_jvadvent_domain_model_advent.gif'
+            'iconfile' 			=> 'extension_jvadvent'
         ),
         'columns' => array(
             'sys_language_uid' => Array (

@@ -5,6 +5,6 @@ plugin.tx_jvadvent {
 		layoutRootPath = EXT:jvadvent/Resources/Private/Layouts/
 	}
 	persistence {
-		storagePid = 22584
+		storagePid = 22585
 	}
 }

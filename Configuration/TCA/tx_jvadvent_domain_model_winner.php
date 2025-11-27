@@ -15,7 +15,7 @@ return array (
         'enablecolumns' 	=> array(
             'disabled' => 'hidden'
         ),
-        'iconfile' 			=>  'EXT:jvadvent/Resources/Public/Icons/icon_tx_jvadvent_domain_model_winner.gif'
+        'iconfile' 			=>  'calc-jvadvent',
     ),
     'columns' => array(
         'sys_language_uid' => Array (

@@ -3,9 +3,11 @@
 use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
 
 $iconList = [];
-foreach ([
+foreach (
+    [
     'extension-jvadvent' => 'extension.svg',
-] as $identifier => $path) {
+    ]
+         as $identifier => $path) {
     $iconList[$identifier] = [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:jvadvent/Resources/Public/Icons/' . $path,

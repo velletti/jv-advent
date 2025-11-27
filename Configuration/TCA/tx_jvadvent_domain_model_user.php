@@ -8,7 +8,7 @@ return array (
         'tstamp'    => 'tstamp',
         'crdate'    => 'crdate',
         'default_sortby' => 'ORDER BY crdate',
-        'iconfile' 		=> 'EXT:jvadvent/Resources/Public/Icons/icon_tx_jvadvent_domain_model_user'
+        'iconfile' 		=> 'user'
     ) ,
     'default_sortby' =>  'ORDER BY points DESC, tstamp, sys_language_uid',
     'columns' => array (

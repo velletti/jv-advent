@@ -56,9 +56,7 @@ class UserController extends BaseController {
 
 		if ( $this->request->hasArgument('JSON')) {
 			if ( $this->settings['feUserUid'] > 0 ) {
-				$this->answers =  $this->userRepository->findMyanswers(
-					$this->adventCat ,
-					$this->settings['feUserUid'] );
+				$this->answers =  $this->userRepository->findMyanswers( $this->settings['feUserUid'] );
 				if ( is_array($this->answers) ) {
 					$answerlist = "" ;
 					$lastAnswer = "xyz" ;
@@ -138,7 +136,7 @@ class UserController extends BaseController {
 				$subpoint = round( rand(0,4), 0)  ;
 			}
 
-			$userlog =  $this->userRepository->insertAnswer($this->adventCat , 
+			$userlog =  $this->userRepository->insertAnswer(
 																$this->pid , $this->settings['feUserUid'] ,
 																$question , $point, $subpoint, $answer );
 

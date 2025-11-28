@@ -62,8 +62,11 @@
 						</f:if>
 					</h4>
 					<div  class="tx_jvadvent_questlist_sub well hide">
+						<div class="right">
+							<f:link.action class="btn btn-default rounded" action="single" controller="Advent" arguments="{single: {adddate: count.cycle}}">Show full question</f:link.action>
+						</div>
 						<div class="row">
-							<f:link.action class="btn btn-default rounded" action="single" controller="Advent" arguments="{single: {adddate: count.index}}">Show full question</f:link.action>
+
 							<f:if condition="{question.image}">
 								<f:then>
 									<div class="col-sm-9">

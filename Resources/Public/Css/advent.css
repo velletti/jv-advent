@@ -179,8 +179,8 @@ div#tx_jvadvent_WuerfelMauer {
 
 
 div#tx_jvadvent_questions_img {
-	/* background-image: url(../img/Sterne_Hintergrundbild980px_560px_72dpi.jpg);  */
-	background-image: url(../img/rentiere_hintergrundbild_akr_960_560_.jpg);
+	background-image: url(../img/Sterne_Hintergrundbild980px_560px_72dpi.jpg);
+	/* background-image: url(../img/rentiere_hintergrundbild_akr_960_560_.jpg); */
 	background-color: black;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
@@ -193,11 +193,8 @@ div#tx_jvadvent_questions_img {
 }
 
 .tx_jvadvent_questions_dayOpened {
-
 	transition: opacity .5s ease-out-in ;
 	background: none;
-
-
 }
 
 
@@ -227,21 +224,21 @@ div#tx_jvadvent_Regler_Zahl {
 
 
 @media screen and (max-width: 900px) {
-	.tx_jvadvent_questions_day {
-		height: 100px;
-	}
-	div#tx_jvadvent_questions_img {
-		height: 400px;
-	}
-	.tx_jvadvent_questions_day P {
-		margin: 15px auto 0;
-		font-size: 35px;
-	}
-	.tx_jvadvent_questions_today P {
-		margin: 5px auto 0;
-		font-size: 50px;
+.tx_jvadvent_questions_day {
+    height: 100px;
+}
+div#tx_jvadvent_questions_img {
+    height: 400px;
+}
+.tx_jvadvent_questions_day P {
+    margin: 15px auto 0;
+    font-size: 35px;
+}
+.tx_jvadvent_questions_today P {
+    margin: 5px auto 0;
+    font-size: 50px;
 
-	}
+}
 }
 @media screen and (max-width: 760px) {
 	.tx_jvadvent_questions_day {

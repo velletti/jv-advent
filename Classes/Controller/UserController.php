@@ -55,11 +55,12 @@ class UserController extends BaseController {
 		$this->currentArguments = $this->request->getArguments();
 
 		if ( $this->request->hasArgument('JSON')) {
+            $answerlist = "" ;
+            $lastAnswer = "xyz" ;
 			if ( $this->settings['feUserUid'] > 0 ) {
-				$this->answers =  $this->userRepository->findMyanswers( $this->settings['feUserUid'] );
+				$this->answers =  $this->userRepository->findMyanswers( $this->settings['year'] , $this->settings['feUserUid'] );
 				if ( is_array($this->answers) ) {
-					$answerlist = "" ;
-					$lastAnswer = "xyz" ;
+
 					for ( $i=0;$i < count($this->answers) ; $i++ ) {
 						if ($lastAnswer <> intval( $this->answers[$i]->getQuestionDatef()) ) {
 							if ( $answerlist <> "") {
@@ -74,10 +75,10 @@ class UserController extends BaseController {
 					}
 					$answerlist =  $answerlist  ;
 				}
-				$this->showArrayAsJson($answerlist) ;
-				die;
+
 			}
-			die;
+            $this->showArrayAsJson($answerlist) ;
+            die;
 		}
 
 		// second Part: TEST: did the user came here because he had answered a question ?
@@ -102,7 +103,6 @@ class UserController extends BaseController {
 
 		// Second Part : yes he has ansered a question ?
 		if ( is_object ($question)) {
-			// debug( $this->pid  ) ;
 			if ( $question->GetStoreonpid() > 0 ) {
 				$this->pid = intval( $question->GetStoreonpid()) ;
 			}
@@ -160,20 +160,22 @@ class UserController extends BaseController {
 		// third part: if he is logged in, show in any case the list of his answers  ( if Possible )
 
 		if ( $this->settings['feUserUid'] > 0 ) {
-			$this->answers =  $this->userRepository->findMyanswers( 
-									$this->adventCat ,
-									$this->settings['feUserUid'] );
+			$this->answers =  $this->userRepository->findMyanswers(
+                $this->settings['year'] ,
+                $this->settings['feUserUid']
+            );
 		
 			$this->settings['today']   = mktime( 0,0,0, date("m" ) ,date("d" ) ,date("Y" )  ) ;
 			$this->settings['total'] = 0 ;
 			$this->settings['subtotal'] = 0 ;
+            $answerlist = [] ;
 			if ( is_array($this->answers) ) {
 				for ( $i=0;$i < count($this->answers) ; $i++ ) {
 					$answerlist[$i]['answer'] = $this->answers[$i] ;		
 						
 					$answerlist[$i]['answerPID'] = "" ;
 					
-					if ($this->settings['isTester']  OR $this->answers[$i]->getTstamp() >  ( time() - (60*60*24)) ) {
+					if ($this->settings['isTester']  || $this->answers[$i]->getTstamp() >  ( time() - (60*60*24)) ) {
 						$answerlist[$i]['answerPID'] = $this->settings['list']['pid']['singleView']  ;	
 					} 		
 					$answerlist[$i]['answerUID'] = $this->answers[$i]->getQuestionUid() ;	

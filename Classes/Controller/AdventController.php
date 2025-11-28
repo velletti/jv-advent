@@ -71,7 +71,7 @@ class AdventController extends BaseController {
 		if ( $this->request->hasArgument('single') ) {
 			$adddate_arr = $this->request->getArgument('single') ;
 			if (is_array($adddate_arr)) {
-				$adddate = $adddate_arr['adddate'];
+				$adddate = (int)$adddate_arr['adddate'];
 			}
 			// Neu : nur noch positive werte und adddate 3 liefert den 3.12. statt wie früher 4.12
 			$adddate = $adddate -1 ;
@@ -114,6 +114,15 @@ class AdventController extends BaseController {
 		//  $this->settings['today']   =  1318284000 ;
 		$this->settings['todayformated']   =  date( "d.m.Y" , $this->settings['today'] ) ;
         $question =  $this->adventRepository->findOneByFilter( $this->settings['today'] );
+        $answers =  $this->userRepository->findMyanswers( $this->settings['year'] , $this->settings['feUserUid'] );
+        $this->view->assign('answers', $answers);
+        $this->settings['hideAgb'] = " " ;
+        $this->settings['hideQuestion'] = " hide" ;
+        if ( is_array( $answers ) && count($answers) > 0 ) {
+            $this->settings['hideQuestion'] = " " ;
+            $this->settings['hideAgb'] = " hide" ;
+        }
+
         $this->view->assign('question', $question);
 
 

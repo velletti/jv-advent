@@ -125,6 +125,7 @@ class BaseController extends ActionController {
             $end = $this->settings['endDate'] ?? '2025-12-31 23:59:59' ;
             $endDate = new \DateTime($end) ;
 			$this->settings['startDateTimeStamp'] = $startDate->getTimestamp()  ;
+			$this->settings['year'] = date( "Y" , $startDate->getTimestamp() ) ;
 			$this->settings['endDateTimeStamp']   = $endDate->getTimestamp()  ;
 
 			if ( $this->settings['endDateTimeStamp']  < time() ) {
@@ -158,21 +159,13 @@ class BaseController extends ActionController {
 	}		
 
 
-	/*
-	 * translate function
-	 * @param string $label the locallang label to translate
-	 * @return string the localized String 
-	 * @author Martin Heigermoser <martin.heigermoser@typovision.de>
-	 */
-	public function translate($label , $arguments=NULL) {
-		return LocalizationUtility::translate($label, 'JvAdvent' , $arguments );
-	}
-
+public function translate($label, $arguments = null) {
+	     return (LocalizationUtility::translate($label, 'JvAdvent', $arguments) ?? $label);
+	 }
 	public function showArrayAsJson($output): void {
 		$jsonOutput = json_encode($output);
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-		header('Cache-Control: no-cache, must-revalidate');
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Pragma: no-cache');
 		header('Content-Length: ' . strlen($jsonOutput));

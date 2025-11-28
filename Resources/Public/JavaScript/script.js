@@ -18,19 +18,16 @@ function tx_jvadvent_ajax( syslng , sysid ) {
 		type: "GET",
 		url: "/index.php",
 		cache: false,
-		data: "id=" + sysid + "&L=" + syslng + "&tx_jvadvent_calendar[JSON]=1",
+		data: "id=" + sysid + "&L=" + syslng + "&tx_jvadvent_user[Controler]=User&tx_jvadvent_user[Action]=answer&tx_jvadvent_user[JSON]=1",
 		beforeSend: function() {
 		},
 		success: function(result) {
-			// console.log(result);
 			var resultArray = result.split(",");
-
-			// console.info(resultArray);
 
 			for (var i = 0; i<resultArray.length; i++ ) {
 				if ( resultArray[i] > 0 ) {
-					// console.info(resultArray[i]);
 					jQuery(".tx_jvadvent_questions_day" + resultArray[i] + " ").removeClass("tx_jvadvent_questions_closed") ;
+					jQuery(".tx_jvadvent_questions_day" + resultArray[i] + " P").removeClass("tx_jvadvent_questions_inactive_background") ;
 					jQuery(".tx_jvadvent_questions_day" + resultArray[i] + " ").addClass("tx_jvadvent_questions_dayOpened") ;
 				}
 			}

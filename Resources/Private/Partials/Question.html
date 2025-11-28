@@ -26,29 +26,37 @@
 									</div>
 
 									<div class="clearfix">&nbsp;</div>
-									<div id="tx_jvadvent_showanswers" class="row" >
+									<div id="tx_jvadvent_showanswers" class="row {settings.hideAgb}" >
 										<span class="col-xs-push-1 col-xs-2 col-md-1">
 											<input type="checkbox" value="y" name="tx_jvadvent_calendar[accepted]" onClick="jQuery('#tx_jvadvent_answers').show();jQuery('#tx_jvadvent_showanswers').hide();">
 											<input type="hidden" value="{adddate}" name="tx_jvadvent_calendar[answer]">
 										</span>
 										<span class="col-xs-push-1 col-xs-9 col-md-10">
-											<f:format.html>{settings.advent.list.mustacceptagb}</f:format.html>
+											<f:if condition="{settings.advent.list.mustacceptagb}">
+												<f:then>
+													<f:format.html>{settings.advent.list.mustacceptagb}</f:format.html>
+												</f:then>
+												<f:else>
+													Ja, ich habe die <f:link.page pageUid="" target="_blank">Regeln gelesen</f:link.page>, akzeptiere die Regeln und möchte antworten.
+												</f:else>
+											</f:if>
+
 										</span>
 									</div>	
-									<div id="tx_jvadvent_answers" class="row" >
+									<div id="tx_jvadvent_answers" class="row  {settings.hideQuestion}" >
 										<f:if condition="{question.rangemax} > 0">
 											<f:then>
 												<f:render partial="RangeAnswer" arguments="{question: question, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
 
 											</f:then>
 											<f:else>
-												<div class="tx_advent_WuerfelWeg hide">
-													<div id="tx_advent_Wuerfel" onclick="advent_move(tx_advent_Wuerfel)">
-														<p id="tx_advent_WuerfelZahl">?</p>
+												<div class="tx_jvadvent_WuerfelWeg hide">
+													<div id="tx_jvadvent_Wuerfel" onclick="advent_move(tx_jvadvent_Wuerfel)">
+														<p id="tx_jvadvent_WuerfelZahl">?</p>
 
 													</div>
-													<div id="tx_advent_WuerfelMauer">
-														<p id="tx_advent_AuswahlText"> <b> </b> </p>
+													<div id="tx_jvadvent_WuerfelMauer">
+														<p id="tx_jvadvent_AuswahlText"> <b> </b> </p>
 													</div>
 												</div>
 
@@ -101,26 +109,26 @@
 
 							<f:asset.script identifier="advent-dice">
 								var advent_gX = 0;
-								jQuery("#tx_advent_WuerfelZahl").html( "?" );
+								jQuery("#tx_jvadvent_WuerfelZahl").html( "?" );
 								var advent_firstClick = 1;
-								function advent_move(tx_advent_Wuerfel) {
+								function advent_move(tx_jvadvent_Wuerfel) {
 
 									if (advent_firstClick == 1) {
 										var id = setInterval(function(){advent_frame()}, 0.1);
 										var deg = 0;
 										var left = 780;
 										function advent_frame() {
-											jQuery("#tx_advent_WuerfelMauer").css("display", "block");
+											jQuery("#tx_jvadvent_WuerfelMauer").css("display", "block");
 											left = left - 3;
 											deg = deg - 4;
-											jQuery("#tx_advent_Wuerfel").css("opacity", 1 + '');
-											tx_advent_Wuerfel.style.left = left + 'px';
-											tx_advent_Wuerfel.style.transform = "rotate(" + deg + "deg)";
+											jQuery("#tx_jvadvent_Wuerfel").css("opacity", 1 + '');
+											tx_jvadvent_Wuerfel.style.left = left + 'px';
+											tx_jvadvent_Wuerfel.style.transform = "rotate(" + deg + "deg)";
 											var x = (1 + Math.random() * 4).toFixed(0);
-											jQuery("#tx_advent_WuerfelZahl").html(x);
+											jQuery("#tx_jvadvent_WuerfelZahl").html(x);
 											if (left <= -39) {
 												clearInterval(id);
-												jQuery("#tx_advent_WuerfelMauer")
+												jQuery("#tx_jvadvent_WuerfelMauer")
 													.animate({left: -20 + 'px'}, 50)
 													.animate({left: 0 + 'px'}, 200);
 												advent_zurueck();
@@ -135,26 +143,26 @@
 												deg = deg + (n + 1.3);
 												n = Math.max(n - 0.005, 0.45);
 
-												tx_advent_Wuerfel.style.left = left + 'px';
-												tx_advent_Wuerfel.style.transform = "rotate(" + deg + "deg)";
+												tx_jvadvent_Wuerfel.style.left = left + 'px';
+												tx_jvadvent_Wuerfel.style.transform = "rotate(" + deg + "deg)";
 												var x = (1 + Math.random() * 4).toFixed(0);
-												jQuery("#tx_advent_WuerfelZahl").html(x);
-												if (parseInt(tx_advent_Wuerfel.style.left) >= 325) {
+												jQuery("#tx_jvadvent_WuerfelZahl").html(x);
+												if (parseInt(tx_jvadvent_Wuerfel.style.left) >= 325) {
 													clearInterval(ld);
 
 													setTimeout(function advent_Ende(){
-														tx_advent_Wuerfel.style.transform = "rotate(" + (0)-25 + "deg)";
-														tx_advent_Wuerfel.style.top = 0 + 'px';
-														tx_advent_Wuerfel.style.left = 336 + 'px';
+														tx_jvadvent_Wuerfel.style.transform = "rotate(" + (0)-25 + "deg)";
+														tx_jvadvent_Wuerfel.style.top = 0 + 'px';
+														tx_jvadvent_Wuerfel.style.left = 336 + 'px';
 													}, 500);
 													setTimeout(function advent_Ende1(){
-														tx_advent_Wuerfel.style.transform = "rotate(" + (-12.5) + "deg)";
-														tx_advent_Wuerfel.style.left = 337 + 'px';
+														tx_jvadvent_Wuerfel.style.transform = "rotate(" + (-12.5) + "deg)";
+														tx_jvadvent_Wuerfel.style.left = 337 + 'px';
 													}, 500);
 													setTimeout(function advent_Ende3(){
-														tx_advent_Wuerfel.style.transform = "rotate(" + 0 + "deg)";
-														tx_advent_Wuerfel.style.top = 2 + 'px';
-														tx_advent_Wuerfel.style.left = 338 + 'px';
+														tx_jvadvent_Wuerfel.style.transform = "rotate(" + 0 + "deg)";
+														tx_jvadvent_Wuerfel.style.top = 2 + 'px';
+														tx_jvadvent_Wuerfel.style.left = 338 + 'px';
 														advent_gX = x;
 														advent_firstClick ++;
 													}, 500);

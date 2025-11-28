@@ -238,6 +238,15 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		return $this->date;
 	}
 
+
+	/**
+	 * Getter for date
+	 *
+	 * @return integer date
+	 */
+	public function getYear(){
+		return date("Y" , ($this->date ?? time() )  );
+	}
 	/**
 	 * Getter for hidden
 	 *

@@ -7,8 +7,9 @@
 		</f:then>
 		<f:else>
 			<div class="hide">
-				<f:link.page id="tx_advent_answerpage" pageUid="{settings.list.pid.singleView}" additionalParams="{tx_jvadvent_calendar: {single: {adddate: ''}}}"> LINK </f:link.page>
-				<div class="tx_advent_no_accessMsg">
+				<f:link.action id="tx_jvadvent_answerpage" controller="Advent" action="single"
+							   pageUid="{settings.list.pid.singleView}" arguments="{single: {adddate: ''}}"> LINK </f:link.action>
+				<div class="tx_jvadvent_no_accessMsg">
 					<f:security.ifAuthenticated>
 					<f:then>
 						<f:translate key="access_next"> Zur Frage </f:translate>
@@ -88,18 +89,26 @@
 
 	<f:security.ifAuthenticated>
 		<f:then>
-			User is authenticated. {f:if( condition:"{isTester}", then: " and isTester")}   {f:if( condition:"{isOrganizer}", then: "and is the Organizer")}
+			User {settings.feUserUid} logged in.
+			<f:if condition="{isTester} || {isOrganisator}">
+				<span class="right">
+					<f:link.action id="tx_jvadvent_answerpage" class="btn btn-danger" controller="Advent" action="single"
+								   pageUid="{settings.list.pid.singleView}" arguments="{single: {adddate: '1'}}">
+					Testen
+				</f:link.action>
+				</span>
+
+			</f:if>
 		</f:then>
 	</f:security.ifAuthenticated>
 
 
 	<f:asset.css identifier="jvadvent-css" href="EXT:jvadvent/Resources/Public/Css/advent.css"></f:asset.css>
 	<f:asset.script identifier="jvadvent-main" src="EXT:jvadvent/Resources/Public/JavaScript/script.js"></f:asset.script>
-<script type="text/javascript">
-	var syslng = '{settings.sys_language_uid}';
-	var sysid = '{settings.list.pid.myanswersView}';
-	jQuery(document).ready(function(){
-		tx_jvadvent_ajax(syslng , sysid) ;
-	});
-
-</script>
+	<f:asset.script identifier="jvadvent-sub" >
+		var syslng = '{settings.sys_language_uid}';
+		var sysid = '{settings.list.pid.myanswersView}';
+		jQuery(document).ready(function(){
+			tx_jvadvent_ajax(syslng , sysid) ;
+		});
+	</f:asset.script>

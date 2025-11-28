@@ -47,9 +47,7 @@
 	cursor: pointer;
 }
 
-#tx_jvadvent_answers {
-	 display: none;
- }
+
 #tx_jvadvent_answers  .row {
 	margin-bottom: 15px;
 }
@@ -92,37 +90,33 @@
 	background: #FFF;
 }
 
-div#tx_jvadvent_Wuerfel {margin-left: 50px; width: 50px; height: 50px;
-	border-color:#D1D1D1;
-	border-radius: 6px;
-	border-style: solid;
-	position:relative;
-	background-color:#8fadcc;
-	-webkit-text-fill-color: #FFFFFF;
-	opacity: 1;
-	cursor: help;
-	-webkit-box-shadow: 5px 3px 3px 0px rgba(46,38,46,0.7);
-	-moz-box-shadow: 5px 3px 3px 0px rgba(46,38,46,0.7);
-	box-shadow: 5px 3px 3px 0px rgba(46,38,46,0.7);
+div#tx_jvadvent_Wuerfel {
+	width: 40px;
+	height: 40px;
+	border: 3px solid #8fadcc;
+	border-radius: 10px;
+	background: #8fadcc;
+	box-shadow: 5px 3px 8px 0px rgba(46,38,46,0.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 34px;
+	color: #fff;
+	cursor: pointer;
+	user-select: none;
+	margin: 20px;
 
-}
-div#tx_jvadvent_Wuerfel P {
-	text-align: center; vertical-align: middle; font-size: 40px; margin-top: 0px;
-	line-height: 1.231;
-}
-
-div#tx_jvadvent_WuerfelMauer {
-	left:0px;
-	background-color:#8fadcc;
-	height:56px;
-	width:2px;
-	position:absolute;
-	margin-top: -56px;
-	overflow:hidden;
-	display: none;
 }
 .tx_jvadvent_WuerfelWeg {
-	margin-bottom: 24px;
+	width: 6000px;
+	height: 40px;
+	position: relative;
+}
+#tx_jvadvent_Wuerfel {
+	position: absolute;
+	left: 0;
+	top: 10px;
+	transition: none;
 }
 
 

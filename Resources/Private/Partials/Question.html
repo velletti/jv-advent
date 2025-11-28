@@ -28,7 +28,7 @@
 									<div class="clearfix">&nbsp;</div>
 									<div id="tx_jvadvent_showanswers" class="row {settings.hideAgb}" >
 										<span class="col-xs-push-1 col-xs-2 col-md-1">
-											<input type="checkbox" value="y" name="tx_jvadvent_calendar[accepted]" onClick="jQuery('#tx_jvadvent_answers').show();jQuery('#tx_jvadvent_showanswers').hide();">
+											<input type="checkbox" value="y" name="tx_jvadvent_calendar[accepted]" onClick="jQuery('#tx_jvadvent_answers').show();jQuery('#tx_jvadvent_showanswers').removeClass('hide');">
 											<input type="hidden" value="{adddate}" name="tx_jvadvent_calendar[answer]">
 										</span>
 										<span class="col-xs-push-1 col-xs-9 col-md-10">
@@ -43,20 +43,18 @@
 
 										</span>
 									</div>	
-									<div id="tx_jvadvent_answers" class="row  {settings.hideQuestion}" >
+									<div id="tx_jvadvent_answers" class="row {settings.hideQuestion}" >
 										<f:if condition="{question.rangemax} > 0">
 											<f:then>
 												<f:render partial="RangeAnswer" arguments="{question: question, settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
 
 											</f:then>
 											<f:else>
-												<div class="tx_jvadvent_WuerfelWeg hide">
-													<div id="tx_jvadvent_Wuerfel" onclick="advent_move(tx_jvadvent_Wuerfel)">
-														<p id="tx_jvadvent_WuerfelZahl">?</p>
-
-													</div>
-													<div id="tx_jvadvent_WuerfelMauer">
-														<p id="tx_jvadvent_AuswahlText"> <b> </b> </p>
+												<div class="row">
+													<div class="tx_jvadvent_WuerfelWeg">
+														<div id="tx_jvadvent_Wuerfel" onclick="rollDice(); " title="Keine Ahnung? Klicke zum Würfeln deiner Antwort!">
+															<span id="tx_jvadvent_WuerfelZahl">?</span>
+														</div>
 													</div>
 												</div>
 
@@ -108,73 +106,45 @@
 							</div>
 
 							<f:asset.script identifier="advent-dice">
-								var advent_gX = 0;
-								jQuery("#tx_jvadvent_WuerfelZahl").html( "?" );
-								var advent_firstClick = 1;
-								function advent_move(tx_jvadvent_Wuerfel) {
 
-									if (advent_firstClick == 1) {
-										var id = setInterval(function(){advent_frame()}, 0.1);
-										var deg = 0;
-										var left = 780;
-										function advent_frame() {
-											jQuery("#tx_jvadvent_WuerfelMauer").css("display", "block");
-											left = left - 3;
-											deg = deg - 4;
-											jQuery("#tx_jvadvent_Wuerfel").css("opacity", 1 + '');
-											tx_jvadvent_Wuerfel.style.left = left + 'px';
-											tx_jvadvent_Wuerfel.style.transform = "rotate(" + deg + "deg)";
-											var x = (1 + Math.random() * 4).toFixed(0);
-											jQuery("#tx_jvadvent_WuerfelZahl").html(x);
-											if (left <= -39) {
-												clearInterval(id);
-												jQuery("#tx_jvadvent_WuerfelMauer")
-													.animate({left: -20 + 'px'}, 50)
-													.animate({left: 0 + 'px'}, 200);
-												advent_zurueck();
+								let rolling = false;
+								function rollDice() {
+								    const dice = document.getElementById('tx_jvadvent_Wuerfel');
+									const diceValue = document.getElementById('tx_jvadvent_WuerfelZahl');
+									const container = document.querySelector('.tx_jvadvent_WuerfelWeg');
+
+								    if (diceValue.textContent == '?') {
+										if (rolling) return;
+										var advent_firstClick = 0;
+										rolling = true;
+
+										const maxMove = container.offsetWidth - dice.offsetWidth - 10; // 10px Puffer
+										let start = null;
+										let duration = 2000;
+										let interval = setInterval(() => {
+											diceValue.textContent = Math.floor(1 + Math.random() * 5);
+										}, 70);
+
+										function animate(ts) {
+											if (!start) start = ts;
+												let elapsed = ts - start;
+												let progress = Math.min(elapsed / duration, 1);
+												dice.style.transform = `translateY(${progress * maxMove}px)`;
+												if (progress < 1) {
+													requestAnimationFrame(animate);
 											}
 										}
-										function advent_zurueck(){
+										requestAnimationFrame(animate);
 
-											var ld = setInterval(function(){advent_frame1()}, 0.1);
-											var n = 2;
-											function advent_frame1(){
-												left = left + n;
-												deg = deg + (n + 1.3);
-												n = Math.max(n - 0.005, 0.45);
-
-												tx_jvadvent_Wuerfel.style.left = left + 'px';
-												tx_jvadvent_Wuerfel.style.transform = "rotate(" + deg + "deg)";
-												var x = (1 + Math.random() * 4).toFixed(0);
-												jQuery("#tx_jvadvent_WuerfelZahl").html(x);
-												if (parseInt(tx_jvadvent_Wuerfel.style.left) >= 325) {
-													clearInterval(ld);
-
-													setTimeout(function advent_Ende(){
-														tx_jvadvent_Wuerfel.style.transform = "rotate(" + (0)-25 + "deg)";
-														tx_jvadvent_Wuerfel.style.top = 0 + 'px';
-														tx_jvadvent_Wuerfel.style.left = 336 + 'px';
-													}, 500);
-													setTimeout(function advent_Ende1(){
-														tx_jvadvent_Wuerfel.style.transform = "rotate(" + (-12.5) + "deg)";
-														tx_jvadvent_Wuerfel.style.left = 337 + 'px';
-													}, 500);
-													setTimeout(function advent_Ende3(){
-														tx_jvadvent_Wuerfel.style.transform = "rotate(" + 0 + "deg)";
-														tx_jvadvent_Wuerfel.style.top = 2 + 'px';
-														tx_jvadvent_Wuerfel.style.left = 338 + 'px';
-														advent_gX = x;
-														advent_firstClick ++;
-													}, 500);
-												}
-											}
-										}
-									}
-									else {
-										window.location.href = "https://" + window.location.hostname + "/" +  jQuery("#tx_jvadvent_answer_" + advent_gX).attr("href");
+										setTimeout(() => {
+											clearInterval(interval);
+											diceValue.textContent = Math.floor(1 + Math.random() * 5);
+											rolling = false;
+										}, duration);
+									} else {
+										window.location.href = jQuery("#tx_jvadvent_answer_" + diceValue.textContent ).attr("href");
 									}
 								}
-
 							</f:asset.script>
 
 

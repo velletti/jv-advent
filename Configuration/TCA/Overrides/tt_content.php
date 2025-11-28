@@ -18,7 +18,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['jvadvent_calendar'] =
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     '*',
-    'FILE:EXT:jvadvent/Configuration/FlexForms/flexform_solutions.xml',
+    'FILE:EXT:jvadvent/Configuration/FlexForms/flexform_solution.xml',
     'jvadvent_solution',
 
 );

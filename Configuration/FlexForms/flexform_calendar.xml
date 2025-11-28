@@ -54,7 +54,6 @@
 					<settings.setup.days>
                         <TCEforms>
                          <exclude>1</exclude>
-                         <displayCond>FIELD:switchableControllerActions:=:0</displayCond>
 					     <label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.days</label>
                             <config>
                             	
@@ -76,11 +75,9 @@
 								<cols>40</cols>
 								<rows>10</rows>
 								<wrap>virtual</wrap>
+								<enableRichtext>true</enableRichtext>
 							</config>
 							<default>to the the possible answers you must accept the  AGB. full agb link ...</default>
-							<defaultExtras>
-								richtext[*]:rte_transform[mode=ts_css]
-							</defaultExtras>
 						</TCEforms>
 					</settings.advent.list.mustacceptagb>                    
 				</el>

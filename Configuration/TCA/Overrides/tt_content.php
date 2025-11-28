@@ -22,13 +22,13 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['jvadvent_calendar'] =
     'jvadvent_solution',
 
 );
-ExtensionManagementUtility::addToAllTCAtypes(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
     '--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.plugin, pi_flexform',
     'jvadvent_calendar',
     'after:palette:headers'
 );
-ExtensionManagementUtility::addToAllTCAtypes(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
     '--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.plugin, pi_flexform',
     'jvadvent_solution',

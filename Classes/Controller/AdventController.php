@@ -67,21 +67,24 @@ class AdventController extends BaseController {
 		
 		$doit = $this->settingsHelper( ) ;
 		$adddate = 0 ;
-        if ( $this->request->hasArgument('single') ) {
-            $adddate_arr = $this->request->getArgument('single') ;
-            if (is_array($adddate_arr)) {
-                $adddate = intval($adddate_arr['addDate'] ??  $adddate_arr['adddate'] );
-            }
+        if ( $this->request->hasArgument('addDate') ) {
+            $adddate = intval( $this->request->getArgument('addDate') ) ;
             // Neu : nur noch positive werte und adddate 3 liefert den 3.12. statt wie früher 4.12
             $adddate = min( max(0 ,  $adddate -1 ) , 24 );
-
         } else {
 
+            if ( $this->request->hasArgument('single') ) {
+                $adddate_arr = $this->request->getArgument('single') ;
+                if (is_array($adddate_arr)) {
+                    $adddate = intval($adddate_arr['addDate'] ??  $adddate_arr['adddate'] );
+                }
+                // Neu : nur noch positive werte und adddate 3 liefert den 3.12. statt wie früher 4.12
+                $adddate = min( max(0 ,  $adddate -1 ) , 24 );
 
-            $adddate = intval( date("d" )) -1  ;
+            } else {
+                $adddate = intval( date("d" )) -1  ;
+            }
         }
-
-
 
 		// Was ist die maximale Anzahl an tagen ? normal 24. Also ab dem 25.
 		if ( $adddate >  (  $this->settings['maxDays'] ?? 24 )  -1 ) {
@@ -245,9 +248,9 @@ class AdventController extends BaseController {
 		// just for testing if Opened Door / Today Door works
 		if ( $this->request->hasArgument('single') ) {
 			$adddate_arr = $this->request->getArgument('single') ;
-
+            $debug[] = "Add date Array = " . var_export($adddate_arr, true) ;
 			if (is_array($adddate_arr)) {
-				$adddate = $adddate_arr['adddate'];
+				$adddate = intval($adddate_arr['addDate'] ?? $adddate_arr['adddate'] ) ;
                 $debug[] = "Add date = " . $adddate ;
 			}
 			if ( $adddate >  ( $this->adventCat->getDays() -1 )) {
@@ -262,6 +265,7 @@ class AdventController extends BaseController {
 			}
             $debug[] = "settings today after Add Date:" . $this->settings['today'] . " (" . date("d.M.Y" , $this->settings['today'] ) . ")";
         }
+
 		$questions = array() ;
 
         $questionsFound = 0 ;

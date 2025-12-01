@@ -9,7 +9,17 @@ function openDoor(field, DoorNr) {
 }
 
 function tx_quizSeite(field, DoorNr) {
-	var url= window.location.protocol  + "//" + window.location.hostname +  jQuery('#tx_jvadvent_answerpage').attr('href') ;
+	var url= jQuery('#tx_jvadvent_answerpage').attr('href') ;
+	if ( url.indexOf('http') < 0 ) {
+		if ( url.indexOf('/') == 0 ) {
+			url= window.location.protocol  + "//" + window.location.hostname +  url ;
+		} else {
+			url= window.location.protocol  + "//" + window.location.hostname + "/" + url ;
+		}
+	}
+	// now replace .html with /day/<doornr>.html
+
+	url= url.replace('.html' , '/day/' + DoorNr + '.html' ) ;
 	window.location.href = (url + DoorNr);
 }
 
@@ -18,7 +28,7 @@ function tx_jvadvent_ajax( syslng , sysid ) {
 		type: "GET",
 		url: "/index.php",
 		cache: false,
-		data: "id=" + sysid + "&L=" + syslng + "&tx_jvadvent_user[Controler]=User&tx_jvadvent_user[Action]=answer&tx_jvadvent_user[JSON]=1",
+		data: "id=" + sysid + "&L=" + syslng + "&tx_jvadvent_user[Controler]=User&tx_jvadvent_user[Action]=answer&tx_jvadvent_user[JSON]=1&rnd=" + Math.random(),
 		beforeSend: function() {
 		},
 		success: function(result) {

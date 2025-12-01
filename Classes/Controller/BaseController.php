@@ -161,9 +161,9 @@ class BaseController extends ActionController {
 
 public function translate($label, $arguments = null) {
          if (!str_starts_with($label , 'LLL:')) {
-             $label = 'LLL:EXT:jv_advent/Resources/Private/Language/locallang.xlf:' . $label ;
+             $label = 'LLL:EXT:jvadvent/Resources/Private/Language/locallang.xlf:' . $label ;
          }
-	     return (LocalizationUtility::translate( $label, 'jv-advent', $arguments) ?? $label);
+	     return (LocalizationUtility::translate( $label, 'jvadvent', $arguments) ?? $label);
 	 }
 	public function showArrayAsJson($output): void {
 		$jsonOutput = json_encode($output);

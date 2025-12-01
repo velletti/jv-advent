@@ -51,7 +51,9 @@ if(!defined('TYPO3')) Die ('Access denied.');
 // wizards
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
     'mod {
-            wizards.newContentElement.wizardItems.plugins {
+            
+            wizards.newContentElement.wizardItems.akr {
+                header = Adventskalender
                 elements {
                     jvadvent_calendar {
                         iconIdentifier = extension-jvadvent
@@ -69,7 +71,7 @@ if(!defined('TYPO3')) Die ('Access denied.');
                             CType = jvadvent_solution
                         }
                     }
-                    jvadvent_winner {
+                    jvadvent_user {
                         iconIdentifier = extension-jvadvent
                         title = Advent Calendar User Answer(s)
                         tt_content_defValues {
@@ -86,5 +88,6 @@ if(!defined('TYPO3')) Die ('Access denied.');
                 }
                 show = *
             }
+            wizards.newContentElement := addToList(Akr)
        }'
 );

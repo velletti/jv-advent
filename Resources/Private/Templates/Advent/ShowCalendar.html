@@ -7,8 +7,7 @@
 		</f:then>
 		<f:else>
 			<div class="hide">
-				<f:link.action id="tx_jvadvent_answerpage" controller="Advent" action="single"
-							   pageUid="{settings.list.pid.singleView}" arguments="{single: {adddate: ''}}"> LINK </f:link.action>
+				<f:link.page id="tx_jvadvent_answerpage" pageUid="{settings.list.pid.singleView}" > LINK </f:link.page>
 				<div class="tx_jvadvent_no_accessMsg">
 					<f:security.ifAuthenticated>
 					<f:then>
@@ -89,16 +88,18 @@
 
 	<f:security.ifAuthenticated>
 		<f:then>
-			User {settings.feUserUid} logged in.
-			<f:if condition="{isTester} || {isOrganisator}">
-				<span class="right">
-					<f:link.action id="tx_jvadvent_answerpage" class="btn btn-danger" controller="Advent" action="single"
-								   pageUid="{settings.list.pid.singleView}" arguments="{single: {adddate: '1'}}">
-					Testen
-				</f:link.action>
-				</span>
+			<div class="mt-1">
+				User {settings.feUserUid} logged in.
+				<f:if condition="{isTester} || {isOrganisator}">
+					<span class="right">
+						<f:link.action id="tx_jvadvent_answerpageInternal" class="btn btn-danger rounded" controller="Advent" action="single"
+									   pageUid="{settings.list.pid.singleView}" arguments="{single: {adddate: '1'}}">
+						Testen
+					</f:link.action>
+					</span>
 
-			</f:if>
+				</f:if>
+			</div>>
 		</f:then>
 	</f:security.ifAuthenticated>
 

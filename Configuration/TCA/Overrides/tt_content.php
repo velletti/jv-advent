@@ -16,12 +16,7 @@ $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['jvadvent_calendar'] =
     'FILE:EXT:jvadvent/Configuration/FlexForms/flexform_calendar.xml',
     'jvadvent_calendar',
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    '*',
-    'FILE:EXT:jvadvent/Configuration/FlexForms/flexform_solution.xml',
-    'jvadvent_solution',
 
-);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tt_content',
     '--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.plugin, pi_flexform',

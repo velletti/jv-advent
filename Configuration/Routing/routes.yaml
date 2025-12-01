@@ -1,0 +1,16 @@
+routeEnhancers:
+  JvAdventSolution:
+    type: Extbase
+    extension: Jvadvent
+    plugin: Solution
+    routes:
+      - routePath: '/day/{addDate}'
+        _controller: 'Advent::single'
+        _arguments:
+          single: addDate
+    defaultController: 'Advent::single'
+    aspects:
+      addDate:
+        type: StaticRangeMapper
+        start: "1"
+        end: "24"

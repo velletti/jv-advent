@@ -67,19 +67,22 @@ class AdventController extends BaseController {
 		
 		$doit = $this->settingsHelper( ) ;
 		$adddate = 0 ;
+        if ( $this->request->hasArgument('single') ) {
+            $adddate_arr = $this->request->getArgument('single') ;
+            if (is_array($adddate_arr)) {
+                $adddate = intval($adddate_arr['addDate'] ??  $adddate_arr['adddate'] );
+            }
+            // Neu : nur noch positive werte und adddate 3 liefert den 3.12. statt wie früher 4.12
+            $adddate = min( max(0 ,  $adddate -1 ) , 24 );
 
-		if ( $this->request->hasArgument('single') ) {
-			$adddate_arr = $this->request->getArgument('single') ;
-			if (is_array($adddate_arr)) {
-				$adddate = (int)$adddate_arr['adddate'];
-			}
-			// Neu : nur noch positive werte und adddate 3 liefert den 3.12. statt wie früher 4.12
-			$adddate = $adddate -1 ;
+        } else {
 
 
-		} else {
-			$adddate = intval( date("d" )) -1  ;
-		}
+            $adddate = intval( date("d" )) -1  ;
+        }
+
+
+
 		// Was ist die maximale Anzahl an tagen ? normal 24. Also ab dem 25.
 		if ( $adddate >  (  $this->settings['maxDays'] ?? 24 )  -1 ) {
 			$adddate = (  $this->settings['maxDays'] ?? 24 )  -1   ;

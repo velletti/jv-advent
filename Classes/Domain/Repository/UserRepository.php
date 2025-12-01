@@ -108,7 +108,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	
 	/**
 	 * get answerlist for user
-	 * @param \Jvelletti\JvAdvent\Domain\Model\AdventCat $adventCat
+	 * @param integer $year
 	 * @param integer $feUserUid
 	 * @param integer $limit
 	 * @param integer $offset

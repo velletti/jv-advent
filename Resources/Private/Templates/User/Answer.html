@@ -58,7 +58,7 @@
 							<f:else>
 								<f:if condition="{answer.crdate} > {settings.nowMinus24h}">
 									<f:then>
-										<f:link.action controller="Advent" action="single" class="btn btn-sm btn-default" title="{f:translate(key:'ChangeAnswer' , default:'ChangeAnswer')}" pageUid="{settings.list.pid.singleView}" arguments="{single: {adddate: '{answer.adddate}'}}"> >> </f:link.action>
+										<f:link.action controller="Advent" action="single" class="btn btn-sm btn-default" title="{f:translate(key:'ChangeAnswer' , default:'ChangeAnswer')}" pageUid="{settings.list.pid.singleView}" arguments="{addDate: '{answer.adddate}'}"> >> </f:link.action>
 									</f:then>
 									<f:else>
 										<span class="btn glyphicon glyphicon-info-sign" title="Ihre Antwort vom {answer.crdate -> f:format.date( format:'d.m. H:i')} kann nicht mehr ge&auml;ndert werden ">

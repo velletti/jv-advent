@@ -1,4 +1,4 @@
-			<f:if condition="{isTester || isOrganizer}">
+			<f:if condition="{isTester} || {isOrganizer}">
 				<f:then>
 					<h3>You are a Member of the group 'Tester' or 'Organizer'</h3>
 					<p>So you can simulate any Days Question if you the day as single Number<br/>f.e. if Startdate is 1.12.<f:format.date format="y">{settings.startDateTimeStamp}</f:format.date> so please enter "3" to see the 3.12.<f:format.date format="y">{settings.startDateTimeStamp}</f:format.date><br/>

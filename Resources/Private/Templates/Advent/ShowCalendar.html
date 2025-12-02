@@ -1,9 +1,6 @@
     <f:if condition="{settings.afterenddate}">
 		<f:then>
-			<h3>Something is wrong: </h3><br/>
-			Plugin should not be visible AFTER  enddate!
-			enddate: {settings.enddate} <br/>
-			now: {settings.now} <br/>
+			<f:render partial="AfterEnddate" arguments="{_all}"></f:render>
 		</f:then>
 		<f:else>
 			<div class="hide">

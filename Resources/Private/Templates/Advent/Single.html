@@ -1,7 +1,7 @@
 <f:if condition="{question}">
 	<f:then>
 		<div class="tx_jvadvent_question">
-			<f:if condition="{isTester || isOrganizer}">
+			<f:if condition="{isTester} || {isOrganizer}">
 				<f:then>
 					<f:render partial="Adddate" arguments="{isTester: isTester, isOrganisator: isOrganisator}"/>
 				
@@ -11,17 +11,14 @@
 					<f:if condition="{settings.beforestartdate}">
 						<f:then>
 							<div style="display:block;">
-								You are too early and not in Group Tester or Organizer!<br/>
-								<f:translate key="willstart">Startdate: {settings.startDate}</f:translate>
-								<f:translate key="itisnow"> - Now it is : {settings.now} </f:translate>
+								<f:render partial="BeforeStartdate" arguments="{_all}"></f:render>
 							</div>
 						</f:then>	
 						<f:else>
 							<f:if condition="{settings.afterenddate}">
 								<f:then>
 								<div style="display:block;"> 
-									<f:translate key="hasend">Too Late: enddate: {settings.enddate}</f:translate>
-									<f:translate key="itisnow"> - Now it is : {settings.now} </f:translate>
+									<<f:render partial="AfterEnddate" arguments="{_all}"></f:render>
 								</div>	
 								</f:then>	
 								<f:else>	
@@ -30,11 +27,7 @@
 											<f:render partial="Question" arguments="{question: question, settings: settings, adventscat:adventscat, isTester: isTester,isOrganisator: isOrganisator, adddate:adddate,  mypid: mypid}"/>
 										</f:then>	
 									<f:else>
-											<h3>Something is wrong: </h3><br/>
-											question was found, it is not to early, and not too late, your are not nem but you cant Vote.
-											startdate: {settings.enddate} <br/>
-											now: {settings.now} <br/>
-										debug: {settings.debug}
+										<f:render partial="BeforeEnddate" arguments="{_all}"></f:render>
 									</f:else>
 									</f:if>		
 								</f:else>	

@@ -14,11 +14,8 @@
 									<f:render partial="Questionlist" arguments="{questions: questions, settings: settings, adventscat: adventscat, isTester: isTester,isOrganisator: isOrganisator}"/>
 								</div>
 								</f:then>	
-								<f:else>	
-											<h3>Something is wrong: </h3><br/>
-											Plugin should not be visible before enddate!
-											enddate: {settings.enddate} <br/>
-											now: {settings.now} <br/>
+								<f:else>
+									<f:render partial="BeforeEnddate" arguments="{_all}"></f:render>
 								</f:else>
 							</f:if>
 

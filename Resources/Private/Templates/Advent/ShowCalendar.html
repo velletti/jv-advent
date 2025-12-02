@@ -85,18 +85,55 @@
 
 	<f:security.ifAuthenticated>
 		<f:then>
-			<div class="mt-1">
-				User {settings.feUserUid} logged in.
-				<f:if condition="{isTester} || {isOrganisator}">
-					<span class="right">
-						<f:link.action id="tx_jvadvent_answerpageInternal" class="btn btn-danger rounded" controller="Advent" action="single"
-									   pageUid="{settings.list.pid.singleView}" arguments="{single: {adddate: '1'}}">
-						Testen
-					</f:link.action>
-					</span>
+			<f:if condition="{isTester}">
+				<div class="mt-2 mb-2 p-2  clearfix">
+					<div class="col-xs-12">
+						<strong>Test Debug:</strong> (nur sichtbar für Tester)
+						<span class="right">
+							<f:link.action id="tx_jvadvent_answerpageInternal" class="btn btn-danger rounded" controller="Advent" action="single"
+										   pageUid="{settings.list.pid.singleView}" arguments="{single: {adddate: '1'}}">
+								Testen
+							</f:link.action>
+						</span>
+					</div>
+				</div>
+				<div class="clearfix">&nbsp;</div>
+			</f:if>
+			<f:if condition="{isOrganisator}">
+				<div class="mt-2 mb-2 p-2 bg-warning clearfix">
+					<div class="col-xs-12">
+						<strong>Organisator Debug:</strong> (nur sichtbar für Organisator)
+					</div>
 
-				</f:if>
-			</div>>
+					<f:for each="{settings}" as="value" key="key">
+						<!-- Debug Settings Output -->
+						<f:if condition="{key} == 'list'">
+							<f:then>
+								<f:for each="{value.pid}" as="pidvalue" key="pidkey">
+									<div class="col-xs-8 col-md-3">
+										PID: {key}.{pidkey}
+									</div>
+									<div class="col-xs-4 col-md-9">
+										<f:link.page pageUid="{pidvalue}" class="btn btn-small btn-default"> {pidvalue}&nbsp;</f:link.page>
+									</div>
+								</f:for>
+
+							</f:then>
+							<f:else>
+								<div class="col-xs-8 col-md-3">
+									{key}
+								</div>
+								<div class="col-xs-4 col-md-9">
+									{value}&nbsp;
+								</div>
+							</f:else>
+						</f:if>
+
+					</f:for>
+				</div>
+				<div class="clearfix">&nbsp;</div>
+			</f:if>
+
 		</f:then>
 	</f:security.ifAuthenticated>
 

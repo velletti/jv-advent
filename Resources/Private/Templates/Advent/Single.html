@@ -48,9 +48,12 @@
 			Startdate settings: {settings.startDate}<br/>
 			Question as Intval: {settings.today}<br/>
 			Question formated : {settings.todayformated}<br/>
-			debug: {settings.debug}
-		</p>						
-								
+		    <f:if condition="{isOrganisator}">
+				debug: {settings.debug}
+			</f:if>
+
+		</p>
+
 	</f:else>
 </f:if>
 

@@ -107,7 +107,7 @@ class AdventController extends BaseController {
 			if ($month == date("m" ) ) {
 				$this->settings['today']   = mktime( 0,0,0, $month ,$adddate + date("d" ,$this->settings['startDateTimeStamp'] ) ,date("Y" ,$this->settings['startDateTimeStamp'])  ) ;
 				// is today Bigger than allowed days in Front? then reset to Today !
-				if ( intval( date("d" , $this->settings['today'] ) ) >  intval( date("d")) + $this->settings['maxDaysInFuture'] ) {
+				if ( intval( date("d" , $this->settings['today'] ) ) >=  intval( date("d")) + ( $this->settings['maxDaysInFuture'] ) ) {
 					$this->settings['today']   =  mktime( 0,0,0, $month , date("d" ) ,date("Y" )  ) ;
 				}
 				if ( date("d" , $this->settings['today'] ) ==  date("d") ) {
@@ -291,8 +291,7 @@ class AdventController extends BaseController {
 				$questions[$i]['title'] = '' ;
 			}
 			// allow to answer also days in Front
-            if ( intval( date("d" , $this->settings['today'] ) ) >  ( intval( date("d" , $questions[$i]['date'])  ) - $this->settings['maxDaysInFuture'] )) {
-              //  $debug[] = "Is: " . intval( date("d" , $this->settings['today'] ) ) . " > " . ( intval( date("d" , $questions[$i]['date'])) - $this->settings['maxDaysInFuture'] ) ;
+            if ( intval( date("d" , $this->settings['today'] ) ) >=  ( intval( date("d" , $questions[$i]['date'])  ) - $this->settings['maxDaysInFuture'] )) {
                 $questions[$i]['daybefore'] = TRUE ;
 			} else {
 				$questions[$i]['dateF'] = '' ;

@@ -1,0 +1,86 @@
+<f:if condition="{isOrganisator}">
+    <div class="mt-2 mb-2 p-2 bg-warning clearfix">
+        <div class="col-xs-12">
+            <strong>Organisator Debug:</strong> Group: {settings.organizerGroup}
+        </div>
+
+        <f:for each="{settings}" as="value" key="key">
+            <f:switch expression="{key}">
+                <f:case value="list">
+                    <f:render section="pidrows" arguments="{key: key, value: value}"/>
+                </f:case>
+                <f:case value="maxDaysInFuture">
+                    <f:render section="row" arguments="{key: key, value: value}"/>
+                </f:case>
+                <f:case value="testerGroup">
+                    <f:render section="row" arguments="{key: key, value: value}"/>
+                </f:case>
+                <f:case value="startDate">
+                    <f:render section="row" arguments="{key: key, value: value}"/>
+                </f:case>
+                <f:case value="endDate">
+                    <f:render section="row" arguments="{key: key, value: value}"/>
+                </f:case>
+                <f:case value="now">
+                    <f:render section="row" arguments="{key: key, value: value}"/>
+                </f:case>
+                <f:case value="afterenddate">
+                    <f:render section="rowbool" arguments="{key: key, value: value}"/>
+                </f:case>
+                <f:case value="beforestartdate">
+                    <f:render section="rowbool" arguments="{key: key, value: value}"/>
+                </f:case>
+                <f:case value="year">
+                    <f:render section="row" arguments="{key: key, value: value}"/>
+                </f:case>
+            </f:switch>
+        </f:for>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+</f:if>
+
+
+<f:section name="row">
+    <div class="col-xs-8 col-md-3">
+        {key}
+    </div>
+    <div class="col-xs-4 col-md-9">
+        {value}&nbsp;
+    </div>
+</f:section>
+
+<f:section name="rowbool">
+    <div class="col-xs-8 col-md-3">
+        {key}
+    </div>
+    <div class="col-xs-4 col-md-9">
+        <f:if condition="{value}">
+            <f:then>TRUE</f:then>
+            <f:else>FALSE</f:else>
+        </f:if>
+    </div>
+</f:section>
+
+<f:section name="pidrows">
+    <f:if condition="{value.pid} == null">
+        <f:then>
+            <div class="col-xs-8 col-md-3">
+                PID: {key}.pid
+            </div>
+            <div class="col-xs-4 col-md-9">
+                <em>not set</em>
+            </div>
+        </f:then>
+        <f:else>
+            <f:for each="{value.pid}" as="pidvalue" key="pidkey">
+                <div class="col-xs-8 col-md-3">
+                    {key}.pid.{pidkey}
+                </div>
+                <div class="col-xs-4 col-md-9">
+                    <f:link.page pageUid="{pidvalue}" class="btn btn-xs btn-default rounded mb-1"> {pidvalue}&nbsp;</f:link.page>
+                </div>
+            </f:for>
+        </f:else>
+    </f:if>
+
+</f:section>

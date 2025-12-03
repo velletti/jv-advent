@@ -12,9 +12,9 @@ plugin.tx_jvadvent {
 		}
 
 		// See Extension template !!! will be overwritten at the end of the Advent game
-		maxDaysInFuture = 7
+		maxDaysInFuture = 1
 		winnerPerPageCount = 20
-		testerGroup = 7
+		testerGroup = 38
 		organizerGroup = 6
 
 		startDate = 2025-12-01 08:00:00

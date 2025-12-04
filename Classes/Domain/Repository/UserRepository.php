@@ -42,9 +42,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return int $result
 	 */
 	
-	public function insertAnswer( $pid ,$feUserUid,\Jvelletti\JvAdvent\Domain\Model\Advent $question,$points,$subpoints,$answer){
-        $return = false;
-
+	public function insertAnswer( $pid ,$feUserUid,\Jvelletti\JvAdvent\Domain\Model\Advent $question,$points,$subpoints,$answer , $advent_uid){
         if ($feUserUid > 0 && ($answer > 0 || $subpoints > 0) && is_object($question) ) {
             $connection = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getConnectionForTable('tx_jvadvent_domain_model_user');
@@ -98,7 +96,7 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
                 'answer_uid' => (int)$answer,
                 'points' => (int)$points,
                 'subpoints' => (int)$subpoints,
-                'advent_uid' => (int)$question->getYear(),
+                'advent_uid' => (int)$advent_uid,
             ];
             $connection->insert('tx_jvadvent_domain_model_user', $updateData);
             $return = true;

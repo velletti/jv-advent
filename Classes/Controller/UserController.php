@@ -110,6 +110,7 @@ class UserController extends BaseController {
 			$subpoint = 0 ;
 			if ( $rangeanswer > 0) {
 				// ToDO hierher die berechnung für die suppoints ... das sind die werte
+                // beispiel Range min = 100
 
 				if ( $rangeanswer > $question->getCorrect()  ) {
 					$subpoint = (1 - ( $rangeanswer - $question->getCorrect()) / ( $question->getRangemax() - $question->getCorrect() )) *99999 ;
@@ -126,19 +127,21 @@ class UserController extends BaseController {
 			} else {
 				$correctAnswer = $question->getCorrect() ;
 				$correctArr = explode("," , $correctAnswer . ",") ;
+                if ( $answer > 0 && $answer < 6 ) {
+                    for ( $i=0 ; $i< count($correctArr) ; $i++) {
+                        if ( intval( $correctArr[$i]) == $answer ){
+                            $point = 1 ;
+                        }
+                    }
+                }
 
-				for ( $i=0 ; $i< count($correctArr) ; $i++) {
-					if ( intval( $correctArr[$i]) == $answer ){
-						$point = 1 ;
-					}
-				}
 
 				$subpoint = round( rand(0,4), 0)  ;
 			}
 
 			$userlog =  $this->userRepository->insertAnswer(
 																$this->pid , $this->settings['feUserUid'] ,
-																$question , $point, $subpoint, $answer );
+																$question , $point, $subpoint, $answer , $this->settings['year']  );
 
 			if ( $userlog['TO-OLD'] > 0) {
 				$this->addFlashMessage( "Ihre Antwort wurde NICHT gespeichert da eine Änderung max innerhalb von 24h möglich ist! Gültig bleibt die bereits abgegebene Antwort vom " . date( "d.m.Y h:i" , $userlog["TO-OLD" ]) , '' , \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
@@ -147,7 +150,7 @@ class UserController extends BaseController {
 
 					$this->addFlashMessage($this->translate('addanswer.WasSent'));
 				} else {
-					$this->addFlashMessage('addanswer.WasNotStored: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question->getPid() , '' , \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
+					$this->addFlashMessage('addanswer.WasNotStored: errorcode: U:' . $this->settings['feUserUid'] . "-A:" .  $answer . "-Q:" . $question->getPid() . "-R:" . $rangeanswer , '' , \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
 				}
 			}
 

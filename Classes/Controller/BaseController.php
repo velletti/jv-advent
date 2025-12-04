@@ -125,7 +125,7 @@ class BaseController extends ActionController {
             $end = $this->settings['endDate'] ?? '2025-12-31 23:59:59' ;
             $endDate = new \DateTime($end) ;
 			$this->settings['startDateTimeStamp'] = $startDate->getTimestamp()  ;
-			$this->settings['year'] = date( "Y" , $startDate->getTimestamp() ) ;
+			$this->settings['year'] = ($this->settings['year'] ??  date( "Y" , $startDate->getTimestamp() )) ;
 			$this->settings['endDateTimeStamp']   = $endDate->getTimestamp()  ;
 
 			if ( $this->settings['endDateTimeStamp']  < time() ) {

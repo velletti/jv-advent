@@ -37,10 +37,17 @@
 <f:link.action action="answer" class="hide" id="tx_jvadvent_rangeUrl" controller="User" pageUid="{mypid}" arguments="{adventscat: adventscat, question: question.uid, answer:  adddate: adddate}">
 </f:link.action>
 										
-<script type="text/javascript">
+<f:asset.script identifier="jvadvent-range-script">
 	function tx_advent_range() {
-		var url = "https://" + window.location.hostname + "/" + jQuery("#tx_jvadvent_rangeUrl").attr("href");
-		url = url +  "&tx_jvadvent_calendar[rangeanswer]=" + jQuery("#tx_jvadvent_rangeanswer").val();
+		let url =  jQuery("#tx_jvadvent_rangeUrl").attr("href");
+		if ( url.indexOf('http') < 0 ) {
+			if ( url.indexOf('/') == 0 ) {
+				url= window.location.protocol  + "//" + window.location.hostname +  url ;
+			} else {
+				url= window.location.protocol  + "//" + window.location.hostname + "/" + url ;
+			}
+		}
+		url = url +  "&tx_jvadvent_user[rangeanswer]=" + jQuery("#tx_jvadvent_rangeanswer").val();
 		window.location.href = (url);
 
 	}
@@ -52,11 +59,10 @@
 
 
 	};
+</f:asset.script>
 
 
 
 
-</script>
-								
 								
 								

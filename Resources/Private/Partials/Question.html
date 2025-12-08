@@ -82,7 +82,12 @@
 													<h3><f:translate key="hintoftheday">Tipp des Tages</f:translate> {settings.todayformated} </h3>
 													<div>
 														<f:format.html>{question.descShort}</f:format.html>
+														<f:if condition="{isOrganisator} || {isTester}">
+															<hr />
+															<p>You are Organizer or in Tester Group</p>
+														</f:if>
 													</div>
+
 												</div>
 											</f:then>
 											<f:else>

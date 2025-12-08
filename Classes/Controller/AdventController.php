@@ -91,37 +91,36 @@ class AdventController extends BaseController {
 			$adddate = (  $this->settings['maxDays'] ?? 24 )  -1   ;
 		}
 
-		// 7.10.2014 j.v. : rückwirkendes / Beantworten auch für Nicht Nemetschek MA
-		$month = date("m" ,  $this->settings['startDateTimeStamp'] ?? 12  ) ;
-
-
 		$this->settings['showtip']   =  FALSE ;
+
+        $year = ($this->settings['year'] ?? date("Y" , $this->settings['startDateTimeStamp']));
+        $month = date("m" ,  $this->settings['startDateTimeStamp'] ?? 12  ) ;
+        $day =  date("d"  );
+        $this->settings['today']   = mktime( 0,0,0, $month , $day , $year  ) ;
+
+
+        if ( $this->isTester || $this->isOrganisator || $adddate <= ($day + $this->settings['maxDaysInFuture']) ) {
+            $day = $adddate +1 ;
+        }
+
+        $this->settings['today']   = mktime( 0,0,0, $month , $day , $year  ) ;
+        if ( date("d" , $this->settings['today'] ) ==  date("d") ) {
+            $this->settings['showtip']   =  TRUE  ;
+        }
 		if ( $this->isTester || $this->isOrganisator ) {
-            $day = $adddate + date("d" ,$this->settings['startDateTimeStamp'] ) ;
-            $year = date("Y" ,$this->settings['startDateTimeStamp']);
             $this->settings['debug'] = "Tester/Organisator Mode: Setting today to $day.$month.$year" ;
-			$this->settings['today']   = mktime( 0,0,0, $month , $day , $year  ) ;
 			$this->settings['showtip']   =  TRUE  ;
-		} else {
-			$this->settings['today']   =  mktime( 0,0,0, $month , date("d" ) ,date("Y" )  ) ;
-			if ($month == date("m" ) ) {
-				$this->settings['today']   = mktime( 0,0,0, $month ,$adddate + date("d" ,$this->settings['startDateTimeStamp'] ) ,date("Y" ,$this->settings['startDateTimeStamp'])  ) ;
-				// is today Bigger than allowed days in Front? then reset to Today !
-				if ( intval( date("d" , $this->settings['today'] ) ) >=  intval( date("d")) + ( $this->settings['maxDaysInFuture'] ) ) {
-					$this->settings['today']   =  mktime( 0,0,0, $month , date("d" ) ,date("Y" )  ) ;
-				}
-				if ( date("d" , $this->settings['today'] ) ==  date("d") ) {
-					$this->settings['showtip']   =  TRUE  ;
-				}
-			}
 		}
 
 		// 11.10.2011 :
 		//  $this->settings['today']   =  1318284000 ;
 		$this->settings['todayformated']   =  date( "d.m.Y" , $this->settings['today'] ) ;
         $question =  $this->adventRepository->findOneByFilter( $this->settings['today'] );
-        $answers =  $this->userRepository->findMyanswers( $this->settings['year'] , $this->settings['feUserUid'] );
+        $answers =  $this->userRepository->findMyanswers( $year , $this->settings['feUserUid'] );
+
         $this->view->assign('answers', $answers);
+
+        // hide AGB if at least one question is answered via css classes
         $this->settings['hideAgb'] = " " ;
         $this->settings['hideQuestion'] = " hide" ;
         if ( is_array( $answers ) && count($answers) > 0 ) {

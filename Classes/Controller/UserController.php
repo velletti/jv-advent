@@ -97,7 +97,8 @@ class UserController extends BaseController {
 			$answer = $rangeanswer ;
 		}
 
-		if ( $answer > 0  OR $rangeanswer > 0 OR $question > 0 )  {
+		if ( $answer > 0  || $rangeanswer > 0 || $question > 0 )  {
+            /* @var ?\Jvelletti\JvAdvent\Domain\Model\Advent $question */
             $question =  $this->adventRepository->findOneByFilter( 0 , $question );
 		}
 
@@ -112,10 +113,15 @@ class UserController extends BaseController {
 				// ToDO hierher die berechnung für die suppoints ... das sind die werte
                 // beispiel Range min = 100
 
-				if ( $rangeanswer > $question->getCorrect()  ) {
-					$subpoint = (1 - ( $rangeanswer - $question->getCorrect()) / ( $question->getRangemax() - $question->getCorrect() )) *99999 ;
+                // Field "correct" Normally return a string to allow more than one answer correct. in case of RANGE it mus be converted to a number
+                // to have a correct answer to a Question and a range between min and max, correct has f.e. 3,234234
+                $correctAnswer = $question->getCorrect() ;
+                $correctArr = explode("," , $correctAnswer . ",") ;
+                $correctAnswer = intval(array_pop($correctArr)) ;
+				if ( $rangeanswer > (int)$question->getCorrect()  ) {
+					$subpoint = (1 - ( $rangeanswer - $correctAnswer) / ( $question->getRangemax() - $correctAnswer )) *99999 ;
 				} else {
-					$subpoint = (1 - (  $question->getCorrect()- $rangeanswer ) / (  $question->getCorrect() - $question->getRangemin() )) *99999 ;
+					$subpoint = (1 - (  $correctAnswer- $rangeanswer ) / (  $correctAnswer - $question->getRangemin() )) *99999 ;
 				}
 				if ( $subpoint > 99999 ) {
 					$subpoint = 99999 ;

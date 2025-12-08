@@ -596,28 +596,28 @@ class Advent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param int $rangemax
 	 */
 	public function setRangemax($rangemax): void {
-		$this->rangemax = $rangemax;
+		$this->rangemax = (int)$rangemax;
 	}
 
 	/**
 	 * @return int
 	 */
 	public function getRangemax() {
-		return $this->rangemax;
+		return (int)$this->rangemax;
 	}
 
 	/**
 	 * @param int $rangemin
 	 */
 	public function setRangemin($rangemin): void {
-		$this->rangemin = $rangemin;
+		$this->rangemin = (int)rangemin;
 	}
 
 	/**
 	 * @return int
 	 */
 	public function getRangemin() {
-		return $this->rangemin;
+		return (int)$this->rangemin;
 	}
 	
 }

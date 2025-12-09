@@ -30,9 +30,9 @@ CREATE TABLE tx_jvadvent_domain_model_advent (
 	answer2 text,
 	answer3 text,
 	answer4 text,
-	answer5 text, 
+	answer5 text,
 	storeonpid int(11) unsigned DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -44,18 +44,18 @@ CREATE TABLE tx_jvadvent_domain_model_user (
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	question_date int(11) DEFAULT '0' NOT NULL,
 	question_datef varchar(10) DEFAULT '01.01.1970' NOT NULL,
-	
+
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	usergroup tinytext ,
 	customerno varchar(50) DEFAULT '' NOT NULL,
-	
+
 	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	advent_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	question_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	answer_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	points int(11) unsigned DEFAULT '0' NOT NULL,
 	subpoints int(11) unsigned DEFAULT '0' NOT NULL,
-	
+
 	feuser_uid int(11) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
@@ -80,8 +80,16 @@ CREATE TABLE tx_jvadvent_domain_model_winner (
 	desc_short text NOT NULL,
 	feuser_uid int(11) unsigned DEFAULT '0' NOT NULL,
 	points int(11) unsigned DEFAULT '0' NOT NULL,
+	count int(11) unsigned DEFAULT '0' NOT NULL,
+    subpoints int(11) unsigned DEFAULT '0' NOT NULL,
+    usergroup tinytext ,
+    customerno varchar(50) DEFAULT '' NOT NULL,
+    email varchar(80) DEFAULT '' NOT NULL,
+
+    advent_uid int(11) unsigned DEFAULT '0' NOT NULL,
+
 	sorting tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );

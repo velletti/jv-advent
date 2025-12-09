@@ -1,5 +1,8 @@
 <?php
 namespace Jvelletti\JvAdvent\Domain\Repository ;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
+
 /***************************************************************
 *  Copyright notice
 *
@@ -32,22 +35,43 @@ class WinnerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return array $winners
 	 *
 	 */
-	public function getWinnerlist( $pid =0) {
+	public function getWinnerlist( $year = 0 , $limit = 20) {
 		$query = $this->createQuery();
-		$querystring = 'SELECT * from tx_jvadvent_domain_model_winner p ' .
-	//					'LEFT JOIN fe_users AS u ON u.uid = p.feuser_uid ' .
-						'where p.pid="' .$pid .'" '.
-						'  and p.deleted="0" and p.hidden="0" and p.sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid .
-						' order by p.points DESC, p.date DESC, p.sorting ASC'
-						;
-	//	echo $querystring ;
-				$return = $query->statement( $querystring )->execute()->toArray() ;
-		// $return = $query->matching($query->equals('pid', $pid))->execute();
-
-		return $return;
+        $query->matching(
+            $query->equals('advent_uid', $year)
+        );
+        $query->setLimit($limit);
+		return $query->execute();
 	}
 
+    public function getWinnerByUserAndYear( $userUid, $year) {
+        $query = $this->createQuery();
 
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals('feuser_uid', $userUid),
+                $query->equals('advent_uid', $year)
+            )
+        );
+        // $this->debug($query) ;
+
+        return $query->execute()->getFirst();
+    }
+    private function debug($query): void  {
+
+        $queryParser = GeneralUtility::makeinstance(Typo3DbQueryParser::class);
+
+        $select = $queryParser->convertQueryToDoctrineQueryBuilder($query)->getSQL() ;
+        $params = ($queryParser->convertQueryToDoctrineQueryBuilder($query)->getParameters());
+        $params = array_reverse($params) ;
+        foreach ($params  as $index => $param) {
+            if( is_string( $param)) {
+                $param = "'" . $param . "'" ;
+            }
+            $select = str_replace( ":" . $index , $param ,  $select)  ;
+        }
+        echo $select;
+        die;
+    }
 	
 }
-?>

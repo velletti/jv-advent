@@ -35,14 +35,6 @@ class Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 
 	/**
-	 * @var DateTime
-	 */
-	protected $crdate;
-	/**
-	 * @var integer
-	 */
-	protected $date;
-	/**
 	 * @var integer
 	 */
 	protected $hidden;
@@ -55,7 +47,14 @@ class Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $descLong;
 
-	/**
+
+    /**
+     * @var integer
+     */
+    protected $count;
+
+
+    /**
 	 * @var integer
 	 */
 	protected $points;
@@ -65,6 +64,10 @@ class Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $subpoints;
 
+    /**
+     * @var integer
+     */
+    protected $adventUid;
 	/**
 	 * FeUser
 	 *
@@ -72,13 +75,22 @@ class Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $feuserUid;
 
-	/**
-	 * pointtotal
-	 *
-	 * @var integer
-	 */
-	protected $pointtotal ;
-	
+    /**
+     * @var string
+     */
+    protected $customerno;
+
+
+    /**
+     * @var string
+     */
+    protected $usergroup;
+
+
+    /**
+     * @var string
+     */
+    protected $email;
 
 	/**
 	 * Constructor. Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
@@ -105,23 +117,6 @@ class Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		return $this->descShort;
 	}
 
-
-	/**
-	 * Getter for crdate
-	 *
-	 * @return string descLong
-	 */
-	public function getCrdate(){
-		return $this->crdate;
-	}
-	/**
-	 * Getter for date
-	 *
-	 * @return integer date
-	 */
-	public function getDate(){
-		return $this->date;
-	}
 	/**
 	 * Getter for hidden
 	 *
@@ -149,6 +144,38 @@ class Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function getFeuserUid() {
 		return $this->feuserUid;
 	}
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+
+    public function setHidden(int $hidden): void
+    {
+        $this->hidden = $hidden;
+    }
+
+    public function setDescShort(string $descShort): void
+    {
+        $this->descShort = $descShort;
+    }
+
+    public function setPoints(int $points): void
+    {
+        $this->points = $points;
+    }
+
+    public function setSubpoints(int $subpoints): void
+    {
+        $this->subpoints = $subpoints;
+    }
+
+    public function setFeuserUid(int $feuserUid): void
+    {
+        $this->feuserUid = $feuserUid;
+    }
+
 	/**
 	 * Getter for points
 	 *
@@ -164,18 +191,74 @@ class Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function getSubpoints() {
 		return $this->subpoints;
-	}		
-	/**
-	 * Getter for pointtotal
-	 *
-	 * @return integer $pointtotal
-	 */
-	public function getPointtotal() {
-		return $this->pointtotal;
-	}		
-	
-	
-	
-}
+	}
 
-?>
+    public function getCount(): int
+    {
+        return $this->count;
+    }
+
+    public function setCount(int $count): void
+    {
+        $this->count = $count;
+    }
+
+
+
+    public function getDescLong(): string
+    {
+        return $this->descLong;
+    }
+
+    public function setDescLong(string $descLong): void
+    {
+        $this->descLong = $descLong;
+    }
+
+    public function getAdventUid(): int
+    {
+        return $this->adventUid;
+    }
+
+    public function setAdventUid(int $adventUid): void
+    {
+        $this->adventUid = $adventUid;
+    }
+
+    public function getCustomerno(): string
+    {
+        return ($this->customerno ?? '' );
+    }
+
+    public function setCustomerno(?string $customerno): void
+    {
+        $this->customerno = ($customerno ?? '' );
+    }
+
+    public function getUsergroup(): string
+    {
+        return $this->usergroup;
+    }
+
+    public function setUsergroup(string $usergroup): void
+    {
+        $this->usergroup = $usergroup;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function setLanguage(?int $language): void
+    {
+        $this->_languageUid = (int)$language;
+    }
+
+
+}

@@ -14,6 +14,7 @@ return array (
     'columns' => array (
         'feuser_uid' => array (
             'exclude' => 0,
+            'exclude' => 0,
             'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.feuser_uid',
             'config' => array (
                 'type' => 'input',

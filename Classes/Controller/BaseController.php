@@ -101,11 +101,15 @@ class BaseController extends ActionController
         $this->isOrganisator = false;
 
         $this->settings['feUserUid'] = 0;
+        $this->settings['email'] = '';
         $this->settings['testerGroup'] = intval($this->settings['testerGroup']) ?? 0;
         $this->settings['organizerGroup'] = intval($this->settings['organizerGroup']) ?? 0;
 
         if (!empty($GLOBALS['TSFE']->fe_user->user['uid'])) {
             $this->settings['feUserUid'] = $GLOBALS['TSFE']->fe_user->user['uid'];
+            $this->settings['customerno'] =   ($GLOBALS['TSFE']->fe_user->user['tx_nem_cnum'] ?? '');
+            $this->settings['usergroup'] =   ($GLOBALS['TSFE']->fe_user->user['usergroup'] ?? '');
+            $this->settings['email'] = ($GLOBALS['TSFE']->fe_user->user['email'] ?? '' ) ;
             $groups = GeneralUtility::trimExplode(',', $GLOBALS['TSFE']->fe_user->user['usergroup'], true);
 
             if (in_array($this->settings['testerGroup'], $groups)) {

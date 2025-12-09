@@ -100,6 +100,15 @@ return array (
                 'required' => true,
             )
         ),
+        'advent_uid' => array (
+            'exclude' => 0,
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.advent_uid',
+            'config' => array (
+                'type' => 'input',
+                'size' => 11,
+                'maxitem' => 1,
+            )
+        ),
         'points' => array (
             'exclude' => 0,
             'label'   => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.points',
@@ -107,14 +116,53 @@ return array (
                 'type' => 'input',
                 'size' => 11,
                 'eval' => 'integer,trim',
-                'maxitem' => 1,
+            )
+        ),
+        'subpoints' => array (
+            'exclude' => 0,
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.subpoints',
+            'config' => array (
+                'type' => 'input',
+                'size' => 11,
+            )
+        ),
+        'count' => array (
+            'exclude' => 0,
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Winner.count',
+            'config' => array (
+                'type' => 'input',
+                'size' => 11,
+            )
+        ),
+        'usergroup' => array (
+            'exclude' => 0,
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.usergroup',
+            'config' => array (
+                'type' => 'input',
+                'size' => 40,
+            )
+        ),
+        'customerno' => array (
+            'exclude' => 0,
+            'label' => 'LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_User.customerno',
+            'config' => array (
+                'type' => 'input',
+                'size' => 20,
+            )
+        ),
+        'email' => array (
+            'exclude' => 0,
+            'label' => 'Email',
+            'config' => array (
+                'type' => 'input',
+                'size' => 80,
             )
         ),
 
 
     ),
     'types' => array(
-        '1' => array('showitem' => 'hidden, date, sys_language_uid,title, desc_short,feuser_uid,sorting,points')
+        '1' => array('showitem' => 'hidden, date, sys_language_uid,title, desc_short,feuser_uid,sorting,points,subpoints,count,advent_uid,customerno,usergroup,email')
     ),
     'palettes' => array(
         '1' => array('showitem' => '')

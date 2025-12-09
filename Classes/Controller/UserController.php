@@ -2,6 +2,8 @@
 namespace Jvelletti\JvAdvent\Controller;
 
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /* * *************************************************************
  *  Copyright notice
  *
@@ -116,12 +118,29 @@ class UserController extends BaseController {
                 // Field "correct" Normally return a string to allow more than one answer correct. in case of RANGE it mus be converted to a number
                 // to have a correct answer to a Question and a range between min and max, correct has f.e. 3,234234
                 $correctAnswer = $question->getCorrect() ;
-                $correctArr = explode("," , $correctAnswer . ",") ;
+                $correctArr = explode("," , $correctAnswer ) ;
                 $correctAnswer = intval(array_pop($correctArr)) ;
 				if ( $rangeanswer > (int)$question->getCorrect()  ) {
-					$subpoint = (1 - ( $rangeanswer - $correctAnswer) / ( $question->getRangemax() - $correctAnswer )) *99999 ;
+                    /*
+                    echo "Antwort is Größer<hr>";
+                    echo '$subpoint = (1 - ( $rangeanswer - $correctAnswer) / ( $question->getRangemax() - $correctAnswer )) *99999 ';
+                    echo "<hr>";
+                    echo "subpoint = (1 - ( $rangeanswer - $correctAnswer) / ( $question->getRangemax() - $correctAnswer )) *99999 ";
+                    echo "<hr>";
+                    */
+                    $subpoint = (1 - ( $rangeanswer - $correctAnswer) / ( $question->getRangemax() - $correctAnswer )) *99999 ;
+                    // echo '$subpoint = ' . $subpoint ;
 				} else {
-					$subpoint = (1 - (  $correctAnswer- $rangeanswer ) / (  $correctAnswer - $question->getRangemin() )) *99999 ;
+                    /*
+                    echo "Antwort is Kleiner<hr>";
+                    echo '$subpoint = (1 - (  $correctAnswer- $rangeanswer ) / (  $correctAnswer - $question->getRangemin() )) *99999  ';
+                    echo "<hr>";
+                    echo "$subpoint = (1 - (  $correctAnswer- $rangeanswer ) / (  $correctAnswer - $question->getRangemin() )) *99999 ";
+                    echo "<hr>";
+                    */
+                    $subpoint = (1 - (  $correctAnswer- $rangeanswer ) / (  $correctAnswer - $question->getRangemin() )) *99999 ;
+
+                    // echo '$subpoint = ' . $subpoint ;
 				}
 				if ( $subpoint > 99999 ) {
 					$subpoint = 99999 ;
@@ -140,9 +159,11 @@ class UserController extends BaseController {
                         }
                     }
                 }
-
-
-				$subpoint = round( rand(0,4), 0)  ;
+				$subpoint = round( rand(1,4), 0)  ;
+                if( $this->settings['today'] == mktime(0,0,0, date("m" ) ,date("d" ) ,date("Y" )  ) ) {
+                    // today is the question day ... give some more subpoints
+                    $subpoint = $subpoint + 1 ;
+                }
 			}
 
 			$userlog =  $this->userRepository->insertAnswer(
@@ -211,33 +232,68 @@ class UserController extends BaseController {
 					} else {
 						$answerlist[$i]['points'] = 0 ;
 					}
-					
+
+
+                    $this->settings['subtotalint'] = intval( $this->settings['subtotalint'] + $this->answers[$i]->getSubpoints() )  ;
+                    $this->settings['total'] = intval( $this->settings['total'] + $answerlist[$i]['points']) ;
+
 					if ( $this->settings['afterenddate'] ) {
 						$answerlist[$i]['showpoint'] = $answerlist[$i]['points'] ;
-						$this->settings['subtotal'] = intval( $this->settings['subtotal'] + $this->answers[$i]->getSubpoints() )  ;
 
+						$this->settings['showtotal'] = 1 ;
                         $answerlist[$i]['subpoints'] = intval ( $this->answers[$i]->getSubpoints()  / 100 ) ;
                         if ( $answerlist[$i]['subpoints'] > 0 ) {
                             $answerlist[$i]['subpoints'] = "," . substr( "000" . trim( intval( $this->answers[$i]->getSubpoints() /100)) , -3 , 3 )  ;
                         }
-						$this->settings['total'] = intval( $this->settings['total'] + $answerlist[$i]['points']) ;
-						$this->settings['showtotal'] = 1 ;
 					}
 
 				}
-				
+
+
+                $this->settings['subtotal'] =   $this->settings['subtotalint'] / 100  ;  ;
+                if ( $this->settings['subtotal'] > 1000 ) {
+                    $this->settings['subtotal'] = $this->settings['subtotal'] - 1000 ;
+                    $this->settings['total'] = $this->settings['total'] + 1 ;
+                }
+
+                $this->settings['subtotal'] = "," . trim( substr( "000" . (string)$this->settings['subtotal']  , -3 , 3 )) ;
+                /* @var ?\Jvelletti\JvAdvent\Domain\Model\Winner $winnerRow */
+                $winnerRow = $this->winnerRepository->getWinnerByUserAndYear( $this->settings['feUserUid'] , $this->settings['year'] ) ;
+                if (  $winnerRow  ) {
+
+
+                    $winnerRow->setEmail($this->settings['email']);
+                    $winnerRow->setCustomerno($this->settings['customerno']);
+                    $winnerRow->setUsergroup($this->settings['usergroup']);
+                    $winnerRow->setPoints( $this->settings['total'] ) ;
+                    $winnerRow->setSubpoints( $this->settings['subtotalint'] ) ;
+                    $winnerRow->setCount( count($this->answers)  ) ;
+
+                    $this->winnerRepository->update($winnerRow);
+                } else {
+
+                    $winnerRow = GeneralUtility::makeInstance(\Jvelletti\JvAdvent\Domain\Model\Winner::class) ;
+                    $winnerRow->setFeuserUid( $this->settings['feUserUid'] ) ;
+                    $winnerRow->setLanguage( -1 ) ;
+                    $winnerRow->setAdventUid($this->settings['year']);
+
+                    $winnerRow->setEmail($this->settings['email']);
+                    $winnerRow->setCustomerno($this->settings['customerno']);
+                    $winnerRow->setUsergroup($this->settings['usergroup']);
+                    $winnerRow->setPoints( $this->settings['total'] ) ;
+                    $winnerRow->setCount( count($this->answers) ) ;
+                    $winnerRow->setSubpoints( $this->settings['subtotalint'] ) ;
+                    $this->winnerRepository->add($winnerRow);
+                }
 			}
-            $this->settings['subtotal'] = intval( $this->settings['subtotal'] / 100 ) ;
-			if ( $this->settings['subtotal'] > 1000 ) {
-                $this->settings['subtotal'] = $this->settings['subtotal'] - 1000 ;
-                $this->settings['total'] = $this->settings['total'] + 1 ;
-            }
-            $this->settings['subtotal'] = "," . trim( substr( "000" . $this->settings['subtotal']  , -3 , 3 )) ;
+
 			$this->settings['nowMinus24h'] = mktime( (date("h") -24) , date("i") , 0 , date("m"), date("d") , date("Y")) ;
 
 			$this->settings['count'] = count($this->answers) ;
 			$this->view->assign('settings', $this->settings);
 			$this->view->assign('answerlist', $answerlist );
+
+
 		}
         return $this->htmlResponse();
 	}

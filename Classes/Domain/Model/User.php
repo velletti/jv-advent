@@ -69,7 +69,21 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var integer
 	 */
 	protected $points;
-	
+
+	/**
+	 * @var string
+	 */
+	protected $customerno;
+
+
+	/**
+	 * @var string
+	 */
+	protected $usergroup;
+
+
+
+
 	/**
 	 * @var integer
 	 */
@@ -82,13 +96,6 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $feuserUid;
 
-	/**
-  * The advents of this category
-  *
-  * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Jvelletti\JvAdvent\Domain\Model\Advent>
-  */
- #[\TYPO3\CMS\Extbase\Annotation\ORM\Lazy]
- protected $advents;
 
 	/**
 	 * Constructor. Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage instances.
@@ -218,6 +225,29 @@ class User extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setTstamp($tstamp): void {
 		$this->tstamp = $tstamp;
 	}
+
+	public function getCustomerno(): string
+	{
+		return $this->customerno;
+	}
+
+	public function setCustomerno(string $customerno): void
+	{
+		$this->customerno = $customerno;
+	}
+
+	public function getUsergroup(): string
+	{
+		return $this->usergroup;
+	}
+
+	public function setUsergroup(string $usergroup): void
+	{
+		$this->usergroup = $usergroup;
+	}
+
+
+
 
 
 

@@ -2,6 +2,7 @@
 
 namespace Jvelletti\JvAdvent\Controller;
 
+use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Jvelletti\JvAdvent\Domain\Repository\WinnerRepository;
 use Jvelletti\JvAdvent\Domain\Repository\AdventRepository;
@@ -157,13 +158,24 @@ class BaseController extends ActionController
         if ($this->isOrganisator == true) {
             $this->view->assign('mypid', $this->settings['list']['pid']['myanswersView']);
         }
-        $this->settings['sys_language_uid'] = $this->context->getPropertyFromAspect('language', 'id');
+
+        $this->settings['sys_language_uid'] = $this->getSysLanguageUid() ;
 
         $count = date("d", mktime(0, 0, 0, date("m", $this->settings['startDateTimeStamp']), date("d"), date("Y", $this->settings['startDateTimeStamp'])));
         $count = min($count, 24);
         $this->view->assign('adventCounter', $count);
 
         return true;
+    }
+
+    public function getSysLanguageUid() {
+        /** @var LanguageAspect $languageAspect */
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language') ;
+        // (previously known as TSFE->sys_language_uid)
+        if (GeneralUtility::_GP("L") && intval(GeneralUtility::_GP("L") > 0)) {
+            return intval(GeneralUtility::_GP("L"));
+        }
+        return $languageAspect->getId() ;
     }
 
 

@@ -53,71 +53,20 @@ class WinnerController extends BaseController {
 	 */
 	public function listAction( ): \Psr\Http\Message\ResponseInterface {
 		//default values
-		$doit = $this->settingsHelper( ) ;
-		$winnerspid = ($this->settings['list']['pid']['winners'] == '' ) ? $this->pid : $this->settings['list']['pid']['winners'] ;
+		$this->settingsHelper( ) ;
 
-		$winners =  $this->winnerRepository->getWinnerlist($winnerspid);
+		$winners =  $this->winnerRepository->getWinnerlist($this->settings['year'], (int)($this->settings['winnerPerPageCount'] ?? 20) ) ;
 
-		// count advents
-		$count = count($winners);
-		$winnerdata = array() ;
-		for ( $i=0;$i< $count;$i++) {
-			// echo "" . $winners[$i]->getFeuserUid() ;
-			if ( $winners[$i]->getFeuserUid() > 0 ) {
-				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'fe_users', 'uid = "' . intval($winners[$i]->getFeuserUid()). '"' );
-				$winnerdata[$i]['user'] = '' ;
-				if ($GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
-					$winnerdata[$i]['user'] = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
-					// j.v. 2015 Todo anpassen AN MMfORUM 2.0
-					$resPosts = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(uid) as count',
-						'tx_mmforum_posts',
-						'poster_id = "' . intval($winners[$i]->getFeuserUid()). '"'
-					     . " AND crdate > " . ( time() - (60*60*24*365) )  );
-
-					if ($GLOBALS['TYPO3_DB']->sql_num_rows($resPosts) > 0) {
-						$count = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
-						$winnerdata[$i]['user']['forumcount'] = $count['count'];
-					}
-				} 
-
-				if( $winnerdata[$i]['user']['tx_nem_gender'] == "0" ) {
-					$winnerdata[$i]['user']['tx_mmforum_avatar'] = "typo3conf/ext/connect_template/Resources/Public/Images/avatars/avatar-man.png" ;
-				} else {
-					$winnerdata[$i]['user']['tx_mmforum_avatar'] = "typo3conf/ext/connect_template/Resources/Public/Images/avatars/avatar-woman.png" ;
-
-				}
-				if ( $this->settings['afterenddate'] ||  $this->isOrganisator ) {
-
-                    $imageDirectoryName = 'uploads/tx_feusers_img/'  ;
-                    $subPath = substr( "0000" . intval( round(  $winnerdata[$i]['uid'] / 1000 , 0 )) , -4 , 4 )  ;
-                    $imageFilename = rtrim($imageDirectoryName, '/') . '/' . $subPath . '/'. $winnerdata[$i]['tx_nem_image'] ;
-                    if( file_exists($imageFilename) ) {
-                        $winnerdata[$i]['user']['tx_mmforum_avatar'] = $imageFilename ;
-
-                    } else {
-                        $gender = 'neutral' ;
-                        $winnerdata[$i]['user']['tx_mmforum_avatar'] = 'typo3conf/ext/connect_template/Resources/Public/Images/avatars/avatar-' . $gender . '.png' ;
-                    }
+		$this->view->assign('winners', $winners);
 
 
-				}
-
-				//debug($winners[$i] );
-				$winnerdata[$i]['prize'] =  $winners[$i] ;
-				$winnerdata[$i]['user']['dateformated'] =  date( "d.m.Y" ,$winners[$i]->getDate()  );
-
-			}
-		}
-	//	debug($winnerdata) ;
-		$this->view->assign('winnerdata', $winnerdata);
-
-
-		$this->view->assign('count', $count);
+		$this->view->assign('count', $winners->count() );
 		if ( $this->settings['afterenddate'] ) {
 			$this->settings['showtotal'] = 1 ;
 		}
 		$this->view->assign('settings', $this->settings);
-  return $this->htmlResponse();
+		$this->view->assign('isOrganizer', $this->isOrganisator);
+        return $this->htmlResponse();
 	}
 
 

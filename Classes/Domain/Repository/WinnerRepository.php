@@ -37,10 +37,14 @@ class WinnerRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function getWinnerlist( $year = 0 , $limit = 20) {
 		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectSysLanguage(false);
         $query->matching(
             $query->equals('advent_uid', $year)
         );
         $query->setLimit($limit);
+        $query->setOrderings(['points' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING ,
+                             'subpoints' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
+                            ]);
 		return $query->execute();
 	}
 

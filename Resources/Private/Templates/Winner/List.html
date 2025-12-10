@@ -1,52 +1,39 @@
-﻿<f:if condition="{winnerdata}">
+﻿<f:if condition="{winners}">
 	<f:then>
 		<div class="tx_jvadvent_calendar">
-				<f:for each="{winnerdata}" as="winner">
-					<f:if condition="{winner.prize.title}">
-						<f:then>
-							<span class="left width340">
-								<span class="left width99">
-									<f:link.external uri="/user/{winner.user.username}" defaultScheme="">
-										<f:image title="{winner.user.username}" id="user{winner.user.uid}" alt="user" height="120c" width="80c" src="{winner.user.tx_mmforum_avatar}"/>
-									</f:link.external>
-								</span>
-								<span class="left width170">
-									<h3>{winner.user.username}</h3>
-									<div class="tx_jvadvent_calendar_prize">{winner.prize.title}</div>
-									{winner.prize.descShort}<br/>
-								</span>
-								
-								<f:if condition="{winner.prize.points} > 0">
-									<f:then>
-										<span class="left width99">
-											&nbsp;
-											{winner.prize.points} <f:translate key="tx_jvadvent_domain_Model_Winner.points">Points</f:translate>
-										</span>
-									</f:then>
-									<f:else>
-										<f:if condition="{winner.user.dateformated}">
-											<span class="left width80">
-												&nbsp;
-												{winner.user.dateformated}<br/>
-											</span>	
-										</f:if>
-									</f:else>
-								</f:if>
-							</span>	
-						</f:then>
-						<f:else>
-							<span class="left width70">
-								<f:link.external uri="/user/{winner.user.username}">
-									<f:image title="{winner.user.username}" id="user{winner.user.uid}" alt="user" height="120c" width="80c" src="{winner.user.tx_mmforum_avatar}"/>
-								</f:link.external>
-							</span>
-						</f:else>
-					</f:if>
-				</f:for>		
+				<h2><f:translate key="tx_jvadvent_domain_model_winner.listofwinners">List of Winners</f:translate></h2>
+				<f:if condition="{settings.afterEnddate} || {isOrganizer}">
+					<f:then>
+						<div class="row ">
+							<f:for each="{winners}" as="winner">
+
+								<div class="col-xs-4 col-md-2 equalHeight">
+										user <br>Image<br> ...
+								</div>
+								<div class="col-xs-8  col-md-4 equalHeight bg-info rounded">
+									<f:if condition="{winner.subpoints} > 100000">
+										<f:then>
+											{winner.points +1},<f:format.padding padLength="5" padType="left" padString="0">{100000 -winner.subpoints}</f:format.padding>/ {winner.count} : {winner.feuserUid}
+										</f:then>
+										<f:else>
+											{winner.points},<f:format.padding padLength="5" padType="left" padString="0">{winner.subpoints}</f:format.padding> / {winner.count} : {winner.feuserUid}
+										</f:else>
+									</f:if>
+
+								</div>
+
+							</f:for>
+						</div>
+					</f:then>
+					<f:else>
+						<p><f:translate key="tx_jvadvent_domain_model_winner.winners_hidden">Winners are visible after the end date!</f:translate></p>
+					</f:else>
+				</f:if>
+
 		</div>
 
 	</f:then>
 	<f:else>
-		<p><f:translate key="no_questions">some definitions are missing</f:translate></p>
+		<p> no Winners found</p>
 	</f:else>
 </f:if>

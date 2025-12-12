@@ -89,6 +89,12 @@
 	margin-bottom: 16px;
 	background: #FFF;
 }
+#tx_jvadvent_output_input {
+	font-size:130%;
+	text-align: center;
+	width:120px;
+}
+
 
 div#tx_jvadvent_Wuerfel {
 	width: 40px;

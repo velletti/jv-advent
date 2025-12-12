@@ -12,8 +12,11 @@
 
 					<br>
 					<div class="col-xs-8">
-					<output id="tx_jvadvent_output" name="tx_jvadvent_amount" for="tx_jvadvent_rangeanswer">
-						<f:translate key="use_range">Zum beantworten, Schieberegler benutzen und Button anklicken</f:translate>! </output>
+						<output id="tx_jvadvent_output" name="tx_jvadvent_amount" for="tx_jvadvent_rangeanswer">
+							<f:translate key="use_range">Zum beantworten, Schieberegler benutzen und Button anklicken</f:translate>!
+						</output>
+						<input type="number" min="{question.rangemin}" max="{question.rangemax}" id="tx_jvadvent_output_input" value="0" onchange="tx_jvadvent_valueFromInput();" oninput="tx_jvadvent_valueFromInput();" class="form-input hide"  />
+
 					</div>
 					<div class="col-xs-4 text-right">
 					<a class="btn btn-primary" style="cursor: pointer;" onclick="tx_advent_range();return false;"> >> </a>
@@ -39,23 +42,27 @@
 										
 <f:asset.script identifier="jvadvent-range-script">
 	function tx_advent_range() {
-		let url =  jQuery("#tx_jvadvent_rangeUrl").attr("href");
-		if ( url.indexOf('http') < 0 ) {
+		let url =  jQuery('#tx_jvadvent_rangeUrl').attr('href');
+	    let result = jQuery('#tx_jvadvent_output_input').val() ;
+		if ( url.indexOf('http') < 0 && result > 0 ) {
 			if ( url.indexOf('/') == 0 ) {
 				url= window.location.protocol  + "//" + window.location.hostname +  url ;
 			} else {
 				url= window.location.protocol  + "//" + window.location.hostname + "/" + url ;
 			}
 		}
-		url = url +  "&tx_jvadvent_user[rangeanswer]=" + jQuery("#tx_jvadvent_rangeanswer").val();
+		url = url +  "&tx_jvadvent_user[rangeanswer]=" + result;
 		window.location.href = (url);
 
 	}
+	function tx_jvadvent_valueFromInput() {
+		jQuery('#tx_jvadvent_rangeanswer').val(jQuery('#tx_jvadvent_output_input').val());
 
+	}
 	function tx_jvadvent_liveValue() {
-		var tx_jvadvent_Input_Zahl = jQuery("#tx_jvadvent_rangeanswer").val();
-		jQuery("#tx_jvadvent_output").html(tx_jvadvent_Input_Zahl);
-		jQuery("#tx_jvadvent_output").css("fontSize", "30px");
+		var tx_jvadvent_Input_Zahl = jQuery('#tx_jvadvent_rangeanswer').val();
+		jQuery('#tx_jvadvent_output').addClass('hide').html(tx_jvadvent_Input_Zahl);
+		jQuery('#tx_jvadvent_output_input').removeClass('hide').val(tx_jvadvent_Input_Zahl);
 
 
 	};

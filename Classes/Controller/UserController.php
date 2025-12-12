@@ -111,7 +111,11 @@ class UserController extends BaseController {
 			}
 			$point = 0 ;
 			$subpoint = 0 ;
-			if ( $rangeanswer > 0) {
+			if ( $rangeanswer >= $question->getRangemin()) {
+                if ( $rangeanswer > (int)$question->getRangemax() ) {
+                    $rangeanswer = (int)$question->getRangemax() ;
+                    $this->addFlashMessage('Range Answer NotValid: set to Max: ' . $question->getRangemax() ) ;
+                }
 				// ToDO hierher die berechnung für die suppoints ... das sind die werte
                 // beispiel Range min = 100
 

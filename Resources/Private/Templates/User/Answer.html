@@ -70,9 +70,12 @@
 						</f:if>
 					</div>
 					<div class="col-sm-2 col-xs-2">
-						<f:if condition="{settings.showtotal} > 0">
 
-							{answer.showpoint}<f:if condition="{answer.subpoints}">{answer.subpoints}</f:if>
+						<f:if condition="{settings.showSolutions}">
+							<f:if condition="{settings.showtotal} > 0">
+
+								{answer.showpoint}<f:if condition="{answer.subpoints}">{answer.subpoints}</f:if>
+							</f:if>
 						</f:if>
 					</div>
 
@@ -89,14 +92,14 @@
 </div>
 <div class="tx_jvadvent_calendar well well-primary">
 	<b>
-		<f:if condition="{settings.showtotal} > 0">
+		<f:if condition="{settings.showSolutions}">
 		<f:then>
 			<f:translate key="yourresult">Your result</f:translate>
 					: {settings.total}{settings.subtotal}  / {settings.count}
 		</f:then>
 		<f:else>
-			<f:translate key="result_visible_at">Result will be shown after</f:translate>
-					: {settings.endDate}
+			<f:translate key="result_visible_at">Result will be shown after</f:translate>:
+			<f:format.date format="d.m.Y H:i">{settings.showSolutionTimeStamp}</f:format.date> <br/>
 		</f:else>
 		</f:if>
 	</b>

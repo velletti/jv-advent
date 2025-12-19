@@ -275,7 +275,7 @@ class UserController extends BaseController {
 
                     $this->winnerRepository->update($winnerRow);
                 } else {
-
+                    /* @var ?\Jvelletti\JvAdvent\Domain\Model\Winner $winnerRow */
                     $winnerRow = GeneralUtility::makeInstance(\Jvelletti\JvAdvent\Domain\Model\Winner::class) ;
                     $winnerRow->setFeuserUid( $this->settings['feUserUid'] ) ;
                     $winnerRow->setLanguage( -1 ) ;

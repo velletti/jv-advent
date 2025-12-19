@@ -12,8 +12,8 @@
 					<f:if condition="{settings.afterenddate}">
 						<f:then>
 						<div style="display:block;"> 
-							<f:translate key="hasend">enddate: {settings.enddate}</f:translate>
-							<f:translate key="itisnow"> - Now it is : {settings.now} </f:translate>
+							<f:translate key="hasend">Enddate: </f:translate> <f:format.date format="d.m.Y H:i">{settings.endDateTimeStamp}</f:format.date>
+							<f:translate key="now" default="Jetzt ist es:"></f:translate> {settings.now} <br/>
 						</div>	
 						</f:then>	
 						<f:else>	

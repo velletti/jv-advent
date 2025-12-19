@@ -3,8 +3,8 @@
 	<f:if condition="{mypid}">
 		<f:then>
 			<span class=" col-xs-push-1  col-xs-2 col-md-1">
-				<f:link.action class="btn btn-default" action="answer" id="tx_jvadvent_answer_{thisanswername}" controller="User" pageUid="{mypid}" arguments="{question: question, answer: thisanswerno, adddate: adddate}">
-					- {thisanswername} -
+				<f:link.action class="btn btn-default rounded-circle tx_jvadvent-button" action="answer" id="tx_jvadvent_answer_{thisanswername}" controller="User" pageUid="{mypid}" arguments="{question: question, answer: thisanswerno, adddate: adddate}">
+					<span class="center"> - {thisanswername} -</span>
 				</f:link.action>
 			</span>
 			<span class="col-xs-push-1  col-xs-9 col-md-10">

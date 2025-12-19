@@ -127,6 +127,7 @@ class BaseController extends ActionController
 
         $this->settings['afterenddate'] = FALSE;
         $this->settings['beforestartdate'] = FALSE;
+        $this->settings['showSolutions'] = FALSE;
         $this->settings['today'] = mktime(0, 0, 0, date("m"), (date("d")), date("Y"));
 
         $start = $this->settings['startDate'] ?? '2025-12-01 09:00:00';
@@ -136,13 +137,17 @@ class BaseController extends ActionController
         $this->settings['startDateTimeStamp'] = $startDate->getTimestamp();
         $this->settings['year'] = ($this->settings['year'] ?? date("Y", $startDate->getTimestamp()));
         $this->settings['endDateTimeStamp'] = $endDate->getTimestamp();
+        $this->settings['showSolutionTimeStamp'] = $endDate->getTimestamp()  + (3600*24) ;
 
         if ($this->settings['endDateTimeStamp'] < time()) {
             $this->settings['afterenddate'] = TRUE;
             $this->view->assign('mypid', $this->settings['list']['pid']['myanswersView']);
+            if ($this->settings['showSolutionTimeStamp'] < time() ) {
+                $this->settings['showSolutions'] = TRUE;
+            }
         } else {
             if ($this->settings['startDateTimeStamp'] < time()) {
-                if ($this->settings['startDateTimeStamp'] < (time() - (60 * 60 * 24))) {
+                if ($this->settings['startDateTimeStamp'] < (time() - (3600 * 24))) {
                     $this->view->assign('yesterdayspid', $this->settings['list']['pid']['singleView']);
                 }
                 if (date("G") > date("G", $this->settings['startDateTimeStamp'])) {

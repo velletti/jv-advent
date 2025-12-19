@@ -138,7 +138,14 @@ div#tx_jvadvent_Wuerfel {
 	text-align: center;
 	color: #fff;
 }
-
+.tx_jvadvent-button {
+	aspect-ratio: 1;
+}
+.tx_jvadvent-button span{
+	margin-top: 50%;
+	line-height: 1;
+	display: inline-block;
+}
 
 
 /* /NEU */

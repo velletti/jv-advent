@@ -2,7 +2,7 @@
 	<f:then>
 		<div class="tx_jvadvent_calendar">
 				<h2><f:translate key="tx_jvadvent_domain_model_winner.listofwinners">List of Winners</f:translate></h2>
-				<f:if condition="{settings.afterEnddate} || {isOrganizer}">
+				<f:if condition="{settings.showSolutions} || {isOrganizer}">
 					<f:then>
 						<div class="row ">
 							<f:for each="{winners}" as="winner">
@@ -27,6 +27,7 @@
 					</f:then>
 					<f:else>
 						<p><f:translate key="tx_jvadvent_domain_model_winner.winners_hidden">Winners are visible after the end date!</f:translate></p>
+						<f:render partial="BeforeEnddate" arguments="{_all}"></f:render>
 					</f:else>
 				</f:if>
 

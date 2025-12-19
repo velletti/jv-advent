@@ -87,11 +87,20 @@
 
 						<div class="tx_jvadvent_answers">
 
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer1count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer2count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer3count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer4count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
-							<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer5count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+							<f:if condition="{question.rangemax} > 0">
+								<f:then>
+									{question.rangemin} -> {question.rangemax}
+									<br />
+								</f:then>
+								<f:else>
+									<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer1,thisanswerno: '1',thisanswername: '1', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer1count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+									<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer2,thisanswerno: '2',thisanswername: '2', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer2count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+									<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer3,thisanswerno: '3',thisanswername: '3', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer3count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+									<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer4,thisanswerno: '4',thisanswername: '4', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer4count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+									<f:render partial="AnswerInList" arguments="{thisanswertext: question.answer5,thisanswerno: '5',thisanswername: '5', adddate: adddate, solution: question.correct1, solution2: question.correct2, userAnswer: question.userAnswer, percent: question.answer5count , settings: settings, adventscat:adventscat, isTester: isTester, mypid: mypid}"/>
+
+								</f:else>
+							</f:if>
 
 							<f:if condition="{question.descShort}">
 								<div class="clearfix"> <br /></div>
@@ -118,7 +127,7 @@
 			</div>
 		</div>
 
-		<f:asset.script identifier="jvadvent_qeustionlist">
+		<f:asset.script identifier="jvadvent_questionlist">
 			jQuery(".tx_jvadvent_calendar .JvAdvent_questlist H4").each(function(){
 				jQuery(this).click(function(eventObject){
 					eventObject.preventDefault();

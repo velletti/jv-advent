@@ -161,14 +161,14 @@ class Winner extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
         $this->descShort = $descShort;
     }
 
-    public function setPoints(int $points): void
+    public function setPoints(?int $points): void
     {
-        $this->points = $points;
+        $this->points = ($points ?? 0);
     }
 
-    public function setSubpoints(int $subpoints): void
+    public function setSubpoints(?int $subpoints): void
     {
-        $this->subpoints = $subpoints;
+        $this->subpoints = ($subpoints ?? 0);
     }
 
     public function setFeuserUid(int $feuserUid): void

@@ -5,13 +5,10 @@
 	<sheets>
 		<sDEF>
 			<ROOT>
-				<TCEforms>
 					<sheetTitle>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent.settings.options</sheetTitle>
-				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.advent.list.mustacceptagb>
-						<TCEforms>
 							<label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Adventcat.mustacceptagb</label>
 							<type>text</type>
 							<cols>40</cols>
@@ -20,9 +17,7 @@
 							<enableRichtext>true</enableRichtext>
 							<richtextConfiguration>connect_template</richtextConfiguration>
 							<default>to see the possible answers, you must accept the rules. full agb link ...</default>
-
-						</TCEforms>
-					</settings.advent.list.mustacceptagb>                    
+					</settings.advent.list.mustacceptagb>
 				</el>
 			</ROOT>
 		</sDEF>

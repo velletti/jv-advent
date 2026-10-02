@@ -5,13 +5,10 @@
 	<sheets>
 		<sDEF>
 			<ROOT>
-				<TCEforms>
 					<sheetTitle>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent.settings.options</sheetTitle>
-				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.setup.startdate>
-                        <TCEforms>
                          <exclude>1</exclude>
 					     <label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.startdate</label>
                             <config>
@@ -21,11 +18,9 @@
 								<max>10</max>
 								<eval>date</eval>
                             </config>
-                    	</TCEforms>
                     </settings.setup.startdate>
                     
                     <settings.setup.date>
-                        <TCEforms>
                          <exclude>1</exclude>
 					     <label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.date</label>
                             <config>
@@ -35,11 +30,10 @@
 								<max>10</max>
 								<eval>date</eval>
                             </config>
-                    	</TCEforms>
                     </settings.setup.date>
                     
 					<settings.setup.enddate>
-                        <TCEforms>
+                        
                          <exclude>1</exclude>
 					     <label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.enddate</label>
                             <config>
@@ -48,11 +42,11 @@
 								<max>10</max>
 								<eval>date</eval>
                             </config>
-                    	</TCEforms>
+                    	
                     </settings.setup.enddate>
                     
 					<settings.setup.days>
-                        <TCEforms>
+                        
                          <exclude>1</exclude>
 					     <label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Advent.days</label>
                             <config>
@@ -63,11 +57,11 @@
 								<max>3</max>
 								<eval>integer</eval>
                             </config>
-                    	</TCEforms>
+                    	
                     </settings.setup.days>
 
 					<settings.advent.list.mustacceptagb>
-						<TCEforms>
+						
 							<label>LLL:EXT:jvadvent/Resources/Private/Language/locallang_db.xlf:tx_jvadvent_domain_Model_Adventcat.mustacceptagb</label>
 
 							<config>
@@ -78,7 +72,7 @@
 								<enableRichtext>true</enableRichtext>
 							</config>
 							<default>to the the possible answers you must accept the  AGB. full agb link ...</default>
-						</TCEforms>
+						
 					</settings.advent.list.mustacceptagb>                    
 				</el>
 			</ROOT>

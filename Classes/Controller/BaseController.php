@@ -106,12 +106,12 @@ class BaseController extends ActionController
         $this->settings['testerGroup'] = intval($this->settings['testerGroup']) ?? 0;
         $this->settings['organizerGroup'] = intval($this->settings['organizerGroup']) ?? 0;
 
-        if (!empty($GLOBALS['TSFE']->fe_user->user['uid'])) {
-            $this->settings['feUserUid'] = $GLOBALS['TSFE']->fe_user->user['uid'];
-            $this->settings['customerno'] =   ($GLOBALS['TSFE']->fe_user->user['tx_nem_cnum'] ?? '');
-            $this->settings['usergroup'] =   ($GLOBALS['TSFE']->fe_user->user['usergroup'] ?? '');
-            $this->settings['email'] = ($GLOBALS['TSFE']->fe_user->user['email'] ?? '' ) ;
-            $groups = GeneralUtility::trimExplode(',', $GLOBALS['TSFE']->fe_user->user['usergroup'], true);
+        if (!empty($this->request->getAttribute('frontend.user')->user['uid'])) {
+            $this->settings['feUserUid'] = $this->request->getAttribute('frontend.user')->user['uid'];
+            $this->settings['customerno'] =   ($this->request->getAttribute('frontend.user')->user['tx_nem_cnum'] ?? '');
+            $this->settings['usergroup'] =   ($this->request->getAttribute('frontend.user')->user['usergroup'] ?? '');
+            $this->settings['email'] = ($this->request->getAttribute('frontend.user')->user['email'] ?? '' ) ;
+            $groups = GeneralUtility::trimExplode(',', $this->request->getAttribute('frontend.user')->user['usergroup'], true);
 
             if (in_array($this->settings['testerGroup'], $groups)) {
                 $this->isTester = true;
@@ -121,7 +121,7 @@ class BaseController extends ActionController
             }
         }
 
-        $this->pid = intval($GLOBALS['TSFE']->id);
+        $this->pid = intval($this->request->getAttribute('frontend.page.information')->getId());
 
         $this->settings['now'] = date("d.m.Y H:i", time());
 
@@ -175,10 +175,10 @@ class BaseController extends ActionController
 
     public function getSysLanguageUid() {
         /** @var LanguageAspect $languageAspect */
-        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language') ;
+        $languageAspect = $this->context->getAspect('language') ;
         // (previously known as TSFE->sys_language_uid)
-        if (GeneralUtility::_GP("L") && intval(GeneralUtility::_GP("L") > 0)) {
-            return intval(GeneralUtility::_GP("L"));
+        if (($this->request->getParsedBody()["L"] ?? $this->request->getQueryParams()["L"] ?? null) && intval(($this->request->getParsedBody()["L"] ?? $this->request->getQueryParams()["L"] ?? null) > 0)) {
+            return intval($this->request->getParsedBody()["L"] ?? $this->request->getQueryParams()["L"] ?? null);
         }
         return $languageAspect->getId() ;
     }

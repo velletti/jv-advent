@@ -127,7 +127,7 @@ return
                                                 --palette--;LLL:EXT:marit_elearning/Resources/Private/Language/locallang_db.xml:tx_maritelearning_domain_model_lesson.image;basicoverlayPalette,
                                                 --palette--;;filePalette, sys_language_uid'
                         ),
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => array(
+                        \TYPO3\CMS\Core\Resource\FileType::APPLICATION->value => array(
                             'showitem' => '
                                                 --palette--;LLL:EXT:marit_elearning/Resources/Private/Language/locallang_db.xml:tx_maritelearning_domain_model_lesson.image;basicoverlayPalette,
                                                 --palette--;;filePalette, sys_language_uid'

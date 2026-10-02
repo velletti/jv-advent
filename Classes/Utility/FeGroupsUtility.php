@@ -37,8 +37,8 @@ class FeGroupsUtility {
 
 	static function getFeUserGroupList() {
 		$groupList = array();
-		if (!empty($GLOBALS['TSFE']->fe_user->user) && is_array($GLOBALS['TSFE']->fe_user->groupData['uid'])) {
-			foreach ($GLOBALS['TSFE']->fe_user->groupData['uid'] as $feGroup) {
+		if (!empty($GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user')->user) && is_array($GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user')->groupData['uid'])) {
+			foreach ($GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user')->groupData['uid'] as $feGroup) {
 				array_push($groupList, $feGroup);
 			}
 		}

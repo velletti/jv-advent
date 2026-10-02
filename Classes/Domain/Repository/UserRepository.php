@@ -53,9 +53,9 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
                 ->select('*')
                 ->from('tx_jvadvent_domain_model_user')
                 ->where(
-                    $queryBuilder->expr()->eq('feuser_uid', $queryBuilder->createNamedParameter((int)$feUserUid, \PDO::PARAM_INT)),
-                    $queryBuilder->expr()->eq('advent_uid', $queryBuilder->createNamedParameter((int)$question->getYear(), \PDO::PARAM_INT)),
-                    $queryBuilder->expr()->eq('question_uid', $queryBuilder->createNamedParameter((int)$question->getUid(), \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('feuser_uid', $queryBuilder->createNamedParameter((int)$feUserUid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT)),
+                    $queryBuilder->expr()->eq('advent_uid', $queryBuilder->createNamedParameter((int)$question->getYear(), \TYPO3\CMS\Core\Database\Connection::PARAM_INT)),
+                    $queryBuilder->expr()->eq('question_uid', $queryBuilder->createNamedParameter((int)$question->getUid(), \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
                 )
                 ->setMaxResults(1)
                 ->executeQuery()
@@ -88,8 +88,8 @@ class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
                 'tstamp' => time(),
                 'feuser_uid' => (int)$feUserUid,
                 'sys_language_uid' => -1,
-                'usergroup' => ($GLOBALS['TSFE']->fe_user->user['usergroup'] ?? ''),
-                'customerno' => ($GLOBALS['TSFE']->fe_user->user['tx_nem_cnum'] ?? ''),
+                'usergroup' => ($GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user')->user['usergroup'] ?? ''),
+                'customerno' => ($GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user')->user['tx_nem_cnum'] ?? ''),
                 'question_uid' => (int)$question->getUid(),
                 'question_date' => (int)$question->getDate(),
                 'question_datef' => date('d.m.Y', $question->getDate()),

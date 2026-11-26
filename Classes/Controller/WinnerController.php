@@ -54,8 +54,7 @@ class WinnerController extends BaseController {
 	public function listAction( ): \Psr\Http\Message\ResponseInterface {
 		//default values
 		$this->settingsHelper( ) ;
-
-		$winners =  $this->winnerRepository->getWinnerlist($this->settings['year'], (int)($this->settings['winnerPerPageCount'] ?? 20) ) ;
+		$winners =  $this->winnerRepository->getWinnerlist($this->settings['year'], (int)($this->settings['winnerPerPageCount'] ?? 10) ) ;
 
 		$this->view->assign('winners', $winners);
 

@@ -1,32 +1,90 @@
-﻿<f:if condition="{winners}">
+﻿{namespace advent=Jvelletti\JvAdvent\ViewHelper}
+<f:if condition="{winners}">
 	<f:then>
 		<div class="tx_jvadvent_calendar">
-				<h2><f:translate key="tx_jvadvent_domain_model_winner.listofwinners">List of Winners</f:translate></h2>
+				<h2 class="text-center mb-3"><f:translate key="tx_jvadvent_domain_model_winner.rankinglist">Rangliste</f:translate></h2>
 				<f:if condition="{settings.showSolutions} || {isOrganizer}">
 					<f:then>
-						<div class="row ">
-							<f:for each="{winners}" as="winner">
+						<f:if condition="{winners}">
+							<div class="row ">
+								<f:for each="{winners}" as="winner" iteration="iteration">
+									<f:variable name="feUser" value="{advent:feUser(uid: winner.feuserUid)}" />
 
-								<div class="col-xs-4 col-md-2 equalHeight">
-										user <br>Image<br> ...
-								</div>
-								<div class="col-xs-8  col-md-4 equalHeight bg-info rounded">
-									<f:if condition="{winner.subpoints} > 100000">
-										<f:then>
-											{winner.points +1},<f:format.padding padLength="5" padType="left" padString="0">{100000 -winner.subpoints}</f:format.padding>/ {winner.count} : {winner.feuserUid}
-										</f:then>
+									<div class="col-xs-3 col-md-2 equalHeight text-right">
+										<div class="p-2">
+											<f:if condition="{feUser.imagesrc}">
+												<f:then>
+													<f:image width="100" height="100" src="/{feUser.imagesrc}" alt="IMG" class="img-thumbnail rounded-circle mr-1"></f:image>
+												</f:then>
+												<f:else>
+													<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none">
+														<circle cx="12" cy="12" r="11.25" stroke="#D1D1D1" stroke-width="1.0"/>
+														<circle cx="12" cy="6.25" r="2.5" stroke="#D1D1D1" stroke-width="1.0"/>
+														<path d="M6.46893 17.9243C6.38443 17.8442 6.313 17.7731 6.25512 17.7135C6.3767 14.3111 8.65455 11.25 12 11.25C15.3455 11.25 17.6233 14.3111 17.7449 17.7135C17.687 17.7731 17.6156 17.8442 17.5311 17.9243C17.2589 18.1821 16.8546 18.5289 16.334 18.876C15.2899 19.572 13.8082 20.25 12 20.25C10.1918 20.25 8.71013 19.572 7.66603 18.876C7.14544 18.5289 6.74106 18.1821 6.46893 17.9243Z" stroke="#c1c1c1" stroke-width="1.2"/>
+													</svg>
+												</f:else>
+											</f:if>
+										</div>
+
+									</div>
+									<div class="col-xs-9  col-md-4 equalHeight border rounded p-2 shadow row">
+										<f:if condition="{winner.link}">
+											<f:then>
+												<a href="{winner.link}">
+													<h3 class="px-1">{feUser.firstname} <f:format.crop maxCharacters="1" append=".">{feUser.lastname}</f:format.crop>, {feUser.city} </h3>
+												</a>
+
+											</f:then>
+											<f:else>
+												<h3 class="px-1">{feUser.firstname} <f:format.crop maxCharacters="1" append=".">{feUser.lastname}</f:format.crop>, {feUser.city} </h3>
+
+											</f:else>
+										</f:if>
+
+										<f:if condition="{feUser.icons}">
+											<div class="col-xs-12 mb-2">
+												<f:for each="{feUser.icons}" as="icon">
+													<span class="mr-1 userIcon userIcon-small {icon}" alt="icon" ></span>
+												</f:for>
+
+											</div>
+										</f:if>
+										<div class="col-xs-6">
+											Gewertete Antworten:
+										</div>
+										<div class="col-xs-6 bold">
+											{winner.count}
+										</div>
+										<div class="col-xs-6">
+											Erreichte Punkte:
+										</div>
+										<div class="col-xs-6 bold">
+											<f:if condition="{winner.subpoints} > 100000">
+												<f:then>
+													{winner.points +1},<f:format.padding padLength="5" padType="left" padString="0">{100000 -winner.subpoints}</f:format.padding>
+												</f:then>
+												<f:else>
+													{winner.points},<f:format.padding padLength="5" padType="left" padString="0">{winner.subpoints}</f:format.padding>
+												</f:else>
+											</f:if>
+										</div>
+
+									</div>
+									<f:if condition="{iteration.cycle} % 2">
 										<f:else>
-											{winner.points},<f:format.padding padLength="5" padType="left" padString="0">{winner.subpoints}</f:format.padding> / {winner.count} : {winner.feuserUid}
+											<div class="col-xs-12">
+												&nbsp;
+											</div>
 										</f:else>
+
 									</f:if>
+								</f:for>
+							</div>
+						</f:if>
 
-								</div>
-
-							</f:for>
-						</div>
 					</f:then>
 					<f:else>
-						<p><f:translate key="tx_jvadvent_domain_model_winner.winners_hidden">Winners are visible after the end date!</f:translate></p>
+						<p><f:translate key="tx_jvadvent_domain_model_winner.winners_hidden">List is visible after the end date!</f:translate></p>
 						<f:render partial="BeforeEnddate" arguments="{_all}"></f:render>
 					</f:else>
 				</f:if>

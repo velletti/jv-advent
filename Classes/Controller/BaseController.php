@@ -175,6 +175,11 @@ class BaseController extends ActionController
 
     public function getSysLanguageUid() {
         /** @var LanguageAspect $languageAspect */
+        // init contect if  not set in constructor, so we need to get it from context here
+        if (!isset($this->context)) {
+            $this->context = GeneralUtility::makeInstance(Context::class);
+        }
+        
         $languageAspect = $this->context->getAspect('language') ;
         // (previously known as TSFE->sys_language_uid)
         if (($this->request->getParsedBody()["L"] ?? $this->request->getQueryParams()["L"] ?? null) && intval(($this->request->getParsedBody()["L"] ?? $this->request->getQueryParams()["L"] ?? null) > 0)) {
